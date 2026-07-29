@@ -82,6 +82,8 @@ struct SmartliPack {
   sensor::Sensor *remaining_capacity{nullptr};
   sensor::Sensor *total_charged_ah{nullptr};
   sensor::Sensor *total_discharged_ah{nullptr};
+  sensor::Sensor *total_charged_energy{nullptr};
+  sensor::Sensor *total_discharged_energy{nullptr};
   sensor::Sensor *cell_min_voltage{nullptr};
   sensor::Sensor *cell_max_voltage{nullptr};
   sensor::Sensor *cell_delta_voltage{nullptr};
@@ -140,6 +142,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   DECLARE_SETTER(remaining_capacity);
   DECLARE_SETTER(total_charged_ah);
   DECLARE_SETTER(total_discharged_ah);
+  DECLARE_SETTER(total_charged_energy);
+  DECLARE_SETTER(total_discharged_energy);
   DECLARE_SETTER(cell_min_voltage);
   DECLARE_SETTER(cell_max_voltage);
   DECLARE_SETTER(cell_delta_voltage);

@@ -334,6 +334,8 @@ def parse_frame(frame: bytes) -> dict[str, Any]:
     soh_raw = result["fields"].get("0x09", [None])[0]
     total_charged_raw = result["fields"].get("0x0B", [None])[0]
     total_discharged_raw = result["fields"].get("0x0C", [None])[0]
+    total_charged_energy_raw = result["fields"].get("0x0F", [None])[0]
+    total_discharged_energy_raw = result["fields"].get("0x10", [None])[0]
     bus_voltage_raw = result["fields"].get("0x11", [None])[0]
     decoded: dict[str, Any] = {}
 
@@ -380,6 +382,14 @@ def parse_frame(frame: bytes) -> dict[str, Any]:
         decoded["total_charged_ah"] = total_charged_raw
     if total_discharged_raw is not None:
         decoded["total_discharged_ah"] = total_discharged_raw
+    if total_charged_energy_raw is not None:
+        decoded["total_charged_energy_kwh"] = round(
+            total_charged_energy_raw / 1000, 3
+        )
+    if total_discharged_energy_raw is not None:
+        decoded["total_discharged_energy_kwh"] = round(
+            total_discharged_energy_raw / 1000, 3
+        )
     if bus_voltage_raw is not None:
         decoded["bus_voltage_v"] = round(bus_voltage_raw / 100, 2)
 

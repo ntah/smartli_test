@@ -17,6 +17,8 @@ CONF_FULL_CAPACITY = "full_capacity"
 CONF_REMAINING_CAPACITY = "remaining_capacity"
 CONF_TOTAL_CHARGED_AH = "total_charged_ah"
 CONF_TOTAL_DISCHARGED_AH = "total_discharged_ah"
+CONF_TOTAL_CHARGED_ENERGY = "total_charged_energy"
+CONF_TOTAL_DISCHARGED_ENERGY = "total_discharged_energy"
 CONF_CELL_MIN_VOLTAGE = "cell_min_voltage"
 CONF_CELL_MAX_VOLTAGE = "cell_max_voltage"
 CONF_CELL_DELTA_VOLTAGE = "cell_delta_voltage"
@@ -114,6 +116,18 @@ CONFIG_SCHEMA = cv.Schema(
             accuracy_decimals=0,
             state_class="total_increasing",
         ),
+        cv.Optional(CONF_TOTAL_CHARGED_ENERGY): sensor.sensor_schema(
+            unit_of_measurement="kWh",
+            accuracy_decimals=3,
+            device_class="energy",
+            state_class="total_increasing",
+        ),
+        cv.Optional(CONF_TOTAL_DISCHARGED_ENERGY): sensor.sensor_schema(
+            unit_of_measurement="kWh",
+            accuracy_decimals=3,
+            device_class="energy",
+            state_class="total_increasing",
+        ),
         cv.Optional(CONF_CELL_MIN_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_MAX_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_DELTA_VOLTAGE): voltage_sensor_schema(3),
@@ -182,6 +196,8 @@ async def to_code(config):
         CONF_REMAINING_CAPACITY: "set_remaining_capacity_sensor",
         CONF_TOTAL_CHARGED_AH: "set_total_charged_ah_sensor",
         CONF_TOTAL_DISCHARGED_AH: "set_total_discharged_ah_sensor",
+        CONF_TOTAL_CHARGED_ENERGY: "set_total_charged_energy_sensor",
+        CONF_TOTAL_DISCHARGED_ENERGY: "set_total_discharged_energy_sensor",
         CONF_CELL_MIN_VOLTAGE: "set_cell_min_voltage_sensor",
         CONF_CELL_MAX_VOLTAGE: "set_cell_max_voltage_sensor",
         CONF_CELL_DELTA_VOLTAGE: "set_cell_delta_voltage_sensor",

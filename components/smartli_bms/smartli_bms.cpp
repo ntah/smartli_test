@@ -88,6 +88,8 @@ DEFINE_SETTER(full_capacity)
 DEFINE_SETTER(remaining_capacity)
 DEFINE_SETTER(total_charged_ah)
 DEFINE_SETTER(total_discharged_ah)
+DEFINE_SETTER(total_charged_energy)
+DEFINE_SETTER(total_discharged_energy)
 DEFINE_SETTER(cell_min_voltage)
 DEFINE_SETTER(cell_max_voltage)
 DEFINE_SETTER(cell_delta_voltage)
@@ -1152,6 +1154,12 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       pack.total_charged_ah->publish_state(this->read_u32_(&p[offset]));
     } else if (id == 0x0C && pack.total_discharged_ah != nullptr) {
       pack.total_discharged_ah->publish_state(this->read_u32_(&p[offset]));
+    } else if (id == 0x0F && pack.total_charged_energy != nullptr) {
+      pack.total_charged_energy->publish_state(
+          this->read_u32_(&p[offset]) / 1000.0f);
+    } else if (id == 0x10 && pack.total_discharged_energy != nullptr) {
+      pack.total_discharged_energy->publish_state(
+          this->read_u32_(&p[offset]) / 1000.0f);
     } else if (id == 0x11 && pack.bus_voltage != nullptr) {
       pack.bus_voltage->publish_state(this->read_u16_(&p[offset]) / 100.0f);
     }

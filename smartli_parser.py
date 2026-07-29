@@ -326,7 +326,7 @@ def parse_frame(frame: bytes) -> dict[str, Any]:
 
     cells = result["fields"].get("0x01", [])
     current_raw = result["fields"].get("0x02", [None])[0]
-    remaining_raw = result["fields"].get("0x03", [None])[0]
+    state_of_charge_raw = result["fields"].get("0x03", [None])[0]
     full_raw = result["fields"].get("0x04", [None])[0]
     pack_voltage_raw = result["fields"].get("0x08", [None])[0]
     soh_raw = result["fields"].get("0x09", [None])[0]
@@ -346,12 +346,16 @@ def parse_frame(frame: bytes) -> dict[str, Any]:
         )
     if current_raw is not None:
         decoded["current_a"] = round((current_raw - 30000) / 100, 2)
-    if remaining_raw is not None:
-        decoded["remaining_capacity_ah"] = round(remaining_raw / 100, 2)
+    if state_of_charge_raw is not None:
+        decoded["state_of_charge_percent"] = round(
+            state_of_charge_raw / 100, 2
+        )
     if full_raw is not None:
         decoded["full_capacity_ah"] = round(full_raw / 100, 2)
-    if remaining_raw is not None and full_raw:
-        decoded["state_of_charge_percent"] = round(remaining_raw / full_raw * 100, 2)
+    if state_of_charge_raw is not None and full_raw:
+        decoded["remaining_capacity_ah"] = round(
+            (state_of_charge_raw / 100) * (full_raw / 100) / 100, 2
+        )
     if pack_voltage_raw is not None:
         decoded["pack_voltage_v"] = round(pack_voltage_raw / 100, 2)
     if soh_raw is not None:

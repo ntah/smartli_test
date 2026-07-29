@@ -457,11 +457,13 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
   PUB(dcdc_depth_dod, 85, 100.0f);
   PUB(dcdc_vbus_set_max_autoself, 89, 100.0f);
 #undef PUB
-  if (pack.dcdc_modbus_address != nullptr) {
-    const uint16_t value =
-        pack.modbus_address != 0 ? pack.modbus_address : this->read_u16_(&p[87]);
-    pack.dcdc_modbus_address->publish_state(value);
-  }
+  const uint16_t reported_modbus_address = this->read_u16_(&p[87]);
+  if (pack.dcdc_modbus_address != nullptr && pack.modbus_address != 0)
+    pack.dcdc_modbus_address->publish_state(pack.modbus_address);
+  if (pack.modbus_address == 0)
+    ESP_LOGV(TAG,
+             "Pack %u DCDC reports default Modbus %u; waiting for barcode discovery",
+             pack.address, reported_modbus_address);
 }
 
 void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
@@ -469,8 +471,8 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
   size_t offset = 0;
   std::array<uint16_t, 15> cells{};
   size_t cell_count = 0;
-  float full = 0, remaining = 0;
-  bool have_full = false, have_remaining = false;
+  float full = 0, state_of_charge = 0;
+  bool have_full = false, have_state_of_charge = false;
   while (offset + 2 <= n) {
     const uint8_t id = p[offset++];
     const uint8_t count = p[offset++];
@@ -489,10 +491,10 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       pack.current->publish_state(
           (static_cast<int32_t>(this->read_u16_(&p[offset])) - 30000) / 100.0f);
     } else if (id == 0x03) {
-      remaining = this->read_u16_(&p[offset]) / 100.0f;
-      have_remaining = true;
-      if (pack.remaining_capacity != nullptr)
-        pack.remaining_capacity->publish_state(remaining);
+      state_of_charge = this->read_u16_(&p[offset]) / 100.0f;
+      have_state_of_charge = true;
+      if (pack.state_of_charge != nullptr)
+        pack.state_of_charge->publish_state(state_of_charge);
     } else if (id == 0x04) {
       full = this->read_u16_(&p[offset]) / 100.0f;
       have_full = true;
@@ -516,8 +518,8 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
     }
     offset += bytes;
   }
-  if (have_full && have_remaining && full > 0 && pack.state_of_charge != nullptr)
-    pack.state_of_charge->publish_state(remaining / full * 100.0f);
+  if (have_full && have_state_of_charge && pack.remaining_capacity != nullptr)
+    pack.remaining_capacity->publish_state(full * state_of_charge / 100.0f);
   if (cell_count > 0) {
     auto begin = cells.begin();
     auto end = cells.begin() + cell_count;

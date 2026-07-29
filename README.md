@@ -55,6 +55,10 @@ Alamat Modbus ditemukan otomatis:
 4. Alamat yang cocok dipakai untuk membaca alarm, protection, dan operating
    status pada register `0x1037` sampai `0x103D`.
 
+Nilai alamat default 214 yang terdapat di payload DCDC tidak digunakan
+sebagai hasil discovery. Sensor `dcdc_modbus_address` baru dipublikasikan
+setelah PCB barcode cocok atau `modbus_address` diisi manual.
+
 `modbus_address` tetap dapat diisi pada salah satu item `packs` sebagai
 override/fallback. Ini diperlukan jika firmware tertentu tidak menyediakan
 barcode yang dapat dicocokkan.

@@ -71,6 +71,13 @@ Text sensor `modbus_address` menampilkan slave address hasil auto-discovery
 untuk setiap pack. Jika alamat dikonfigurasi manual, nilai manual tersebut
 yang ditampilkan.
 
+Platform `select` menyediakan penulisan konfigurasi Modbus yang sama dengan
+YAML lama: VBUS discharge (`0x1010`), IBUS (`0x1011`), PBUS (`0x1012`),
+average charge (`0x1013`), VBUS DOD (`0x1014`), DOD (`0x1015`), mode semua
+pack (`0x1016`), charging loop (`0x107D`), dan discharge loop (`0x107E`).
+Write baru dijalankan setelah alamat Modbus pack ditemukan dan dimasukkan ke
+antrean agar tidak bertabrakan dengan polling atau discovery.
+
 Field yang sudah dipublikasikan:
 
 - Arus.

@@ -38,8 +38,6 @@ CONF_DCDC_DEPTH_DOD = "dcdc_depth_dod"
 CONF_DCDC_MODBUS_ADDRESS = "dcdc_modbus_address"
 CONF_DCDC_VBUS_SET_MAX_AUTOSELF = "dcdc_vbus_set_max_autoself"
 ALARM_KEYS = [f"alarm_status_{number}" for number in range(1, 6)]
-CONF_PROTECTION_STATUS = "protection_status"
-CONF_OPERATING_STATUS = "operating_status"
 
 
 def voltage_sensor_schema(accuracy_decimals):
@@ -138,14 +136,6 @@ CONFIG_SCHEMA = cv.Schema(
             )
             for key in ALARM_KEYS
         },
-        cv.Optional(CONF_PROTECTION_STATUS): sensor.sensor_schema(
-            accuracy_decimals=0,
-            entity_category="diagnostic",
-        ),
-        cv.Optional(CONF_OPERATING_STATUS): sensor.sensor_schema(
-            accuracy_decimals=0,
-            entity_category="diagnostic",
-        ),
         **{
             cv.Optional(cell_key): voltage_sensor_schema(3)
             for cell_key in CELL_KEYS
@@ -204,11 +194,3 @@ async def to_code(config):
         if sensor_config := config.get(alarm_key):
             sens = await sensor.new_sensor(sensor_config)
             cg.add(parent.set_alarm_status_sensor(address, index, sens))
-
-    for key, setter in {
-        CONF_PROTECTION_STATUS: "set_protection_status_sensor",
-        CONF_OPERATING_STATUS: "set_operating_status_sensor",
-    }.items():
-        if sensor_config := config.get(key):
-            sens = await sensor.new_sensor(sensor_config)
-            cg.add(getattr(parent, setter)(address, sens))

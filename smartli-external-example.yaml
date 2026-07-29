@@ -115,20 +115,6 @@ sensor:
       name: "SmartLi DCDC Depth DOD"
     dcdc_modbus_address:
       name: "SmartLi 1 Modbus Address"
-    alarm_status_1:
-      name: "SmartLi 1 Alarm Status 1"
-    alarm_status_2:
-      name: "SmartLi 1 Alarm Status 2"
-    alarm_status_3:
-      name: "SmartLi 1 Alarm Status 3"
-    alarm_status_4:
-      name: "SmartLi 1 Alarm Status 4"
-    alarm_status_5:
-      name: "SmartLi 1 Alarm Status 5"
-    protection_status:
-      name: "SmartLi 1 Protection Status"
-    operating_status:
-      name: "SmartLi 1 Operating Status"
     dcdc_vbus_set_max_autoself:
       name: "SmartLi DCDC VBUS Set Max Autoself"
     cell_min_voltage:
@@ -221,20 +207,6 @@ sensor:
       name: "SmartLi 2 State of Charge"
     dcdc_modbus_address:
       name: "SmartLi 2 Modbus Address"
-    alarm_status_1:
-      name: "SmartLi 2 Alarm Status 1"
-    alarm_status_2:
-      name: "SmartLi 2 Alarm Status 2"
-    alarm_status_3:
-      name: "SmartLi 2 Alarm Status 3"
-    alarm_status_4:
-      name: "SmartLi 2 Alarm Status 4"
-    alarm_status_5:
-      name: "SmartLi 2 Alarm Status 5"
-    protection_status:
-      name: "SmartLi 2 Protection Status"
-    operating_status:
-      name: "SmartLi 2 Operating Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -287,20 +259,6 @@ sensor:
       name: "SmartLi 3 State of Charge"
     dcdc_modbus_address:
       name: "SmartLi 3 Modbus Address"
-    alarm_status_1:
-      name: "SmartLi 3 Alarm Status 1"
-    alarm_status_2:
-      name: "SmartLi 3 Alarm Status 2"
-    alarm_status_3:
-      name: "SmartLi 3 Alarm Status 3"
-    alarm_status_4:
-      name: "SmartLi 3 Alarm Status 4"
-    alarm_status_5:
-      name: "SmartLi 3 Alarm Status 5"
-    protection_status:
-      name: "SmartLi 3 Protection Status"
-    operating_status:
-      name: "SmartLi 3 Operating Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -353,20 +311,6 @@ sensor:
       name: "SmartLi 4 State of Charge"
     dcdc_modbus_address:
       name: "SmartLi 4 Modbus Address"
-    alarm_status_1:
-      name: "SmartLi 4 Alarm Status 1"
-    alarm_status_2:
-      name: "SmartLi 4 Alarm Status 2"
-    alarm_status_3:
-      name: "SmartLi 4 Alarm Status 3"
-    alarm_status_4:
-      name: "SmartLi 4 Alarm Status 4"
-    alarm_status_5:
-      name: "SmartLi 4 Alarm Status 5"
-    protection_status:
-      name: "SmartLi 4 Protection Status"
-    operating_status:
-      name: "SmartLi 4 Operating Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -419,20 +363,6 @@ sensor:
       name: "SmartLi 5 State of Charge"
     dcdc_modbus_address:
       name: "SmartLi 5 Modbus Address"
-    alarm_status_1:
-      name: "SmartLi 5 Alarm Status 1"
-    alarm_status_2:
-      name: "SmartLi 5 Alarm Status 2"
-    alarm_status_3:
-      name: "SmartLi 5 Alarm Status 3"
-    alarm_status_4:
-      name: "SmartLi 5 Alarm Status 4"
-    alarm_status_5:
-      name: "SmartLi 5 Alarm Status 5"
-    protection_status:
-      name: "SmartLi 5 Protection Status"
-    operating_status:
-      name: "SmartLi 5 Operating Status"
 
 text_sensor:
   - platform: smartli_bms
@@ -442,6 +372,8 @@ text_sensor:
       name: "SmartLi 1 PCB Barcode"
     pack_barcode:
       name: "SmartLi 1 Pack Barcode"
+    status:
+      name: "SmartLi 1 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -450,6 +382,8 @@ text_sensor:
       name: "SmartLi 2 PCB Barcode"
     pack_barcode:
       name: "SmartLi 2 Pack Barcode"
+    status:
+      name: "SmartLi 2 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -458,6 +392,8 @@ text_sensor:
       name: "SmartLi 3 PCB Barcode"
     pack_barcode:
       name: "SmartLi 3 Pack Barcode"
+    status:
+      name: "SmartLi 3 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -466,6 +402,8 @@ text_sensor:
       name: "SmartLi 4 PCB Barcode"
     pack_barcode:
       name: "SmartLi 4 Pack Barcode"
+    status:
+      name: "SmartLi 4 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -474,3 +412,5 @@ text_sensor:
       name: "SmartLi 5 PCB Barcode"
     pack_barcode:
       name: "SmartLi 5 Pack Barcode"
+    status:
+      name: "SmartLi 5 Status"

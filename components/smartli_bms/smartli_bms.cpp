@@ -61,8 +61,6 @@ DEFINE_SETTER(dcdc_bus_voltage_ladder)
 DEFINE_SETTER(dcdc_depth_dod)
 DEFINE_SETTER(dcdc_modbus_address)
 DEFINE_SETTER(dcdc_vbus_set_max_autoself)
-DEFINE_SETTER(protection_status)
-DEFINE_SETTER(operating_status)
 #undef DEFINE_SETTER
 
 void SmartliBms::set_cell_voltage_sensor(uint8_t address, size_t index,
@@ -91,6 +89,13 @@ void SmartliBms::set_pack_barcode_text_sensor(
   auto *pack = this->find_pack_(address);
   if (pack != nullptr)
     pack->pack_barcode_sensor = value;
+}
+
+void SmartliBms::set_status_text_sensor(
+    uint8_t address, text_sensor::TextSensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr)
+    pack->status_sensor = value;
 }
 
 void SmartliBms::setup() {
@@ -173,16 +178,6 @@ void SmartliBms::advance_(bool response_received) {
     }
   }
 
-  if (completed == Phase::PACK_BARCODE ||
-      completed == Phase::PCB_BARCODE ||
-      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
-    if (pack.modbus_address != 0) {
-      this->phase_ = Phase::MODBUS_STATUS;
-      this->send_modbus_read_(pack.modbus_address, 0x103C, 2);
-      return;
-    }
-  }
-
   this->pack_index_++;
   // Prevent loop() from treating the intentional inter-pack delay as another
   // timeout for the phase that has just completed.
@@ -231,19 +226,6 @@ void SmartliBms::send_pack_barcode_request_(uint8_t address) {
   ESP_LOGD(TAG, "Pack %u request pack barcode", address);
 }
 
-void SmartliBms::send_modbus_read_(uint8_t address, uint16_t start,
-                                    uint16_t count) {
-  uint8_t request[8] = {
-      address, 0x03, static_cast<uint8_t>(start >> 8),
-      static_cast<uint8_t>(start), static_cast<uint8_t>(count >> 8),
-      static_cast<uint8_t>(count), 0, 0};
-  const uint16_t crc = this->crc16_(request, 6);
-  request[6] = static_cast<uint8_t>(crc);
-  request[7] = static_cast<uint8_t>(crc >> 8);
-  this->send_bytes_(request, sizeof(request));
-  ESP_LOGD(TAG, "Modbus %u read 0x%04X count %u", address, start, count);
-}
-
 void SmartliBms::send_bytes_(const uint8_t *data, size_t length) {
   this->reset_frame_();
   uint8_t stale;
@@ -276,52 +258,33 @@ void SmartliBms::loop() {
 }
 
 void SmartliBms::process_byte_(uint8_t byte) {
-  const bool modbus = this->phase_ == Phase::MODBUS_STATUS;
   if (this->frame_.empty()) {
-    if (!modbus && byte != 0x7E)
+    if (byte != 0x7E)
       return;
-    if (modbus) {
-      const uint8_t expected =
-          this->packs_[this->pack_index_].modbus_address;
-      if (byte != expected)
-        return;
-    }
     this->frame_.push_back(byte);
     return;
   }
 
   this->frame_.push_back(byte);
-  if (modbus) {
-    if (this->frame_.size() == 2 && (this->frame_[1] & 0x80))
-      this->expected_frame_length_ = 5;
-    else if (this->frame_.size() == 3 && this->frame_[1] == 0x03) {
-      // Both reads start at 0x10xx. If TX is echoed by the adapter, the
-      // third byte is 0x10; a response contains byte-count 0x14 or 0x0E.
-      this->modbus_echo_ = this->frame_[2] == 0x10;
-      this->expected_frame_length_ =
-          this->modbus_echo_ ? 8U : 5U + this->frame_[2];
-    }
-  } else {
-    if (this->frame_.size() == 4) {
-      this->ascii_frame_ =
-          this->hex_nibble_(this->frame_[1]) >= 0 &&
-          this->hex_nibble_(this->frame_[2]) >= 0 &&
-          this->hex_nibble_(this->frame_[3]) >= 0;
-      if (!this->ascii_frame_)
-        this->expected_frame_length_ = 6U + this->frame_[3];
-    }
-    if (this->ascii_frame_ && this->frame_.size() == 13) {
-      uint16_t length_field = 0;
-      for (size_t i = 9; i < 13; i++) {
-        const int8_t nibble = this->hex_nibble_(this->frame_[i]);
-        if (nibble < 0) {
-          this->reset_frame_();
-          return;
-        }
-        length_field = static_cast<uint16_t>((length_field << 4) | nibble);
+  if (this->frame_.size() == 4) {
+    this->ascii_frame_ =
+        this->hex_nibble_(this->frame_[1]) >= 0 &&
+        this->hex_nibble_(this->frame_[2]) >= 0 &&
+        this->hex_nibble_(this->frame_[3]) >= 0;
+    if (!this->ascii_frame_)
+      this->expected_frame_length_ = 6U + this->frame_[3];
+  }
+  if (this->ascii_frame_ && this->frame_.size() == 13) {
+    uint16_t length_field = 0;
+    for (size_t i = 9; i < 13; i++) {
+      const int8_t nibble = this->hex_nibble_(this->frame_[i]);
+      if (nibble < 0) {
+        this->reset_frame_();
+        return;
       }
-      this->expected_frame_length_ = 18U + (length_field & 0x0FFFU);
+      length_field = static_cast<uint16_t>((length_field << 4) | nibble);
     }
+    this->expected_frame_length_ = 18U + (length_field & 0x0FFFU);
   }
 
   if (this->expected_frame_length_ > MAX_FRAME_SIZE) {
@@ -330,13 +293,8 @@ void SmartliBms::process_byte_(uint8_t byte) {
   }
   if (this->expected_frame_length_ != 0 &&
       this->frame_.size() == this->expected_frame_length_) {
-    if (modbus && this->modbus_echo_) {
-      this->reset_frame_();
-      return;
-    }
-    bool accepted = modbus ? this->process_modbus_frame_()
-                           : (this->ascii_frame_ ? this->process_ascii_frame_()
-                                                 : this->process_binary_frame_());
+    bool accepted = this->ascii_frame_ ? this->process_ascii_frame_()
+                                       : this->process_binary_frame_();
     this->reset_frame_();
     if (accepted)
       this->advance_(true);
@@ -421,32 +379,79 @@ bool SmartliBms::process_ascii_frame_() {
   return true;
 }
 
-bool SmartliBms::process_modbus_frame_() {
-  if (this->frame_.size() < 5)
-    return false;
-  const uint16_t received =
-      this->frame_[this->frame_.size() - 2] |
-      (static_cast<uint16_t>(this->frame_.back()) << 8);
-  if (this->crc16_(this->frame_.data(), this->frame_.size() - 2) != received)
-    return false;
-  if (this->frame_[1] != 0x03)
-    return true;
+void SmartliBms::publish_status_(SmartliPack &pack) {
+  if (pack.status_sensor == nullptr)
+    return;
 
-  auto &pack = this->packs_[this->pack_index_];
-  const uint8_t *data = &this->frame_[3];
-  const size_t length = this->frame_[2];
-  if (this->phase_ == Phase::MODBUS_STATUS && length == 4) {
-    this->parse_modbus_status_(pack, data);
+  std::vector<std::string> active;
+  auto high = [&](size_t word, uint8_t bit, const char *name) {
+    if (pack.alarm_values[word] & (1U << (bit + 8)))
+      active.emplace_back(name);
+  };
+  auto low = [&](size_t word, uint8_t bit, const char *name) {
+    if (pack.alarm_values[word] & (1U << bit))
+      active.emplace_back(name);
+  };
+
+  high(0, 3, "Cell voltage too low fault");
+  high(0, 4, "Voltage sampling disconnection");
+  high(0, 5, "Charging MOS damaged");
+  high(0, 6, "Discharge MOS damaged");
+  high(0, 7, "Voltage sampling element damaged");
+  low(0, 0, "NTC disconnection");
+  low(0, 1, "ADC damaged");
+  low(0, 2, "Reverse battery connection");
+  low(0, 3, "Fan failure");
+  low(0, 4, "Battery lock");
+
+  high(1, 0, "Discharge over-temperature protection");
+  high(1, 1, "Discharge under-temperature protection");
+  high(1, 2, "Overall overvoltage protection");
+  high(1, 3, "Startup failed");
+  high(1, 4, "Charging MOS off");
+  high(1, 5, "Discharge MOS off");
+  low(1, 2, "Short circuit protection");
+  low(1, 4, "Overvoltage protection");
+  low(1, 5, "Undervoltage protection");
+  low(1, 6, "Charging over-temperature protection");
+  low(1, 7, "Charging under-temperature protection");
+
+  high(2, 0, "Environment low-temperature protection");
+  high(2, 1, "Environment high-temperature protection");
+  low(2, 5, "MOSFET over-temperature protection");
+  low(2, 6, "MOSFET low-temperature protection");
+  low(2, 7, "Charging temperature too low");
+
+  low(3, 1, "Vibration alarm");
+  low(3, 7, "BMS module serial number duplicated");
+
+  high(4, 0, "Ambient over-temperature alarm");
+  high(4, 1, "Environment under-temperature alarm");
+  high(4, 2, "MOS over-temperature alarm");
+  high(4, 3, "SOC too low alarm");
+  high(4, 4, "Overpressure alarm");
+  high(4, 5, "Battery over-temperature warning");
+  high(4, 6, "Battery discharge under-temperature alarm");
+  low(4, 0, "Cell overvoltage alarm");
+  low(4, 1, "Cell undervoltage alarm");
+  low(4, 2, "Overall overvoltage warning");
+  low(4, 3, "Overall undervoltage warning");
+  low(4, 4, "Overcharge alarm");
+  low(4, 5, "Overcurrent warning ignored");
+  low(4, 6, "Battery charging over-temperature alarm");
+  low(4, 7, "Battery charging under-temperature alarm");
+
+  if (active.empty()) {
+    pack.status_sensor->publish_state("Normal");
+    return;
   }
-  return true;
-}
-
-void SmartliBms::parse_modbus_status_(SmartliPack &pack,
-                                      const uint8_t *data) {
-  if (pack.protection_status != nullptr)
-    pack.protection_status->publish_state(this->read_u16_(&data[0]));
-  if (pack.operating_status != nullptr)
-    pack.operating_status->publish_state(this->read_u16_(&data[2]));
+  std::string result;
+  for (size_t i = 0; i < active.size(); i++) {
+    if (i != 0)
+      result += ", ";
+    result += active[i];
+  }
+  pack.status_sensor->publish_state(result);
 }
 
 void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
@@ -515,10 +520,12 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       if (pack.full_capacity != nullptr)
         pack.full_capacity->publish_state(full);
     } else if (id == 0x06 && count >= 5) {
-      for (size_t i = 0; i < 5; i++)
+      for (size_t i = 0; i < 5; i++) {
+        pack.alarm_values[i] = this->read_u16_(&p[offset + i * 2]);
         if (pack.alarm_status[i] != nullptr)
-          pack.alarm_status[i]->publish_state(
-              this->read_u16_(&p[offset + i * 2]));
+          pack.alarm_status[i]->publish_state(pack.alarm_values[i]);
+      }
+      this->publish_status_(pack);
     } else if (id == 0x08 && pack.pack_voltage != nullptr) {
       pack.pack_voltage->publish_state(this->read_u16_(&p[offset]) / 100.0f);
     } else if (id == 0x09 && pack.state_of_health != nullptr) {
@@ -546,17 +553,6 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
     if (pack.cell_delta_voltage != nullptr)
       pack.cell_delta_voltage->publish_state((hi - lo) / 1000.0f);
   }
-}
-
-uint16_t SmartliBms::crc16_(const uint8_t *data, size_t length) const {
-  uint16_t crc = 0xFFFF;
-  while (length--) {
-    crc ^= *data++;
-    for (uint8_t i = 0; i < 8; i++)
-      crc = (crc & 1) ? static_cast<uint16_t>((crc >> 1) ^ 0xA001)
-                      : static_cast<uint16_t>(crc >> 1);
-  }
-  return crc;
 }
 
 uint16_t SmartliBms::read_u16_(const uint8_t *data) const {
@@ -599,7 +595,6 @@ void SmartliBms::reset_frame_() {
   this->frame_.clear();
   this->expected_frame_length_ = 0;
   this->ascii_frame_ = false;
-  this->modbus_echo_ = false;
 }
 
 }  // namespace smartli_bms

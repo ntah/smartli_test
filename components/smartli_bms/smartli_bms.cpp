@@ -13,6 +13,52 @@ namespace smartli_bms {
 
 static const char *const TAG = "smartli_bms";
 
+void SmartliBmsSelect::control(const std::string &option) {
+  if (this->parent_ == nullptr)
+    return;
+  uint16_t reg = 0;
+  uint16_t value = 0;
+  switch (this->type_) {
+    case VBUS_DISCHARGE:
+      reg = 0x1010;
+      value = static_cast<uint16_t>(std::strtof(option.c_str(), nullptr) * 100);
+      break;
+    case VBUS_DOD:
+      reg = 0x1014;
+      value = static_cast<uint16_t>(std::strtof(option.c_str(), nullptr) * 100);
+      break;
+    case IBUS_PERCENT:
+      reg = 0x1011;
+      value = static_cast<uint16_t>(std::atoi(option.c_str()) * 100);
+      break;
+    case PBUS_PERCENT:
+      reg = 0x1012;
+      value = static_cast<uint16_t>(std::atoi(option.c_str()) * 100);
+      break;
+    case AVG_CHARGE_PERCENT:
+      reg = 0x1013;
+      value = static_cast<uint16_t>(std::atoi(option.c_str()) * 100);
+      break;
+    case DOD_PERCENT:
+      reg = 0x1015;
+      value = static_cast<uint16_t>(std::atoi(option.c_str()) * 100);
+      break;
+    case CHARGING_LOOP:
+      reg = 0x107D;
+      value = option == "Enable" ? 0x0001 : 0x0055;
+      break;
+    case DISCHARGE_LOOP:
+      reg = 0x107E;
+      value = option == "Enable" ? 0x0001 : 0x0055;
+      break;
+    case MODE_ALL:
+      this->parent_->queue_mode_write_all(
+          option == "Constant" ? 0x0101 : 0x0303, this, option);
+      return;
+  }
+  this->parent_->queue_modbus_write(this->address_, reg, value, this, option);
+}
+
 void SmartliBms::add_pack(uint8_t address, uint8_t modbus_address) {
   SmartliPack pack;
   pack.address = address;
@@ -164,6 +210,71 @@ void SmartliBms::schedule_phase_(Phase next, std::function<void()> action) {
                     });
 }
 
+void SmartliBms::queue_modbus_write(uint8_t pack_address,
+                                     uint16_t register_address,
+                                     uint16_t value,
+                                     SmartliBmsSelect *source,
+                                     const std::string &option) {
+  auto *pack = this->find_pack_(pack_address);
+  if (pack == nullptr || pack->modbus_address == 0) {
+    ESP_LOGW(TAG, "Cannot write pack %u: Modbus address unavailable",
+             pack_address);
+    return;
+  }
+  if (register_address == 0x107D || register_address == 0x107E)
+    pack->loops_loaded = false;
+  this->pending_writes_.push_back(
+      {pack_address, register_address, value, source, option});
+  if (this->phase_ == Phase::IDLE && !this->waiting_for_request_)
+    this->begin_pending_write_();
+}
+
+void SmartliBms::queue_mode_write_all(uint16_t value,
+                                      SmartliBmsSelect *source,
+                                      const std::string &option) {
+  size_t queued = 0;
+  for (auto &pack : this->packs_) {
+    if (pack.modbus_address == 0)
+      continue;
+    pack.mode_loaded = false;
+    this->pending_writes_.push_back(
+        {pack.address, 0x1016, value, nullptr, option});
+    queued++;
+  }
+  if (queued != 0)
+    this->pending_writes_.back().source = source;
+  if (this->phase_ == Phase::IDLE && !this->waiting_for_request_ && queued != 0)
+    this->begin_pending_write_();
+}
+
+void SmartliBms::set_config_select(uint8_t address, SmartliSelectType type,
+                                   SmartliBmsSelect *value) {
+  if (type == MODE_ALL) {
+    this->mode_select_ = value;
+    return;
+  }
+  auto *pack = this->find_pack_(address);
+  const size_t index = static_cast<size_t>(type);
+  if (pack != nullptr && index < pack->config_selects.size())
+    pack->config_selects[index] = value;
+}
+
+void SmartliBms::begin_pending_write_() {
+  while (!this->pending_writes_.empty()) {
+    auto *pack =
+        this->find_pack_(this->pending_writes_.front().pack_address);
+    if (pack != nullptr && pack->modbus_address != 0) {
+      const auto &write = this->pending_writes_.front();
+      this->phase_ = Phase::MODBUS_WRITE;
+      this->send_modbus_write_(pack->modbus_address, write.register_address,
+                               write.value);
+      return;
+    }
+    this->pending_writes_.erase(this->pending_writes_.begin());
+  }
+  this->phase_ = Phase::IDLE;
+}
+
 void SmartliBms::begin_pack_() {
   if (this->pack_index_ >= this->packs_.size()) {
     if (!this->discovery_completed_) {
@@ -180,6 +291,10 @@ void SmartliBms::begin_pack_() {
       if (!address_missing)
         this->discovery_completed_ = true;
     }
+    if (!this->pending_writes_.empty()) {
+      this->begin_pending_write_();
+      return;
+    }
     this->phase_ = Phase::IDLE;
     ESP_LOGD(TAG, "Multi-pack polling cycle completed");
     return;
@@ -193,6 +308,23 @@ void SmartliBms::begin_pack_() {
 }
 
 void SmartliBms::advance_(bool response_received) {
+  if (this->phase_ == Phase::MODBUS_WRITE) {
+    if (!this->pending_writes_.empty()) {
+      auto completed = this->pending_writes_.front();
+      if (response_received && completed.source != nullptr)
+        completed.source->publish_state(completed.option);
+      if (!response_received) {
+        ESP_LOGW(TAG, "Modbus write timeout for pack %u register 0x%04X",
+                 completed.pack_address, completed.register_address);
+      }
+      this->pending_writes_.erase(this->pending_writes_.begin());
+    }
+    this->phase_ = Phase::IDLE;
+    if (!this->pending_writes_.empty())
+      this->schedule_phase_(Phase::IDLE,
+                            [this]() { this->begin_pending_write_(); });
+    return;
+  }
   if (this->phase_ == Phase::DISCOVERY_MODBUS_PCB ||
       this->phase_ == Phase::DISCOVERY_MODBUS_PACK) {
     this->advance_modbus_discovery_(response_received);
@@ -267,6 +399,38 @@ void SmartliBms::advance_(bool response_received) {
           [this, address = pack.modbus_address]() {
             this->send_modbus_read_(address, 0x1065, 10);
           });
+      return;
+    }
+  }
+
+  if (completed == Phase::MODBUS_PACK_BARCODE ||
+      completed == Phase::MODBUS_PCB_BARCODE ||
+      completed == Phase::PACK_BARCODE ||
+      completed == Phase::PCB_BARCODE ||
+      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
+    if (this->mode_select_ != nullptr && !pack.mode_loaded &&
+        pack.modbus_address != 0) {
+      this->schedule_phase_(Phase::MODBUS_CONFIG_MODE,
+                            [this, address = pack.modbus_address]() {
+                              this->send_modbus_read_(address, 0x1016, 1);
+                            });
+      return;
+    }
+  }
+
+  if (completed == Phase::MODBUS_CONFIG_MODE ||
+      completed == Phase::MODBUS_PACK_BARCODE ||
+      completed == Phase::MODBUS_PCB_BARCODE ||
+      completed == Phase::PACK_BARCODE ||
+      completed == Phase::PCB_BARCODE ||
+      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
+    if (!pack.loops_loaded && pack.modbus_address != 0 &&
+        (pack.config_selects[CHARGING_LOOP] != nullptr ||
+         pack.config_selects[DISCHARGE_LOOP] != nullptr)) {
+      this->schedule_phase_(Phase::MODBUS_CONFIG_LOOPS,
+                            [this, address = pack.modbus_address]() {
+                              this->send_modbus_read_(address, 0x107D, 2);
+                            });
       return;
     }
   }
@@ -436,6 +600,21 @@ void SmartliBms::send_modbus_read_(uint8_t address, uint16_t start,
            count);
 }
 
+void SmartliBms::send_modbus_write_(uint8_t address,
+                                     uint16_t register_address,
+                                     uint16_t value) {
+  uint8_t request[8] = {
+      address, 0x06, static_cast<uint8_t>(register_address >> 8),
+      static_cast<uint8_t>(register_address), static_cast<uint8_t>(value >> 8),
+      static_cast<uint8_t>(value), 0, 0};
+  const uint16_t crc = this->crc16_(request, 6);
+  request[6] = static_cast<uint8_t>(crc);
+  request[7] = static_cast<uint8_t>(crc >> 8);
+  this->send_bytes_(request, sizeof(request));
+  ESP_LOGI(TAG, "Modbus %u write 0x%04X = 0x%04X", address,
+           register_address, value);
+}
+
 void SmartliBms::send_bytes_(const uint8_t *data, size_t length) {
   this->reset_frame_();
   uint8_t stale;
@@ -472,18 +651,28 @@ void SmartliBms::process_byte_(uint8_t byte) {
                       this->phase_ == Phase::MODBUS_PACK_BARCODE ||
                       this->phase_ == Phase::DISCOVERY_MODBUS_PCB ||
                       this->phase_ == Phase::DISCOVERY_MODBUS_PACK ||
-                      this->phase_ == Phase::DISCOVERY_MODBUS_PACK;
+                      this->phase_ == Phase::DISCOVERY_MODBUS_PACK ||
+                      this->phase_ == Phase::MODBUS_CONFIG_MODE ||
+                      this->phase_ == Phase::MODBUS_CONFIG_LOOPS ||
+                      this->phase_ == Phase::MODBUS_WRITE;
   if (this->frame_.empty()) {
     if (!modbus && byte != 0x7E)
       return;
     if (modbus) {
       uint8_t expected = 0;
-      expected =
+      if (this->phase_ == Phase::MODBUS_WRITE &&
+          !this->pending_writes_.empty()) {
+        auto *pack =
+            this->find_pack_(this->pending_writes_.front().pack_address);
+        expected = pack != nullptr ? pack->modbus_address : 0;
+      } else {
+        expected =
           this->phase_ == Phase::DISCOVERY_MODBUS_PCB ||
                   this->phase_ == Phase::DISCOVERY_MODBUS_PACK
               ? this->discovery_candidate_address_(
                     this->discovery_candidate_index_)
               : this->packs_[this->pack_index_].modbus_address;
+      }
       if (byte != expected)
         return;
     }
@@ -493,7 +682,10 @@ void SmartliBms::process_byte_(uint8_t byte) {
 
   this->frame_.push_back(byte);
   if (modbus) {
-    if (this->frame_.size() == 2 && (this->frame_[1] & 0x80))
+    if (this->phase_ == Phase::MODBUS_WRITE && this->frame_.size() == 2 &&
+        this->frame_[1] == 0x06)
+      this->expected_frame_length_ = 8;
+    else if (this->frame_.size() == 2 && (this->frame_[1] & 0x80))
       this->expected_frame_length_ = 5;
     else if (this->frame_.size() == 3 && this->frame_[1] == 0x03) {
       // Ignore an echoed 8-byte request before waiting for the real response.
@@ -627,8 +819,44 @@ bool SmartliBms::process_modbus_frame_() {
       (static_cast<uint16_t>(this->frame_.back()) << 8);
   if (this->crc16_(this->frame_.data(), this->frame_.size() - 2) != received)
     return false;
+  if (this->phase_ == Phase::MODBUS_WRITE) {
+    if (this->frame_[1] != 0x06 || this->frame_.size() != 8 ||
+        this->pending_writes_.empty())
+      return false;
+    const auto &pending = this->pending_writes_.front();
+    return this->read_u16_(&this->frame_[2]) == pending.register_address &&
+           this->read_u16_(&this->frame_[4]) == pending.value;
+  }
   if (this->frame_[1] != 0x03)
     return true;
+  if (this->phase_ == Phase::MODBUS_CONFIG_MODE) {
+    if (this->frame_[2] != 2 || this->frame_.size() != 7)
+      return false;
+    auto &pack = this->packs_[this->pack_index_];
+    const uint16_t value = this->read_u16_(&this->frame_[3]);
+    if (this->mode_select_ != nullptr) {
+      if (value == 0x0101)
+        this->mode_select_->publish_state("Constant");
+      else if (value == 0x0303)
+        this->mode_select_->publish_state("Battery");
+    }
+    pack.mode_loaded = true;
+    return true;
+  }
+  if (this->phase_ == Phase::MODBUS_CONFIG_LOOPS) {
+    if (this->frame_[2] != 4 || this->frame_.size() != 9)
+      return false;
+    auto &pack = this->packs_[this->pack_index_];
+    auto publish = [&](size_t index, uint16_t value) {
+      if (pack.config_selects[index] != nullptr)
+        pack.config_selects[index]->publish_state(
+            value == 0x0001 ? "Enable" : "Disable");
+    };
+    publish(CHARGING_LOOP, this->read_u16_(&this->frame_[3]));
+    publish(DISCHARGE_LOOP, this->read_u16_(&this->frame_[5]));
+    pack.loops_loaded = true;
+    return true;
+  }
   if (this->frame_[2] != 20 || this->frame_.size() != 25)
     return false;
 
@@ -749,6 +977,30 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
   PUB(dcdc_depth_dod, 85, 100.0f);
   PUB(dcdc_vbus_set_max_autoself, 89, 100.0f);
 #undef PUB
+  auto publish_voltage = [&](size_t index, size_t offset) {
+    auto *item = pack.config_selects[index];
+    if (item == nullptr)
+      return;
+    char option[12];
+    std::snprintf(option, sizeof(option), "%.1fV",
+                  this->read_u16_(&p[offset]) / 100.0f);
+    item->publish_state(option);
+  };
+  auto publish_percent = [&](size_t index, size_t offset) {
+    auto *item = pack.config_selects[index];
+    if (item == nullptr)
+      return;
+    char option[12];
+    std::snprintf(option, sizeof(option), "%u%%",
+                  this->read_u16_(&p[offset]) / 100);
+    item->publish_state(option);
+  };
+  publish_voltage(VBUS_DISCHARGE, 13);
+  publish_percent(IBUS_PERCENT, 15);
+  publish_percent(PBUS_PERCENT, 17);
+  publish_percent(AVG_CHARGE_PERCENT, 21);
+  publish_voltage(VBUS_DOD, 83);
+  publish_percent(DOD_PERCENT, 85);
   const uint16_t reported_modbus_address = this->read_u16_(&p[87]);
   if (pack.modbus_address == 0) {
     ESP_LOGV(TAG,

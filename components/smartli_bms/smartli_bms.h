@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "esphome/components/sensor/sensor.h"
+#include "esphome/components/select/select.h"
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/uart/uart.h"
 #include "esphome/core/component.h"
@@ -15,6 +16,41 @@
 
 namespace esphome {
 namespace smartli_bms {
+
+class SmartliBms;
+
+enum SmartliSelectType : uint8_t {
+  VBUS_DISCHARGE,
+  VBUS_DOD,
+  IBUS_PERCENT,
+  PBUS_PERCENT,
+  AVG_CHARGE_PERCENT,
+  DOD_PERCENT,
+  CHARGING_LOOP,
+  DISCHARGE_LOOP,
+  MODE_ALL,
+};
+
+class SmartliBmsSelect : public select::Select {
+ public:
+  void set_parent(SmartliBms *parent) { parent_ = parent; }
+  void set_address(uint8_t address) { address_ = address; }
+  void set_type(SmartliSelectType type) { type_ = type; }
+
+ protected:
+  void control(const std::string &value) override;
+  SmartliBms *parent_{nullptr};
+  uint8_t address_{0};
+  SmartliSelectType type_{VBUS_DISCHARGE};
+};
+
+struct SmartliPendingWrite {
+  uint8_t pack_address{0};
+  uint16_t register_address{0};
+  uint16_t value{0};
+  SmartliBmsSelect *source{nullptr};
+  std::string option;
+};
 
 struct SmartliPack {
   uint8_t address{0};
@@ -61,6 +97,9 @@ struct SmartliPack {
   sensor::Sensor *dcdc_depth_dod{nullptr};
   sensor::Sensor *dcdc_vbus_set_max_autoself{nullptr};
   std::array<sensor::Sensor *, 5> alarm_status{};
+  std::array<SmartliBmsSelect *, 8> config_selects{};
+  bool mode_loaded{false};
+  bool loops_loaded{false};
 };
 
 class SmartliBms : public PollingComponent, public uart::UARTDevice {
@@ -76,6 +115,13 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void set_pack_delay(uint32_t delay) { pack_delay_ = delay; }
   void set_request_delay(uint32_t delay) { request_delay_ = delay; }
   void set_flow_control_pin(InternalGPIOPin *pin) { flow_control_pin_ = pin; }
+  void queue_modbus_write(uint8_t pack_address, uint16_t register_address,
+                          uint16_t value, SmartliBmsSelect *source,
+                          const std::string &option);
+  void queue_mode_write_all(uint16_t value, SmartliBmsSelect *source,
+                            const std::string &option);
+  void set_config_select(uint8_t address, SmartliSelectType type,
+                         SmartliBmsSelect *value);
 
 #define DECLARE_SETTER(name) void set_##name##_sensor(uint8_t address, sensor::Sensor *value)
   DECLARE_SETTER(current);
@@ -130,6 +176,9 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
     MODBUS_PACK_BARCODE,
     DISCOVERY_MODBUS_PCB,
     DISCOVERY_MODBUS_PACK,
+    MODBUS_CONFIG_MODE,
+    MODBUS_CONFIG_LOOPS,
+    MODBUS_WRITE,
   };
 
   static constexpr size_t MAX_FRAME_SIZE = 300;
@@ -137,6 +186,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   SmartliPack *find_pack_(uint8_t address);
   void begin_pack_();
   void begin_modbus_discovery_();
+  void begin_pending_write_();
   void schedule_phase_(Phase next, std::function<void()> action);
   void advance_modbus_discovery_(bool response_received);
   void finish_modbus_discovery_candidate_();
@@ -145,6 +195,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void send_pack_barcode_request_(uint8_t address);
   void send_dcdc_request_(uint8_t address);
   void send_modbus_read_(uint8_t address, uint16_t start, uint16_t count);
+  void send_modbus_write_(uint8_t address, uint16_t register_address,
+                          uint16_t value);
   void send_bytes_(const uint8_t *data, size_t length);
   void reset_frame_();
   void process_byte_(uint8_t byte);
@@ -182,6 +234,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   size_t discovery_match_count_{0};
   std::string discovery_pcb_barcode_;
   std::string discovery_pack_barcode_;
+  std::vector<SmartliPendingWrite> pending_writes_;
+  SmartliBmsSelect *mode_select_{nullptr};
   bool waiting_for_request_{false};
 };
 

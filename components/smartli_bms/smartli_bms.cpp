@@ -173,10 +173,14 @@ void SmartliBms::setup() {
 void SmartliBms::dump_config() {
   ESP_LOGCONFIG(TAG, "SmartLi multi-pack controller:");
   ESP_LOGCONFIG(TAG, "  Packs: %u", this->packs_.size());
-  ESP_LOGCONFIG(TAG, "  Poll interval: %u ms", this->get_update_interval());
-  ESP_LOGCONFIG(TAG, "  DCDC interval: %u ms", this->dcdc_update_interval_);
-  ESP_LOGCONFIG(TAG, "  Delay between packs: %u ms", this->pack_delay_);
-  ESP_LOGCONFIG(TAG, "  Delay between requests: %u ms", this->request_delay_);
+  ESP_LOGCONFIG(TAG, "  Poll interval: %lu ms",
+                static_cast<unsigned long>(this->get_update_interval()));
+  ESP_LOGCONFIG(TAG, "  DCDC interval: %lu ms",
+                static_cast<unsigned long>(this->dcdc_update_interval_));
+  ESP_LOGCONFIG(TAG, "  Delay between packs: %lu ms",
+                static_cast<unsigned long>(this->pack_delay_));
+  ESP_LOGCONFIG(TAG, "  Delay between requests: %lu ms",
+                static_cast<unsigned long>(this->request_delay_));
   for (const auto &pack : this->packs_) {
     ESP_LOGCONFIG(TAG, "  Pack %u: Modbus %u", pack.address,
                   pack.modbus_address);
@@ -307,9 +311,10 @@ void SmartliBms::advance_(bool response_received) {
       auto completed = this->pending_writes_.front();
       if (response_received && completed.source != nullptr)
         completed.source->publish_state(completed.option);
-      if (!response_received)
+      if (!response_received) {
         ESP_LOGW(TAG, "Modbus write timeout for pack %u register 0x%04X",
                  completed.pack_address, completed.register_address);
+      }
       this->pending_writes_.erase(this->pending_writes_.begin());
     }
     this->phase_ = Phase::IDLE;
@@ -328,9 +333,10 @@ void SmartliBms::advance_(bool response_received) {
   }
   auto &pack = this->packs_[this->pack_index_];
   const Phase completed = this->phase_;
-  if (!response_received)
+  if (!response_received) {
     ESP_LOGW(TAG, "Timeout in phase %u for pack %u",
              static_cast<uint8_t>(completed), pack.address);
+  }
 
   if (completed == Phase::TELEMETRY) {
     const uint32_t now = millis();
@@ -432,8 +438,9 @@ void SmartliBms::begin_modbus_discovery_() {
 void SmartliBms::advance_modbus_discovery_(bool response_received) {
   const uint8_t candidate =
       this->discovery_candidate_address_(this->discovery_candidate_index_);
-  if (!response_received)
+  if (!response_received) {
     ESP_LOGV(TAG, "No Modbus barcode response from address %u", candidate);
+  }
 
   if (this->phase_ == Phase::DISCOVERY_MODBUS_PCB) {
     if (!response_received) {
@@ -929,10 +936,11 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
   publish_voltage(SmartliSelectType::VBUS_DOD, 83);
   publish_percent(SmartliSelectType::DOD_PERCENT, 85);
   const uint16_t reported_modbus_address = this->read_u16_(&p[87]);
-  if (pack.modbus_address == 0)
+  if (pack.modbus_address == 0) {
     ESP_LOGV(TAG,
              "Pack %u DCDC reports default Modbus %u; waiting for barcode discovery",
              pack.address, reported_modbus_address);
+  }
 }
 
 void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,

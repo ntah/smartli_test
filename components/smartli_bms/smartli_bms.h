@@ -19,7 +19,7 @@ namespace smartli_bms {
 
 class SmartliBms;
 
-enum class SmartliSelectType : uint8_t {
+enum SmartliSelectType : uint8_t {
   VBUS_DISCHARGE,
   VBUS_DOD,
   IBUS_PERCENT,

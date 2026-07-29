@@ -15,6 +15,7 @@ CONF_MODBUS_PACK_BARCODE = "modbus_pack_barcode"
 CONF_MODBUS_ADDRESS = "modbus_address"
 CONF_STATUS = "status"
 CONF_MODE = "mode"
+CONF_LAST_UPDATE = "last_update"
 
 CONFIG_SCHEMA = cv.Schema(
     {
@@ -38,6 +39,10 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_STATUS): text_sensor.text_sensor_schema(),
         cv.Optional(CONF_MODE): text_sensor.text_sensor_schema(
             entity_category="diagnostic",
+        ),
+        cv.Optional(CONF_LAST_UPDATE): text_sensor.text_sensor_schema(
+            entity_category="diagnostic",
+            icon="mdi:clock",
         ),
     }
 )
@@ -74,3 +79,7 @@ async def to_code(config):
     if sensor_config := config.get(CONF_MODE):
         sens = await text_sensor.new_text_sensor(sensor_config)
         cg.add(parent.set_mode_text_sensor(address, sens))
+
+    if sensor_config := config.get(CONF_LAST_UPDATE):
+        sens = await text_sensor.new_text_sensor(sensor_config)
+        cg.add(parent.set_last_update_text_sensor(address, sens))

@@ -178,6 +178,13 @@ void SmartliBms::set_mode_text_sensor(
     pack->mode_sensor = value;
 }
 
+void SmartliBms::set_last_update_text_sensor(
+    uint8_t address, text_sensor::TextSensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr)
+    pack->last_update_sensor = value;
+}
+
 void SmartliBms::setup() {
   if (this->flow_control_pin_ != nullptr) {
     this->flow_control_pin_->setup();
@@ -1172,6 +1179,11 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       pack.cell_average_voltage->publish_state(
           static_cast<float>(sum) / cell_count / 1000.0f);
     }
+  }
+  if (pack.last_update_sensor != nullptr) {
+    pack.telemetry_sequence++;
+    pack.last_update_sensor->publish_state(
+        "Update " + std::to_string(pack.telemetry_sequence));
   }
 }
 

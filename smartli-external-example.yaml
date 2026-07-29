@@ -467,6 +467,8 @@ text_sensor:
       name: "smartLi bms 1 Status"
     mode:
       name: "smartLi bms 1 Mode"
+    last_update:
+      name: "BMS1 Last update"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -481,6 +483,8 @@ text_sensor:
       name: "smartLi bms 2 Status"
     mode:
       name: "smartLi bms 2 Mode"
+    last_update:
+      name: "BMS2 Last update"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -495,6 +499,8 @@ text_sensor:
       name: "smartLi bms 3 Status"
     mode:
       name: "smartLi bms 3 Mode"
+    last_update:
+      name: "BMS3 Last update"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -509,6 +515,8 @@ text_sensor:
       name: "smartLi bms 4 Status"
     mode:
       name: "smartLi bms 4 Mode"
+    last_update:
+      name: "BMS4 Last update"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -523,6 +531,8 @@ text_sensor:
       name: "smartLi bms 5 Status"
     mode:
       name: "smartLi bms 5 Mode"
+    last_update:
+      name: "BMS5 Last update"
 
 button:
   - platform: restart

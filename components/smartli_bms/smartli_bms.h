@@ -68,6 +68,8 @@ struct SmartliPack {
   text_sensor::TextSensor *modbus_address_sensor{nullptr};
   text_sensor::TextSensor *status_sensor{nullptr};
   text_sensor::TextSensor *mode_sensor{nullptr};
+  text_sensor::TextSensor *last_update_sensor{nullptr};
+  uint32_t telemetry_sequence{0};
   std::array<uint16_t, 5> alarm_values{};
   uint32_t last_dcdc_at{0};
 
@@ -175,6 +177,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
                               text_sensor::TextSensor *value);
   void set_mode_text_sensor(uint8_t address,
                             text_sensor::TextSensor *value);
+  void set_last_update_text_sensor(uint8_t address,
+                                   text_sensor::TextSensor *value);
 
  protected:
   enum class Phase : uint8_t {

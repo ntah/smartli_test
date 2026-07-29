@@ -494,6 +494,8 @@ text_sensor:
       name: "smartLi bms 1 Status"
     mode:
       name: "smartLi bms 1 Mode"
+    operating_state:
+      name: "SmartLi 1 Operating State"
     last_update:
       name: "BMS1 Last update"
 
@@ -510,6 +512,8 @@ text_sensor:
       name: "smartLi bms 2 Status"
     mode:
       name: "smartLi bms 2 Mode"
+    operating_state:
+      name: "SmartLi 2 Operating State"
     last_update:
       name: "BMS2 Last update"
 
@@ -526,6 +530,8 @@ text_sensor:
       name: "smartLi bms 3 Status"
     mode:
       name: "smartLi bms 3 Mode"
+    operating_state:
+      name: "SmartLi 3 Operating State"
     last_update:
       name: "BMS3 Last update"
 
@@ -542,6 +548,8 @@ text_sensor:
       name: "smartLi bms 4 Status"
     mode:
       name: "smartLi bms 4 Mode"
+    operating_state:
+      name: "SmartLi 4 Operating State"
     last_update:
       name: "BMS4 Last update"
 
@@ -558,6 +566,8 @@ text_sensor:
       name: "smartLi bms 5 Status"
     mode:
       name: "smartLi bms 5 Mode"
+    operating_state:
+      name: "SmartLi 5 Operating State"
     last_update:
       name: "BMS5 Last update"
       

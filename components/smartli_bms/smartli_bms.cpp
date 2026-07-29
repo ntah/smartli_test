@@ -180,6 +180,13 @@ void SmartliBms::set_mode_text_sensor(
     pack->mode_sensor = value;
 }
 
+void SmartliBms::set_operating_state_text_sensor(
+    uint8_t address, text_sensor::TextSensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr)
+    pack->operating_state_sensor = value;
+}
+
 void SmartliBms::set_last_update_text_sensor(
     uint8_t address, text_sensor::TextSensor *value) {
   auto *pack = this->find_pack_(address);
@@ -1175,6 +1182,39 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
         pack.pack_voltage->publish_state(pack_voltage);
     } else if (id == 0x09 && pack.state_of_health != nullptr) {
       pack.state_of_health->publish_state(this->read_u16_(&p[offset]) / 100.0f);
+    } else if (id == 0x0A) {
+      const uint16_t value = this->read_u16_(&p[offset]);
+      const uint8_t mode = value >> 8;
+      const uint8_t operating_state = value & 0xFF;
+
+      const char *mode_text =
+          mode == 1 ? "Constant" : mode == 2 ? "Battery" : "Unknown";
+      if (pack.mode_sensor != nullptr)
+        pack.mode_sensor->publish_state(mode_text);
+      if (this->mode_select_ != nullptr && (mode == 1 || mode == 2))
+        this->mode_select_->publish_state(mode_text);
+      pack.mode_loaded = mode == 1 || mode == 2;
+
+      if (pack.operating_state_sensor != nullptr) {
+        const char *state_text = "Unknown";
+        switch (operating_state) {
+          case 1: state_text = "Precharge"; break;
+          case 2: state_text = "Charging"; break;
+          case 3: state_text = "Discharging"; break;
+          case 4: state_text = "BUCK Charging"; break;
+          case 5: state_text = "BOOST Charging"; break;
+          case 6: state_text = "BUCK Discharging"; break;
+          case 7: state_text = "BOOST Discharging"; break;
+          case 8: state_text = "Standby"; break;
+          case 9: state_text = "Alarm"; break;
+          case 10: state_text = "Protection shutdown"; break;
+          case 11: state_text = "Fault shutdown"; break;
+          case 12: state_text = "Maintenance"; break;
+          case 13: state_text = "Test"; break;
+          case 14: state_text = "Sleep"; break;
+        }
+        pack.operating_state_sensor->publish_state(state_text);
+      }
     } else if (id == 0x0B && pack.total_charged_ah != nullptr) {
       pack.total_charged_ah->publish_state(this->read_u32_(&p[offset]));
     } else if (id == 0x0C && pack.total_discharged_ah != nullptr) {

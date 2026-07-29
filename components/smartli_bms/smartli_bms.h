@@ -46,10 +46,7 @@ struct SmartliPack {
   sensor::Sensor *cell_delta_voltage{nullptr};
   std::array<sensor::Sensor *, 15> cell_voltages{};
 
-  sensor::Sensor *dcdc_bus_voltage{nullptr};
   sensor::Sensor *dcdc_bus_current{nullptr};
-  sensor::Sensor *dcdc_battery_port_voltage{nullptr};
-  sensor::Sensor *dcdc_battery_current{nullptr};
   sensor::Sensor *dcdc_bus_negative_voltage{nullptr};
   sensor::Sensor *dcdc_battery_negative_voltage{nullptr};
   sensor::Sensor *dcdc_discharge_bus_voltage_set{nullptr};
@@ -90,10 +87,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   DECLARE_SETTER(cell_min_voltage);
   DECLARE_SETTER(cell_max_voltage);
   DECLARE_SETTER(cell_delta_voltage);
-  DECLARE_SETTER(dcdc_bus_voltage);
   DECLARE_SETTER(dcdc_bus_current);
-  DECLARE_SETTER(dcdc_battery_port_voltage);
-  DECLARE_SETTER(dcdc_battery_current);
   DECLARE_SETTER(dcdc_bus_negative_voltage);
   DECLARE_SETTER(dcdc_battery_negative_voltage);
   DECLARE_SETTER(dcdc_discharge_bus_voltage_set);

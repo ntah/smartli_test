@@ -44,10 +44,7 @@ DEFINE_SETTER(total_discharged_ah)
 DEFINE_SETTER(cell_min_voltage)
 DEFINE_SETTER(cell_max_voltage)
 DEFINE_SETTER(cell_delta_voltage)
-DEFINE_SETTER(dcdc_bus_voltage)
 DEFINE_SETTER(dcdc_bus_current)
-DEFINE_SETTER(dcdc_battery_port_voltage)
-DEFINE_SETTER(dcdc_battery_current)
 DEFINE_SETTER(dcdc_bus_negative_voltage)
 DEFINE_SETTER(dcdc_battery_negative_voltage)
 DEFINE_SETTER(dcdc_discharge_bus_voltage_set)
@@ -698,10 +695,7 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
     return;
 #define PUB(member, offset, divisor) \
   if (pack.member != nullptr) pack.member->publish_state(this->read_u16_(&p[offset]) / divisor)
-  PUB(dcdc_bus_voltage, 1, 100.0f);
   PUB(dcdc_bus_current, 3, 100.0f);
-  PUB(dcdc_battery_port_voltage, 5, 100.0f);
-  PUB(dcdc_battery_current, 7, 100.0f);
   PUB(dcdc_bus_negative_voltage, 9, 100.0f);
   PUB(dcdc_battery_negative_voltage, 11, 100.0f);
   PUB(dcdc_discharge_bus_voltage_set, 13, 100.0f);

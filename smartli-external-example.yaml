@@ -66,10 +66,6 @@ sensor:
     state_of_health: {name: "SmartLi 1 State of Health"}
     total_charged_ah: {name: "SmartLi 1 Total Charged Ah"}
     total_discharged_ah: {name: "SmartLi 1 Total Discharged Ah"}
-    dcdc_bus_voltage: {name: "SmartLi 1 Bus Voltage"}
-    dcdc_bus_current: {name: "SmartLi 1 Bus Current"}
-    dcdc_battery_port_voltage: {name: "SmartLi 1 Battery Port Voltage"}
-    dcdc_battery_current: {name: "SmartLi 1 Battery Current"}
     dcdc_bus_negative_voltage: {name: "SmartLi 1 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 1 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "SmartLi 1 Discharge Bus Voltage Set"}
@@ -116,10 +112,6 @@ sensor:
     state_of_health: {name: "SmartLi 2 State of Health"}
     total_charged_ah: {name: "SmartLi 2 Total Charged Ah"}
     total_discharged_ah: {name: "SmartLi 2 Total Discharged Ah"}
-    dcdc_bus_voltage: {name: "SmartLi 2 Bus Voltage"}
-    dcdc_bus_current: {name: "SmartLi 2 Bus Current"}
-    dcdc_battery_port_voltage: {name: "SmartLi 2 Battery Port Voltage"}
-    dcdc_battery_current: {name: "SmartLi 2 Battery Current"}
     dcdc_bus_negative_voltage: {name: "SmartLi 2 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 2 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "SmartLi 2 Discharge Bus Voltage Set"}
@@ -166,10 +158,6 @@ sensor:
     state_of_health: {name: "SmartLi 3 State of Health"}
     total_charged_ah: {name: "SmartLi 3 Total Charged Ah"}
     total_discharged_ah: {name: "SmartLi 3 Total Discharged Ah"}
-    dcdc_bus_voltage: {name: "SmartLi 3 Bus Voltage"}
-    dcdc_bus_current: {name: "SmartLi 3 Bus Current"}
-    dcdc_battery_port_voltage: {name: "SmartLi 3 Battery Port Voltage"}
-    dcdc_battery_current: {name: "SmartLi 3 Battery Current"}
     dcdc_bus_negative_voltage: {name: "SmartLi 3 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 3 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "SmartLi 3 Discharge Bus Voltage Set"}
@@ -216,10 +204,6 @@ sensor:
     state_of_health: {name: "SmartLi 4 State of Health"}
     total_charged_ah: {name: "SmartLi 4 Total Charged Ah"}
     total_discharged_ah: {name: "SmartLi 4 Total Discharged Ah"}
-    dcdc_bus_voltage: {name: "SmartLi 4 Bus Voltage"}
-    dcdc_bus_current: {name: "SmartLi 4 Bus Current"}
-    dcdc_battery_port_voltage: {name: "SmartLi 4 Battery Port Voltage"}
-    dcdc_battery_current: {name: "SmartLi 4 Battery Current"}
     dcdc_bus_negative_voltage: {name: "SmartLi 4 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 4 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "SmartLi 4 Discharge Bus Voltage Set"}
@@ -266,10 +250,6 @@ sensor:
     state_of_health: {name: "SmartLi 5 State of Health"}
     total_charged_ah: {name: "SmartLi 5 Total Charged Ah"}
     total_discharged_ah: {name: "SmartLi 5 Total Discharged Ah"}
-    dcdc_bus_voltage: {name: "SmartLi 5 Bus Voltage"}
-    dcdc_bus_current: {name: "SmartLi 5 Bus Current"}
-    dcdc_battery_port_voltage: {name: "SmartLi 5 Battery Port Voltage"}
-    dcdc_battery_current: {name: "SmartLi 5 Battery Current"}
     dcdc_bus_negative_voltage: {name: "SmartLi 5 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 5 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "SmartLi 5 Discharge Bus Voltage Set"}

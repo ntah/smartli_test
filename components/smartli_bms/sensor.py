@@ -20,10 +20,7 @@ CONF_TOTAL_DISCHARGED_AH = "total_discharged_ah"
 CONF_CELL_MIN_VOLTAGE = "cell_min_voltage"
 CONF_CELL_MAX_VOLTAGE = "cell_max_voltage"
 CONF_CELL_DELTA_VOLTAGE = "cell_delta_voltage"
-CONF_DCDC_BUS_VOLTAGE = "dcdc_bus_voltage"
 CONF_DCDC_BUS_CURRENT = "dcdc_bus_current"
-CONF_DCDC_BATTERY_PORT_VOLTAGE = "dcdc_battery_port_voltage"
-CONF_DCDC_BATTERY_CURRENT = "dcdc_battery_current"
 CONF_DCDC_BUS_NEGATIVE_VOLTAGE = "dcdc_bus_negative_voltage"
 CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE = "dcdc_battery_negative_voltage"
 CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET = "dcdc_discharge_bus_voltage_set"
@@ -108,10 +105,7 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_CELL_MIN_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_MAX_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_DELTA_VOLTAGE): voltage_sensor_schema(3),
-        cv.Optional(CONF_DCDC_BUS_VOLTAGE): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_BUS_CURRENT): current_sensor_schema(),
-        cv.Optional(CONF_DCDC_BATTERY_PORT_VOLTAGE): voltage_sensor_schema(2),
-        cv.Optional(CONF_DCDC_BATTERY_CURRENT): current_sensor_schema(),
         cv.Optional(CONF_DCDC_BUS_NEGATIVE_VOLTAGE): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET): voltage_sensor_schema(2),
@@ -156,10 +150,7 @@ async def to_code(config):
         CONF_CELL_MIN_VOLTAGE: "set_cell_min_voltage_sensor",
         CONF_CELL_MAX_VOLTAGE: "set_cell_max_voltage_sensor",
         CONF_CELL_DELTA_VOLTAGE: "set_cell_delta_voltage_sensor",
-        CONF_DCDC_BUS_VOLTAGE: "set_dcdc_bus_voltage_sensor",
         CONF_DCDC_BUS_CURRENT: "set_dcdc_bus_current_sensor",
-        CONF_DCDC_BATTERY_PORT_VOLTAGE: "set_dcdc_battery_port_voltage_sensor",
-        CONF_DCDC_BATTERY_CURRENT: "set_dcdc_battery_current_sensor",
         CONF_DCDC_BUS_NEGATIVE_VOLTAGE: "set_dcdc_bus_negative_voltage_sensor",
         CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE: "set_dcdc_battery_negative_voltage_sensor",
         CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET: "set_dcdc_discharge_bus_voltage_set_sensor",

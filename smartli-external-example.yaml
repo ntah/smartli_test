@@ -1,6 +1,6 @@
 substitutions:
   name: smartli-bms
-  external_components_source: github://ntah/smartli_test@main  
+  external_components_source: github://ntah/esphome-smartli-bms@main  
   tx_pin: GPIO17
   rx_pin: GPIO16
   flow_control_pin: GPIO4

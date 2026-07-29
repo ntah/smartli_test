@@ -50,6 +50,7 @@ struct SmartliPendingWrite {
   uint16_t value{0};
   SmartliBmsSelect *source{nullptr};
   std::string option;
+  uint8_t retries{0};
 };
 
 struct SmartliPack {

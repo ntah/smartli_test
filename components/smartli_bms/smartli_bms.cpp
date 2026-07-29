@@ -310,11 +310,25 @@ void SmartliBms::begin_pack_() {
 void SmartliBms::advance_(bool response_received) {
   if (this->phase_ == Phase::MODBUS_WRITE) {
     if (!this->pending_writes_.empty()) {
-      auto completed = this->pending_writes_.front();
+      auto &completed = this->pending_writes_.front();
       if (response_received && completed.source != nullptr)
         completed.source->publish_state(completed.option);
       if (!response_received) {
-        ESP_LOGW(TAG, "Modbus write timeout for pack %u register 0x%04X",
+        if (completed.retries == 0) {
+          completed.retries++;
+          ESP_LOGW(TAG,
+                   "Modbus write timeout for pack %u register 0x%04X; retrying",
+                   completed.pack_address, completed.register_address);
+          this->phase_ = Phase::IDLE;
+          this->waiting_for_request_ = true;
+          this->set_timeout("retry_modbus_write", 150, [this]() {
+            this->waiting_for_request_ = false;
+            this->begin_pending_write_();
+          });
+          return;
+        }
+        ESP_LOGE(TAG,
+                 "Modbus write failed for pack %u register 0x%04X after retry",
                  completed.pack_address, completed.register_address);
       }
       this->pending_writes_.erase(this->pending_writes_.begin());
@@ -454,7 +468,11 @@ void SmartliBms::advance_(bool response_received) {
     // user write without waiting for every remaining pack.
     this->phase_ = Phase::IDLE;
     this->resume_poll_after_writes_ = true;
-    this->begin_pending_write_();
+    this->waiting_for_request_ = true;
+    this->set_timeout("first_modbus_write", 100, [this]() {
+      this->waiting_for_request_ = false;
+      this->begin_pending_write_();
+    });
     return;
   }
   // Prevent loop() from treating the intentional inter-pack delay as another

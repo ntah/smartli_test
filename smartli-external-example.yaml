@@ -396,3 +396,13 @@ text_sensor:
       name: "SmartLi 5 Modbus Address"
     status:
       name: "smartLi bms 5 Status"
+
+button:
+  - platform: restart
+    id: restart_esp
+    name: "${name} Reboot"  
+
+time:
+  - platform: sntp
+    id: esptime
+    timezone: Asia/Jakarta    

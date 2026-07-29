@@ -552,6 +552,14 @@ text_sensor:
       name: "smartLi bms 5 Mode"
     last_update:
       name: "BMS5 Last update"
+      
+  - platform: uptime
+    name: "${name} Uptime"    
+    update_interval: 30s
+
+  - platform: wifi_signal
+    name: "${name} Wifi Signal"
+    update_interval: 30s      
 
 button:
   - platform: restart

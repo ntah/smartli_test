@@ -111,6 +111,9 @@ def extract_frames(segments: list[bytes]) -> tuple[list[bytes], bytes]:
 def read_unsigned(data: bytes) -> int:
     return int.from_bytes(data, byteorder="big", signed=False)
 
+def read_signed(data: bytes) -> int:
+    return int.from_bytes(data, byteorder="big", signed=True)
+
 
 def decode_dcdc_payload(payload: bytes) -> dict[str, Any]:
     if len(payload) != 101:
@@ -122,9 +125,9 @@ def decode_dcdc_payload(payload: bytes) -> dict[str, Any]:
     return {
         "return_code": payload[0],
         "bus_voltage_v": round(u16(1) / 100, 2),
-        "bus_current_a": round(u16(3) / 100, 2),
+        "bus_current_a": round(read_signed(payload[3:5]) / 100, 2),
         "battery_port_voltage_v": round(u16(5) / 100, 2),
-        "battery_current_a": round(u16(7) / 100, 2),
+        "battery_current_a": round(read_signed(payload[7:9]) / 100, 2),
         "bus_negative_voltage_v": round(u16(9) / 100, 2),
         "battery_negative_voltage_v": round(u16(11) / 100, 2),
         "discharge_bus_voltage_set_v": round(u16(13) / 100, 2),
@@ -134,16 +137,14 @@ def decode_dcdc_payload(payload: bytes) -> dict[str, Any]:
         "charge_current_set_percent": round(u16(21) / 100, 2),
         "charging_battery_power_set_percent": round(u16(23) / 100, 2),
         "protection_parameters_hex": payload[25:81].hex(" "),
+        "state_code": u16(73),
+        "mode_code": payload[73],
+        "operate_status_code": payload[74],
         "dsg_bus_voltage_dynamic_v": round(u16(81) / 100, 2),
         "dsg_bus_voltage_ladder_v": round(u16(83) / 100, 2),
         "dsg_depth_dod_percent": round(u16(85) / 100, 2),
         "modbus_address": u16(87),
         "vbus_set_max_autoself_v": round(u16(89) / 100, 2),
-        "dsg_mode_status_code": u16(91),
-        "operate_status_code": u16(93),
-        "di_chghw": u16(95),
-        "di_buttonwk": u16(97),
-        "m_sdi1": u16(99),
         "trailing_data_hex": payload[91:].hex(" "),
     }
 

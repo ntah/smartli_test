@@ -1068,7 +1068,9 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
     return;
 #define PUB(member, offset, divisor) \
   if (pack.member != nullptr) pack.member->publish_state(this->read_u16_(&p[offset]) / divisor)
-  PUB(dcdc_bus_current, 3, 100.0f);
+  if (pack.dcdc_bus_current != nullptr)
+    pack.dcdc_bus_current->publish_state(
+        static_cast<int16_t>(this->read_u16_(&p[3])) / 100.0f);
   PUB(dcdc_discharge_bus_voltage_set, 13, 100.0f);
   PUB(dcdc_discharge_bus_current_set, 15, 100.0f);
   PUB(dcdc_discharge_bus_power_set, 17, 100.0f);
@@ -1103,13 +1105,26 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
   publish_percent(AVG_CHARGE_PERCENT, 21);
   publish_voltage(VBUS_DOD, 83);
   publish_percent(DOD_PERCENT, 85);
-  const uint16_t dcdc_mode = this->read_u16_(&p[91]);
-  const uint16_t dcdc_operating_state = this->read_u16_(&p[93]);
-  const char *operating_text =
-      dcdc_operating_state == 0 ? "Standby"
-      : dcdc_operating_state == 1 ? "BUCK Discharging"
-      : dcdc_operating_state == 2 ? "BOOST Discharging"
-                                  : nullptr;
+  const uint16_t dcdc_state_code = this->read_u16_(&p[73]);
+  const uint8_t dcdc_mode = dcdc_state_code >> 8;
+  const uint8_t dcdc_operating_state = dcdc_state_code & 0xFF;
+  const char *operating_text = nullptr;
+  switch (dcdc_operating_state) {
+    case 1: operating_text = "Precharge"; break;
+    case 2: operating_text = "Charging"; break;
+    case 3: operating_text = "Discharging"; break;
+    case 4: operating_text = "BUCK Charging"; break;
+    case 5: operating_text = "BOOST Charging"; break;
+    case 6: operating_text = "BUCK Discharging"; break;
+    case 7: operating_text = "BOOST Discharging"; break;
+    case 8: operating_text = "Standby"; break;
+    case 9: operating_text = "Alarm"; break;
+    case 10: operating_text = "Protection shutdown"; break;
+    case 11: operating_text = "Fault shutdown"; break;
+    case 12: operating_text = "Maintenance"; break;
+    case 13: operating_text = "Test"; break;
+    case 14: operating_text = "Sleep"; break;
+  }
   if (pack.operating_state_sensor != nullptr && operating_text != nullptr)
     pack.operating_state_sensor->publish_state(operating_text);
 
@@ -1122,8 +1137,8 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
       this->mode_select_->publish_state(mode_text);
     pack.mode_loaded = true;
   }
-  ESP_LOGD(TAG, "Pack %u DCDC operating=%u mode=%u", pack.address,
-           dcdc_operating_state, dcdc_mode);
+  ESP_LOGD(TAG, "Pack %u DCDC state=0x%04X operating=%u mode=%u",
+           pack.address, dcdc_state_code, dcdc_operating_state, dcdc_mode);
   const uint16_t reported_modbus_address = this->read_u16_(&p[87]);
   if (pack.modbus_address == 0) {
     ESP_LOGV(TAG,

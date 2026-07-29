@@ -507,23 +507,6 @@ void SmartliBms::advance_(bool response_received) {
       completed == Phase::PACK_BARCODE ||
       completed == Phase::PCB_BARCODE ||
       completed == Phase::TELEMETRY || completed == Phase::DCDC) {
-    if (pack.operating_state_sensor != nullptr &&
-        pack.modbus_address != 0) {
-      this->schedule_phase_(Phase::MODBUS_OPERATING_STATE,
-                            [this, address = pack.modbus_address]() {
-                              this->send_modbus_read_(address, 0x103D, 1);
-                            });
-      return;
-    }
-  }
-
-  if (completed == Phase::MODBUS_OPERATING_STATE ||
-      completed == Phase::MODBUS_CONFIG_MODE ||
-      completed == Phase::MODBUS_PACK_BARCODE ||
-      completed == Phase::MODBUS_PCB_BARCODE ||
-      completed == Phase::PACK_BARCODE ||
-      completed == Phase::PCB_BARCODE ||
-      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
     if (!pack.loops_loaded && pack.modbus_address != 0 &&
         (pack.config_selects[CHARGING_LOOP] != nullptr ||
          pack.config_selects[DISCHARGE_LOOP] != nullptr)) {
@@ -965,32 +948,6 @@ bool SmartliBms::process_modbus_frame_() {
     pack.mode_loaded = true;
     return true;
   }
-  if (this->phase_ == Phase::MODBUS_OPERATING_STATE) {
-    if (this->frame_[2] != 2 || this->frame_.size() != 7)
-      return false;
-    auto &pack = this->packs_[this->pack_index_];
-    const uint8_t state = this->read_u16_(&this->frame_[3]) & 0xFF;
-    const char *state_text = "Unknown";
-    switch (state) {
-      case 1: state_text = "Precharge"; break;
-      case 2: state_text = "Charging"; break;
-      case 3: state_text = "Discharging"; break;
-      case 4: state_text = "BUCK Charging"; break;
-      case 5: state_text = "BOOST Charging"; break;
-      case 6: state_text = "BUCK Discharging"; break;
-      case 7: state_text = "BOOST Discharging"; break;
-      case 8: state_text = "Standby"; break;
-      case 9: state_text = "Alarm"; break;
-      case 10: state_text = "Protection shutdown"; break;
-      case 11: state_text = "Fault shutdown"; break;
-      case 12: state_text = "Maintenance"; break;
-      case 13: state_text = "Test"; break;
-      case 14: state_text = "Sleep"; break;
-    }
-    if (pack.operating_state_sensor != nullptr)
-      pack.operating_state_sensor->publish_state(state_text);
-    return true;
-  }
   if (this->phase_ == Phase::MODBUS_CONFIG_LOOPS) {
     if (this->frame_[2] != 4 || this->frame_.size() != 9)
       return false;
@@ -1147,6 +1104,15 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
   publish_voltage(VBUS_DOD, 83);
   publish_percent(DOD_PERCENT, 85);
   const uint16_t dcdc_mode = this->read_u16_(&p[91]);
+  const uint16_t dcdc_operating_state = this->read_u16_(&p[93]);
+  const char *operating_text =
+      dcdc_operating_state == 0 ? "Standby"
+      : dcdc_operating_state == 1 ? "BUCK Discharging"
+      : dcdc_operating_state == 2 ? "BOOST Discharging"
+                                  : nullptr;
+  if (pack.operating_state_sensor != nullptr && operating_text != nullptr)
+    pack.operating_state_sensor->publish_state(operating_text);
+
   const char *mode_text =
       dcdc_mode == 1 ? "Constant" : dcdc_mode == 2 ? "Battery" : nullptr;
   if (mode_text != nullptr) {
@@ -1156,6 +1122,8 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
       this->mode_select_->publish_state(mode_text);
     pack.mode_loaded = true;
   }
+  ESP_LOGD(TAG, "Pack %u DCDC operating=%u mode=%u", pack.address,
+           dcdc_operating_state, dcdc_mode);
   const uint16_t reported_modbus_address = this->read_u16_(&p[87]);
   if (pack.modbus_address == 0) {
     ESP_LOGV(TAG,

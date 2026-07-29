@@ -139,6 +139,11 @@ def decode_dcdc_payload(payload: bytes) -> dict[str, Any]:
         "dsg_depth_dod_percent": round(u16(85) / 100, 2),
         "modbus_address": u16(87),
         "vbus_set_max_autoself_v": round(u16(89) / 100, 2),
+        "dsg_mode_status_code": u16(91),
+        "operate_status_code": u16(93),
+        "di_chghw": u16(95),
+        "di_buttonwk": u16(97),
+        "m_sdi1": u16(99),
         "trailing_data_hex": payload[91:].hex(" "),
     }
 

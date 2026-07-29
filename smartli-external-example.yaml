@@ -115,7 +115,7 @@ smartli_bms:
   update_interval: never
   continuous_polling: true
   dcdc_update_interval: 60s
-  response_timeout: 700ms
+  response_timeout: 2s
   pack_delay: 2s
   request_delay: 1s
 

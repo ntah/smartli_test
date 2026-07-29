@@ -1,6 +1,6 @@
 # SmartLi BMS Parser
 
-Workspace terpisah untuk pengembangan parser dan monitoring Huawei SmartLi BMS.
+Workspace terpisah untuk pengembangan parser dan monitoring Shoto SmartLi BMS.
 
 ## Rencana awal
 

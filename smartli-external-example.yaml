@@ -1,0 +1,99 @@
+substitutions:
+  name: smartli-bms
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  flow_control_pin: GPIO4
+
+esphome:
+  name: ${name}
+  comment: "Read SmartLi BMS binary telemetry via RS485"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+external_components:
+  - source:
+      type: local
+      path: components
+    components: [smartli_bms]
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+logger:
+  level: DEBUG
+  baud_rate: 0
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+uart:
+  id: smartli_uart
+  baud_rate: 9600
+  tx_pin: ${tx_pin}
+  rx_pin: ${rx_pin}
+  rx_buffer_size: 512
+
+smartli_bms:
+  id: smartli_bms_1
+  uart_id: smartli_uart
+  address: 1
+  flow_control_pin: ${flow_control_pin}
+  update_interval: 5s
+
+sensor:
+  - platform: smartli_bms
+    smartli_bms_id: smartli_bms_1
+    rated_capacity:
+      name: "SmartLi Rated Capacity"
+    pack_voltage:
+      name: "SmartLi Pack Voltage"
+    state_of_charge:
+      name: "SmartLi State of Charge"
+    state_of_health:
+      name: "SmartLi State of Health"
+    cell_min_voltage:
+      name: "SmartLi Cell Minimum Voltage"
+    cell_max_voltage:
+      name: "SmartLi Cell Maximum Voltage"
+    cell_delta_voltage:
+      name: "SmartLi Cell Delta Voltage"
+    cell_voltage_1:
+      name: "SmartLi Cell 01 Voltage"
+    cell_voltage_2:
+      name: "SmartLi Cell 02 Voltage"
+    cell_voltage_3:
+      name: "SmartLi Cell 03 Voltage"
+    cell_voltage_4:
+      name: "SmartLi Cell 04 Voltage"
+    cell_voltage_5:
+      name: "SmartLi Cell 05 Voltage"
+    cell_voltage_6:
+      name: "SmartLi Cell 06 Voltage"
+    cell_voltage_7:
+      name: "SmartLi Cell 07 Voltage"
+    cell_voltage_8:
+      name: "SmartLi Cell 08 Voltage"
+    cell_voltage_9:
+      name: "SmartLi Cell 09 Voltage"
+    cell_voltage_10:
+      name: "SmartLi Cell 10 Voltage"
+    cell_voltage_11:
+      name: "SmartLi Cell 11 Voltage"
+    cell_voltage_12:
+      name: "SmartLi Cell 12 Voltage"
+    cell_voltage_13:
+      name: "SmartLi Cell 13 Voltage"
+    cell_voltage_14:
+      name: "SmartLi Cell 14 Voltage"
+    cell_voltage_15:
+      name: "SmartLi Cell 15 Voltage"
+

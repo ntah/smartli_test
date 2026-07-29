@@ -60,290 +60,290 @@ sensor:
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 1
-    full_capacity: {name: "SmartLi 1 Full Capacity"}
+    full_capacity: {name: "smartli bms 1 cap"}
     remaining_capacity: {name: "SmartLi 1 Remaining Capacity"}
-    bus_voltage: {name: "SmartLi 1 Bus Voltage"}
-    state_of_health: {name: "SmartLi 1 State of Health"}
-    total_charged_ah: {name: "SmartLi 1 Total Charged Ah"}
-    total_discharged_ah: {name: "SmartLi 1 Total Discharged Ah"}
+    bus_voltage: {name: "smartli bms 1 V Bus"}
+    state_of_health: {name: "smartli bms 1 SOH"}
+    total_charged_ah: {name: "smartli bms 1 tCharge"}
+    total_discharged_ah: {name: "smartli bms 1 tdisCharge"}
     dcdc_bus_negative_voltage: {name: "SmartLi 1 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 1 Battery Negative Voltage"}
-    dcdc_discharge_bus_voltage_set: {name: "SmartLi 1 Discharge Bus Voltage Set"}
-    dcdc_discharge_bus_current_set: {name: "SmartLi 1 Discharge Bus Current Set"}
-    dcdc_discharge_bus_power_set: {name: "SmartLi 1 Discharge Bus Power Set"}
+    dcdc_discharge_bus_voltage_set: {name: "smartli bms 1 Vbus set"}
+    dcdc_discharge_bus_current_set: {name: "smartli bms 1 Ibus set"}
+    dcdc_discharge_bus_power_set: {name: "smartli bms 1 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 1 Charging Battery Voltage Set"}
-    dcdc_charge_current_set: {name: "SmartLi 1 Charge Current Set"}
+    dcdc_charge_current_set: {name: "smartli bms 1 Ibat set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 1 Charging Battery Power Set"}
     dcdc_bus_voltage_dynamic: {name: "SmartLi 1 Bus Voltage Dynamic"}
-    dcdc_bus_voltage_ladder: {name: "SmartLi 1 Bus Voltage Ladder"}
-    dcdc_depth_dod: {name: "SmartLi 1 Depth DOD"}
+    dcdc_bus_voltage_ladder: {name: "smartli bms 1 Vbus DoD"}
+    dcdc_depth_dod: {name: "smartli bms 1 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 1 VBUS Set Max Autoself"}
-    cell_min_voltage: {name: "SmartLi 1 Cell Minimum Voltage"}
-    cell_max_voltage: {name: "SmartLi 1 Cell Maximum Voltage"}
-    cell_delta_voltage: {name: "SmartLi 1 Cell Delta Voltage"}
-    cell_voltage_1: {name: "SmartLi 1 Cell 01 Voltage"}
-    cell_voltage_2: {name: "SmartLi 1 Cell 02 Voltage"}
-    cell_voltage_3: {name: "SmartLi 1 Cell 03 Voltage"}
-    cell_voltage_4: {name: "SmartLi 1 Cell 04 Voltage"}
-    cell_voltage_5: {name: "SmartLi 1 Cell 05 Voltage"}
-    cell_voltage_6: {name: "SmartLi 1 Cell 06 Voltage"}
-    cell_voltage_7: {name: "SmartLi 1 Cell 07 Voltage"}
-    cell_voltage_8: {name: "SmartLi 1 Cell 08 Voltage"}
-    cell_voltage_9: {name: "SmartLi 1 Cell 09 Voltage"}
-    cell_voltage_10: {name: "SmartLi 1 Cell 10 Voltage"}
-    cell_voltage_11: {name: "SmartLi 1 Cell 11 Voltage"}
-    cell_voltage_12: {name: "SmartLi 1 Cell 12 Voltage"}
-    cell_voltage_13: {name: "SmartLi 1 Cell 13 Voltage"}
-    cell_voltage_14: {name: "SmartLi 1 Cell 14 Voltage"}
-    cell_voltage_15: {name: "SmartLi 1 Cell 15 Voltage"}
+    cell_min_voltage: {name: "smartli bms 1 V min"}
+    cell_max_voltage: {name: "smartli bms 1 V max"}
+    cell_delta_voltage: {name: "smartli bms 1 V diff"}
+    cell_voltage_1: {name: "smartli bms 1 V Cell01"}
+    cell_voltage_2: {name: "smartli bms 1 V Cell02"}
+    cell_voltage_3: {name: "smartli bms 1 V Cell03"}
+    cell_voltage_4: {name: "smartli bms 1 V Cell04"}
+    cell_voltage_5: {name: "smartli bms 1 V Cell05"}
+    cell_voltage_6: {name: "smartli bms 1 V Cell06"}
+    cell_voltage_7: {name: "smartli bms 1 V Cell07"}
+    cell_voltage_8: {name: "smartli bms 1 V Cell08"}
+    cell_voltage_9: {name: "smartli bms 1 V Cell09"}
+    cell_voltage_10: {name: "smartli bms 1 V Cell10"}
+    cell_voltage_11: {name: "smartli bms 1 V Cell11"}
+    cell_voltage_12: {name: "smartli bms 1 V Cell12"}
+    cell_voltage_13: {name: "smartli bms 1 V Cell13"}
+    cell_voltage_14: {name: "smartli bms 1 V Cell14"}
+    cell_voltage_15: {name: "smartli bms 1 V Cell15"}
     pack_voltage:
-      name: "SmartLi 1 Pack Voltage"
+      name: "smartli bms 1 V bat"
     current:
-      name: "SmartLi 1 Current"
+      name: "smartli bms 1 Current"
     state_of_charge:
-      name: "SmartLi 1 State of Charge"
+      name: "smartli bms 1 SOC"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 2
-    full_capacity: {name: "SmartLi 2 Full Capacity"}
+    full_capacity: {name: "smartli bms 2 cap"}
     remaining_capacity: {name: "SmartLi 2 Remaining Capacity"}
-    bus_voltage: {name: "SmartLi 2 Bus Voltage"}
-    state_of_health: {name: "SmartLi 2 State of Health"}
-    total_charged_ah: {name: "SmartLi 2 Total Charged Ah"}
-    total_discharged_ah: {name: "SmartLi 2 Total Discharged Ah"}
+    bus_voltage: {name: "smartli bms 2 V Bus"}
+    state_of_health: {name: "smartli bms 2 SOH"}
+    total_charged_ah: {name: "smartli bms 2 tCharge"}
+    total_discharged_ah: {name: "smartli bms 2 tdisCharge"}
     dcdc_bus_negative_voltage: {name: "SmartLi 2 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 2 Battery Negative Voltage"}
-    dcdc_discharge_bus_voltage_set: {name: "SmartLi 2 Discharge Bus Voltage Set"}
-    dcdc_discharge_bus_current_set: {name: "SmartLi 2 Discharge Bus Current Set"}
-    dcdc_discharge_bus_power_set: {name: "SmartLi 2 Discharge Bus Power Set"}
+    dcdc_discharge_bus_voltage_set: {name: "smartli bms 2 Vbus_set"}
+    dcdc_discharge_bus_current_set: {name: "smartli bms 2 Ibus set"}
+    dcdc_discharge_bus_power_set: {name: "smartli bms 2 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 2 Charging Battery Voltage Set"}
-    dcdc_charge_current_set: {name: "SmartLi 2 Charge Current Set"}
+    dcdc_charge_current_set: {name: "smartli bms 2 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 2 Charging Battery Power Set"}
     dcdc_bus_voltage_dynamic: {name: "SmartLi 2 Bus Voltage Dynamic"}
-    dcdc_bus_voltage_ladder: {name: "SmartLi 2 Bus Voltage Ladder"}
-    dcdc_depth_dod: {name: "SmartLi 2 Depth DOD"}
+    dcdc_bus_voltage_ladder: {name: "smartli bms 2 Vbus DoD"}
+    dcdc_depth_dod: {name: "smartli bms 2 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 2 VBUS Set Max Autoself"}
-    cell_min_voltage: {name: "SmartLi 2 Cell Minimum Voltage"}
-    cell_max_voltage: {name: "SmartLi 2 Cell Maximum Voltage"}
-    cell_delta_voltage: {name: "SmartLi 2 Cell Delta Voltage"}
-    cell_voltage_1: {name: "SmartLi 2 Cell 01 Voltage"}
-    cell_voltage_2: {name: "SmartLi 2 Cell 02 Voltage"}
-    cell_voltage_3: {name: "SmartLi 2 Cell 03 Voltage"}
-    cell_voltage_4: {name: "SmartLi 2 Cell 04 Voltage"}
-    cell_voltage_5: {name: "SmartLi 2 Cell 05 Voltage"}
-    cell_voltage_6: {name: "SmartLi 2 Cell 06 Voltage"}
-    cell_voltage_7: {name: "SmartLi 2 Cell 07 Voltage"}
-    cell_voltage_8: {name: "SmartLi 2 Cell 08 Voltage"}
-    cell_voltage_9: {name: "SmartLi 2 Cell 09 Voltage"}
-    cell_voltage_10: {name: "SmartLi 2 Cell 10 Voltage"}
-    cell_voltage_11: {name: "SmartLi 2 Cell 11 Voltage"}
-    cell_voltage_12: {name: "SmartLi 2 Cell 12 Voltage"}
-    cell_voltage_13: {name: "SmartLi 2 Cell 13 Voltage"}
-    cell_voltage_14: {name: "SmartLi 2 Cell 14 Voltage"}
-    cell_voltage_15: {name: "SmartLi 2 Cell 15 Voltage"}
+    cell_min_voltage: {name: "smartli bms 2 V min"}
+    cell_max_voltage: {name: "smartli bms 2 V max"}
+    cell_delta_voltage: {name: "smartli bms 2 V diff"}
+    cell_voltage_1: {name: "smartli bms 2 V Cell01"}
+    cell_voltage_2: {name: "smartli bms 2 V Cell02"}
+    cell_voltage_3: {name: "smartli bms 2 V Cell03"}
+    cell_voltage_4: {name: "smartli bms 2 V Cell04"}
+    cell_voltage_5: {name: "smartli bms 2 V Cell05"}
+    cell_voltage_6: {name: "smartli bms 2 V Cell06"}
+    cell_voltage_7: {name: "smartli bms 2 V Cell07"}
+    cell_voltage_8: {name: "smartli bms 2 V Cell08"}
+    cell_voltage_9: {name: "smartli bms 2 V Cell09"}
+    cell_voltage_10: {name: "smartli bms 2 V Cell10"}
+    cell_voltage_11: {name: "smartli bms 2 V Cell11"}
+    cell_voltage_12: {name: "smartli bms 2 V Cell12"}
+    cell_voltage_13: {name: "smartli bms 2 V Cell13"}
+    cell_voltage_14: {name: "smartli bms 2 V Cell14"}
+    cell_voltage_15: {name: "smartli bms 2 V Cell15"}
     pack_voltage:
-      name: "SmartLi 2 Pack Voltage"
+      name: "smartli bms 2 V bat"
     current:
-      name: "SmartLi 2 Current"
+      name: "smartli bms 2 Current"
     state_of_charge:
-      name: "SmartLi 2 State of Charge"
+      name: "smartli bms 2 SOC"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 3
-    full_capacity: {name: "SmartLi 3 Full Capacity"}
+    full_capacity: {name: "smartli bms 3 cap"}
     remaining_capacity: {name: "SmartLi 3 Remaining Capacity"}
-    bus_voltage: {name: "SmartLi 3 Bus Voltage"}
-    state_of_health: {name: "SmartLi 3 State of Health"}
-    total_charged_ah: {name: "SmartLi 3 Total Charged Ah"}
-    total_discharged_ah: {name: "SmartLi 3 Total Discharged Ah"}
+    bus_voltage: {name: "smartli bms 3 V Bus"}
+    state_of_health: {name: "smartli bms 3 SOH"}
+    total_charged_ah: {name: "smartli bms 3 tCharge"}
+    total_discharged_ah: {name: "smartli bms 3 tdisCharge"}
     dcdc_bus_negative_voltage: {name: "SmartLi 3 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 3 Battery Negative Voltage"}
-    dcdc_discharge_bus_voltage_set: {name: "SmartLi 3 Discharge Bus Voltage Set"}
-    dcdc_discharge_bus_current_set: {name: "SmartLi 3 Discharge Bus Current Set"}
-    dcdc_discharge_bus_power_set: {name: "SmartLi 3 Discharge Bus Power Set"}
+    dcdc_discharge_bus_voltage_set: {name: "smartli bms 3 Vbus_set"}
+    dcdc_discharge_bus_current_set: {name: "smartli bms 3 Ibus set"}
+    dcdc_discharge_bus_power_set: {name: "smartli bms 3 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 3 Charging Battery Voltage Set"}
-    dcdc_charge_current_set: {name: "SmartLi 3 Charge Current Set"}
+    dcdc_charge_current_set: {name: "smartli bms 3 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 3 Charging Battery Power Set"}
     dcdc_bus_voltage_dynamic: {name: "SmartLi 3 Bus Voltage Dynamic"}
-    dcdc_bus_voltage_ladder: {name: "SmartLi 3 Bus Voltage Ladder"}
-    dcdc_depth_dod: {name: "SmartLi 3 Depth DOD"}
+    dcdc_bus_voltage_ladder: {name: "smartli bms 3 Vbus DoD"}
+    dcdc_depth_dod: {name: "smartli bms 3 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 3 VBUS Set Max Autoself"}
-    cell_min_voltage: {name: "SmartLi 3 Cell Minimum Voltage"}
-    cell_max_voltage: {name: "SmartLi 3 Cell Maximum Voltage"}
-    cell_delta_voltage: {name: "SmartLi 3 Cell Delta Voltage"}
-    cell_voltage_1: {name: "SmartLi 3 Cell 01 Voltage"}
-    cell_voltage_2: {name: "SmartLi 3 Cell 02 Voltage"}
-    cell_voltage_3: {name: "SmartLi 3 Cell 03 Voltage"}
-    cell_voltage_4: {name: "SmartLi 3 Cell 04 Voltage"}
-    cell_voltage_5: {name: "SmartLi 3 Cell 05 Voltage"}
-    cell_voltage_6: {name: "SmartLi 3 Cell 06 Voltage"}
-    cell_voltage_7: {name: "SmartLi 3 Cell 07 Voltage"}
-    cell_voltage_8: {name: "SmartLi 3 Cell 08 Voltage"}
-    cell_voltage_9: {name: "SmartLi 3 Cell 09 Voltage"}
-    cell_voltage_10: {name: "SmartLi 3 Cell 10 Voltage"}
-    cell_voltage_11: {name: "SmartLi 3 Cell 11 Voltage"}
-    cell_voltage_12: {name: "SmartLi 3 Cell 12 Voltage"}
-    cell_voltage_13: {name: "SmartLi 3 Cell 13 Voltage"}
-    cell_voltage_14: {name: "SmartLi 3 Cell 14 Voltage"}
-    cell_voltage_15: {name: "SmartLi 3 Cell 15 Voltage"}
+    cell_min_voltage: {name: "smartli bms 3 V min"}
+    cell_max_voltage: {name: "smartli bms 3 V max"}
+    cell_delta_voltage: {name: "smartli bms 3 V diff"}
+    cell_voltage_1: {name: "smartli bms 3 V Cell01"}
+    cell_voltage_2: {name: "smartli bms 3 V Cell02"}
+    cell_voltage_3: {name: "smartli bms 3 V Cell03"}
+    cell_voltage_4: {name: "smartli bms 3 V Cell04"}
+    cell_voltage_5: {name: "smartli bms 3 V Cell05"}
+    cell_voltage_6: {name: "smartli bms 3 V Cell06"}
+    cell_voltage_7: {name: "smartli bms 3 V Cell07"}
+    cell_voltage_8: {name: "smartli bms 3 V Cell08"}
+    cell_voltage_9: {name: "smartli bms 3 V Cell09"}
+    cell_voltage_10: {name: "smartli bms 3 V Cell10"}
+    cell_voltage_11: {name: "smartli bms 3 V Cell11"}
+    cell_voltage_12: {name: "smartli bms 3 V Cell12"}
+    cell_voltage_13: {name: "smartli bms 3 V Cell13"}
+    cell_voltage_14: {name: "smartli bms 3 V Cell14"}
+    cell_voltage_15: {name: "smartli bms 3 V Cell15"}
     pack_voltage:
-      name: "SmartLi 3 Pack Voltage"
+      name: "smartli bms 3 V bat"
     current:
-      name: "SmartLi 3 Current"
+      name: "smartli bms 3 Current"
     state_of_charge:
-      name: "SmartLi 3 State of Charge"
+      name: "smartli bms 3 SOC"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 4
-    full_capacity: {name: "SmartLi 4 Full Capacity"}
+    full_capacity: {name: "smartli bms 4 cap"}
     remaining_capacity: {name: "SmartLi 4 Remaining Capacity"}
-    bus_voltage: {name: "SmartLi 4 Bus Voltage"}
-    state_of_health: {name: "SmartLi 4 State of Health"}
-    total_charged_ah: {name: "SmartLi 4 Total Charged Ah"}
-    total_discharged_ah: {name: "SmartLi 4 Total Discharged Ah"}
+    bus_voltage: {name: "smartli bms 4 V Bus"}
+    state_of_health: {name: "smartli bms 4 SOH"}
+    total_charged_ah: {name: "smartli bms 4 tCharge"}
+    total_discharged_ah: {name: "smartli bms 4 tdisCharge"}
     dcdc_bus_negative_voltage: {name: "SmartLi 4 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 4 Battery Negative Voltage"}
-    dcdc_discharge_bus_voltage_set: {name: "SmartLi 4 Discharge Bus Voltage Set"}
-    dcdc_discharge_bus_current_set: {name: "SmartLi 4 Discharge Bus Current Set"}
-    dcdc_discharge_bus_power_set: {name: "SmartLi 4 Discharge Bus Power Set"}
+    dcdc_discharge_bus_voltage_set: {name: "smartli bms 4 Vbus_set"}
+    dcdc_discharge_bus_current_set: {name: "smartli bms 4 Ibus set"}
+    dcdc_discharge_bus_power_set: {name: "smartli bms 4 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 4 Charging Battery Voltage Set"}
-    dcdc_charge_current_set: {name: "SmartLi 4 Charge Current Set"}
+    dcdc_charge_current_set: {name: "smartli bms 4 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 4 Charging Battery Power Set"}
     dcdc_bus_voltage_dynamic: {name: "SmartLi 4 Bus Voltage Dynamic"}
-    dcdc_bus_voltage_ladder: {name: "SmartLi 4 Bus Voltage Ladder"}
-    dcdc_depth_dod: {name: "SmartLi 4 Depth DOD"}
+    dcdc_bus_voltage_ladder: {name: "smartli bms 4 Vbus DoD"}
+    dcdc_depth_dod: {name: "smartli bms 4 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 4 VBUS Set Max Autoself"}
-    cell_min_voltage: {name: "SmartLi 4 Cell Minimum Voltage"}
-    cell_max_voltage: {name: "SmartLi 4 Cell Maximum Voltage"}
-    cell_delta_voltage: {name: "SmartLi 4 Cell Delta Voltage"}
-    cell_voltage_1: {name: "SmartLi 4 Cell 01 Voltage"}
-    cell_voltage_2: {name: "SmartLi 4 Cell 02 Voltage"}
-    cell_voltage_3: {name: "SmartLi 4 Cell 03 Voltage"}
-    cell_voltage_4: {name: "SmartLi 4 Cell 04 Voltage"}
-    cell_voltage_5: {name: "SmartLi 4 Cell 05 Voltage"}
-    cell_voltage_6: {name: "SmartLi 4 Cell 06 Voltage"}
-    cell_voltage_7: {name: "SmartLi 4 Cell 07 Voltage"}
-    cell_voltage_8: {name: "SmartLi 4 Cell 08 Voltage"}
-    cell_voltage_9: {name: "SmartLi 4 Cell 09 Voltage"}
-    cell_voltage_10: {name: "SmartLi 4 Cell 10 Voltage"}
-    cell_voltage_11: {name: "SmartLi 4 Cell 11 Voltage"}
-    cell_voltage_12: {name: "SmartLi 4 Cell 12 Voltage"}
-    cell_voltage_13: {name: "SmartLi 4 Cell 13 Voltage"}
-    cell_voltage_14: {name: "SmartLi 4 Cell 14 Voltage"}
-    cell_voltage_15: {name: "SmartLi 4 Cell 15 Voltage"}
+    cell_min_voltage: {name: "smartli bms 4 V min"}
+    cell_max_voltage: {name: "smartli bms 4 V max"}
+    cell_delta_voltage: {name: "smartli bms 4 V diff"}
+    cell_voltage_1: {name: "smartli bms 4 V Cell01"}
+    cell_voltage_2: {name: "smartli bms 4 V Cell02"}
+    cell_voltage_3: {name: "smartli bms 4 V Cell03"}
+    cell_voltage_4: {name: "smartli bms 4 V Cell04"}
+    cell_voltage_5: {name: "smartli bms 4 V Cell05"}
+    cell_voltage_6: {name: "smartli bms 4 V Cell06"}
+    cell_voltage_7: {name: "smartli bms 4 V Cell07"}
+    cell_voltage_8: {name: "smartli bms 4 V Cell08"}
+    cell_voltage_9: {name: "smartli bms 4 V Cell09"}
+    cell_voltage_10: {name: "smartli bms 4 V Cell10"}
+    cell_voltage_11: {name: "smartli bms 4 V Cell11"}
+    cell_voltage_12: {name: "smartli bms 4 V Cell12"}
+    cell_voltage_13: {name: "smartli bms 4 V Cell13"}
+    cell_voltage_14: {name: "smartli bms 4 V Cell14"}
+    cell_voltage_15: {name: "smartli bms 4 V Cell15"}
     pack_voltage:
-      name: "SmartLi 4 Pack Voltage"
+      name: "smartli bms 4 V bat"
     current:
-      name: "SmartLi 4 Current"
+      name: "smartli bms 4 Current"
     state_of_charge:
-      name: "SmartLi 4 State of Charge"
+      name: "smartli bms 4 SOC"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 5
-    full_capacity: {name: "SmartLi 5 Full Capacity"}
+    full_capacity: {name: "smartli bms 5 cap"}
     remaining_capacity: {name: "SmartLi 5 Remaining Capacity"}
-    bus_voltage: {name: "SmartLi 5 Bus Voltage"}
-    state_of_health: {name: "SmartLi 5 State of Health"}
-    total_charged_ah: {name: "SmartLi 5 Total Charged Ah"}
-    total_discharged_ah: {name: "SmartLi 5 Total Discharged Ah"}
+    bus_voltage: {name: "smartli bms 5 V Bus"}
+    state_of_health: {name: "smartli bms 5 SOH"}
+    total_charged_ah: {name: "smartli bms 5 tCharge"}
+    total_discharged_ah: {name: "smartli bms 5 tdisCharge"}
     dcdc_bus_negative_voltage: {name: "SmartLi 5 Bus Negative Voltage"}
     dcdc_battery_negative_voltage: {name: "SmartLi 5 Battery Negative Voltage"}
-    dcdc_discharge_bus_voltage_set: {name: "SmartLi 5 Discharge Bus Voltage Set"}
-    dcdc_discharge_bus_current_set: {name: "SmartLi 5 Discharge Bus Current Set"}
-    dcdc_discharge_bus_power_set: {name: "SmartLi 5 Discharge Bus Power Set"}
+    dcdc_discharge_bus_voltage_set: {name: "smartli bms 5 Vbus_set"}
+    dcdc_discharge_bus_current_set: {name: "smartli bms 5 Ibus set"}
+    dcdc_discharge_bus_power_set: {name: "smartli bms 5 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 5 Charging Battery Voltage Set"}
-    dcdc_charge_current_set: {name: "SmartLi 5 Charge Current Set"}
+    dcdc_charge_current_set: {name: "smartli bms 5 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 5 Charging Battery Power Set"}
     dcdc_bus_voltage_dynamic: {name: "SmartLi 5 Bus Voltage Dynamic"}
-    dcdc_bus_voltage_ladder: {name: "SmartLi 5 Bus Voltage Ladder"}
-    dcdc_depth_dod: {name: "SmartLi 5 Depth DOD"}
+    dcdc_bus_voltage_ladder: {name: "smartli bms 5 Vbus DoD"}
+    dcdc_depth_dod: {name: "smartli bms 5 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 5 VBUS Set Max Autoself"}
-    cell_min_voltage: {name: "SmartLi 5 Cell Minimum Voltage"}
-    cell_max_voltage: {name: "SmartLi 5 Cell Maximum Voltage"}
-    cell_delta_voltage: {name: "SmartLi 5 Cell Delta Voltage"}
-    cell_voltage_1: {name: "SmartLi 5 Cell 01 Voltage"}
-    cell_voltage_2: {name: "SmartLi 5 Cell 02 Voltage"}
-    cell_voltage_3: {name: "SmartLi 5 Cell 03 Voltage"}
-    cell_voltage_4: {name: "SmartLi 5 Cell 04 Voltage"}
-    cell_voltage_5: {name: "SmartLi 5 Cell 05 Voltage"}
-    cell_voltage_6: {name: "SmartLi 5 Cell 06 Voltage"}
-    cell_voltage_7: {name: "SmartLi 5 Cell 07 Voltage"}
-    cell_voltage_8: {name: "SmartLi 5 Cell 08 Voltage"}
-    cell_voltage_9: {name: "SmartLi 5 Cell 09 Voltage"}
-    cell_voltage_10: {name: "SmartLi 5 Cell 10 Voltage"}
-    cell_voltage_11: {name: "SmartLi 5 Cell 11 Voltage"}
-    cell_voltage_12: {name: "SmartLi 5 Cell 12 Voltage"}
-    cell_voltage_13: {name: "SmartLi 5 Cell 13 Voltage"}
-    cell_voltage_14: {name: "SmartLi 5 Cell 14 Voltage"}
-    cell_voltage_15: {name: "SmartLi 5 Cell 15 Voltage"}
+    cell_min_voltage: {name: "smartli bms 5 V min"}
+    cell_max_voltage: {name: "smartli bms 5 V max"}
+    cell_delta_voltage: {name: "smartli bms 5 V diff"}
+    cell_voltage_1: {name: "smartli bms 5 V Cell01"}
+    cell_voltage_2: {name: "smartli bms 5 V Cell02"}
+    cell_voltage_3: {name: "smartli bms 5 V Cell03"}
+    cell_voltage_4: {name: "smartli bms 5 V Cell04"}
+    cell_voltage_5: {name: "smartli bms 5 V Cell05"}
+    cell_voltage_6: {name: "smartli bms 5 V Cell06"}
+    cell_voltage_7: {name: "smartli bms 5 V Cell07"}
+    cell_voltage_8: {name: "smartli bms 5 V Cell08"}
+    cell_voltage_9: {name: "smartli bms 5 V Cell09"}
+    cell_voltage_10: {name: "smartli bms 5 V Cell10"}
+    cell_voltage_11: {name: "smartli bms 5 V Cell11"}
+    cell_voltage_12: {name: "smartli bms 5 V Cell12"}
+    cell_voltage_13: {name: "smartli bms 5 V Cell13"}
+    cell_voltage_14: {name: "smartli bms 5 V Cell14"}
+    cell_voltage_15: {name: "smartli bms 5 V Cell15"}
     pack_voltage:
-      name: "SmartLi 5 Pack Voltage"
+      name: "smartli bms 5 V bat"
     current:
-      name: "SmartLi 5 Current"
+      name: "smartli bms 5 Current"
     state_of_charge:
-      name: "SmartLi 5 State of Charge"
+      name: "smartli bms 5 SOC"
 
 text_sensor:
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 1
     pcb_barcode:
-      name: "SmartLi 1 PCB Barcode"
+      name: "smartLi bms 1 code"
     pack_barcode:
       name: "SmartLi 1 Pack Barcode"
     modbus_address:
       name: "SmartLi 1 Modbus Address"
     status:
-      name: "SmartLi 1 Status"
+      name: "smartLi bms 1 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 2
     pcb_barcode:
-      name: "SmartLi 2 PCB Barcode"
+      name: "smartLi bms 2 code"
     pack_barcode:
       name: "SmartLi 2 Pack Barcode"
     modbus_address:
       name: "SmartLi 2 Modbus Address"
     status:
-      name: "SmartLi 2 Status"
+      name: "smartLi bms 2 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 3
     pcb_barcode:
-      name: "SmartLi 3 PCB Barcode"
+      name: "smartli bms 3 code"
     pack_barcode:
       name: "SmartLi 3 Pack Barcode"
     modbus_address:
       name: "SmartLi 3 Modbus Address"
     status:
-      name: "SmartLi 3 Status"
+      name: "smartLi bms 3 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 4
     pcb_barcode:
-      name: "SmartLi 4 PCB Barcode"
+      name: "smartli bms 4 code"
     pack_barcode:
       name: "SmartLi 4 Pack Barcode"
     modbus_address:
       name: "SmartLi 4 Modbus Address"
     status:
-      name: "SmartLi 4 Status"
+      name: "smartLi bms 4 Status"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 5
     pcb_barcode:
-      name: "SmartLi 5 PCB Barcode"
+      name: "smartli bms 5 code"
     pack_barcode:
       name: "SmartLi 5 Pack Barcode"
     modbus_address:
       name: "SmartLi 5 Modbus Address"
     status:
-      name: "SmartLi 5 Status"
+      name: "smartLi bms 5 Status"

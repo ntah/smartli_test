@@ -23,8 +23,10 @@ script:
           auto now = id(esptime).now();
 
           if (!now.is_valid()) {
+            id(smartli_hub).set_pack_delay(id(delay_interval));
             ESP_LOGW("smartli_schedule",
-                     "Waktu belum valid, pack delay tidak diubah");
+                     "Waktu belum valid, memakai pack delay default %lu ms",
+                     static_cast<unsigned long>(id(delay_interval)));
             return;
           }
 

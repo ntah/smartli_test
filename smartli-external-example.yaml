@@ -538,8 +538,4 @@ button:
   - platform: restart
     id: restart_esp
     name: "${name} Reboot"  
-
-time:
-  - platform: sntp
-    id: esptime
-    timezone: Asia/Jakarta    
+    

@@ -12,6 +12,7 @@ CONF_PCB_BARCODE = "pcb_barcode"
 CONF_PACK_BARCODE = "pack_barcode"
 CONF_MODBUS_PCB_BARCODE = "modbus_pcb_barcode"
 CONF_MODBUS_PACK_BARCODE = "modbus_pack_barcode"
+CONF_MODBUS_ADDRESS = "modbus_address"
 CONF_STATUS = "status"
 
 CONFIG_SCHEMA = cv.Schema(
@@ -28,6 +29,9 @@ CONFIG_SCHEMA = cv.Schema(
             entity_category="diagnostic",
         ),
         cv.Optional(CONF_MODBUS_PACK_BARCODE): text_sensor.text_sensor_schema(
+            entity_category="diagnostic",
+        ),
+        cv.Optional(CONF_MODBUS_ADDRESS): text_sensor.text_sensor_schema(
             entity_category="diagnostic",
         ),
         cv.Optional(CONF_STATUS): text_sensor.text_sensor_schema(),
@@ -54,6 +58,10 @@ async def to_code(config):
     if sensor_config := config.get(CONF_MODBUS_PACK_BARCODE):
         sens = await text_sensor.new_text_sensor(sensor_config)
         cg.add(parent.set_modbus_pack_barcode_text_sensor(address, sens))
+
+    if sensor_config := config.get(CONF_MODBUS_ADDRESS):
+        sens = await text_sensor.new_text_sensor(sensor_config)
+        cg.add(parent.set_modbus_address_text_sensor(address, sens))
 
     if sensor_config := config.get(CONF_STATUS):
         sens = await text_sensor.new_text_sensor(sensor_config)

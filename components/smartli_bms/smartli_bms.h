@@ -27,6 +27,7 @@ struct SmartliPack {
   text_sensor::TextSensor *pack_barcode_sensor{nullptr};
   text_sensor::TextSensor *modbus_pcb_barcode_sensor{nullptr};
   text_sensor::TextSensor *modbus_pack_barcode_sensor{nullptr};
+  text_sensor::TextSensor *modbus_address_sensor{nullptr};
   text_sensor::TextSensor *status_sensor{nullptr};
   std::array<uint16_t, 5> alarm_values{};
   uint32_t last_dcdc_at{0};
@@ -116,6 +117,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
                                           text_sensor::TextSensor *value);
   void set_modbus_pack_barcode_text_sensor(uint8_t address,
                                            text_sensor::TextSensor *value);
+  void set_modbus_address_text_sensor(uint8_t address,
+                                      text_sensor::TextSensor *value);
   void set_status_text_sensor(uint8_t address,
                               text_sensor::TextSensor *value);
 

@@ -67,6 +67,10 @@ Alarm telemetri diterjemahkan menjadi satu text sensor `status` per pack.
 Jika tidak ada bit masalah aktif nilainya `Normal`. Jika lebih dari satu
 masalah aktif, keterangannya digabung dengan koma.
 
+Text sensor `modbus_address` menampilkan slave address hasil auto-discovery
+untuk setiap pack. Jika alamat dikonfigurasi manual, nilai manual tersebut
+yang ditampilkan.
+
 Field yang sudah dipublikasikan:
 
 - Arus.

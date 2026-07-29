@@ -104,6 +104,13 @@ void SmartliBms::set_modbus_pack_barcode_text_sensor(
     pack->modbus_pack_barcode_sensor = value;
 }
 
+void SmartliBms::set_modbus_address_text_sensor(
+    uint8_t address, text_sensor::TextSensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr)
+    pack->modbus_address_sensor = value;
+}
+
 void SmartliBms::set_status_text_sensor(
     uint8_t address, text_sensor::TextSensor *value) {
   auto *pack = this->find_pack_(address);
@@ -162,6 +169,9 @@ void SmartliBms::begin_pack_() {
     return;
   }
   auto &pack = this->packs_[this->pack_index_];
+  if (pack.modbus_address_sensor != nullptr && pack.modbus_address != 0)
+    pack.modbus_address_sensor->publish_state(
+        std::to_string(pack.modbus_address));
   this->phase_ = Phase::TELEMETRY;
   this->send_binary_request_(pack.address, 0x01);
 }
@@ -293,6 +303,8 @@ void SmartliBms::finish_modbus_discovery_candidate_() {
           pack.pack_barcode == this->discovery_pack_barcode_) {
         pack.modbus_address = candidate;
         this->discovery_match_count_++;
+        if (pack.modbus_address_sensor != nullptr)
+          pack.modbus_address_sensor->publish_state(std::to_string(candidate));
         if (pack.modbus_pcb_barcode_sensor != nullptr)
           pack.modbus_pcb_barcode_sensor->publish_state(
               this->discovery_pcb_barcode_);

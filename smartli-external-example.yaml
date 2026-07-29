@@ -61,98 +61,57 @@ smartli_bms:
   dcdc_update_interval: 60s
   response_timeout: 700ms
 
-sensor:
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 1
-    current:
-      name: "SmartLi Current"
-    full_capacity:
-      name: "SmartLi Full Capacity"
-    remaining_capacity:
-      name: "SmartLi Remaining Capacity"
+    full_capacity: {name: "SmartLi 1 Full Capacity"}
+    remaining_capacity: {name: "SmartLi 1 Remaining Capacity"}
+    bus_voltage: {name: "SmartLi 1 Bus Voltage"}
+    state_of_health: {name: "SmartLi 1 State of Health"}
+    total_charged_ah: {name: "SmartLi 1 Total Charged Ah"}
+    total_discharged_ah: {name: "SmartLi 1 Total Discharged Ah"}
+    dcdc_bus_voltage: {name: "SmartLi 1 DCDC Bus Voltage"}
+    dcdc_bus_current: {name: "SmartLi 1 DCDC Bus Current"}
+    dcdc_battery_port_voltage: {name: "SmartLi 1 DCDC Battery Port Voltage"}
+    dcdc_battery_current: {name: "SmartLi 1 DCDC Battery Current"}
+    dcdc_bus_negative_voltage: {name: "SmartLi 1 DCDC Bus Negative Voltage"}
+    dcdc_battery_negative_voltage: {name: "SmartLi 1 DCDC Battery Negative Voltage"}
+    dcdc_discharge_bus_voltage_set: {name: "SmartLi 1 DCDC Discharge Bus Voltage Set"}
+    dcdc_discharge_bus_current_set: {name: "SmartLi 1 DCDC Discharge Bus Current Set"}
+    dcdc_discharge_bus_power_set: {name: "SmartLi 1 DCDC Discharge Bus Power Set"}
+    dcdc_charging_battery_voltage_set: {name: "SmartLi 1 DCDC Charging Battery Voltage Set"}
+    dcdc_charge_current_set: {name: "SmartLi 1 DCDC Charge Current Set"}
+    dcdc_charging_battery_power_set: {name: "SmartLi 1 DCDC Charging Battery Power Set"}
+    dcdc_bus_voltage_dynamic: {name: "SmartLi 1 DCDC Bus Voltage Dynamic"}
+    dcdc_bus_voltage_ladder: {name: "SmartLi 1 DCDC Bus Voltage Ladder"}
+    dcdc_depth_dod: {name: "SmartLi 1 DCDC Depth DOD"}
+    dcdc_vbus_set_max_autoself: {name: "SmartLi 1 DCDC VBUS Set Max Autoself"}
+    cell_min_voltage: {name: "SmartLi 1 Cell Minimum Voltage"}
+    cell_max_voltage: {name: "SmartLi 1 Cell Maximum Voltage"}
+    cell_delta_voltage: {name: "SmartLi 1 Cell Delta Voltage"}
+    cell_voltage_1: {name: "SmartLi 1 Cell 01 Voltage"}
+    cell_voltage_2: {name: "SmartLi 1 Cell 02 Voltage"}
+    cell_voltage_3: {name: "SmartLi 1 Cell 03 Voltage"}
+    cell_voltage_4: {name: "SmartLi 1 Cell 04 Voltage"}
+    cell_voltage_5: {name: "SmartLi 1 Cell 05 Voltage"}
+    cell_voltage_6: {name: "SmartLi 1 Cell 06 Voltage"}
+    cell_voltage_7: {name: "SmartLi 1 Cell 07 Voltage"}
+    cell_voltage_8: {name: "SmartLi 1 Cell 08 Voltage"}
+    cell_voltage_9: {name: "SmartLi 1 Cell 09 Voltage"}
+    cell_voltage_10: {name: "SmartLi 1 Cell 10 Voltage"}
+    cell_voltage_11: {name: "SmartLi 1 Cell 11 Voltage"}
+    cell_voltage_12: {name: "SmartLi 1 Cell 12 Voltage"}
+    cell_voltage_13: {name: "SmartLi 1 Cell 13 Voltage"}
+    cell_voltage_14: {name: "SmartLi 1 Cell 14 Voltage"}
+    cell_voltage_15: {name: "SmartLi 1 Cell 15 Voltage"}
     pack_voltage:
-      name: "SmartLi Pack Voltage"
-    bus_voltage:
-      name: "SmartLi Bus Voltage"
+      name: "SmartLi 1 Pack Voltage"
+    current:
+      name: "SmartLi 1 Current"
     state_of_charge:
-      name: "SmartLi State of Charge"
-    state_of_health:
-      name: "SmartLi State of Health"
-    total_charged_ah:
-      name: "SmartLi Total Charged Ah"
-    total_discharged_ah:
-      name: "SmartLi Total Discharged Ah"
-    dcdc_bus_voltage:
-      name: "SmartLi DCDC Bus Voltage"
-    dcdc_bus_current:
-      name: "SmartLi DCDC Bus Current"
-    dcdc_battery_port_voltage:
-      name: "SmartLi DCDC Battery Port Voltage"
-    dcdc_battery_current:
-      name: "SmartLi DCDC Battery Current"
-    dcdc_bus_negative_voltage:
-      name: "SmartLi DCDC Bus Negative Voltage"
-    dcdc_battery_negative_voltage:
-      name: "SmartLi DCDC Battery Negative Voltage"
-    dcdc_discharge_bus_voltage_set:
-      name: "SmartLi DCDC Discharge Bus Voltage Set"
-    dcdc_discharge_bus_current_set:
-      name: "SmartLi DCDC Discharge Bus Current Set"
-    dcdc_discharge_bus_power_set:
-      name: "SmartLi DCDC Discharge Bus Power Set"
-    dcdc_charging_battery_voltage_set:
-      name: "SmartLi DCDC Charging Battery Voltage Set"
-    dcdc_charge_current_set:
-      name: "SmartLi DCDC Charge Current Set"
-    dcdc_charging_battery_power_set:
-      name: "SmartLi DCDC Charging Battery Power Set"
-    dcdc_bus_voltage_dynamic:
-      name: "SmartLi DCDC Bus Voltage Dynamic"
-    dcdc_bus_voltage_ladder:
-      name: "SmartLi DCDC Bus Voltage Ladder"
-    dcdc_depth_dod:
-      name: "SmartLi DCDC Depth DOD"
+      name: "SmartLi 1 State of Charge"
     dcdc_modbus_address:
       name: "SmartLi 1 Modbus Address"
-    dcdc_vbus_set_max_autoself:
-      name: "SmartLi DCDC VBUS Set Max Autoself"
-    cell_min_voltage:
-      name: "SmartLi Cell Minimum Voltage"
-    cell_max_voltage:
-      name: "SmartLi Cell Maximum Voltage"
-    cell_delta_voltage:
-      name: "SmartLi Cell Delta Voltage"
-    cell_voltage_1:
-      name: "SmartLi Cell 01 Voltage"
-    cell_voltage_2:
-      name: "SmartLi Cell 02 Voltage"
-    cell_voltage_3:
-      name: "SmartLi Cell 03 Voltage"
-    cell_voltage_4:
-      name: "SmartLi Cell 04 Voltage"
-    cell_voltage_5:
-      name: "SmartLi Cell 05 Voltage"
-    cell_voltage_6:
-      name: "SmartLi Cell 06 Voltage"
-    cell_voltage_7:
-      name: "SmartLi Cell 07 Voltage"
-    cell_voltage_8:
-      name: "SmartLi Cell 08 Voltage"
-    cell_voltage_9:
-      name: "SmartLi Cell 09 Voltage"
-    cell_voltage_10:
-      name: "SmartLi Cell 10 Voltage"
-    cell_voltage_11:
-      name: "SmartLi Cell 11 Voltage"
-    cell_voltage_12:
-      name: "SmartLi Cell 12 Voltage"
-    cell_voltage_13:
-      name: "SmartLi Cell 13 Voltage"
-    cell_voltage_14:
-      name: "SmartLi Cell 14 Voltage"
-    cell_voltage_15:
-      name: "SmartLi Cell 15 Voltage"
 
   # Tambahkan sensor yang diperlukan untuk setiap pack. Semua menggunakan
   # satu hub/UART dan dipoll secara bergiliran.

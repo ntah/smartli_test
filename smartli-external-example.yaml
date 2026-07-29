@@ -47,19 +47,19 @@ smartli_bms:
   uart_id: smartli_uart
   packs:
     - address: 1
+      modbus_address: 217
     - address: 2
+      modbus_address: 214
     - address: 3
+      modbus_address: 215
     - address: 4
+      modbus_address: 216
     - address: 5
-    # Opsional fallback jika auto-discovery tidak diinginkan:
-    # - address: 1
-    #   modbus_address: 217
+      modbus_address: 218
   flow_control_pin: ${flow_control_pin}
   update_interval: 30s
   dcdc_update_interval: 60s
   response_timeout: 700ms
-  discovery_min_address: 214
-  discovery_max_address: 221
 
 sensor:
   - platform: smartli_bms
@@ -273,3 +273,44 @@ sensor:
       name: "SmartLi 5 Protection Status"
     operating_status:
       name: "SmartLi 5 Operating Status"
+
+text_sensor:
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 1
+    pcb_barcode:
+      name: "SmartLi 1 PCB Barcode"
+    pack_barcode:
+      name: "SmartLi 1 Pack Barcode"
+
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 2
+    pcb_barcode:
+      name: "SmartLi 2 PCB Barcode"
+    pack_barcode:
+      name: "SmartLi 2 Pack Barcode"
+
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 3
+    pcb_barcode:
+      name: "SmartLi 3 PCB Barcode"
+    pack_barcode:
+      name: "SmartLi 3 Pack Barcode"
+
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 4
+    pcb_barcode:
+      name: "SmartLi 4 PCB Barcode"
+    pack_barcode:
+      name: "SmartLi 4 Pack Barcode"
+
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 5
+    pcb_barcode:
+      name: "SmartLi 5 PCB Barcode"
+    pack_barcode:
+      name: "SmartLi 5 Pack Barcode"

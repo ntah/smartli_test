@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "esphome/components/sensor/sensor.h"
+#include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/uart/uart.h"
 #include "esphome/core/component.h"
 #include "esphome/core/gpio.h"
@@ -20,6 +21,8 @@ struct SmartliPack {
   bool modbus_manual{false};
   std::string pcb_barcode;
   std::string pack_barcode;
+  text_sensor::TextSensor *pcb_barcode_sensor{nullptr};
+  text_sensor::TextSensor *pack_barcode_sensor{nullptr};
   uint32_t last_dcdc_at{0};
 
   sensor::Sensor *current{nullptr};
@@ -68,10 +71,6 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void add_pack(uint8_t address, uint8_t modbus_address);
   void set_dcdc_update_interval(uint32_t interval) { dcdc_update_interval_ = interval; }
   void set_response_timeout(uint32_t timeout) { response_timeout_ = timeout; }
-  void set_discovery_range(uint8_t first, uint8_t last) {
-    discovery_min_ = first;
-    discovery_max_ = last;
-  }
   void set_flow_control_pin(InternalGPIOPin *pin) { flow_control_pin_ = pin; }
 
 #define DECLARE_SETTER(name) void set_##name##_sensor(uint8_t address, sensor::Sensor *value)
@@ -109,6 +108,10 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
 #undef DECLARE_SETTER
   void set_cell_voltage_sensor(uint8_t address, size_t index, sensor::Sensor *value);
   void set_alarm_status_sensor(uint8_t address, size_t index, sensor::Sensor *value);
+  void set_pcb_barcode_text_sensor(uint8_t address,
+                                   text_sensor::TextSensor *value);
+  void set_pack_barcode_text_sensor(uint8_t address,
+                                    text_sensor::TextSensor *value);
 
  protected:
   enum class Phase : uint8_t {
@@ -117,8 +120,6 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
     DCDC,
     PCB_BARCODE,
     PACK_BARCODE,
-    DISCOVERY_BARCODE,
-    DISCOVERY_PACK_BARCODE,
     MODBUS_STATUS,
   };
 
@@ -151,12 +152,9 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   std::vector<SmartliPack> packs_;
   size_t pack_index_{0};
   Phase phase_{Phase::IDLE};
-  uint8_t discovery_address_{0};
   uint32_t phase_started_at_{0};
   uint32_t response_timeout_{700};
   uint32_t dcdc_update_interval_{60000};
-  uint8_t discovery_min_{214};
-  uint8_t discovery_max_{221};
   InternalGPIOPin *flow_control_pin_{nullptr};
   std::vector<uint8_t> frame_;
   size_t expected_frame_length_{0};

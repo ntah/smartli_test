@@ -13,8 +13,6 @@ CONF_ADDRESS = "address"
 CONF_MODBUS_ADDRESS = "modbus_address"
 CONF_FLOW_CONTROL_PIN = "flow_control_pin"
 CONF_DCDC_UPDATE_INTERVAL = "dcdc_update_interval"
-CONF_DISCOVERY_MIN_ADDRESS = "discovery_min_address"
-CONF_DISCOVERY_MAX_ADDRESS = "discovery_max_address"
 CONF_RESPONSE_TIMEOUT = "response_timeout"
 
 smartli_bms_ns = cg.esphome_ns.namespace("smartli_bms")
@@ -25,7 +23,7 @@ SmartliBms = smartli_bms_ns.class_(
 PACK_SCHEMA = cv.Schema(
     {
         cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
-        cv.Optional(CONF_MODBUS_ADDRESS): cv.int_range(min=1, max=247),
+        cv.Required(CONF_MODBUS_ADDRESS): cv.int_range(min=1, max=247),
     }
 )
 
@@ -55,12 +53,6 @@ CONFIG_SCHEMA = cv.All(
             cv.Optional(
                 CONF_DCDC_UPDATE_INTERVAL, default="60s"
             ): cv.positive_time_period_milliseconds,
-            cv.Optional(CONF_DISCOVERY_MIN_ADDRESS, default=214): cv.int_range(
-                min=1, max=247
-            ),
-            cv.Optional(CONF_DISCOVERY_MAX_ADDRESS, default=221): cv.int_range(
-                min=1, max=247
-            ),
             cv.Optional(
                 CONF_RESPONSE_TIMEOUT, default="700ms"
             ): cv.positive_time_period_milliseconds,
@@ -73,9 +65,6 @@ CONFIG_SCHEMA = cv.All(
 
 
 async def to_code(config):
-    if config[CONF_DISCOVERY_MIN_ADDRESS] > config[CONF_DISCOVERY_MAX_ADDRESS]:
-        raise cv.Invalid("discovery_min_address must not exceed discovery_max_address")
-
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await uart.register_uart_device(var, config)
@@ -88,16 +77,8 @@ async def to_code(config):
     cg.add(
         var.set_response_timeout(config[CONF_RESPONSE_TIMEOUT].total_milliseconds)
     )
-    cg.add(
-        var.set_discovery_range(
-            config[CONF_DISCOVERY_MIN_ADDRESS],
-            config[CONF_DISCOVERY_MAX_ADDRESS],
-        )
-    )
-
     for pack in config[CONF_PACKS]:
-        modbus_address = pack.get(CONF_MODBUS_ADDRESS, 0)
-        cg.add(var.add_pack(pack[CONF_ADDRESS], modbus_address))
+        cg.add(var.add_pack(pack[CONF_ADDRESS], pack[CONF_MODBUS_ADDRESS]))
 
     if flow_control_config := config.get(CONF_FLOW_CONTROL_PIN):
         pin = await cg.gpio_pin_expression(flow_control_config)

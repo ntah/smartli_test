@@ -23,7 +23,7 @@ SmartliBms = smartli_bms_ns.class_(
 PACK_SCHEMA = cv.Schema(
     {
         cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
-        cv.Required(CONF_MODBUS_ADDRESS): cv.int_range(min=1, max=247),
+        cv.Optional(CONF_MODBUS_ADDRESS, default=0): cv.int_range(min=0, max=247),
     }
 )
 
@@ -35,7 +35,7 @@ def validate_unique_packs(config):
     manual = [
         pack[CONF_MODBUS_ADDRESS]
         for pack in config[CONF_PACKS]
-        if CONF_MODBUS_ADDRESS in pack
+        if pack[CONF_MODBUS_ADDRESS] != 0
     ]
     if len(manual) != len(set(manual)):
         raise cv.Invalid("Configured Modbus addresses must be unique")

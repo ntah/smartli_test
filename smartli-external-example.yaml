@@ -47,15 +47,10 @@ smartli_bms:
   uart_id: smartli_uart
   packs:
     - address: 1
-      modbus_address: 217
     - address: 2
-      modbus_address: 214
     - address: 3
-      modbus_address: 215
     - address: 4
-      modbus_address: 216
     - address: 5
-      modbus_address: 218
   flow_control_pin: ${flow_control_pin}
   update_interval: 30s
   dcdc_update_interval: 60s
@@ -111,8 +106,6 @@ sensor:
       name: "SmartLi 1 Current"
     state_of_charge:
       name: "SmartLi 1 State of Charge"
-    dcdc_modbus_address:
-      name: "SmartLi 1 Modbus Address"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -163,8 +156,6 @@ sensor:
       name: "SmartLi 2 Current"
     state_of_charge:
       name: "SmartLi 2 State of Charge"
-    dcdc_modbus_address:
-      name: "SmartLi 2 Modbus Address"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -215,8 +206,6 @@ sensor:
       name: "SmartLi 3 Current"
     state_of_charge:
       name: "SmartLi 3 State of Charge"
-    dcdc_modbus_address:
-      name: "SmartLi 3 Modbus Address"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -267,8 +256,6 @@ sensor:
       name: "SmartLi 4 Current"
     state_of_charge:
       name: "SmartLi 4 State of Charge"
-    dcdc_modbus_address:
-      name: "SmartLi 4 Modbus Address"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -319,8 +306,6 @@ sensor:
       name: "SmartLi 5 Current"
     state_of_charge:
       name: "SmartLi 5 State of Charge"
-    dcdc_modbus_address:
-      name: "SmartLi 5 Modbus Address"
 
 text_sensor:
   - platform: smartli_bms

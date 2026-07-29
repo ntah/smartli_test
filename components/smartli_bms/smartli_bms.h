@@ -60,7 +60,6 @@ struct SmartliPack {
   sensor::Sensor *dcdc_bus_voltage_dynamic{nullptr};
   sensor::Sensor *dcdc_bus_voltage_ladder{nullptr};
   sensor::Sensor *dcdc_depth_dod{nullptr};
-  sensor::Sensor *dcdc_modbus_address{nullptr};
   sensor::Sensor *dcdc_vbus_set_max_autoself{nullptr};
   std::array<sensor::Sensor *, 5> alarm_status{};
 };
@@ -105,7 +104,6 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   DECLARE_SETTER(dcdc_bus_voltage_dynamic);
   DECLARE_SETTER(dcdc_bus_voltage_ladder);
   DECLARE_SETTER(dcdc_depth_dod);
-  DECLARE_SETTER(dcdc_modbus_address);
   DECLARE_SETTER(dcdc_vbus_set_max_autoself);
 #undef DECLARE_SETTER
   void set_cell_voltage_sensor(uint8_t address, size_t index, sensor::Sensor *value);
@@ -130,12 +128,17 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
     PACK_BARCODE,
     MODBUS_PCB_BARCODE,
     MODBUS_PACK_BARCODE,
+    DISCOVERY_MODBUS_PCB,
+    DISCOVERY_MODBUS_PACK,
   };
 
   static constexpr size_t MAX_FRAME_SIZE = 300;
 
   SmartliPack *find_pack_(uint8_t address);
   void begin_pack_();
+  void begin_modbus_discovery_();
+  void advance_modbus_discovery_(bool response_received);
+  void finish_modbus_discovery_candidate_();
   void advance_(bool response_received);
   void send_binary_request_(uint8_t address, uint8_t command);
   void send_pack_barcode_request_(uint8_t address);
@@ -157,6 +160,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   int8_t hex_nibble_(uint8_t value) const;
   bool decode_hex_byte_(size_t offset, uint8_t *value) const;
   std::string normalize_barcode_(const uint8_t *data, size_t length) const;
+  uint8_t discovery_candidate_address_(size_t index) const;
 
   std::vector<SmartliPack> packs_;
   size_t pack_index_{0};
@@ -169,6 +173,12 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   size_t expected_frame_length_{0};
   bool ascii_frame_{false};
   bool modbus_echo_{false};
+  bool discovery_completed_{false};
+  size_t discovery_candidate_index_{0};
+  size_t discovery_candidate_count_{0};
+  size_t discovery_match_count_{0};
+  std::string discovery_pcb_barcode_;
+  std::string discovery_pack_barcode_;
 };
 
 }  // namespace smartli_bms

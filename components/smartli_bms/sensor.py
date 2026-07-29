@@ -35,7 +35,6 @@ CONF_DCDC_CHARGING_BATTERY_POWER_SET = "dcdc_charging_battery_power_set"
 CONF_DCDC_BUS_VOLTAGE_DYNAMIC = "dcdc_bus_voltage_dynamic"
 CONF_DCDC_BUS_VOLTAGE_LADDER = "dcdc_bus_voltage_ladder"
 CONF_DCDC_DEPTH_DOD = "dcdc_depth_dod"
-CONF_DCDC_MODBUS_ADDRESS = "dcdc_modbus_address"
 CONF_DCDC_VBUS_SET_MAX_AUTOSELF = "dcdc_vbus_set_max_autoself"
 ALARM_KEYS = [f"alarm_status_{number}" for number in range(1, 6)]
 
@@ -124,10 +123,6 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_DCDC_BUS_VOLTAGE_DYNAMIC): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_BUS_VOLTAGE_LADDER): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_DEPTH_DOD): percent_sensor_schema(),
-        cv.Optional(CONF_DCDC_MODBUS_ADDRESS): sensor.sensor_schema(
-            accuracy_decimals=0,
-            state_class="measurement",
-        ),
         cv.Optional(CONF_DCDC_VBUS_SET_MAX_AUTOSELF): voltage_sensor_schema(2),
         **{
             cv.Optional(key): sensor.sensor_schema(
@@ -176,7 +171,6 @@ async def to_code(config):
         CONF_DCDC_BUS_VOLTAGE_DYNAMIC: "set_dcdc_bus_voltage_dynamic_sensor",
         CONF_DCDC_BUS_VOLTAGE_LADDER: "set_dcdc_bus_voltage_ladder_sensor",
         CONF_DCDC_DEPTH_DOD: "set_dcdc_depth_dod_sensor",
-        CONF_DCDC_MODBUS_ADDRESS: "set_dcdc_modbus_address_sensor",
         CONF_DCDC_VBUS_SET_MAX_AUTOSELF: "set_dcdc_vbus_set_max_autoself_sensor",
     }
 

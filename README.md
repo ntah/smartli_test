@@ -46,12 +46,15 @@ Satu instance `smartli_bms` menangani seluruh pack pada satu UART. Pack
 didaftarkan melalui `packs:` dan dipoll bergiliran agar respons tidak
 bertabrakan.
 
-`modbus_address` tetap disimpan manual untuk setiap item `packs` sebagai
-referensi saat komponen ini nanti digabungkan dengan konfigurasi lain. Nilai
-default 214 di payload DCDC tidak dipakai untuk menentukan alamat. Alarm
-Status 1-5 berasal langsung dari field `0x06` telemetri. Component ini tidak
-lagi membaca register Modbus Protection Status (`0x103C`) dan Operating
-Status (`0x103D`).
+`modbus_address` bersifat opsional. Jika tidak diisi, saat boot component
+membaca PCB dan pack barcode semua pack melalui protokol SmartLi, lalu
+memindai kandidat slave Modbus sebanyak jumlah pack ditambah tiga. Kandidat
+mengikuti rentang resmi 214-221 lalu 224-231. Setiap kandidat dibaca pada
+register PCB barcode `0x104D` dan system/pack barcode `0x1065`. Alamat hanya
+dipasangkan jika kedua barcode yang sudah dibersihkan dari padding sama.
+`modbus_address` manual tetap dapat dipakai sebagai fallback. Nilai default
+214 di payload DCDC tidak dipakai untuk menentukan alamat. Alarm Status 1-5
+berasal langsung dari field `0x06` telemetri.
 
 PCB barcode dan pack barcode tetap dibaca dari protokol SmartLi dan
 ditampilkan sebagai text sensor. Dua text sensor pembanding juga membaca

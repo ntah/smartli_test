@@ -201,6 +201,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
     DISCOVERY_MODBUS_PCB,
     DISCOVERY_MODBUS_PACK,
     MODBUS_CONFIG_MODE,
+    MODBUS_OPERATING_STATE,
     MODBUS_CONFIG_LOOPS,
     MODBUS_WRITE,
   };

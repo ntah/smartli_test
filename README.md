@@ -48,11 +48,14 @@ bertabrakan.
 
 Alamat Modbus ditemukan otomatis:
 
-1. Component membaca PCB barcode pack dengan command `0x42`.
-2. Alamat Modbus 214-221 dipindai melalui register `0x104D` sebanyak
-   10 register.
-3. Barcode dinormalisasi dan dicocokkan.
-4. Alamat yang cocok dipakai untuk membaca alarm, protection, dan operating
+1. Component membaca PCB barcode pack dengan command `0x42` dan pack/system
+   barcode dengan command `0xDC`.
+2. Alamat Modbus 214-221 dipindai melalui register PCB barcode `0x104D`
+   sebanyak 10 register.
+3. Jika PCB barcode tidak cocok, component membandingkan pack/system barcode
+   pada register `0x1065` sebanyak 10 register.
+4. Barcode dinormalisasi dengan membuang spasi, padding `^`, dan byte kosong.
+5. Alamat yang cocok dipakai untuk membaca alarm, protection, dan operating
    status pada register `0x1037` sampai `0x103D`.
 
 Nilai alamat default 214 yang terdapat di payload DCDC tidak digunakan

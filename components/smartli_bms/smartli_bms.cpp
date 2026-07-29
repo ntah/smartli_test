@@ -157,10 +157,26 @@ void SmartliBms::advance_(bool response_received) {
 
   if (completed == Phase::PCB_BARCODE ||
       completed == Phase::TELEMETRY || completed == Phase::DCDC) {
-    if (pack.modbus_address == 0 && !pack.pcb_barcode.empty()) {
+    if (pack.pack_barcode.empty()) {
+      this->phase_ = Phase::PACK_BARCODE;
+      this->send_pack_barcode_request_(pack.address);
+      return;
+    }
+  }
+
+  if (completed == Phase::PACK_BARCODE ||
+      completed == Phase::PCB_BARCODE ||
+      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
+    if (pack.modbus_address == 0 &&
+        (!pack.pcb_barcode.empty() || !pack.pack_barcode.empty())) {
       this->discovery_address_ = this->discovery_min_;
-      this->phase_ = Phase::DISCOVERY_BARCODE;
-      this->send_modbus_read_(this->discovery_address_, 0x104D, 10);
+      if (!pack.pcb_barcode.empty()) {
+        this->phase_ = Phase::DISCOVERY_BARCODE;
+        this->send_modbus_read_(this->discovery_address_, 0x104D, 10);
+      } else {
+        this->phase_ = Phase::DISCOVERY_PACK_BARCODE;
+        this->send_modbus_read_(this->discovery_address_, 0x1065, 10);
+      }
       return;
     }
     if (pack.modbus_address != 0) {
@@ -176,13 +192,43 @@ void SmartliBms::advance_(bool response_received) {
       this->send_modbus_read_(pack.modbus_address, 0x1037, 7);
       return;
     }
+    // PCB barcode differs on some firmware versions. Try the system/pack
+    // barcode at the same Modbus address before advancing the scan.
+    if (!pack.pack_barcode.empty()) {
+      this->phase_ = Phase::DISCOVERY_PACK_BARCODE;
+      this->send_modbus_read_(this->discovery_address_, 0x1065, 10);
+      return;
+    }
     if (this->discovery_address_ < this->discovery_max_) {
       this->discovery_address_++;
       this->send_modbus_read_(this->discovery_address_, 0x104D, 10);
       return;
     }
-    ESP_LOGW(TAG, "No Modbus barcode match found for pack %u (%s)",
+    ESP_LOGW(TAG, "No Modbus PCB barcode match for pack %u (%s)",
              pack.address, pack.pcb_barcode.c_str());
+  }
+
+  if (completed == Phase::DISCOVERY_PACK_BARCODE) {
+    if (pack.modbus_address != 0) {
+      this->phase_ = Phase::MODBUS_STATUS;
+      this->send_modbus_read_(pack.modbus_address, 0x1037, 7);
+      return;
+    }
+    if (this->discovery_address_ < this->discovery_max_) {
+      this->discovery_address_++;
+      if (!pack.pcb_barcode.empty()) {
+        this->phase_ = Phase::DISCOVERY_BARCODE;
+        this->send_modbus_read_(this->discovery_address_, 0x104D, 10);
+      } else {
+        this->phase_ = Phase::DISCOVERY_PACK_BARCODE;
+        this->send_modbus_read_(this->discovery_address_, 0x1065, 10);
+      }
+      return;
+    }
+    ESP_LOGW(TAG,
+             "No Modbus barcode match for pack %u (PCB=%s, PACK=%s)",
+             pack.address, pack.pcb_barcode.c_str(),
+             pack.pack_barcode.c_str());
   }
 
   this->pack_index_++;
@@ -221,6 +267,16 @@ void SmartliBms::send_dcdc_request_(uint8_t address) {
                                    static_cast<uint16_t>(0U - sum));
   this->send_bytes_(reinterpret_cast<const uint8_t *>(request), length);
   ESP_LOGD(TAG, "Pack %u DCDC request", address);
+}
+
+void SmartliBms::send_pack_barcode_request_(uint8_t address) {
+  static const uint8_t CHECKS[5] = {0xC2, 0xC0, 0xC2, 0xC4, 0xCA};
+  const uint8_t check =
+      address >= 1 && address <= 5 ? CHECKS[address - 1] : 0xC2;
+  const uint8_t request[] = {
+      0x7E, address, 0xDC, 0x03, 0x06, 0x00, 0x00, check, 0x0D};
+  this->send_bytes_(request, sizeof(request));
+  ESP_LOGD(TAG, "Pack %u request pack barcode", address);
 }
 
 void SmartliBms::send_modbus_read_(uint8_t address, uint16_t start,
@@ -269,14 +325,16 @@ void SmartliBms::loop() {
 
 void SmartliBms::process_byte_(uint8_t byte) {
   const bool modbus = this->phase_ == Phase::DISCOVERY_BARCODE ||
+                      this->phase_ == Phase::DISCOVERY_PACK_BARCODE ||
                       this->phase_ == Phase::MODBUS_STATUS;
   if (this->frame_.empty()) {
     if (!modbus && byte != 0x7E)
       return;
     if (modbus) {
       const uint8_t expected = this->phase_ == Phase::DISCOVERY_BARCODE
-                                   ? this->discovery_address_
-                                   : this->packs_[this->pack_index_].modbus_address;
+                                   || this->phase_ == Phase::DISCOVERY_PACK_BARCODE
+                               ? this->discovery_address_
+                               : this->packs_[this->pack_index_].modbus_address;
       if (byte != expected)
         return;
     }
@@ -355,6 +413,21 @@ bool SmartliBms::process_binary_frame_() {
              pack->pcb_barcode.c_str());
     return true;
   }
+  if (command == 0xDC && length > 3 &&
+      this->phase_ == Phase::PACK_BARCODE) {
+    // Observed response: 00 06 + pack/system barcode padded with '^'.
+    size_t barcode_length = 0;
+    const uint8_t *barcode = &this->frame_[6];
+    const size_t available = length - 2;
+    while (barcode_length < available && barcode[barcode_length] != '^' &&
+           barcode[barcode_length] != 0)
+      barcode_length++;
+    pack->pack_barcode =
+        this->normalize_barcode_(barcode, barcode_length);
+    ESP_LOGI(TAG, "Pack %u pack barcode: %s", pack->address,
+             pack->pack_barcode.c_str());
+    return true;
+  }
   return false;
 }
 
@@ -410,12 +483,19 @@ bool SmartliBms::process_modbus_frame_() {
   auto &pack = this->packs_[this->pack_index_];
   const uint8_t *data = &this->frame_[3];
   const size_t length = this->frame_[2];
-  if (this->phase_ == Phase::DISCOVERY_BARCODE && length == 20) {
+  if ((this->phase_ == Phase::DISCOVERY_BARCODE ||
+       this->phase_ == Phase::DISCOVERY_PACK_BARCODE) &&
+      length == 20) {
     const std::string barcode = this->normalize_barcode_(data, length);
-    if (!barcode.empty() && barcode == pack.pcb_barcode) {
+    const std::string &expected =
+        this->phase_ == Phase::DISCOVERY_BARCODE ? pack.pcb_barcode
+                                                 : pack.pack_barcode;
+    if (!barcode.empty() && barcode == expected) {
       pack.modbus_address = this->frame_[0];
-      ESP_LOGI(TAG, "Pack %u matched Modbus %u using PCB barcode %s",
-               pack.address, pack.modbus_address, barcode.c_str());
+      ESP_LOGI(TAG, "Pack %u matched Modbus %u using %s barcode %s",
+               pack.address, pack.modbus_address,
+               this->phase_ == Phase::DISCOVERY_BARCODE ? "PCB" : "pack",
+               barcode.c_str());
       if (pack.dcdc_modbus_address != nullptr)
         pack.dcdc_modbus_address->publish_state(pack.modbus_address);
     }

@@ -19,6 +19,7 @@ struct SmartliPack {
   uint8_t modbus_address{0};
   bool modbus_manual{false};
   std::string pcb_barcode;
+  std::string pack_barcode;
   uint32_t last_dcdc_at{0};
 
   sensor::Sensor *current{nullptr};
@@ -115,7 +116,9 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
     TELEMETRY,
     DCDC,
     PCB_BARCODE,
+    PACK_BARCODE,
     DISCOVERY_BARCODE,
+    DISCOVERY_PACK_BARCODE,
     MODBUS_STATUS,
   };
 
@@ -125,6 +128,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void begin_pack_();
   void advance_(bool response_received);
   void send_binary_request_(uint8_t address, uint8_t command);
+  void send_pack_barcode_request_(uint8_t address);
   void send_dcdc_request_(uint8_t address);
   void send_modbus_read_(uint8_t address, uint16_t start, uint16_t count);
   void send_bytes_(const uint8_t *data, size_t length);

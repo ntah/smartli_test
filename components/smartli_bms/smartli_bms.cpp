@@ -206,6 +206,8 @@ void SmartliBms::dump_config() {
                 static_cast<unsigned long>(this->pack_delay_));
   ESP_LOGCONFIG(TAG, "  Delay between requests: %lu ms",
                 static_cast<unsigned long>(this->request_delay_));
+  ESP_LOGCONFIG(TAG, "  Continuous polling: %s",
+                YESNO(this->continuous_polling_));
   for (const auto &pack : this->packs_) {
     ESP_LOGCONFIG(TAG, "  Pack %u: Modbus %u", pack.address,
                   pack.modbus_address);
@@ -215,6 +217,10 @@ void SmartliBms::dump_config() {
 }
 
 void SmartliBms::update() {
+  this->start_polling();
+}
+
+void SmartliBms::start_polling() {
   if (this->phase_ != Phase::IDLE || this->waiting_for_request_ ||
       this->packs_.empty()) {
     ESP_LOGW(TAG, "Skipping poll: previous multi-pack cycle is still active");
@@ -222,6 +228,21 @@ void SmartliBms::update() {
   }
   this->pack_index_ = 0;
   this->begin_pack_();
+}
+
+void SmartliBms::finish_polling_cycle_() {
+  this->phase_ = Phase::IDLE;
+  ESP_LOGD(TAG, "Multi-pack polling cycle completed");
+  if (!this->continuous_polling_)
+    return;
+
+  this->waiting_for_request_ = true;
+  this->set_timeout("next_polling_cycle", this->pack_delay_, [this]() {
+    this->waiting_for_request_ = false;
+    this->pack_index_ = 0;
+    ESP_LOGD(TAG, "Starting next continuous multi-pack polling cycle");
+    this->begin_pack_();
+  });
 }
 
 void SmartliBms::schedule_phase_(Phase next, std::function<void()> action) {
@@ -317,11 +338,13 @@ void SmartliBms::begin_pack_() {
         this->discovery_completed_ = true;
     }
     if (!this->pending_writes_.empty()) {
+      // Return here after the final queued write so continuous polling can
+      // schedule the next complete cycle.
+      this->resume_poll_after_writes_ = true;
       this->begin_pending_write_();
       return;
     }
-    this->phase_ = Phase::IDLE;
-    ESP_LOGD(TAG, "Multi-pack polling cycle completed");
+    this->finish_polling_cycle_();
     return;
   }
   auto &pack = this->packs_[this->pack_index_];
@@ -592,6 +615,7 @@ void SmartliBms::finish_modbus_discovery_candidate_() {
     this->phase_ = Phase::IDLE;
     ESP_LOGI(TAG, "Modbus discovery completed: all %u packs matched",
              this->packs_.size());
+    this->finish_polling_cycle_();
     return;
   }
   this->discovery_candidate_index_++;
@@ -600,6 +624,7 @@ void SmartliBms::finish_modbus_discovery_candidate_() {
     this->phase_ = Phase::IDLE;
     ESP_LOGI(TAG, "Modbus discovery completed: %u/%u packs matched",
              this->discovery_match_count_, this->packs_.size());
+    this->finish_polling_cycle_();
     return;
   }
 

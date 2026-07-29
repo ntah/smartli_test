@@ -117,12 +117,14 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void loop() override;
   void update() override;
   void dump_config() override;
+  void start_polling();
 
   void add_pack(uint8_t address, uint8_t modbus_address);
   void set_dcdc_update_interval(uint32_t interval) { dcdc_update_interval_ = interval; }
   void set_response_timeout(uint32_t timeout) { response_timeout_ = timeout; }
   void set_pack_delay(uint32_t delay) { pack_delay_ = delay; }
   void set_request_delay(uint32_t delay) { request_delay_ = delay; }
+  void set_continuous_polling(bool value) { continuous_polling_ = value; }
   void set_flow_control_pin(InternalGPIOPin *pin) { flow_control_pin_ = pin; }
   void queue_modbus_write(uint8_t pack_address, uint16_t register_address,
                           uint16_t value, SmartliBmsSelect *source,
@@ -204,6 +206,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
 
   SmartliPack *find_pack_(uint8_t address);
   void begin_pack_();
+  void finish_polling_cycle_();
   void begin_modbus_discovery_();
   void begin_pending_write_();
   void schedule_phase_(Phase next, std::function<void()> action);
@@ -257,6 +260,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   SmartliBmsSelect *mode_select_{nullptr};
   bool waiting_for_request_{false};
   bool resume_poll_after_writes_{false};
+  bool continuous_polling_{false};
 };
 
 }  // namespace smartli_bms

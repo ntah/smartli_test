@@ -59,6 +59,13 @@ time:
 esphome:
   name: ${name}
   comment: "Read SmartLi BMS binary telemetry via RS485"
+  on_boot:
+    priority: -10
+    then:
+      - delay: 30s
+      - script.execute: update_delay_interval
+      - lambda: |-
+          id(smartli_hub).start_polling();
 
 esp32:
   board: esp32dev
@@ -104,7 +111,8 @@ smartli_bms:
     - address: 4
     - address: 5
   flow_control_pin: ${flow_control_pin}
-  update_interval: 30s
+  update_interval: never
+  continuous_polling: true
   dcdc_update_interval: 60s
   response_timeout: 700ms
   pack_delay: 2s

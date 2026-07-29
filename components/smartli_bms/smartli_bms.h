@@ -140,7 +140,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   bool process_modbus_frame_();
   void parse_telemetry_(SmartliPack &pack, const uint8_t *payload, size_t length);
   void parse_dcdc_(SmartliPack &pack, const uint8_t *payload, size_t length);
-  void parse_alarm_words_(SmartliPack &pack, const uint8_t *data);
+  void parse_modbus_status_(SmartliPack &pack, const uint8_t *data);
   uint16_t crc16_(const uint8_t *data, size_t length) const;
   uint16_t read_u16_(const uint8_t *data) const;
   uint32_t read_u32_(const uint8_t *data) const;

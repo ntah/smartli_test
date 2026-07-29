@@ -178,7 +178,7 @@ void SmartliBms::advance_(bool response_received) {
       completed == Phase::TELEMETRY || completed == Phase::DCDC) {
     if (pack.modbus_address != 0) {
       this->phase_ = Phase::MODBUS_STATUS;
-      this->send_modbus_read_(pack.modbus_address, 0x1037, 7);
+      this->send_modbus_read_(pack.modbus_address, 0x103C, 2);
       return;
     }
   }
@@ -435,20 +435,18 @@ bool SmartliBms::process_modbus_frame_() {
   auto &pack = this->packs_[this->pack_index_];
   const uint8_t *data = &this->frame_[3];
   const size_t length = this->frame_[2];
-  if (this->phase_ == Phase::MODBUS_STATUS && length == 14) {
-    this->parse_alarm_words_(pack, data);
+  if (this->phase_ == Phase::MODBUS_STATUS && length == 4) {
+    this->parse_modbus_status_(pack, data);
   }
   return true;
 }
 
-void SmartliBms::parse_alarm_words_(SmartliPack &pack, const uint8_t *data) {
-  for (size_t i = 0; i < 5; i++)
-    if (pack.alarm_status[i] != nullptr)
-      pack.alarm_status[i]->publish_state(this->read_u16_(&data[i * 2]));
+void SmartliBms::parse_modbus_status_(SmartliPack &pack,
+                                      const uint8_t *data) {
   if (pack.protection_status != nullptr)
-    pack.protection_status->publish_state(this->read_u16_(&data[10]));
+    pack.protection_status->publish_state(this->read_u16_(&data[0]));
   if (pack.operating_status != nullptr)
-    pack.operating_status->publish_state(this->read_u16_(&data[12]));
+    pack.operating_status->publish_state(this->read_u16_(&data[2]));
 }
 
 void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {

@@ -49,7 +49,8 @@ bertabrakan.
 `modbus_address` wajib diisi manual untuk setiap item `packs`. Nilai default
 214 di payload DCDC tidak dipakai untuk menentukan alamat. Alarm Status 1-5
 berasal langsung dari field `0x06` telemetri, sedangkan Protection Status dan
-Operating Status dibaca melalui Modbus register `0x103C` dan `0x103D`.
+Operating Status dibaca dengan satu request Modbus pendek: mulai `0x103C`
+sebanyak 2 register. Register alarm `0x1037-0x103B` tidak dibaca ulang.
 
 PCB barcode dan pack barcode tetap dibaca dari protokol SmartLi dan
 ditampilkan sebagai text sensor. Component tidak lagi melakukan pemindaian

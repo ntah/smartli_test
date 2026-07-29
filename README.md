@@ -42,6 +42,11 @@ Permintaan pada setiap pack dimasukkan ke satu antrean agar respons tidak
 bertumpuk. Contoh YAML sudah memuat sensor DCDC yang berhasil dipetakan dari
 log aplikasi Windows.
 
+`pack_delay` mengatur jeda setelah satu pack selesai sebelum telemetri pack
+berikutnya dimulai. Nilai default dan contoh konfigurasi adalah 2 detik.
+`request_delay` mengatur jeda antar-permintaan Telemetry, DCDC, barcode
+SmartLi, dan barcode Modbus dalam pack yang sama. Nilai defaultnya 1 detik.
+
 Satu instance `smartli_bms` menangani seluruh pack pada satu UART. Pack
 didaftarkan melalui `packs:` dan dipoll bergiliran agar respons tidak
 bertabrakan.

@@ -14,6 +14,8 @@ CONF_MODBUS_ADDRESS = "modbus_address"
 CONF_FLOW_CONTROL_PIN = "flow_control_pin"
 CONF_DCDC_UPDATE_INTERVAL = "dcdc_update_interval"
 CONF_RESPONSE_TIMEOUT = "response_timeout"
+CONF_PACK_DELAY = "pack_delay"
+CONF_REQUEST_DELAY = "request_delay"
 
 smartli_bms_ns = cg.esphome_ns.namespace("smartli_bms")
 SmartliBms = smartli_bms_ns.class_(
@@ -56,6 +58,12 @@ CONFIG_SCHEMA = cv.All(
             cv.Optional(
                 CONF_RESPONSE_TIMEOUT, default="700ms"
             ): cv.positive_time_period_milliseconds,
+            cv.Optional(
+                CONF_PACK_DELAY, default="2s"
+            ): cv.positive_time_period_milliseconds,
+            cv.Optional(
+                CONF_REQUEST_DELAY, default="1s"
+            ): cv.positive_time_period_milliseconds,
         }
     )
     .extend(cv.polling_component_schema("30s"))
@@ -77,6 +85,8 @@ async def to_code(config):
     cg.add(
         var.set_response_timeout(config[CONF_RESPONSE_TIMEOUT].total_milliseconds)
     )
+    cg.add(var.set_pack_delay(config[CONF_PACK_DELAY].total_milliseconds))
+    cg.add(var.set_request_delay(config[CONF_REQUEST_DELAY].total_milliseconds))
     for pack in config[CONF_PACKS]:
         cg.add(var.add_pack(pack[CONF_ADDRESS], pack[CONF_MODBUS_ADDRESS]))
 

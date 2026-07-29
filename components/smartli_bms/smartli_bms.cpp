@@ -175,6 +175,8 @@ void SmartliBms::dump_config() {
   ESP_LOGCONFIG(TAG, "  Packs: %u", this->packs_.size());
   ESP_LOGCONFIG(TAG, "  Poll interval: %u ms", this->get_update_interval());
   ESP_LOGCONFIG(TAG, "  DCDC interval: %u ms", this->dcdc_update_interval_);
+  ESP_LOGCONFIG(TAG, "  Delay between packs: %u ms", this->pack_delay_);
+  ESP_LOGCONFIG(TAG, "  Delay between requests: %u ms", this->request_delay_);
   for (const auto &pack : this->packs_) {
     ESP_LOGCONFIG(TAG, "  Pack %u: Modbus %u", pack.address,
                   pack.modbus_address);
@@ -184,12 +186,24 @@ void SmartliBms::dump_config() {
 }
 
 void SmartliBms::update() {
-  if (this->phase_ != Phase::IDLE || this->packs_.empty()) {
+  if (this->phase_ != Phase::IDLE || this->waiting_for_request_ ||
+      this->packs_.empty()) {
     ESP_LOGW(TAG, "Skipping poll: previous multi-pack cycle is still active");
     return;
   }
   this->pack_index_ = 0;
   this->begin_pack_();
+}
+
+void SmartliBms::schedule_phase_(Phase next, std::function<void()> action) {
+  this->phase_ = Phase::IDLE;
+  this->waiting_for_request_ = true;
+  this->set_timeout("next_request", this->request_delay_,
+                    [this, next, action]() {
+                      this->waiting_for_request_ = false;
+                      this->phase_ = next;
+                      action();
+                    });
 }
 
 void SmartliBms::queue_modbus_write(uint8_t pack_address,
@@ -323,16 +337,19 @@ void SmartliBms::advance_(bool response_received) {
     if (pack.last_dcdc_at == 0 ||
         now - pack.last_dcdc_at >= this->dcdc_update_interval_) {
       pack.last_dcdc_at = now;
-      this->phase_ = Phase::DCDC;
-      this->send_dcdc_request_(pack.address);
+      this->schedule_phase_(Phase::DCDC, [this, address = pack.address]() {
+        this->send_dcdc_request_(address);
+      });
       return;
     }
   }
 
   if (completed == Phase::TELEMETRY || completed == Phase::DCDC) {
     if (pack.pcb_barcode.empty()) {
-      this->phase_ = Phase::PCB_BARCODE;
-      this->send_binary_request_(pack.address, 0x42);
+      this->schedule_phase_(Phase::PCB_BARCODE,
+                            [this, address = pack.address]() {
+                              this->send_binary_request_(address, 0x42);
+                            });
       return;
     }
   }
@@ -340,8 +357,10 @@ void SmartliBms::advance_(bool response_received) {
   if (completed == Phase::PCB_BARCODE ||
       completed == Phase::TELEMETRY || completed == Phase::DCDC) {
     if (pack.pack_barcode.empty()) {
-      this->phase_ = Phase::PACK_BARCODE;
-      this->send_pack_barcode_request_(pack.address);
+      this->schedule_phase_(Phase::PACK_BARCODE,
+                            [this, address = pack.address]() {
+                              this->send_pack_barcode_request_(address);
+                            });
       return;
     }
   }
@@ -351,8 +370,11 @@ void SmartliBms::advance_(bool response_received) {
       completed == Phase::TELEMETRY || completed == Phase::DCDC) {
     if (pack.modbus_pcb_barcode_sensor != nullptr &&
         pack.modbus_pcb_barcode.empty() && pack.modbus_address != 0) {
-      this->phase_ = Phase::MODBUS_PCB_BARCODE;
-      this->send_modbus_read_(pack.modbus_address, 0x104D, 10);
+      this->schedule_phase_(
+          Phase::MODBUS_PCB_BARCODE,
+          [this, address = pack.modbus_address]() {
+            this->send_modbus_read_(address, 0x104D, 10);
+          });
       return;
     }
   }
@@ -363,8 +385,11 @@ void SmartliBms::advance_(bool response_received) {
       completed == Phase::TELEMETRY || completed == Phase::DCDC) {
     if (pack.modbus_pack_barcode_sensor != nullptr &&
         pack.modbus_pack_barcode.empty() && pack.modbus_address != 0) {
-      this->phase_ = Phase::MODBUS_PACK_BARCODE;
-      this->send_modbus_read_(pack.modbus_address, 0x1065, 10);
+      this->schedule_phase_(
+          Phase::MODBUS_PACK_BARCODE,
+          [this, address = pack.modbus_address]() {
+            this->send_modbus_read_(address, 0x1065, 10);
+          });
       return;
     }
   }
@@ -373,7 +398,12 @@ void SmartliBms::advance_(bool response_received) {
   // Prevent loop() from treating the intentional inter-pack delay as another
   // timeout for the phase that has just completed.
   this->phase_ = Phase::IDLE;
-  this->set_timeout("next_pack", 150, [this]() { this->begin_pack_(); });
+  this->waiting_for_request_ = true;
+  this->set_timeout("next_pack", this->pack_delay_,
+                    [this]() {
+                      this->waiting_for_request_ = false;
+                      this->begin_pack_();
+                    });
 }
 
 uint8_t SmartliBms::discovery_candidate_address_(size_t index) const {
@@ -410,8 +440,10 @@ void SmartliBms::advance_modbus_discovery_(bool response_received) {
       this->finish_modbus_discovery_candidate_();
       return;
     }
-    this->phase_ = Phase::DISCOVERY_MODBUS_PACK;
-    this->send_modbus_read_(candidate, 0x1065, 10);
+    this->schedule_phase_(Phase::DISCOVERY_MODBUS_PACK,
+                          [this, candidate]() {
+                            this->send_modbus_read_(candidate, 0x1065, 10);
+                          });
     return;
   }
 
@@ -466,8 +498,7 @@ void SmartliBms::finish_modbus_discovery_candidate_() {
 
   const uint8_t next =
       this->discovery_candidate_address_(this->discovery_candidate_index_);
-  this->phase_ = Phase::DISCOVERY_MODBUS_PCB;
-  this->set_timeout("next_modbus_candidate", 100, [this, next]() {
+  this->schedule_phase_(Phase::DISCOVERY_MODBUS_PCB, [this, next]() {
     this->send_modbus_read_(next, 0x104D, 10);
   });
 }

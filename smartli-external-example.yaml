@@ -113,8 +113,6 @@ smartli_bms:
     dcdc_modbus_address:
       name: "SmartLi 1 Modbus Address"
 
-  # Tambahkan sensor yang diperlukan untuk setiap pack. Semua menggunakan
-  # satu hub/UART dan dipoll secara bergiliran.
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 2

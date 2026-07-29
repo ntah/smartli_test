@@ -36,9 +36,11 @@ saat ini bersifat read-only dan mengirim command telemetry `0x01`.
 
 Field yang sudah dipublikasikan:
 
-- Tegangan pack.
+- Arus.
+- Tegangan pack dan bus.
 - SOC dan SOH.
-- Kapasitas terukur.
+- Full capacity dan remaining capacity.
+- Total charge dan discharge Ah.
 - Tegangan Cell 1–15.
 - Tegangan cell minimum, maksimum, dan delta.
 

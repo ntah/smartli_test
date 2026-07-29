@@ -223,13 +223,45 @@ def parse_frame(frame: bytes) -> dict[str, Any]:
     result["fields"] = parse_tlv_payload(payload)
 
     cells = result["fields"].get("0x01", [])
+    current_raw = result["fields"].get("0x02", [None])[0]
+    remaining_raw = result["fields"].get("0x03", [None])[0]
+    full_raw = result["fields"].get("0x04", [None])[0]
+    pack_voltage_raw = result["fields"].get("0x08", [None])[0]
+    soh_raw = result["fields"].get("0x09", [None])[0]
+    total_charged_raw = result["fields"].get("0x0B", [None])[0]
+    total_discharged_raw = result["fields"].get("0x0C", [None])[0]
+    bus_voltage_raw = result["fields"].get("0x11", [None])[0]
+    decoded: dict[str, Any] = {}
+
     if cells:
-        result["decoded"] = {
-            "cell_voltage_v": [round(value / 1000, 3) for value in cells],
-            "cell_min_v": round(min(cells) / 1000, 3),
-            "cell_max_v": round(max(cells) / 1000, 3),
-            "cell_delta_v": round((max(cells) - min(cells)) / 1000, 3),
-        }
+        decoded.update(
+            {
+                "cell_voltage_v": [round(value / 1000, 3) for value in cells],
+                "cell_min_v": round(min(cells) / 1000, 3),
+                "cell_max_v": round(max(cells) / 1000, 3),
+                "cell_delta_v": round((max(cells) - min(cells)) / 1000, 3),
+            }
+        )
+    if current_raw is not None:
+        decoded["current_a"] = round((current_raw - 30000) / 100, 2)
+    if remaining_raw is not None:
+        decoded["remaining_capacity_ah"] = round(remaining_raw / 100, 2)
+    if full_raw is not None:
+        decoded["full_capacity_ah"] = round(full_raw / 100, 2)
+    if remaining_raw is not None and full_raw:
+        decoded["state_of_charge_percent"] = round(remaining_raw / full_raw * 100, 2)
+    if pack_voltage_raw is not None:
+        decoded["pack_voltage_v"] = round(pack_voltage_raw / 100, 2)
+    if soh_raw is not None:
+        decoded["state_of_health_percent"] = round(soh_raw / 100, 2)
+    if total_charged_raw is not None:
+        decoded["total_charged_ah"] = total_charged_raw
+    if total_discharged_raw is not None:
+        decoded["total_discharged_ah"] = total_discharged_raw
+    if bus_voltage_raw is not None:
+        decoded["bus_voltage_v"] = round(bus_voltage_raw / 100, 2)
+
+    result["decoded"] = decoded
 
     # The response check algorithm still needs additional protocol evidence.
     result["check_valid"] = None

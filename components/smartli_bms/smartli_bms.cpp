@@ -123,6 +123,10 @@ void SmartliBms::process_frame_() {
 void SmartliBms::parse_telemetry_(const uint8_t *payload, size_t payload_length) {
   size_t offset = 0;
   bool cells_received = false;
+  bool full_capacity_received = false;
+  bool remaining_capacity_received = false;
+  float full_capacity = 0.0f;
+  float remaining_capacity = 0.0f;
   std::array<uint16_t, 15> cells{};
 
   while (offset + 2 <= payload_length) {
@@ -149,14 +153,30 @@ void SmartliBms::parse_telemetry_(const uint8_t *payload, size_t payload_length)
           this->cell_voltage_sensors_[i]->publish_state(cells[i] / 1000.0f);
       }
       cells_received = cell_count > 0;
-    } else if (count >= 1 && field_id == 0x02 && this->rated_capacity_sensor_ != nullptr) {
-      this->rated_capacity_sensor_->publish_state(this->read_u16_(&payload[offset]) / 100.0f);
-    } else if (count >= 1 && field_id == 0x03 && this->pack_voltage_sensor_ != nullptr) {
+    } else if (count >= 1 && field_id == 0x02) {
+      const float current = (static_cast<int32_t>(this->read_u16_(&payload[offset])) - 30000) / 100.0f;
+      if (this->current_sensor_ != nullptr)
+        this->current_sensor_->publish_state(current);
+    } else if (count >= 1 && field_id == 0x03) {
+      remaining_capacity = this->read_u16_(&payload[offset]) / 100.0f;
+      remaining_capacity_received = true;
+      if (this->remaining_capacity_sensor_ != nullptr)
+        this->remaining_capacity_sensor_->publish_state(remaining_capacity);
+    } else if (count >= 1 && field_id == 0x04) {
+      full_capacity = this->read_u16_(&payload[offset]) / 100.0f;
+      full_capacity_received = true;
+      if (this->full_capacity_sensor_ != nullptr)
+        this->full_capacity_sensor_->publish_state(full_capacity);
+    } else if (count >= 1 && field_id == 0x08 && this->pack_voltage_sensor_ != nullptr) {
       this->pack_voltage_sensor_->publish_state(this->read_u16_(&payload[offset]) / 100.0f);
-    } else if (count >= 1 && field_id == 0x04 && this->state_of_charge_sensor_ != nullptr) {
-      this->state_of_charge_sensor_->publish_state(this->read_u16_(&payload[offset]) / 100.0f);
     } else if (count >= 1 && field_id == 0x09 && this->state_of_health_sensor_ != nullptr) {
       this->state_of_health_sensor_->publish_state(this->read_u16_(&payload[offset]) / 100.0f);
+    } else if (count >= 1 && field_id == 0x0B && this->total_charged_ah_sensor_ != nullptr) {
+      this->total_charged_ah_sensor_->publish_state(this->read_u32_(&payload[offset]));
+    } else if (count >= 1 && field_id == 0x0C && this->total_discharged_ah_sensor_ != nullptr) {
+      this->total_discharged_ah_sensor_->publish_state(this->read_u32_(&payload[offset]));
+    } else if (count >= 1 && field_id == 0x11 && this->bus_voltage_sensor_ != nullptr) {
+      this->bus_voltage_sensor_->publish_state(this->read_u16_(&payload[offset]) / 100.0f);
     }
 
     offset += data_length;
@@ -165,6 +185,12 @@ void SmartliBms::parse_telemetry_(const uint8_t *payload, size_t payload_length)
   if (offset != payload_length) {
     ESP_LOGW(TAG, "Telemetry ended with %u unparsed bytes", payload_length - offset);
     return;
+  }
+
+  if (full_capacity_received && remaining_capacity_received &&
+      full_capacity > 0.0f && this->state_of_charge_sensor_ != nullptr) {
+    this->state_of_charge_sensor_->publish_state(
+        remaining_capacity / full_capacity * 100.0f);
   }
 
   if (cells_received) {

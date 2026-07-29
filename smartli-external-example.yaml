@@ -52,14 +52,24 @@ smartli_bms:
 sensor:
   - platform: smartli_bms
     smartli_bms_id: smartli_bms_1
-    rated_capacity:
-      name: "SmartLi Rated Capacity"
+    current:
+      name: "SmartLi Current"
+    full_capacity:
+      name: "SmartLi Full Capacity"
+    remaining_capacity:
+      name: "SmartLi Remaining Capacity"
     pack_voltage:
       name: "SmartLi Pack Voltage"
+    bus_voltage:
+      name: "SmartLi Bus Voltage"
     state_of_charge:
       name: "SmartLi State of Charge"
     state_of_health:
       name: "SmartLi State of Health"
+    total_charged_ah:
+      name: "SmartLi Total Charged Ah"
+    total_discharged_ah:
+      name: "SmartLi Total Discharged Ah"
     cell_min_voltage:
       name: "SmartLi Cell Minimum Voltage"
     cell_max_voltage:
@@ -96,4 +106,3 @@ sensor:
       name: "SmartLi Cell 14 Voltage"
     cell_voltage_15:
       name: "SmartLi Cell 15 Voltage"
-

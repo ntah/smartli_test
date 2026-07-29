@@ -23,10 +23,15 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void set_address(uint8_t address) { this->address_ = address; }
   void set_flow_control_pin(InternalGPIOPin *pin) { this->flow_control_pin_ = pin; }
 
+  void set_current_sensor(sensor::Sensor *sensor) { this->current_sensor_ = sensor; }
   void set_pack_voltage_sensor(sensor::Sensor *sensor) { this->pack_voltage_sensor_ = sensor; }
+  void set_bus_voltage_sensor(sensor::Sensor *sensor) { this->bus_voltage_sensor_ = sensor; }
   void set_state_of_charge_sensor(sensor::Sensor *sensor) { this->state_of_charge_sensor_ = sensor; }
   void set_state_of_health_sensor(sensor::Sensor *sensor) { this->state_of_health_sensor_ = sensor; }
-  void set_rated_capacity_sensor(sensor::Sensor *sensor) { this->rated_capacity_sensor_ = sensor; }
+  void set_full_capacity_sensor(sensor::Sensor *sensor) { this->full_capacity_sensor_ = sensor; }
+  void set_remaining_capacity_sensor(sensor::Sensor *sensor) { this->remaining_capacity_sensor_ = sensor; }
+  void set_total_charged_ah_sensor(sensor::Sensor *sensor) { this->total_charged_ah_sensor_ = sensor; }
+  void set_total_discharged_ah_sensor(sensor::Sensor *sensor) { this->total_discharged_ah_sensor_ = sensor; }
   void set_cell_min_voltage_sensor(sensor::Sensor *sensor) { this->cell_min_voltage_sensor_ = sensor; }
   void set_cell_max_voltage_sensor(sensor::Sensor *sensor) { this->cell_max_voltage_sensor_ = sensor; }
   void set_cell_delta_voltage_sensor(sensor::Sensor *sensor) { this->cell_delta_voltage_sensor_ = sensor; }
@@ -54,10 +59,15 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   size_t expected_frame_length_{0};
   uint32_t last_byte_at_{0};
 
+  sensor::Sensor *current_sensor_{nullptr};
   sensor::Sensor *pack_voltage_sensor_{nullptr};
+  sensor::Sensor *bus_voltage_sensor_{nullptr};
   sensor::Sensor *state_of_charge_sensor_{nullptr};
   sensor::Sensor *state_of_health_sensor_{nullptr};
-  sensor::Sensor *rated_capacity_sensor_{nullptr};
+  sensor::Sensor *full_capacity_sensor_{nullptr};
+  sensor::Sensor *remaining_capacity_sensor_{nullptr};
+  sensor::Sensor *total_charged_ah_sensor_{nullptr};
+  sensor::Sensor *total_discharged_ah_sensor_{nullptr};
   sensor::Sensor *cell_min_voltage_sensor_{nullptr};
   sensor::Sensor *cell_max_voltage_sensor_{nullptr};
   sensor::Sensor *cell_delta_voltage_sensor_{nullptr};
@@ -66,4 +76,3 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
 
 }  // namespace smartli_bms
 }  // namespace esphome
-

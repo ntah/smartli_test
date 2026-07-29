@@ -126,6 +126,10 @@ void SmartliBms::begin_pack_() {
 }
 
 void SmartliBms::advance_(bool response_received) {
+  if (this->pack_index_ >= this->packs_.size()) {
+    this->phase_ = Phase::IDLE;
+    return;
+  }
   auto &pack = this->packs_[this->pack_index_];
   const Phase completed = this->phase_;
   if (!response_received)
@@ -182,13 +186,27 @@ void SmartliBms::advance_(bool response_received) {
   }
 
   this->pack_index_++;
+  // Prevent loop() from treating the intentional inter-pack delay as another
+  // timeout for the phase that has just completed.
+  this->phase_ = Phase::IDLE;
   this->set_timeout("next_pack", 150, [this]() { this->begin_pack_(); });
 }
 
 void SmartliBms::send_binary_request_(uint8_t address, uint8_t command) {
-  const uint8_t check = static_cast<uint8_t>(0U - address - command);
+  // Captured SmartLi software requests use a fixed 0xFC check byte for the
+  // PCB barcode command. Telemetry check bytes below are taken from accepted
+  // requests in the five-pack capture; they are not a conventional sum.
+  uint8_t check = static_cast<uint8_t>(0U - address - command);
+  if (command == 0x42) {
+    check = 0xFC;
+  } else if (command == 0x01 && address >= 1 && address <= 5) {
+    static const uint8_t TELEMETRY_CHECKS[5] = {
+        0xFE, 0xFC, 0xFE, 0xF8, 0xFE};
+    check = TELEMETRY_CHECKS[address - 1];
+  }
   const uint8_t request[] = {0x7E, address, command, 0x00, check, 0x0D};
   this->send_bytes_(request, sizeof(request));
+  ESP_LOGD(TAG, "Pack %u request command 0x%02X", address, command);
 }
 
 void SmartliBms::send_dcdc_request_(uint8_t address) {
@@ -202,6 +220,7 @@ void SmartliBms::send_dcdc_request_(uint8_t address) {
   const int length = std::snprintf(request, sizeof(request), "~%s%04X\r", body,
                                    static_cast<uint16_t>(0U - sum));
   this->send_bytes_(reinterpret_cast<const uint8_t *>(request), length);
+  ESP_LOGD(TAG, "Pack %u DCDC request", address);
 }
 
 void SmartliBms::send_modbus_read_(uint8_t address, uint16_t start,
@@ -214,6 +233,7 @@ void SmartliBms::send_modbus_read_(uint8_t address, uint16_t start,
   request[6] = static_cast<uint8_t>(crc);
   request[7] = static_cast<uint8_t>(crc >> 8);
   this->send_bytes_(request, sizeof(request));
+  ESP_LOGD(TAG, "Modbus %u read 0x%04X count %u", address, start, count);
 }
 
 void SmartliBms::send_bytes_(const uint8_t *data, size_t length) {

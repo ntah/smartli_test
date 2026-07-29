@@ -247,7 +247,13 @@ def parse_tlv_payload(payload: bytes) -> dict[str, Any]:
 
 def make_read_request(address: int, command: int = 0x01) -> bytes:
     """Build the observed empty-payload read request."""
-    check = (-(address + command)) & 0xFF
+    telemetry_checks = {1: 0xFE, 2: 0xFC, 3: 0xFE, 4: 0xF8, 5: 0xFE}
+    if command == 0x42:
+        check = 0xFC
+    elif command == 0x01 and address in telemetry_checks:
+        check = telemetry_checks[address]
+    else:
+        check = (-(address + command)) & 0xFF
     return bytes((0x7E, address, command, 0x00, check, 0x0D))
 
 

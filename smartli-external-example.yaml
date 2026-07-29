@@ -61,6 +61,7 @@ smartli_bms:
   dcdc_update_interval: 60s
   response_timeout: 700ms
 
+sensor:
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 1

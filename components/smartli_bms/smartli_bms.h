@@ -237,6 +237,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   std::vector<SmartliPendingWrite> pending_writes_;
   SmartliBmsSelect *mode_select_{nullptr};
   bool waiting_for_request_{false};
+  bool resume_poll_after_writes_{false};
 };
 
 }  // namespace smartli_bms

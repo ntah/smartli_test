@@ -320,9 +320,22 @@ void SmartliBms::advance_(bool response_received) {
       this->pending_writes_.erase(this->pending_writes_.begin());
     }
     this->phase_ = Phase::IDLE;
-    if (!this->pending_writes_.empty())
-      this->schedule_phase_(Phase::IDLE,
-                            [this]() { this->begin_pending_write_(); });
+    if (!this->pending_writes_.empty()) {
+      // Modbus RTU only needs a short silent interval between write frames.
+      // Do not apply the one-second telemetry request delay to UI writes.
+      this->waiting_for_request_ = true;
+      this->set_timeout("next_modbus_write", 100, [this]() {
+        this->waiting_for_request_ = false;
+        this->begin_pending_write_();
+      });
+    } else if (this->resume_poll_after_writes_) {
+      this->resume_poll_after_writes_ = false;
+      this->waiting_for_request_ = true;
+      this->set_timeout("resume_poll", this->pack_delay_, [this]() {
+        this->waiting_for_request_ = false;
+        this->begin_pack_();
+      });
+    }
     return;
   }
   if (this->phase_ == Phase::DISCOVERY_MODBUS_PCB ||
@@ -436,6 +449,14 @@ void SmartliBms::advance_(bool response_received) {
   }
 
   this->pack_index_++;
+  if (!this->pending_writes_.empty()) {
+    // The current pack is complete, so this is a safe point to prioritize a
+    // user write without waiting for every remaining pack.
+    this->phase_ = Phase::IDLE;
+    this->resume_poll_after_writes_ = true;
+    this->begin_pending_write_();
+    return;
+  }
   // Prevent loop() from treating the intentional inter-pack delay as another
   // timeout for the phase that has just completed.
   this->phase_ = Phase::IDLE;

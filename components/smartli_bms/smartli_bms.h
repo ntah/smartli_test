@@ -85,15 +85,12 @@ struct SmartliPack {
   std::array<sensor::Sensor *, 15> cell_voltages{};
 
   sensor::Sensor *dcdc_bus_current{nullptr};
-  sensor::Sensor *dcdc_bus_negative_voltage{nullptr};
-  sensor::Sensor *dcdc_battery_negative_voltage{nullptr};
   sensor::Sensor *dcdc_discharge_bus_voltage_set{nullptr};
   sensor::Sensor *dcdc_discharge_bus_current_set{nullptr};
   sensor::Sensor *dcdc_discharge_bus_power_set{nullptr};
   sensor::Sensor *dcdc_charging_battery_voltage_set{nullptr};
   sensor::Sensor *dcdc_charge_current_set{nullptr};
   sensor::Sensor *dcdc_charging_battery_power_set{nullptr};
-  sensor::Sensor *dcdc_bus_voltage_dynamic{nullptr};
   sensor::Sensor *dcdc_bus_voltage_ladder{nullptr};
   sensor::Sensor *dcdc_depth_dod{nullptr};
   sensor::Sensor *dcdc_vbus_set_max_autoself{nullptr};
@@ -138,15 +135,12 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   DECLARE_SETTER(cell_max_voltage);
   DECLARE_SETTER(cell_delta_voltage);
   DECLARE_SETTER(dcdc_bus_current);
-  DECLARE_SETTER(dcdc_bus_negative_voltage);
-  DECLARE_SETTER(dcdc_battery_negative_voltage);
   DECLARE_SETTER(dcdc_discharge_bus_voltage_set);
   DECLARE_SETTER(dcdc_discharge_bus_current_set);
   DECLARE_SETTER(dcdc_discharge_bus_power_set);
   DECLARE_SETTER(dcdc_charging_battery_voltage_set);
   DECLARE_SETTER(dcdc_charge_current_set);
   DECLARE_SETTER(dcdc_charging_battery_power_set);
-  DECLARE_SETTER(dcdc_bus_voltage_dynamic);
   DECLARE_SETTER(dcdc_bus_voltage_ladder);
   DECLARE_SETTER(dcdc_depth_dod);
   DECLARE_SETTER(dcdc_vbus_set_max_autoself);

@@ -68,15 +68,12 @@ sensor:
     state_of_health: {name: "smartli bms 1 SOH"}
     total_charged_ah: {name: "smartli bms 1 tCharge"}
     total_discharged_ah: {name: "smartli bms 1 tdisCharge"}
-    dcdc_bus_negative_voltage: {name: "SmartLi 1 Bus Negative Voltage"}
-    dcdc_battery_negative_voltage: {name: "SmartLi 1 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "smartli bms 1 Vbus set"}
     dcdc_discharge_bus_current_set: {name: "smartli bms 1 Ibus set"}
     dcdc_discharge_bus_power_set: {name: "smartli bms 1 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 1 Charging Battery Voltage Set"}
     dcdc_charge_current_set: {name: "smartli bms 1 Ibat set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 1 Charging Battery Power Set"}
-    dcdc_bus_voltage_dynamic: {name: "SmartLi 1 Bus Voltage Dynamic"}
     dcdc_bus_voltage_ladder: {name: "smartli bms 1 Vbus DoD"}
     dcdc_depth_dod: {name: "smartli bms 1 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 1 VBUS Set Max Autoself"}
@@ -114,15 +111,12 @@ sensor:
     state_of_health: {name: "smartli bms 2 SOH"}
     total_charged_ah: {name: "smartli bms 2 tCharge"}
     total_discharged_ah: {name: "smartli bms 2 tdisCharge"}
-    dcdc_bus_negative_voltage: {name: "SmartLi 2 Bus Negative Voltage"}
-    dcdc_battery_negative_voltage: {name: "SmartLi 2 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "smartli bms 2 Vbus_set"}
     dcdc_discharge_bus_current_set: {name: "smartli bms 2 Ibus set"}
     dcdc_discharge_bus_power_set: {name: "smartli bms 2 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 2 Charging Battery Voltage Set"}
     dcdc_charge_current_set: {name: "smartli bms 2 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 2 Charging Battery Power Set"}
-    dcdc_bus_voltage_dynamic: {name: "SmartLi 2 Bus Voltage Dynamic"}
     dcdc_bus_voltage_ladder: {name: "smartli bms 2 Vbus DoD"}
     dcdc_depth_dod: {name: "smartli bms 2 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 2 VBUS Set Max Autoself"}
@@ -160,15 +154,12 @@ sensor:
     state_of_health: {name: "smartli bms 3 SOH"}
     total_charged_ah: {name: "smartli bms 3 tCharge"}
     total_discharged_ah: {name: "smartli bms 3 tdisCharge"}
-    dcdc_bus_negative_voltage: {name: "SmartLi 3 Bus Negative Voltage"}
-    dcdc_battery_negative_voltage: {name: "SmartLi 3 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "smartli bms 3 Vbus_set"}
     dcdc_discharge_bus_current_set: {name: "smartli bms 3 Ibus set"}
     dcdc_discharge_bus_power_set: {name: "smartli bms 3 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 3 Charging Battery Voltage Set"}
     dcdc_charge_current_set: {name: "smartli bms 3 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 3 Charging Battery Power Set"}
-    dcdc_bus_voltage_dynamic: {name: "SmartLi 3 Bus Voltage Dynamic"}
     dcdc_bus_voltage_ladder: {name: "smartli bms 3 Vbus DoD"}
     dcdc_depth_dod: {name: "smartli bms 3 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 3 VBUS Set Max Autoself"}
@@ -206,15 +197,12 @@ sensor:
     state_of_health: {name: "smartli bms 4 SOH"}
     total_charged_ah: {name: "smartli bms 4 tCharge"}
     total_discharged_ah: {name: "smartli bms 4 tdisCharge"}
-    dcdc_bus_negative_voltage: {name: "SmartLi 4 Bus Negative Voltage"}
-    dcdc_battery_negative_voltage: {name: "SmartLi 4 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "smartli bms 4 Vbus_set"}
     dcdc_discharge_bus_current_set: {name: "smartli bms 4 Ibus set"}
     dcdc_discharge_bus_power_set: {name: "smartli bms 4 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 4 Charging Battery Voltage Set"}
     dcdc_charge_current_set: {name: "smartli bms 4 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 4 Charging Battery Power Set"}
-    dcdc_bus_voltage_dynamic: {name: "SmartLi 4 Bus Voltage Dynamic"}
     dcdc_bus_voltage_ladder: {name: "smartli bms 4 Vbus DoD"}
     dcdc_depth_dod: {name: "smartli bms 4 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 4 VBUS Set Max Autoself"}
@@ -252,15 +240,12 @@ sensor:
     state_of_health: {name: "smartli bms 5 SOH"}
     total_charged_ah: {name: "smartli bms 5 tCharge"}
     total_discharged_ah: {name: "smartli bms 5 tdisCharge"}
-    dcdc_bus_negative_voltage: {name: "SmartLi 5 Bus Negative Voltage"}
-    dcdc_battery_negative_voltage: {name: "SmartLi 5 Battery Negative Voltage"}
     dcdc_discharge_bus_voltage_set: {name: "smartli bms 5 Vbus_set"}
     dcdc_discharge_bus_current_set: {name: "smartli bms 5 Ibus set"}
     dcdc_discharge_bus_power_set: {name: "smartli bms 5 Pbus set"}
     dcdc_charging_battery_voltage_set: {name: "SmartLi 5 Charging Battery Voltage Set"}
     dcdc_charge_current_set: {name: "smartli bms 5 Ibat_set"}
     dcdc_charging_battery_power_set: {name: "SmartLi 5 Charging Battery Power Set"}
-    dcdc_bus_voltage_dynamic: {name: "SmartLi 5 Bus Voltage Dynamic"}
     dcdc_bus_voltage_ladder: {name: "smartli bms 5 Vbus DoD"}
     dcdc_depth_dod: {name: "smartli bms 5 DoD"}
     dcdc_vbus_set_max_autoself: {name: "SmartLi 5 VBUS Set Max Autoself"}

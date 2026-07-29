@@ -92,15 +92,12 @@ DEFINE_SETTER(cell_min_voltage)
 DEFINE_SETTER(cell_max_voltage)
 DEFINE_SETTER(cell_delta_voltage)
 DEFINE_SETTER(dcdc_bus_current)
-DEFINE_SETTER(dcdc_bus_negative_voltage)
-DEFINE_SETTER(dcdc_battery_negative_voltage)
 DEFINE_SETTER(dcdc_discharge_bus_voltage_set)
 DEFINE_SETTER(dcdc_discharge_bus_current_set)
 DEFINE_SETTER(dcdc_discharge_bus_power_set)
 DEFINE_SETTER(dcdc_charging_battery_voltage_set)
 DEFINE_SETTER(dcdc_charge_current_set)
 DEFINE_SETTER(dcdc_charging_battery_power_set)
-DEFINE_SETTER(dcdc_bus_voltage_dynamic)
 DEFINE_SETTER(dcdc_bus_voltage_ladder)
 DEFINE_SETTER(dcdc_depth_dod)
 DEFINE_SETTER(dcdc_vbus_set_max_autoself)
@@ -1003,15 +1000,12 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
 #define PUB(member, offset, divisor) \
   if (pack.member != nullptr) pack.member->publish_state(this->read_u16_(&p[offset]) / divisor)
   PUB(dcdc_bus_current, 3, 100.0f);
-  PUB(dcdc_bus_negative_voltage, 9, 100.0f);
-  PUB(dcdc_battery_negative_voltage, 11, 100.0f);
   PUB(dcdc_discharge_bus_voltage_set, 13, 100.0f);
   PUB(dcdc_discharge_bus_current_set, 15, 100.0f);
   PUB(dcdc_discharge_bus_power_set, 17, 100.0f);
   PUB(dcdc_charging_battery_voltage_set, 19, 100.0f);
   PUB(dcdc_charge_current_set, 21, 100.0f);
   PUB(dcdc_charging_battery_power_set, 23, 100.0f);
-  PUB(dcdc_bus_voltage_dynamic, 81, 100.0f);
   PUB(dcdc_bus_voltage_ladder, 83, 100.0f);
   PUB(dcdc_depth_dod, 85, 100.0f);
   PUB(dcdc_vbus_set_max_autoself, 89, 100.0f);

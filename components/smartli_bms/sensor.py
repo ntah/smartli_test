@@ -21,15 +21,12 @@ CONF_CELL_MIN_VOLTAGE = "cell_min_voltage"
 CONF_CELL_MAX_VOLTAGE = "cell_max_voltage"
 CONF_CELL_DELTA_VOLTAGE = "cell_delta_voltage"
 CONF_DCDC_BUS_CURRENT = "dcdc_bus_current"
-CONF_DCDC_BUS_NEGATIVE_VOLTAGE = "dcdc_bus_negative_voltage"
-CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE = "dcdc_battery_negative_voltage"
 CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET = "dcdc_discharge_bus_voltage_set"
 CONF_DCDC_DISCHARGE_BUS_CURRENT_SET = "dcdc_discharge_bus_current_set"
 CONF_DCDC_DISCHARGE_BUS_POWER_SET = "dcdc_discharge_bus_power_set"
 CONF_DCDC_CHARGING_BATTERY_VOLTAGE_SET = "dcdc_charging_battery_voltage_set"
 CONF_DCDC_CHARGE_CURRENT_SET = "dcdc_charge_current_set"
 CONF_DCDC_CHARGING_BATTERY_POWER_SET = "dcdc_charging_battery_power_set"
-CONF_DCDC_BUS_VOLTAGE_DYNAMIC = "dcdc_bus_voltage_dynamic"
 CONF_DCDC_BUS_VOLTAGE_LADDER = "dcdc_bus_voltage_ladder"
 CONF_DCDC_DEPTH_DOD = "dcdc_depth_dod"
 CONF_DCDC_VBUS_SET_MAX_AUTOSELF = "dcdc_vbus_set_max_autoself"
@@ -106,15 +103,12 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_CELL_MAX_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_DELTA_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_DCDC_BUS_CURRENT): current_sensor_schema(),
-        cv.Optional(CONF_DCDC_BUS_NEGATIVE_VOLTAGE): voltage_sensor_schema(2),
-        cv.Optional(CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_DISCHARGE_BUS_CURRENT_SET): percent_sensor_schema(),
         cv.Optional(CONF_DCDC_DISCHARGE_BUS_POWER_SET): percent_sensor_schema(),
         cv.Optional(CONF_DCDC_CHARGING_BATTERY_VOLTAGE_SET): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_CHARGE_CURRENT_SET): percent_sensor_schema(),
         cv.Optional(CONF_DCDC_CHARGING_BATTERY_POWER_SET): percent_sensor_schema(),
-        cv.Optional(CONF_DCDC_BUS_VOLTAGE_DYNAMIC): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_BUS_VOLTAGE_LADDER): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_DEPTH_DOD): percent_sensor_schema(),
         cv.Optional(CONF_DCDC_VBUS_SET_MAX_AUTOSELF): voltage_sensor_schema(2),
@@ -151,15 +145,12 @@ async def to_code(config):
         CONF_CELL_MAX_VOLTAGE: "set_cell_max_voltage_sensor",
         CONF_CELL_DELTA_VOLTAGE: "set_cell_delta_voltage_sensor",
         CONF_DCDC_BUS_CURRENT: "set_dcdc_bus_current_sensor",
-        CONF_DCDC_BUS_NEGATIVE_VOLTAGE: "set_dcdc_bus_negative_voltage_sensor",
-        CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE: "set_dcdc_battery_negative_voltage_sensor",
         CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET: "set_dcdc_discharge_bus_voltage_set_sensor",
         CONF_DCDC_DISCHARGE_BUS_CURRENT_SET: "set_dcdc_discharge_bus_current_set_sensor",
         CONF_DCDC_DISCHARGE_BUS_POWER_SET: "set_dcdc_discharge_bus_power_set_sensor",
         CONF_DCDC_CHARGING_BATTERY_VOLTAGE_SET: "set_dcdc_charging_battery_voltage_set_sensor",
         CONF_DCDC_CHARGE_CURRENT_SET: "set_dcdc_charge_current_set_sensor",
         CONF_DCDC_CHARGING_BATTERY_POWER_SET: "set_dcdc_charging_battery_power_set_sensor",
-        CONF_DCDC_BUS_VOLTAGE_DYNAMIC: "set_dcdc_bus_voltage_dynamic_sensor",
         CONF_DCDC_BUS_VOLTAGE_LADDER: "set_dcdc_bus_voltage_ladder_sensor",
         CONF_DCDC_DEPTH_DOD: "set_dcdc_depth_dod_sensor",
         CONF_DCDC_VBUS_SET_MAX_AUTOSELF: "set_dcdc_vbus_set_max_autoself_sensor",

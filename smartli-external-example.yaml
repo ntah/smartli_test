@@ -410,6 +410,14 @@ sensor:
     state_of_charge:
       name: "smartli bms 5 SOC"
 
+  - platform: uptime
+    name: "${name} Uptime"
+    update_interval: 30s
+
+  - platform: wifi_signal
+    name: "${name} Wifi Signal"
+    update_interval: 30s
+
 select:
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
@@ -553,14 +561,6 @@ text_sensor:
     last_update:
       name: "BMS5 Last update"
       
-  - platform: uptime
-    name: "${name} Uptime"    
-    update_interval: 30s
-
-  - platform: wifi_signal
-    name: "${name} Wifi Signal"
-    update_interval: 30s      
-
 button:
   - platform: restart
     id: restart_esp

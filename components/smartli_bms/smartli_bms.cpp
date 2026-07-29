@@ -1129,7 +1129,7 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       }
     } else if (id == 0x02) {
       current =
-          (static_cast<int32_t>(this->read_u16_(&p[offset])) - 30000) / 100.0f;
+          (30000 - static_cast<int32_t>(this->read_u16_(&p[offset]))) / 100.0f;
       have_current = true;
       if (pack.current != nullptr)
         pack.current->publish_state(current);

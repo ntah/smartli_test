@@ -1,5 +1,6 @@
 substitutions:
   name: smartli-bms
+  external_components_source: github://ntah/smartli_test@main  
   tx_pin: GPIO17
   rx_pin: GPIO16
   flow_control_pin: GPIO4
@@ -73,10 +74,8 @@ esp32:
     type: esp-idf
 
 external_components:
-  - source:
-      type: local
-      path: components
-    components: [smartli_bms]
+  - source: ${external_components_source}
+    refresh: 0s
 
 wifi:
   ssid: !secret wifi_ssid
@@ -88,11 +87,11 @@ logger:
 
 api:
   encryption:
-    key: !secret api_encryption_key
+    key: "xxx"
 
 ota:
   - platform: esphome
-    password: !secret ota_password
+    password: "xxxx"
 
 uart:
   id: smartli_uart
@@ -555,5 +554,5 @@ text_sensor:
 button:
   - platform: restart
     id: restart_esp
-    name: "${name} Reboot"  
+    name: "${name} Reboot" 
     

@@ -91,6 +91,20 @@ void SmartliBms::set_pack_barcode_text_sensor(
     pack->pack_barcode_sensor = value;
 }
 
+void SmartliBms::set_modbus_pcb_barcode_text_sensor(
+    uint8_t address, text_sensor::TextSensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr)
+    pack->modbus_pcb_barcode_sensor = value;
+}
+
+void SmartliBms::set_modbus_pack_barcode_text_sensor(
+    uint8_t address, text_sensor::TextSensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr)
+    pack->modbus_pack_barcode_sensor = value;
+}
+
 void SmartliBms::set_status_text_sensor(
     uint8_t address, text_sensor::TextSensor *value) {
   auto *pack = this->find_pack_(address);
@@ -178,6 +192,29 @@ void SmartliBms::advance_(bool response_received) {
     }
   }
 
+  if (completed == Phase::PACK_BARCODE ||
+      completed == Phase::PCB_BARCODE ||
+      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
+    if (pack.modbus_pcb_barcode_sensor != nullptr &&
+        pack.modbus_pcb_barcode.empty()) {
+      this->phase_ = Phase::MODBUS_PCB_BARCODE;
+      this->send_modbus_read_(pack.modbus_address, 0x104D, 10);
+      return;
+    }
+  }
+
+  if (completed == Phase::MODBUS_PCB_BARCODE ||
+      completed == Phase::PACK_BARCODE ||
+      completed == Phase::PCB_BARCODE ||
+      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
+    if (pack.modbus_pack_barcode_sensor != nullptr &&
+        pack.modbus_pack_barcode.empty()) {
+      this->phase_ = Phase::MODBUS_PACK_BARCODE;
+      this->send_modbus_read_(pack.modbus_address, 0x1065, 10);
+      return;
+    }
+  }
+
   this->pack_index_++;
   // Prevent loop() from treating the intentional inter-pack delay as another
   // timeout for the phase that has just completed.
@@ -226,6 +263,20 @@ void SmartliBms::send_pack_barcode_request_(uint8_t address) {
   ESP_LOGD(TAG, "Pack %u request pack barcode", address);
 }
 
+void SmartliBms::send_modbus_read_(uint8_t address, uint16_t start,
+                                    uint16_t count) {
+  uint8_t request[8] = {
+      address, 0x03, static_cast<uint8_t>(start >> 8),
+      static_cast<uint8_t>(start), static_cast<uint8_t>(count >> 8),
+      static_cast<uint8_t>(count), 0, 0};
+  const uint16_t crc = this->crc16_(request, 6);
+  request[6] = static_cast<uint8_t>(crc);
+  request[7] = static_cast<uint8_t>(crc >> 8);
+  this->send_bytes_(request, sizeof(request));
+  ESP_LOGD(TAG, "Modbus %u read barcode 0x%04X count %u", address, start,
+           count);
+}
+
 void SmartliBms::send_bytes_(const uint8_t *data, size_t length) {
   this->reset_frame_();
   uint8_t stale;
@@ -258,15 +309,28 @@ void SmartliBms::loop() {
 }
 
 void SmartliBms::process_byte_(uint8_t byte) {
+  const bool modbus = this->phase_ == Phase::MODBUS_PCB_BARCODE ||
+                      this->phase_ == Phase::MODBUS_PACK_BARCODE;
   if (this->frame_.empty()) {
-    if (byte != 0x7E)
+    if (!modbus && byte != 0x7E)
+      return;
+    if (modbus && byte != this->packs_[this->pack_index_].modbus_address)
       return;
     this->frame_.push_back(byte);
     return;
   }
 
   this->frame_.push_back(byte);
-  if (this->frame_.size() == 4) {
+  if (modbus) {
+    if (this->frame_.size() == 2 && (this->frame_[1] & 0x80))
+      this->expected_frame_length_ = 5;
+    else if (this->frame_.size() == 3 && this->frame_[1] == 0x03) {
+      // Ignore an echoed 8-byte request before waiting for the real response.
+      this->modbus_echo_ = this->frame_[2] == 0x10;
+      this->expected_frame_length_ =
+          this->modbus_echo_ ? 8U : 5U + this->frame_[2];
+    }
+  } else if (this->frame_.size() == 4) {
     this->ascii_frame_ =
         this->hex_nibble_(this->frame_[1]) >= 0 &&
         this->hex_nibble_(this->frame_[2]) >= 0 &&
@@ -293,8 +357,13 @@ void SmartliBms::process_byte_(uint8_t byte) {
   }
   if (this->expected_frame_length_ != 0 &&
       this->frame_.size() == this->expected_frame_length_) {
-    bool accepted = this->ascii_frame_ ? this->process_ascii_frame_()
-                                       : this->process_binary_frame_();
+    if (modbus && this->modbus_echo_) {
+      this->reset_frame_();
+      return;
+    }
+    bool accepted = modbus ? this->process_modbus_frame_()
+                           : (this->ascii_frame_ ? this->process_ascii_frame_()
+                                                 : this->process_binary_frame_());
     this->reset_frame_();
     if (accepted)
       this->advance_(true);
@@ -376,6 +445,37 @@ bool SmartliBms::process_ascii_frame_() {
     payload.push_back(value);
   }
   this->parse_dcdc_(*pack, payload.data(), payload.size());
+  return true;
+}
+
+bool SmartliBms::process_modbus_frame_() {
+  if (this->frame_.size() < 5)
+    return false;
+  const uint16_t received =
+      this->frame_[this->frame_.size() - 2] |
+      (static_cast<uint16_t>(this->frame_.back()) << 8);
+  if (this->crc16_(this->frame_.data(), this->frame_.size() - 2) != received)
+    return false;
+  if (this->frame_[1] != 0x03)
+    return true;
+  if (this->frame_[2] != 20 || this->frame_.size() != 25)
+    return false;
+
+  auto &pack = this->packs_[this->pack_index_];
+  const std::string barcode = this->normalize_barcode_(&this->frame_[3], 20);
+  if (this->phase_ == Phase::MODBUS_PCB_BARCODE) {
+    pack.modbus_pcb_barcode = barcode;
+    if (pack.modbus_pcb_barcode_sensor != nullptr)
+      pack.modbus_pcb_barcode_sensor->publish_state(barcode);
+    ESP_LOGI(TAG, "Pack %u Modbus PCB barcode: %s", pack.address,
+             barcode.c_str());
+  } else if (this->phase_ == Phase::MODBUS_PACK_BARCODE) {
+    pack.modbus_pack_barcode = barcode;
+    if (pack.modbus_pack_barcode_sensor != nullptr)
+      pack.modbus_pack_barcode_sensor->publish_state(barcode);
+    ESP_LOGI(TAG, "Pack %u Modbus pack barcode: %s", pack.address,
+             barcode.c_str());
+  }
   return true;
 }
 
@@ -558,6 +658,16 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
 uint16_t SmartliBms::read_u16_(const uint8_t *data) const {
   return (static_cast<uint16_t>(data[0]) << 8) | data[1];
 }
+uint16_t SmartliBms::crc16_(const uint8_t *data, size_t length) const {
+  uint16_t crc = 0xFFFF;
+  while (length--) {
+    crc ^= *data++;
+    for (uint8_t i = 0; i < 8; i++)
+      crc = (crc & 1) ? static_cast<uint16_t>((crc >> 1) ^ 0xA001)
+                      : static_cast<uint16_t>(crc >> 1);
+  }
+  return crc;
+}
 uint32_t SmartliBms::read_u32_(const uint8_t *data) const {
   return (static_cast<uint32_t>(data[0]) << 24) |
          (static_cast<uint32_t>(data[1]) << 16) |
@@ -595,6 +705,7 @@ void SmartliBms::reset_frame_() {
   this->frame_.clear();
   this->expected_frame_length_ = 0;
   this->ascii_frame_ = false;
+  this->modbus_echo_ = false;
 }
 
 }  // namespace smartli_bms

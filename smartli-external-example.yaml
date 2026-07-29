@@ -330,6 +330,10 @@ text_sensor:
       name: "SmartLi 1 PCB Barcode"
     pack_barcode:
       name: "SmartLi 1 Pack Barcode"
+    modbus_pcb_barcode:
+      name: "SmartLi 1 PCB Barcode dari Modbus"
+    modbus_pack_barcode:
+      name: "SmartLi 1 Pack Barcode dari Modbus"
     status:
       name: "SmartLi 1 Status"
 
@@ -340,6 +344,10 @@ text_sensor:
       name: "SmartLi 2 PCB Barcode"
     pack_barcode:
       name: "SmartLi 2 Pack Barcode"
+    modbus_pcb_barcode:
+      name: "SmartLi 2 PCB Barcode dari Modbus"
+    modbus_pack_barcode:
+      name: "SmartLi 2 Pack Barcode dari Modbus"
     status:
       name: "SmartLi 2 Status"
 
@@ -350,6 +358,10 @@ text_sensor:
       name: "SmartLi 3 PCB Barcode"
     pack_barcode:
       name: "SmartLi 3 Pack Barcode"
+    modbus_pcb_barcode:
+      name: "SmartLi 3 PCB Barcode dari Modbus"
+    modbus_pack_barcode:
+      name: "SmartLi 3 Pack Barcode dari Modbus"
     status:
       name: "SmartLi 3 Status"
 
@@ -360,6 +372,10 @@ text_sensor:
       name: "SmartLi 4 PCB Barcode"
     pack_barcode:
       name: "SmartLi 4 Pack Barcode"
+    modbus_pcb_barcode:
+      name: "SmartLi 4 PCB Barcode dari Modbus"
+    modbus_pack_barcode:
+      name: "SmartLi 4 Pack Barcode dari Modbus"
     status:
       name: "SmartLi 4 Status"
 
@@ -370,5 +386,9 @@ text_sensor:
       name: "SmartLi 5 PCB Barcode"
     pack_barcode:
       name: "SmartLi 5 Pack Barcode"
+    modbus_pcb_barcode:
+      name: "SmartLi 5 PCB Barcode dari Modbus"
+    modbus_pack_barcode:
+      name: "SmartLi 5 Pack Barcode dari Modbus"
     status:
       name: "SmartLi 5 Status"

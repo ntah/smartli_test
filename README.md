@@ -54,8 +54,11 @@ lagi membaca register Modbus Protection Status (`0x103C`) dan Operating
 Status (`0x103D`).
 
 PCB barcode dan pack barcode tetap dibaca dari protokol SmartLi dan
-ditampilkan sebagai text sensor. Component tidak lagi melakukan pemindaian
-alamat Modbus otomatis.
+ditampilkan sebagai text sensor. Dua text sensor pembanding juga membaca
+barcode memakai `modbus_address` manual: `modbus_pcb_barcode` dari register
+`0x104D` sebanyak 10 register dan `modbus_pack_barcode` dari register
+`0x1065` sebanyak 10 register. Component tidak melakukan pemindaian alamat
+Modbus otomatis.
 
 Alarm telemetri diterjemahkan menjadi satu text sensor `status` per pack.
 Jika tidak ada bit masalah aktif nilainya `Normal`. Jika lebih dari satu

@@ -21,8 +21,12 @@ struct SmartliPack {
   bool modbus_manual{false};
   std::string pcb_barcode;
   std::string pack_barcode;
+  std::string modbus_pcb_barcode;
+  std::string modbus_pack_barcode;
   text_sensor::TextSensor *pcb_barcode_sensor{nullptr};
   text_sensor::TextSensor *pack_barcode_sensor{nullptr};
+  text_sensor::TextSensor *modbus_pcb_barcode_sensor{nullptr};
+  text_sensor::TextSensor *modbus_pack_barcode_sensor{nullptr};
   text_sensor::TextSensor *status_sensor{nullptr};
   std::array<uint16_t, 5> alarm_values{};
   uint32_t last_dcdc_at{0};
@@ -110,6 +114,10 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
                                    text_sensor::TextSensor *value);
   void set_pack_barcode_text_sensor(uint8_t address,
                                     text_sensor::TextSensor *value);
+  void set_modbus_pcb_barcode_text_sensor(uint8_t address,
+                                          text_sensor::TextSensor *value);
+  void set_modbus_pack_barcode_text_sensor(uint8_t address,
+                                           text_sensor::TextSensor *value);
   void set_status_text_sensor(uint8_t address,
                               text_sensor::TextSensor *value);
 
@@ -120,6 +128,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
     DCDC,
     PCB_BARCODE,
     PACK_BARCODE,
+    MODBUS_PCB_BARCODE,
+    MODBUS_PACK_BARCODE,
   };
 
   static constexpr size_t MAX_FRAME_SIZE = 300;
@@ -130,14 +140,17 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void send_binary_request_(uint8_t address, uint8_t command);
   void send_pack_barcode_request_(uint8_t address);
   void send_dcdc_request_(uint8_t address);
+  void send_modbus_read_(uint8_t address, uint16_t start, uint16_t count);
   void send_bytes_(const uint8_t *data, size_t length);
   void reset_frame_();
   void process_byte_(uint8_t byte);
   bool process_binary_frame_();
   bool process_ascii_frame_();
+  bool process_modbus_frame_();
   void parse_telemetry_(SmartliPack &pack, const uint8_t *payload, size_t length);
   void parse_dcdc_(SmartliPack &pack, const uint8_t *payload, size_t length);
   void publish_status_(SmartliPack &pack);
+  uint16_t crc16_(const uint8_t *data, size_t length) const;
   uint16_t read_u16_(const uint8_t *data) const;
   uint32_t read_u32_(const uint8_t *data) const;
   uint8_t field_width_(uint8_t field_id) const;
@@ -155,6 +168,7 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   std::vector<uint8_t> frame_;
   size_t expected_frame_length_{0};
   bool ascii_frame_{false};
+  bool modbus_echo_{false};
 };
 
 }  // namespace smartli_bms

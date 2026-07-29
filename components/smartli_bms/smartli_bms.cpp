@@ -400,6 +400,44 @@ void SmartliBms::advance_(bool response_received) {
     }
   }
 
+  if (completed == Phase::MODBUS_PACK_BARCODE ||
+      completed == Phase::MODBUS_PCB_BARCODE ||
+      completed == Phase::PACK_BARCODE ||
+      completed == Phase::PCB_BARCODE ||
+      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
+    if (this->mode_select_ != nullptr && !pack.mode_loaded &&
+        pack.modbus_address != 0) {
+      this->schedule_phase_(
+          Phase::MODBUS_CONFIG_MODE,
+          [this, address = pack.modbus_address]() {
+            this->send_modbus_read_(address, 0x1016, 1);
+          });
+      return;
+    }
+  }
+
+  if (completed == Phase::MODBUS_CONFIG_MODE ||
+      completed == Phase::MODBUS_PACK_BARCODE ||
+      completed == Phase::MODBUS_PCB_BARCODE ||
+      completed == Phase::PACK_BARCODE ||
+      completed == Phase::PCB_BARCODE ||
+      completed == Phase::TELEMETRY || completed == Phase::DCDC) {
+    const size_t charging =
+        static_cast<size_t>(SmartliSelectType::CHARGING_LOOP);
+    const size_t discharge =
+        static_cast<size_t>(SmartliSelectType::DISCHARGE_LOOP);
+    if (!pack.loops_loaded && pack.modbus_address != 0 &&
+        (pack.config_selects[charging] != nullptr ||
+         pack.config_selects[discharge] != nullptr)) {
+      this->schedule_phase_(
+          Phase::MODBUS_CONFIG_LOOPS,
+          [this, address = pack.modbus_address]() {
+            this->send_modbus_read_(address, 0x107D, 2);
+          });
+      return;
+    }
+  }
+
   this->pack_index_++;
   // Prevent loop() from treating the intentional inter-pack delay as another
   // timeout for the phase that has just completed.
@@ -616,6 +654,8 @@ void SmartliBms::process_byte_(uint8_t byte) {
                       this->phase_ == Phase::MODBUS_PACK_BARCODE ||
                       this->phase_ == Phase::DISCOVERY_MODBUS_PCB ||
                       this->phase_ == Phase::DISCOVERY_MODBUS_PACK ||
+                      this->phase_ == Phase::MODBUS_CONFIG_MODE ||
+                      this->phase_ == Phase::MODBUS_CONFIG_LOOPS ||
                       this->phase_ == Phase::MODBUS_WRITE;
   if (this->frame_.empty()) {
     if (!modbus && byte != 0x7E)
@@ -791,6 +831,50 @@ bool SmartliBms::process_modbus_frame_() {
   }
   if (this->frame_[1] != 0x03)
     return true;
+
+  if (this->phase_ == Phase::MODBUS_CONFIG_MODE) {
+    if (this->frame_[2] != 2 || this->frame_.size() != 7)
+      return false;
+    auto &pack = this->packs_[this->pack_index_];
+    const uint16_t value = this->read_u16_(&this->frame_[3]);
+    if (this->mode_select_ != nullptr) {
+      if (value == 0x0101)
+        this->mode_select_->publish_state("Constant");
+      else if (value == 0x0303)
+        this->mode_select_->publish_state("Battery");
+      else
+        ESP_LOGW(TAG, "Pack %u has unknown mode value 0x%04X",
+                 pack.address, value);
+    }
+    pack.mode_loaded = true;
+    return true;
+  }
+
+  if (this->phase_ == Phase::MODBUS_CONFIG_LOOPS) {
+    if (this->frame_[2] != 4 || this->frame_.size() != 9)
+      return false;
+    auto &pack = this->packs_[this->pack_index_];
+    const uint16_t charging = this->read_u16_(&this->frame_[3]);
+    const uint16_t discharge = this->read_u16_(&this->frame_[5]);
+    auto publish_loop = [&](SmartliSelectType type, uint16_t value) {
+      const size_t index = static_cast<size_t>(type);
+      auto *item = pack.config_selects[index];
+      if (item == nullptr)
+        return;
+      if (value == 0x0001)
+        item->publish_state("Enable");
+      else if (value == 0x0055 || value == 0x0000)
+        item->publish_state("Disable");
+      else
+        ESP_LOGW(TAG, "Pack %u has unknown loop value 0x%04X",
+                 pack.address, value);
+    };
+    publish_loop(SmartliSelectType::CHARGING_LOOP, charging);
+    publish_loop(SmartliSelectType::DISCHARGE_LOOP, discharge);
+    pack.loops_loaded = true;
+    return true;
+  }
+
   if (this->frame_[2] != 20 || this->frame_.size() != 25)
     return false;
 

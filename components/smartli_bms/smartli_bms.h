@@ -98,6 +98,8 @@ struct SmartliPack {
   sensor::Sensor *dcdc_vbus_set_max_autoself{nullptr};
   std::array<sensor::Sensor *, 5> alarm_status{};
   std::array<SmartliBmsSelect *, 8> config_selects{};
+  bool mode_loaded{false};
+  bool loops_loaded{false};
 };
 
 class SmartliBms : public PollingComponent, public uart::UARTDevice {
@@ -174,6 +176,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
     MODBUS_PACK_BARCODE,
     DISCOVERY_MODBUS_PCB,
     DISCOVERY_MODBUS_PACK,
+    MODBUS_CONFIG_MODE,
+    MODBUS_CONFIG_LOOPS,
     MODBUS_WRITE,
   };
 

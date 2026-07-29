@@ -301,7 +301,7 @@ select:
     pbus_percent: {name: "BMS1 PBUS Discharge %"}
     vbus_discharge_set: {name: "BMS1 VBUS Discharge Set"}
     vbus_dod: {name: "BMS1 VBUS DOD"}
-    mode: {name: "Smartli-Bms Mode BMS"}
+    mode: {name: "Mode BMS"}
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub

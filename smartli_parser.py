@@ -328,6 +328,8 @@ def parse_frame(frame: bytes) -> dict[str, Any]:
     current_raw = result["fields"].get("0x02", [None])[0]
     state_of_charge_raw = result["fields"].get("0x03", [None])[0]
     full_raw = result["fields"].get("0x04", [None])[0]
+    temperature_raw = result["fields"].get("0x05", [])
+    cycle_raw = result["fields"].get("0x07", [None])[0]
     pack_voltage_raw = result["fields"].get("0x08", [None])[0]
     soh_raw = result["fields"].get("0x09", [None])[0]
     total_charged_raw = result["fields"].get("0x0B", [None])[0]
@@ -352,6 +354,20 @@ def parse_frame(frame: bytes) -> dict[str, Any]:
         )
     if full_raw is not None:
         decoded["full_capacity_ah"] = round(full_raw / 100, 2)
+    if len(temperature_raw) >= 8:
+        temperatures = [(value & 0xFF) - 50 for value in temperature_raw[:8]]
+        decoded.update(
+            {
+                "battery_temperature_c": temperatures[:4],
+                "battery_max_temperature_c": max(temperatures[:4]),
+                "environment_temperature_c": temperatures[4],
+                "mos_temperature_c": temperatures[5:7],
+                "mos_max_temperature_c": max(temperatures[5:7]),
+                "balance_temperature_c": temperatures[7],
+            }
+        )
+    if cycle_raw is not None:
+        decoded["cycles"] = cycle_raw
     if state_of_charge_raw is not None and full_raw:
         decoded["remaining_capacity_ah"] = round(
             (state_of_charge_raw / 100) * (full_raw / 100) / 100, 2

@@ -91,6 +91,11 @@ DEFINE_SETTER(total_discharged_ah)
 DEFINE_SETTER(cell_min_voltage)
 DEFINE_SETTER(cell_max_voltage)
 DEFINE_SETTER(cell_delta_voltage)
+DEFINE_SETTER(cell_average_voltage)
+DEFINE_SETTER(power)
+DEFINE_SETTER(max_temperature)
+DEFINE_SETTER(mos_temperature)
+DEFINE_SETTER(cycle_count)
 DEFINE_SETTER(dcdc_bus_current)
 DEFINE_SETTER(dcdc_discharge_bus_voltage_set)
 DEFINE_SETTER(dcdc_discharge_bus_current_set)
@@ -115,6 +120,13 @@ void SmartliBms::set_alarm_status_sensor(uint8_t address, size_t index,
   auto *pack = this->find_pack_(address);
   if (pack != nullptr && index < pack->alarm_status.size())
     pack->alarm_status[index] = value;
+}
+
+void SmartliBms::set_temperature_sensor(uint8_t address, size_t index,
+                                        sensor::Sensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr && index < pack->temperatures.size())
+    pack->temperatures[index] = value;
 }
 
 void SmartliBms::set_pcb_barcode_text_sensor(
@@ -157,6 +169,13 @@ void SmartliBms::set_status_text_sensor(
   auto *pack = this->find_pack_(address);
   if (pack != nullptr)
     pack->status_sensor = value;
+}
+
+void SmartliBms::set_mode_text_sensor(
+    uint8_t address, text_sensor::TextSensor *value) {
+  auto *pack = this->find_pack_(address);
+  if (pack != nullptr)
+    pack->mode_sensor = value;
 }
 
 void SmartliBms::setup() {
@@ -432,7 +451,8 @@ void SmartliBms::advance_(bool response_received) {
       completed == Phase::PACK_BARCODE ||
       completed == Phase::PCB_BARCODE ||
       completed == Phase::TELEMETRY || completed == Phase::DCDC) {
-    if (this->mode_select_ != nullptr && !pack.mode_loaded &&
+    if ((this->mode_select_ != nullptr || pack.mode_sensor != nullptr) &&
+        !pack.mode_loaded &&
         pack.modbus_address != 0) {
       this->schedule_phase_(Phase::MODBUS_CONFIG_MODE,
                             [this, address = pack.modbus_address]() {
@@ -876,6 +896,14 @@ bool SmartliBms::process_modbus_frame_() {
       else if (value == 0x0303)
         this->mode_select_->publish_state("Battery");
     }
+    if (pack.mode_sensor != nullptr) {
+      if (value == 0x0101)
+        pack.mode_sensor->publish_state("Constant");
+      else if (value == 0x0303)
+        pack.mode_sensor->publish_state("Battery");
+      else
+        pack.mode_sensor->publish_state("Unknown");
+    }
     pack.mode_loaded = true;
     return true;
   }
@@ -1048,7 +1076,9 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
   std::array<uint16_t, 15> cells{};
   size_t cell_count = 0;
   float full = 0, state_of_charge = 0;
+  float current = 0, pack_voltage = 0;
   bool have_full = false, have_state_of_charge = false;
+  bool have_current = false, have_pack_voltage = false;
   while (offset + 2 <= n) {
     const uint8_t id = p[offset++];
     const uint8_t count = p[offset++];
@@ -1063,9 +1093,12 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
         if (pack.cell_voltages[i] != nullptr)
           pack.cell_voltages[i]->publish_state(cells[i] / 1000.0f);
       }
-    } else if (id == 0x02 && pack.current != nullptr) {
-      pack.current->publish_state(
-          (static_cast<int32_t>(this->read_u16_(&p[offset])) - 30000) / 100.0f);
+    } else if (id == 0x02) {
+      current =
+          (static_cast<int32_t>(this->read_u16_(&p[offset])) - 30000) / 100.0f;
+      have_current = true;
+      if (pack.current != nullptr)
+        pack.current->publish_state(current);
     } else if (id == 0x03) {
       state_of_charge = this->read_u16_(&p[offset]) / 100.0f;
       have_state_of_charge = true;
@@ -1076,6 +1109,22 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       have_full = true;
       if (pack.full_capacity != nullptr)
         pack.full_capacity->publish_state(full);
+    } else if (id == 0x05 && count >= 8) {
+      std::array<int16_t, 8> temperatures{};
+      for (size_t i = 0; i < temperatures.size(); i++) {
+        const uint16_t raw = this->read_u16_(&p[offset + i * 2]);
+        temperatures[i] = static_cast<int16_t>(raw & 0x00FFU) - 50;
+        if (pack.temperatures[i] != nullptr)
+          pack.temperatures[i]->publish_state(temperatures[i]);
+      }
+      if (pack.max_temperature != nullptr) {
+        pack.max_temperature->publish_state(
+            *std::max_element(temperatures.begin(), temperatures.begin() + 4));
+      }
+      if (pack.mos_temperature != nullptr) {
+        pack.mos_temperature->publish_state(
+            std::max(temperatures[5], temperatures[6]));
+      }
     } else if (id == 0x06 && count >= 5) {
       for (size_t i = 0; i < 5; i++) {
         pack.alarm_values[i] = this->read_u16_(&p[offset + i * 2]);
@@ -1083,8 +1132,13 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
           pack.alarm_status[i]->publish_state(pack.alarm_values[i]);
       }
       this->publish_status_(pack);
-    } else if (id == 0x08 && pack.pack_voltage != nullptr) {
-      pack.pack_voltage->publish_state(this->read_u16_(&p[offset]) / 100.0f);
+    } else if (id == 0x07 && pack.cycle_count != nullptr) {
+      pack.cycle_count->publish_state(this->read_u16_(&p[offset]));
+    } else if (id == 0x08) {
+      pack_voltage = this->read_u16_(&p[offset]) / 100.0f;
+      have_pack_voltage = true;
+      if (pack.pack_voltage != nullptr)
+        pack.pack_voltage->publish_state(pack_voltage);
     } else if (id == 0x09 && pack.state_of_health != nullptr) {
       pack.state_of_health->publish_state(this->read_u16_(&p[offset]) / 100.0f);
     } else if (id == 0x0B && pack.total_charged_ah != nullptr) {
@@ -1098,6 +1152,8 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
   }
   if (have_full && have_state_of_charge && pack.remaining_capacity != nullptr)
     pack.remaining_capacity->publish_state(full * state_of_charge / 100.0f);
+  if (have_current && have_pack_voltage && pack.power != nullptr)
+    pack.power->publish_state(pack_voltage * current);
   if (cell_count > 0) {
     auto begin = cells.begin();
     auto end = cells.begin() + cell_count;
@@ -1109,6 +1165,13 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       pack.cell_max_voltage->publish_state(hi / 1000.0f);
     if (pack.cell_delta_voltage != nullptr)
       pack.cell_delta_voltage->publish_state((hi - lo) / 1000.0f);
+    if (pack.cell_average_voltage != nullptr) {
+      uint32_t sum = 0;
+      for (size_t i = 0; i < cell_count; i++)
+        sum += cells[i];
+      pack.cell_average_voltage->publish_state(
+          static_cast<float>(sum) / cell_count / 1000.0f);
+    }
   }
 }
 

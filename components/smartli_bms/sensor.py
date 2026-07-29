@@ -20,6 +20,11 @@ CONF_TOTAL_DISCHARGED_AH = "total_discharged_ah"
 CONF_CELL_MIN_VOLTAGE = "cell_min_voltage"
 CONF_CELL_MAX_VOLTAGE = "cell_max_voltage"
 CONF_CELL_DELTA_VOLTAGE = "cell_delta_voltage"
+CONF_CELL_AVERAGE_VOLTAGE = "cell_average_voltage"
+CONF_POWER = "power"
+CONF_MAX_TEMPERATURE = "max_temperature"
+CONF_MOS_TEMPERATURE = "mos_temperature"
+CONF_CYCLE_COUNT = "cycle_count"
 CONF_DCDC_BUS_CURRENT = "dcdc_bus_current"
 CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET = "dcdc_discharge_bus_voltage_set"
 CONF_DCDC_DISCHARGE_BUS_CURRENT_SET = "dcdc_discharge_bus_current_set"
@@ -31,6 +36,16 @@ CONF_DCDC_BUS_VOLTAGE_LADDER = "dcdc_bus_voltage_ladder"
 CONF_DCDC_DEPTH_DOD = "dcdc_depth_dod"
 CONF_DCDC_VBUS_SET_MAX_AUTOSELF = "dcdc_vbus_set_max_autoself"
 ALARM_KEYS = [f"alarm_status_{number}" for number in range(1, 6)]
+TEMPERATURE_KEYS = [
+    "battery_temperature_1",
+    "battery_temperature_2",
+    "battery_temperature_3",
+    "battery_temperature_4",
+    "environment_temperature",
+    "mos_temperature_1",
+    "mos_temperature_2",
+    "balance_temperature",
+]
 
 
 def voltage_sensor_schema(accuracy_decimals):
@@ -102,6 +117,23 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_CELL_MIN_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_MAX_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_DELTA_VOLTAGE): voltage_sensor_schema(3),
+        cv.Optional(CONF_CELL_AVERAGE_VOLTAGE): voltage_sensor_schema(3),
+        cv.Optional(CONF_POWER): sensor.sensor_schema(
+            unit_of_measurement="W", accuracy_decimals=2,
+            device_class="power", state_class="measurement",
+        ),
+        cv.Optional(CONF_MAX_TEMPERATURE): sensor.sensor_schema(
+            unit_of_measurement="°C", accuracy_decimals=0,
+            device_class="temperature", state_class="measurement",
+        ),
+        cv.Optional(CONF_MOS_TEMPERATURE): sensor.sensor_schema(
+            unit_of_measurement="°C", accuracy_decimals=0,
+            device_class="temperature", state_class="measurement",
+        ),
+        cv.Optional(CONF_CYCLE_COUNT): sensor.sensor_schema(
+            unit_of_measurement="n", accuracy_decimals=0,
+            state_class="total_increasing",
+        ),
         cv.Optional(CONF_DCDC_BUS_CURRENT): current_sensor_schema(),
         cv.Optional(CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET): voltage_sensor_schema(2),
         cv.Optional(CONF_DCDC_DISCHARGE_BUS_CURRENT_SET): percent_sensor_schema(),
@@ -122,6 +154,15 @@ CONFIG_SCHEMA = cv.Schema(
         **{
             cv.Optional(cell_key): voltage_sensor_schema(3)
             for cell_key in CELL_KEYS
+        },
+        **{
+            cv.Optional(key): sensor.sensor_schema(
+                unit_of_measurement="°C",
+                accuracy_decimals=0,
+                device_class="temperature",
+                state_class="measurement",
+            )
+            for key in TEMPERATURE_KEYS
         },
     }
 )
@@ -144,6 +185,11 @@ async def to_code(config):
         CONF_CELL_MIN_VOLTAGE: "set_cell_min_voltage_sensor",
         CONF_CELL_MAX_VOLTAGE: "set_cell_max_voltage_sensor",
         CONF_CELL_DELTA_VOLTAGE: "set_cell_delta_voltage_sensor",
+        CONF_CELL_AVERAGE_VOLTAGE: "set_cell_average_voltage_sensor",
+        CONF_POWER: "set_power_sensor",
+        CONF_MAX_TEMPERATURE: "set_max_temperature_sensor",
+        CONF_MOS_TEMPERATURE: "set_mos_temperature_sensor",
+        CONF_CYCLE_COUNT: "set_cycle_count_sensor",
         CONF_DCDC_BUS_CURRENT: "set_dcdc_bus_current_sensor",
         CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET: "set_dcdc_discharge_bus_voltage_set_sensor",
         CONF_DCDC_DISCHARGE_BUS_CURRENT_SET: "set_dcdc_discharge_bus_current_set_sensor",
@@ -170,3 +216,8 @@ async def to_code(config):
         if sensor_config := config.get(alarm_key):
             sens = await sensor.new_sensor(sensor_config)
             cg.add(parent.set_alarm_status_sensor(address, index, sens))
+
+    for index, key in enumerate(TEMPERATURE_KEYS):
+        if sensor_config := config.get(key):
+            sens = await sensor.new_sensor(sensor_config)
+            cg.add(parent.set_temperature_sensor(address, index, sens))

@@ -3,7 +3,59 @@ substitutions:
   tx_pin: GPIO17
   rx_pin: GPIO16
   flow_control_pin: GPIO4
+  delay_interval_pagi: "3000"
+  delay_interval_malam: "10000"
+  batas_pagi: "6"
+  batas_malam: "23"
 
+globals:
+  - id: delay_interval
+    type: uint32_t
+    restore_value: false
+    initial_value: "3000"
+
+script:
+  - id: update_delay_interval
+    mode: restart
+    then:
+      - lambda: |-
+          auto now = id(esptime).now();
+
+          if (!now.is_valid()) {
+            ESP_LOGW("smartli_schedule",
+                     "Waktu belum valid, pack delay tidak diubah");
+            return;
+          }
+
+          if (now.hour >= ${batas_pagi} &&
+              now.hour < ${batas_malam}) {
+            id(delay_interval) = ${delay_interval_pagi};
+          } else {
+            id(delay_interval) = ${delay_interval_malam};
+          }
+
+          id(smartli_hub).set_pack_delay(id(delay_interval));
+
+          ESP_LOGI("smartli_schedule",
+                   "Pack delay diubah menjadi %lu ms",
+                   static_cast<unsigned long>(id(delay_interval)));
+                   
+time:
+  - platform: sntp
+    id: esptime
+    timezone: Asia/Jakarta
+
+    on_time_sync:
+      then:
+        - script.execute: update_delay_interval
+
+    on_time:
+      - seconds: 0
+        minutes: 0
+        hours: "*"
+        then:
+          - script.execute: update_delay_interval
+          
 esphome:
   name: ${name}
   comment: "Read SmartLi BMS binary telemetry via RS485"
@@ -80,6 +132,19 @@ sensor:
     cell_min_voltage: {name: "smartli bms 1 V min"}
     cell_max_voltage: {name: "smartli bms 1 V max"}
     cell_delta_voltage: {name: "smartli bms 1 V diff"}
+    cell_average_voltage: {name: "smartli bms 1 V ave"}
+    power: {name: "smartli bms 1 power"}
+    max_temperature: {name: "smartli bms 1 Max Temp"}
+    mos_temperature: {name: "smartli bms 1 MOS Temp"}
+    cycle_count: {name: "smartli bms 1 Cycle"}
+    battery_temperature_1: {name: "smartli bms 1 Battery Temp 1"}
+    battery_temperature_2: {name: "smartli bms 1 Battery Temp 2"}
+    battery_temperature_3: {name: "smartli bms 1 Battery Temp 3"}
+    battery_temperature_4: {name: "smartli bms 1 Battery Temp 4"}
+    environment_temperature: {name: "smartli bms 1 Environment Temp"}
+    mos_temperature_1: {name: "smartli bms 1 MOS Temp 1"}
+    mos_temperature_2: {name: "smartli bms 1 MOS Temp 2"}
+    balance_temperature: {name: "smartli bms 1 Balance Temp"}
     cell_voltage_1: {name: "smartli bms 1 V Cell01"}
     cell_voltage_2: {name: "smartli bms 1 V Cell02"}
     cell_voltage_3: {name: "smartli bms 1 V Cell03"}
@@ -123,6 +188,19 @@ sensor:
     cell_min_voltage: {name: "smartli bms 2 V min"}
     cell_max_voltage: {name: "smartli bms 2 V max"}
     cell_delta_voltage: {name: "smartli bms 2 V diff"}
+    cell_average_voltage: {name: "smartli bms 2 V ave"}
+    power: {name: "smartli bms 2 power"}
+    max_temperature: {name: "smartli bms 2 Max Temp"}
+    mos_temperature: {name: "smartli bms 2 MOS Temp"}
+    cycle_count: {name: "smartli bms 2 Cycle"}
+    battery_temperature_1: {name: "smartli bms 2 Battery Temp 1"}
+    battery_temperature_2: {name: "smartli bms 2 Battery Temp 2"}
+    battery_temperature_3: {name: "smartli bms 2 Battery Temp 3"}
+    battery_temperature_4: {name: "smartli bms 2 Battery Temp 4"}
+    environment_temperature: {name: "smartli bms 2 Environment Temp"}
+    mos_temperature_1: {name: "smartli bms 2 MOS Temp 1"}
+    mos_temperature_2: {name: "smartli bms 2 MOS Temp 2"}
+    balance_temperature: {name: "smartli bms 2 Balance Temp"}
     cell_voltage_1: {name: "smartli bms 2 V Cell01"}
     cell_voltage_2: {name: "smartli bms 2 V Cell02"}
     cell_voltage_3: {name: "smartli bms 2 V Cell03"}
@@ -166,6 +244,19 @@ sensor:
     cell_min_voltage: {name: "smartli bms 3 V min"}
     cell_max_voltage: {name: "smartli bms 3 V max"}
     cell_delta_voltage: {name: "smartli bms 3 V diff"}
+    cell_average_voltage: {name: "smartli bms 3 V ave"}
+    power: {name: "smartli bms 3 power"}
+    max_temperature: {name: "smartli bms 3 Max Temp"}
+    mos_temperature: {name: "smartli bms 3 MOS Temp"}
+    cycle_count: {name: "smartli bms 3 Cycle"}
+    battery_temperature_1: {name: "smartli bms 3 Battery Temp 1"}
+    battery_temperature_2: {name: "smartli bms 3 Battery Temp 2"}
+    battery_temperature_3: {name: "smartli bms 3 Battery Temp 3"}
+    battery_temperature_4: {name: "smartli bms 3 Battery Temp 4"}
+    environment_temperature: {name: "smartli bms 3 Environment Temp"}
+    mos_temperature_1: {name: "smartli bms 3 MOS Temp 1"}
+    mos_temperature_2: {name: "smartli bms 3 MOS Temp 2"}
+    balance_temperature: {name: "smartli bms 3 Balance Temp"}
     cell_voltage_1: {name: "smartli bms 3 V Cell01"}
     cell_voltage_2: {name: "smartli bms 3 V Cell02"}
     cell_voltage_3: {name: "smartli bms 3 V Cell03"}
@@ -209,6 +300,19 @@ sensor:
     cell_min_voltage: {name: "smartli bms 4 V min"}
     cell_max_voltage: {name: "smartli bms 4 V max"}
     cell_delta_voltage: {name: "smartli bms 4 V diff"}
+    cell_average_voltage: {name: "smartli bms 4 V ave"}
+    power: {name: "smartli bms 4 power"}
+    max_temperature: {name: "smartli bms 4 Max Temp"}
+    mos_temperature: {name: "smartli bms 4 MOS Temp"}
+    cycle_count: {name: "smartli bms 4 Cycle"}
+    battery_temperature_1: {name: "smartli bms 4 Battery Temp 1"}
+    battery_temperature_2: {name: "smartli bms 4 Battery Temp 2"}
+    battery_temperature_3: {name: "smartli bms 4 Battery Temp 3"}
+    battery_temperature_4: {name: "smartli bms 4 Battery Temp 4"}
+    environment_temperature: {name: "smartli bms 4 Environment Temp"}
+    mos_temperature_1: {name: "smartli bms 4 MOS Temp 1"}
+    mos_temperature_2: {name: "smartli bms 4 MOS Temp 2"}
+    balance_temperature: {name: "smartli bms 4 Balance Temp"}
     cell_voltage_1: {name: "smartli bms 4 V Cell01"}
     cell_voltage_2: {name: "smartli bms 4 V Cell02"}
     cell_voltage_3: {name: "smartli bms 4 V Cell03"}
@@ -252,6 +356,19 @@ sensor:
     cell_min_voltage: {name: "smartli bms 5 V min"}
     cell_max_voltage: {name: "smartli bms 5 V max"}
     cell_delta_voltage: {name: "smartli bms 5 V diff"}
+    cell_average_voltage: {name: "smartli bms 5 V ave"}
+    power: {name: "smartli bms 5 power"}
+    max_temperature: {name: "smartli bms 5 Max Temp"}
+    mos_temperature: {name: "smartli bms 5 MOS Temp"}
+    cycle_count: {name: "smartli bms 5 Cycle"}
+    battery_temperature_1: {name: "smartli bms 5 Battery Temp 1"}
+    battery_temperature_2: {name: "smartli bms 5 Battery Temp 2"}
+    battery_temperature_3: {name: "smartli bms 5 Battery Temp 3"}
+    battery_temperature_4: {name: "smartli bms 5 Battery Temp 4"}
+    environment_temperature: {name: "smartli bms 5 Environment Temp"}
+    mos_temperature_1: {name: "smartli bms 5 MOS Temp 1"}
+    mos_temperature_2: {name: "smartli bms 5 MOS Temp 2"}
+    balance_temperature: {name: "smartli bms 5 Balance Temp"}
     cell_voltage_1: {name: "smartli bms 5 V Cell01"}
     cell_voltage_2: {name: "smartli bms 5 V Cell02"}
     cell_voltage_3: {name: "smartli bms 5 V Cell03"}
@@ -341,61 +458,71 @@ text_sensor:
     smartli_bms_id: smartli_hub
     address: 1
     pcb_barcode:
-      name: "smartLi bms 1 code"
+      name: "smartLi bms 1 PCB Barcode"
     pack_barcode:
       name: "SmartLi 1 Pack Barcode"
     modbus_address:
       name: "SmartLi 1 Modbus Address"
     status:
       name: "smartLi bms 1 Status"
+    mode:
+      name: "smartLi bms 1 Mode"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 2
     pcb_barcode:
-      name: "smartLi bms 2 code"
+      name: "smartLi bms 2 PCB Barcode"
     pack_barcode:
       name: "SmartLi 2 Pack Barcode"
     modbus_address:
       name: "SmartLi 2 Modbus Address"
     status:
       name: "smartLi bms 2 Status"
+    mode:
+      name: "smartLi bms 2 Mode"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 3
     pcb_barcode:
-      name: "smartli bms 3 code"
+      name: "smartli bms 3 PCB Barcode"
     pack_barcode:
       name: "SmartLi 3 Pack Barcode"
     modbus_address:
       name: "SmartLi 3 Modbus Address"
     status:
       name: "smartLi bms 3 Status"
+    mode:
+      name: "smartLi bms 3 Mode"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 4
     pcb_barcode:
-      name: "smartli bms 4 code"
+      name: "smartli bms 4 PCB Barcode"
     pack_barcode:
       name: "SmartLi 4 Pack Barcode"
     modbus_address:
       name: "SmartLi 4 Modbus Address"
     status:
       name: "smartLi bms 4 Status"
+    mode:
+      name: "smartLi bms 4 Mode"
 
   - platform: smartli_bms
     smartli_bms_id: smartli_hub
     address: 5
     pcb_barcode:
-      name: "smartli bms 5 code"
+      name: "smartli bms 5 PCB Barcode"
     pack_barcode:
       name: "SmartLi 5 Pack Barcode"
     modbus_address:
       name: "SmartLi 5 Modbus Address"
     status:
       name: "smartLi bms 5 Status"
+    mode:
+      name: "smartLi bms 5 Mode"
 
 button:
   - platform: restart

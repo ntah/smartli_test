@@ -67,6 +67,7 @@ struct SmartliPack {
   text_sensor::TextSensor *modbus_pack_barcode_sensor{nullptr};
   text_sensor::TextSensor *modbus_address_sensor{nullptr};
   text_sensor::TextSensor *status_sensor{nullptr};
+  text_sensor::TextSensor *mode_sensor{nullptr};
   std::array<uint16_t, 5> alarm_values{};
   uint32_t last_dcdc_at{0};
 
@@ -82,6 +83,12 @@ struct SmartliPack {
   sensor::Sensor *cell_min_voltage{nullptr};
   sensor::Sensor *cell_max_voltage{nullptr};
   sensor::Sensor *cell_delta_voltage{nullptr};
+  sensor::Sensor *cell_average_voltage{nullptr};
+  sensor::Sensor *power{nullptr};
+  sensor::Sensor *max_temperature{nullptr};
+  sensor::Sensor *mos_temperature{nullptr};
+  sensor::Sensor *cycle_count{nullptr};
+  std::array<sensor::Sensor *, 8> temperatures{};
   std::array<sensor::Sensor *, 15> cell_voltages{};
 
   sensor::Sensor *dcdc_bus_current{nullptr};
@@ -134,6 +141,11 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   DECLARE_SETTER(cell_min_voltage);
   DECLARE_SETTER(cell_max_voltage);
   DECLARE_SETTER(cell_delta_voltage);
+  DECLARE_SETTER(cell_average_voltage);
+  DECLARE_SETTER(power);
+  DECLARE_SETTER(max_temperature);
+  DECLARE_SETTER(mos_temperature);
+  DECLARE_SETTER(cycle_count);
   DECLARE_SETTER(dcdc_bus_current);
   DECLARE_SETTER(dcdc_discharge_bus_voltage_set);
   DECLARE_SETTER(dcdc_discharge_bus_current_set);
@@ -147,6 +159,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
 #undef DECLARE_SETTER
   void set_cell_voltage_sensor(uint8_t address, size_t index, sensor::Sensor *value);
   void set_alarm_status_sensor(uint8_t address, size_t index, sensor::Sensor *value);
+  void set_temperature_sensor(uint8_t address, size_t index,
+                              sensor::Sensor *value);
   void set_pcb_barcode_text_sensor(uint8_t address,
                                    text_sensor::TextSensor *value);
   void set_pack_barcode_text_sensor(uint8_t address,
@@ -159,6 +173,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
                                       text_sensor::TextSensor *value);
   void set_status_text_sensor(uint8_t address,
                               text_sensor::TextSensor *value);
+  void set_mode_text_sensor(uint8_t address,
+                            text_sensor::TextSensor *value);
 
  protected:
   enum class Phase : uint8_t {

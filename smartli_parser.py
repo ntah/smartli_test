@@ -47,7 +47,10 @@ def decode_uart_segments(text: str) -> list[bytes]:
             continue
 
         try:
-            decoded = ast.literal_eval(match.group(1))
+            # ESPHome uses ``\e`` for byte 0x1B. Python string literals do
+            # not recognize that escape and would preserve it as two bytes.
+            quoted = re.sub(r"(?<!\\)\\e", r"\\x1b", match.group(1))
+            decoded = ast.literal_eval(quoted)
         except (SyntaxError, ValueError) as exc:
             raise ValueError(f"Unable to decode uart_debug line: {line}") from exc
 
@@ -109,6 +112,103 @@ def read_unsigned(data: bytes) -> int:
     return int.from_bytes(data, byteorder="big", signed=False)
 
 
+def decode_dcdc_payload(payload: bytes) -> dict[str, Any]:
+    if len(payload) != 101:
+        return {}
+
+    def u16(offset: int) -> int:
+        return read_unsigned(payload[offset : offset + 2])
+
+    return {
+        "return_code": payload[0],
+        "bus_voltage_v": round(u16(1) / 100, 2),
+        "bus_current_a": round(u16(3) / 100, 2),
+        "battery_port_voltage_v": round(u16(5) / 100, 2),
+        "battery_current_a": round(u16(7) / 100, 2),
+        "bus_negative_voltage_v": round(u16(9) / 100, 2),
+        "battery_negative_voltage_v": round(u16(11) / 100, 2),
+        "discharge_bus_voltage_set_v": round(u16(13) / 100, 2),
+        "discharge_bus_current_set_percent": round(u16(15) / 100, 2),
+        "discharge_bus_power_set_percent": round(u16(17) / 100, 2),
+        "charging_battery_voltage_set_v": round(u16(19) / 100, 2),
+        "charge_current_set_percent": round(u16(21) / 100, 2),
+        "charging_battery_power_set_percent": round(u16(23) / 100, 2),
+        "protection_parameters_hex": payload[25:81].hex(" "),
+        "dsg_bus_voltage_dynamic_v": round(u16(81) / 100, 2),
+        "dsg_bus_voltage_ladder_v": round(u16(83) / 100, 2),
+        "dsg_depth_dod_percent": round(u16(85) / 100, 2),
+        "modbus_address": u16(87),
+        "vbus_set_max_autoself_v": round(u16(89) / 100, 2),
+        "trailing_data_hex": payload[91:].hex(" "),
+    }
+
+
+def parse_ascii_frame(frame: bytes) -> dict[str, Any]:
+    text = frame[1:-1].decode("ascii", errors="strict")
+    result: dict[str, Any] = {
+        "kind": "ascii",
+        "text": text,
+        "raw_hex": frame.hex(" "),
+    }
+
+    if len(text) < 16 or any(char not in "0123456789ABCDEFabcdef" for char in text):
+        return result
+
+    version = int(text[0:2], 16)
+    address = int(text[2:4], 16)
+    cid1 = int(text[4:6], 16)
+    cid2 = int(text[6:8], 16)
+    length_field = int(text[8:12], 16)
+    info_character_length = length_field & 0x0FFF
+    info_end = 12 + info_character_length
+
+    if info_end + 4 != len(text):
+        result["parse_error"] = (
+            f"Length field expects {info_character_length} INFO characters"
+        )
+        return result
+
+    info_hex = text[12:info_end]
+    transmitted_checksum = int(text[info_end : info_end + 4], 16)
+    calculated_checksum = (-sum(text[:info_end].encode("ascii"))) & 0xFFFF
+    length_checksum = (length_field >> 12) & 0x0F
+    calculated_length_checksum = (
+        -sum(int(char, 16) for char in f"{info_character_length:03X}")
+    ) & 0x0F
+
+    result.update(
+        {
+            "version": version,
+            "address": address,
+            "cid1": cid1,
+            "cid2": cid2,
+            "info_length_bytes": info_character_length // 2,
+            "info_hex": info_hex,
+            "length_checksum_valid": length_checksum
+            == calculated_length_checksum,
+            "checksum_valid": transmitted_checksum == calculated_checksum,
+        }
+    )
+
+    try:
+        payload = bytes.fromhex(info_hex)
+    except ValueError:
+        result["parse_error"] = "INFO contains invalid hexadecimal data"
+        return result
+
+    if cid1 == 0xE5 and cid2 == 0x92 and payload == b"\x01":
+        result["kind"] = "request"
+        result["decoded"] = {
+            "operation": "read_dcdc_data",
+            "submodule": payload[0],
+        }
+    elif cid1 == 0xE5 and cid2 == 0x00 and len(payload) == 101:
+        result["kind"] = "response"
+        result["decoded"] = decode_dcdc_payload(payload)
+
+    return result
+
+
 def parse_tlv_payload(payload: bytes) -> dict[str, Any]:
     fields: dict[str, Any] = {}
     offset = 0
@@ -153,11 +253,7 @@ def make_read_request(address: int, command: int = 0x01) -> bytes:
 
 def parse_frame(frame: bytes) -> dict[str, Any]:
     if all(byte in b"0123456789ABCDEFabcdef" for byte in frame[1:4]):
-        return {
-            "kind": "ascii",
-            "text": frame[1:-1].decode("ascii", errors="replace"),
-            "raw_hex": frame.hex(" "),
-        }
+        return parse_ascii_frame(frame)
 
     address = frame[1]
     command = frame[2]

@@ -3,6 +3,7 @@
 #include <array>
 #include <cstddef>
 #include <cstdint>
+#include <string>
 #include <vector>
 
 #include "esphome/components/sensor/sensor.h"
@@ -13,6 +14,49 @@
 namespace esphome {
 namespace smartli_bms {
 
+struct SmartliPack {
+  uint8_t address{0};
+  uint8_t modbus_address{0};
+  bool modbus_manual{false};
+  std::string pcb_barcode;
+  uint32_t last_dcdc_at{0};
+
+  sensor::Sensor *current{nullptr};
+  sensor::Sensor *pack_voltage{nullptr};
+  sensor::Sensor *bus_voltage{nullptr};
+  sensor::Sensor *state_of_charge{nullptr};
+  sensor::Sensor *state_of_health{nullptr};
+  sensor::Sensor *full_capacity{nullptr};
+  sensor::Sensor *remaining_capacity{nullptr};
+  sensor::Sensor *total_charged_ah{nullptr};
+  sensor::Sensor *total_discharged_ah{nullptr};
+  sensor::Sensor *cell_min_voltage{nullptr};
+  sensor::Sensor *cell_max_voltage{nullptr};
+  sensor::Sensor *cell_delta_voltage{nullptr};
+  std::array<sensor::Sensor *, 15> cell_voltages{};
+
+  sensor::Sensor *dcdc_bus_voltage{nullptr};
+  sensor::Sensor *dcdc_bus_current{nullptr};
+  sensor::Sensor *dcdc_battery_port_voltage{nullptr};
+  sensor::Sensor *dcdc_battery_current{nullptr};
+  sensor::Sensor *dcdc_bus_negative_voltage{nullptr};
+  sensor::Sensor *dcdc_battery_negative_voltage{nullptr};
+  sensor::Sensor *dcdc_discharge_bus_voltage_set{nullptr};
+  sensor::Sensor *dcdc_discharge_bus_current_set{nullptr};
+  sensor::Sensor *dcdc_discharge_bus_power_set{nullptr};
+  sensor::Sensor *dcdc_charging_battery_voltage_set{nullptr};
+  sensor::Sensor *dcdc_charge_current_set{nullptr};
+  sensor::Sensor *dcdc_charging_battery_power_set{nullptr};
+  sensor::Sensor *dcdc_bus_voltage_dynamic{nullptr};
+  sensor::Sensor *dcdc_bus_voltage_ladder{nullptr};
+  sensor::Sensor *dcdc_depth_dod{nullptr};
+  sensor::Sensor *dcdc_modbus_address{nullptr};
+  sensor::Sensor *dcdc_vbus_set_max_autoself{nullptr};
+  std::array<sensor::Sensor *, 5> alarm_status{};
+  sensor::Sensor *protection_status{nullptr};
+  sensor::Sensor *operating_status{nullptr};
+};
+
 class SmartliBms : public PollingComponent, public uart::UARTDevice {
  public:
   void setup() override;
@@ -20,58 +64,100 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void update() override;
   void dump_config() override;
 
-  void set_address(uint8_t address) { this->address_ = address; }
-  void set_flow_control_pin(InternalGPIOPin *pin) { this->flow_control_pin_ = pin; }
-
-  void set_current_sensor(sensor::Sensor *sensor) { this->current_sensor_ = sensor; }
-  void set_pack_voltage_sensor(sensor::Sensor *sensor) { this->pack_voltage_sensor_ = sensor; }
-  void set_bus_voltage_sensor(sensor::Sensor *sensor) { this->bus_voltage_sensor_ = sensor; }
-  void set_state_of_charge_sensor(sensor::Sensor *sensor) { this->state_of_charge_sensor_ = sensor; }
-  void set_state_of_health_sensor(sensor::Sensor *sensor) { this->state_of_health_sensor_ = sensor; }
-  void set_full_capacity_sensor(sensor::Sensor *sensor) { this->full_capacity_sensor_ = sensor; }
-  void set_remaining_capacity_sensor(sensor::Sensor *sensor) { this->remaining_capacity_sensor_ = sensor; }
-  void set_total_charged_ah_sensor(sensor::Sensor *sensor) { this->total_charged_ah_sensor_ = sensor; }
-  void set_total_discharged_ah_sensor(sensor::Sensor *sensor) { this->total_discharged_ah_sensor_ = sensor; }
-  void set_cell_min_voltage_sensor(sensor::Sensor *sensor) { this->cell_min_voltage_sensor_ = sensor; }
-  void set_cell_max_voltage_sensor(sensor::Sensor *sensor) { this->cell_max_voltage_sensor_ = sensor; }
-  void set_cell_delta_voltage_sensor(sensor::Sensor *sensor) { this->cell_delta_voltage_sensor_ = sensor; }
-  void set_cell_voltage_sensor(size_t index, sensor::Sensor *sensor) {
-    if (index < this->cell_voltage_sensors_.size())
-      this->cell_voltage_sensors_[index] = sensor;
+  void add_pack(uint8_t address, uint8_t modbus_address);
+  void set_dcdc_update_interval(uint32_t interval) { dcdc_update_interval_ = interval; }
+  void set_response_timeout(uint32_t timeout) { response_timeout_ = timeout; }
+  void set_discovery_range(uint8_t first, uint8_t last) {
+    discovery_min_ = first;
+    discovery_max_ = last;
   }
+  void set_flow_control_pin(InternalGPIOPin *pin) { flow_control_pin_ = pin; }
+
+#define DECLARE_SETTER(name) void set_##name##_sensor(uint8_t address, sensor::Sensor *value)
+  DECLARE_SETTER(current);
+  DECLARE_SETTER(pack_voltage);
+  DECLARE_SETTER(bus_voltage);
+  DECLARE_SETTER(state_of_charge);
+  DECLARE_SETTER(state_of_health);
+  DECLARE_SETTER(full_capacity);
+  DECLARE_SETTER(remaining_capacity);
+  DECLARE_SETTER(total_charged_ah);
+  DECLARE_SETTER(total_discharged_ah);
+  DECLARE_SETTER(cell_min_voltage);
+  DECLARE_SETTER(cell_max_voltage);
+  DECLARE_SETTER(cell_delta_voltage);
+  DECLARE_SETTER(dcdc_bus_voltage);
+  DECLARE_SETTER(dcdc_bus_current);
+  DECLARE_SETTER(dcdc_battery_port_voltage);
+  DECLARE_SETTER(dcdc_battery_current);
+  DECLARE_SETTER(dcdc_bus_negative_voltage);
+  DECLARE_SETTER(dcdc_battery_negative_voltage);
+  DECLARE_SETTER(dcdc_discharge_bus_voltage_set);
+  DECLARE_SETTER(dcdc_discharge_bus_current_set);
+  DECLARE_SETTER(dcdc_discharge_bus_power_set);
+  DECLARE_SETTER(dcdc_charging_battery_voltage_set);
+  DECLARE_SETTER(dcdc_charge_current_set);
+  DECLARE_SETTER(dcdc_charging_battery_power_set);
+  DECLARE_SETTER(dcdc_bus_voltage_dynamic);
+  DECLARE_SETTER(dcdc_bus_voltage_ladder);
+  DECLARE_SETTER(dcdc_depth_dod);
+  DECLARE_SETTER(dcdc_modbus_address);
+  DECLARE_SETTER(dcdc_vbus_set_max_autoself);
+  DECLARE_SETTER(protection_status);
+  DECLARE_SETTER(operating_status);
+#undef DECLARE_SETTER
+  void set_cell_voltage_sensor(uint8_t address, size_t index, sensor::Sensor *value);
+  void set_alarm_status_sensor(uint8_t address, size_t index, sensor::Sensor *value);
 
  protected:
-  static constexpr size_t MAX_FRAME_SIZE = 260;
-  static constexpr uint32_t FRAME_TIMEOUT_MS = 500;
+  enum class Phase : uint8_t {
+    IDLE,
+    TELEMETRY,
+    DCDC,
+    PCB_BARCODE,
+    DISCOVERY_BARCODE,
+    MODBUS_STATUS,
+  };
 
-  void send_read_request_();
+  static constexpr size_t MAX_FRAME_SIZE = 300;
+
+  SmartliPack *find_pack_(uint8_t address);
+  void begin_pack_();
+  void advance_(bool response_received);
+  void send_binary_request_(uint8_t address, uint8_t command);
+  void send_dcdc_request_(uint8_t address);
+  void send_modbus_read_(uint8_t address, uint16_t start, uint16_t count);
+  void send_bytes_(const uint8_t *data, size_t length);
   void reset_frame_();
   void process_byte_(uint8_t byte);
-  void process_frame_();
-  void parse_telemetry_(const uint8_t *payload, size_t payload_length);
+  bool process_binary_frame_();
+  bool process_ascii_frame_();
+  bool process_modbus_frame_();
+  void parse_telemetry_(SmartliPack &pack, const uint8_t *payload, size_t length);
+  void parse_dcdc_(SmartliPack &pack, const uint8_t *payload, size_t length);
+  void parse_alarm_words_(SmartliPack &pack, const uint8_t *data);
+  uint16_t crc16_(const uint8_t *data, size_t length) const;
   uint16_t read_u16_(const uint8_t *data) const;
   uint32_t read_u32_(const uint8_t *data) const;
   uint8_t field_width_(uint8_t field_id) const;
+  int8_t hex_nibble_(uint8_t value) const;
+  bool decode_hex_byte_(size_t offset, uint8_t *value) const;
+  std::string normalize_barcode_(const uint8_t *data, size_t length) const;
 
-  uint8_t address_{1};
+  std::vector<SmartliPack> packs_;
+  size_t pack_index_{0};
+  Phase phase_{Phase::IDLE};
+  uint8_t discovery_address_{0};
+  uint32_t phase_started_at_{0};
+  uint32_t response_timeout_{700};
+  uint32_t dcdc_update_interval_{60000};
+  uint8_t discovery_min_{214};
+  uint8_t discovery_max_{221};
   InternalGPIOPin *flow_control_pin_{nullptr};
   std::vector<uint8_t> frame_;
   size_t expected_frame_length_{0};
-  uint32_t last_byte_at_{0};
-
-  sensor::Sensor *current_sensor_{nullptr};
-  sensor::Sensor *pack_voltage_sensor_{nullptr};
-  sensor::Sensor *bus_voltage_sensor_{nullptr};
-  sensor::Sensor *state_of_charge_sensor_{nullptr};
-  sensor::Sensor *state_of_health_sensor_{nullptr};
-  sensor::Sensor *full_capacity_sensor_{nullptr};
-  sensor::Sensor *remaining_capacity_sensor_{nullptr};
-  sensor::Sensor *total_charged_ah_sensor_{nullptr};
-  sensor::Sensor *total_discharged_ah_sensor_{nullptr};
-  sensor::Sensor *cell_min_voltage_sensor_{nullptr};
-  sensor::Sensor *cell_max_voltage_sensor_{nullptr};
-  sensor::Sensor *cell_delta_voltage_sensor_{nullptr};
-  std::array<sensor::Sensor *, 15> cell_voltage_sensors_{};
+  bool ascii_frame_{false};
+  bool modbus_echo_{false};
 };
 
 }  // namespace smartli_bms

@@ -7,6 +7,7 @@ from . import SmartliBms
 DEPENDENCIES = ["smartli_bms"]
 
 CONF_SMARTLI_BMS_ID = "smartli_bms_id"
+CONF_ADDRESS = "address"
 CONF_CURRENT = "current"
 CONF_PACK_VOLTAGE = "pack_voltage"
 CONF_BUS_VOLTAGE = "bus_voltage"
@@ -19,6 +20,26 @@ CONF_TOTAL_DISCHARGED_AH = "total_discharged_ah"
 CONF_CELL_MIN_VOLTAGE = "cell_min_voltage"
 CONF_CELL_MAX_VOLTAGE = "cell_max_voltage"
 CONF_CELL_DELTA_VOLTAGE = "cell_delta_voltage"
+CONF_DCDC_BUS_VOLTAGE = "dcdc_bus_voltage"
+CONF_DCDC_BUS_CURRENT = "dcdc_bus_current"
+CONF_DCDC_BATTERY_PORT_VOLTAGE = "dcdc_battery_port_voltage"
+CONF_DCDC_BATTERY_CURRENT = "dcdc_battery_current"
+CONF_DCDC_BUS_NEGATIVE_VOLTAGE = "dcdc_bus_negative_voltage"
+CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE = "dcdc_battery_negative_voltage"
+CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET = "dcdc_discharge_bus_voltage_set"
+CONF_DCDC_DISCHARGE_BUS_CURRENT_SET = "dcdc_discharge_bus_current_set"
+CONF_DCDC_DISCHARGE_BUS_POWER_SET = "dcdc_discharge_bus_power_set"
+CONF_DCDC_CHARGING_BATTERY_VOLTAGE_SET = "dcdc_charging_battery_voltage_set"
+CONF_DCDC_CHARGE_CURRENT_SET = "dcdc_charge_current_set"
+CONF_DCDC_CHARGING_BATTERY_POWER_SET = "dcdc_charging_battery_power_set"
+CONF_DCDC_BUS_VOLTAGE_DYNAMIC = "dcdc_bus_voltage_dynamic"
+CONF_DCDC_BUS_VOLTAGE_LADDER = "dcdc_bus_voltage_ladder"
+CONF_DCDC_DEPTH_DOD = "dcdc_depth_dod"
+CONF_DCDC_MODBUS_ADDRESS = "dcdc_modbus_address"
+CONF_DCDC_VBUS_SET_MAX_AUTOSELF = "dcdc_vbus_set_max_autoself"
+ALARM_KEYS = [f"alarm_status_{number}" for number in range(1, 6)]
+CONF_PROTECTION_STATUS = "protection_status"
+CONF_OPERATING_STATUS = "operating_status"
 
 
 def voltage_sensor_schema(accuracy_decimals):
@@ -32,15 +53,28 @@ def voltage_sensor_schema(accuracy_decimals):
 
 CELL_KEYS = [f"cell_voltage_{number}" for number in range(1, 16)]
 
+
+def current_sensor_schema():
+    return sensor.sensor_schema(
+        unit_of_measurement="A",
+        accuracy_decimals=2,
+        device_class="current",
+        state_class="measurement",
+    )
+
+
+def percent_sensor_schema():
+    return sensor.sensor_schema(
+        unit_of_measurement="%",
+        accuracy_decimals=2,
+        state_class="measurement",
+    )
+
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_SMARTLI_BMS_ID): cv.use_id(SmartliBms),
-        cv.Optional(CONF_CURRENT): sensor.sensor_schema(
-            unit_of_measurement="A",
-            accuracy_decimals=2,
-            device_class="current",
-            state_class="measurement",
-        ),
+        cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
+        cv.Optional(CONF_CURRENT): current_sensor_schema(),
         cv.Optional(CONF_PACK_VOLTAGE): voltage_sensor_schema(2),
         cv.Optional(CONF_BUS_VOLTAGE): voltage_sensor_schema(2),
         cv.Optional(CONF_STATE_OF_CHARGE): sensor.sensor_schema(
@@ -77,6 +111,41 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_CELL_MIN_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_MAX_VOLTAGE): voltage_sensor_schema(3),
         cv.Optional(CONF_CELL_DELTA_VOLTAGE): voltage_sensor_schema(3),
+        cv.Optional(CONF_DCDC_BUS_VOLTAGE): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_BUS_CURRENT): current_sensor_schema(),
+        cv.Optional(CONF_DCDC_BATTERY_PORT_VOLTAGE): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_BATTERY_CURRENT): current_sensor_schema(),
+        cv.Optional(CONF_DCDC_BUS_NEGATIVE_VOLTAGE): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_DISCHARGE_BUS_CURRENT_SET): percent_sensor_schema(),
+        cv.Optional(CONF_DCDC_DISCHARGE_BUS_POWER_SET): percent_sensor_schema(),
+        cv.Optional(CONF_DCDC_CHARGING_BATTERY_VOLTAGE_SET): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_CHARGE_CURRENT_SET): percent_sensor_schema(),
+        cv.Optional(CONF_DCDC_CHARGING_BATTERY_POWER_SET): percent_sensor_schema(),
+        cv.Optional(CONF_DCDC_BUS_VOLTAGE_DYNAMIC): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_BUS_VOLTAGE_LADDER): voltage_sensor_schema(2),
+        cv.Optional(CONF_DCDC_DEPTH_DOD): percent_sensor_schema(),
+        cv.Optional(CONF_DCDC_MODBUS_ADDRESS): sensor.sensor_schema(
+            accuracy_decimals=0,
+            state_class="measurement",
+        ),
+        cv.Optional(CONF_DCDC_VBUS_SET_MAX_AUTOSELF): voltage_sensor_schema(2),
+        **{
+            cv.Optional(key): sensor.sensor_schema(
+                accuracy_decimals=0,
+                entity_category="diagnostic",
+            )
+            for key in ALARM_KEYS
+        },
+        cv.Optional(CONF_PROTECTION_STATUS): sensor.sensor_schema(
+            accuracy_decimals=0,
+            entity_category="diagnostic",
+        ),
+        cv.Optional(CONF_OPERATING_STATUS): sensor.sensor_schema(
+            accuracy_decimals=0,
+            entity_category="diagnostic",
+        ),
         **{
             cv.Optional(cell_key): voltage_sensor_schema(3)
             for cell_key in CELL_KEYS
@@ -87,6 +156,7 @@ CONFIG_SCHEMA = cv.Schema(
 
 async def to_code(config):
     parent = await cg.get_variable(config[CONF_SMARTLI_BMS_ID])
+    address = config[CONF_ADDRESS]
 
     setters = {
         CONF_CURRENT: "set_current_sensor",
@@ -101,14 +171,44 @@ async def to_code(config):
         CONF_CELL_MIN_VOLTAGE: "set_cell_min_voltage_sensor",
         CONF_CELL_MAX_VOLTAGE: "set_cell_max_voltage_sensor",
         CONF_CELL_DELTA_VOLTAGE: "set_cell_delta_voltage_sensor",
+        CONF_DCDC_BUS_VOLTAGE: "set_dcdc_bus_voltage_sensor",
+        CONF_DCDC_BUS_CURRENT: "set_dcdc_bus_current_sensor",
+        CONF_DCDC_BATTERY_PORT_VOLTAGE: "set_dcdc_battery_port_voltage_sensor",
+        CONF_DCDC_BATTERY_CURRENT: "set_dcdc_battery_current_sensor",
+        CONF_DCDC_BUS_NEGATIVE_VOLTAGE: "set_dcdc_bus_negative_voltage_sensor",
+        CONF_DCDC_BATTERY_NEGATIVE_VOLTAGE: "set_dcdc_battery_negative_voltage_sensor",
+        CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET: "set_dcdc_discharge_bus_voltage_set_sensor",
+        CONF_DCDC_DISCHARGE_BUS_CURRENT_SET: "set_dcdc_discharge_bus_current_set_sensor",
+        CONF_DCDC_DISCHARGE_BUS_POWER_SET: "set_dcdc_discharge_bus_power_set_sensor",
+        CONF_DCDC_CHARGING_BATTERY_VOLTAGE_SET: "set_dcdc_charging_battery_voltage_set_sensor",
+        CONF_DCDC_CHARGE_CURRENT_SET: "set_dcdc_charge_current_set_sensor",
+        CONF_DCDC_CHARGING_BATTERY_POWER_SET: "set_dcdc_charging_battery_power_set_sensor",
+        CONF_DCDC_BUS_VOLTAGE_DYNAMIC: "set_dcdc_bus_voltage_dynamic_sensor",
+        CONF_DCDC_BUS_VOLTAGE_LADDER: "set_dcdc_bus_voltage_ladder_sensor",
+        CONF_DCDC_DEPTH_DOD: "set_dcdc_depth_dod_sensor",
+        CONF_DCDC_MODBUS_ADDRESS: "set_dcdc_modbus_address_sensor",
+        CONF_DCDC_VBUS_SET_MAX_AUTOSELF: "set_dcdc_vbus_set_max_autoself_sensor",
     }
 
     for key, setter in setters.items():
         if sensor_config := config.get(key):
             sens = await sensor.new_sensor(sensor_config)
-            cg.add(getattr(parent, setter)(sens))
+            cg.add(getattr(parent, setter)(address, sens))
 
     for index, cell_key in enumerate(CELL_KEYS):
         if sensor_config := config.get(cell_key):
             sens = await sensor.new_sensor(sensor_config)
-            cg.add(parent.set_cell_voltage_sensor(index, sens))
+            cg.add(parent.set_cell_voltage_sensor(address, index, sens))
+
+    for index, alarm_key in enumerate(ALARM_KEYS):
+        if sensor_config := config.get(alarm_key):
+            sens = await sensor.new_sensor(sensor_config)
+            cg.add(parent.set_alarm_status_sensor(address, index, sens))
+
+    for key, setter in {
+        CONF_PROTECTION_STATUS: "set_protection_status_sensor",
+        CONF_OPERATING_STATUS: "set_operating_status_sensor",
+    }.items():
+        if sensor_config := config.get(key):
+            sens = await sensor.new_sensor(sensor_config)
+            cg.add(getattr(parent, setter)(address, sens))

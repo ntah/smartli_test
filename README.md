@@ -32,7 +32,32 @@ components/
 ```
 
 Gunakan `smartli-external-example.yaml` sebagai konfigurasi awal. Komponen
-saat ini bersifat read-only dan mengirim command telemetry `0x01`.
+bersifat read-only dan membaca dua kelompok data pada UART/RS485 yang sama:
+
+- Telemetri baterai biner command `0x01`, mengikuti `update_interval`.
+- Data DCDC ASCII `CID1 E5 / CID2 92`, mengikuti
+  `dcdc_update_interval` (default 60 detik).
+
+Permintaan DCDC dikirim satu detik setelah telemetri agar kedua respons tidak
+bertumpuk. Contoh YAML sudah memuat seluruh sensor DCDC yang berhasil
+dipetakan dari log aplikasi Windows.
+
+Satu instance `smartli_bms` menangani seluruh pack pada satu UART. Pack
+didaftarkan melalui `packs:` dan dipoll bergiliran agar respons tidak
+bertabrakan.
+
+Alamat Modbus ditemukan otomatis:
+
+1. Component membaca PCB barcode pack dengan command `0x42`.
+2. Alamat Modbus 214-221 dipindai melalui register `0x104D` sebanyak
+   10 register.
+3. Barcode dinormalisasi dan dicocokkan.
+4. Alamat yang cocok dipakai untuk membaca alarm, protection, dan operating
+   status pada register `0x1037` sampai `0x103D`.
+
+`modbus_address` tetap dapat diisi pada salah satu item `packs` sebagai
+override/fallback. Ini diperlukan jika firmware tertentu tidak menyediakan
+barcode yang dapat dicocokkan.
 
 Field yang sudah dipublikasikan:
 

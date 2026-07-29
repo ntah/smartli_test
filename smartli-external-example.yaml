@@ -43,15 +43,28 @@ uart:
   rx_buffer_size: 512
 
 smartli_bms:
-  id: smartli_bms_1
+  id: smartli_hub
   uart_id: smartli_uart
-  address: 1
+  packs:
+    - address: 1
+    - address: 2
+    - address: 3
+    - address: 4
+    - address: 5
+    # Opsional fallback jika auto-discovery tidak diinginkan:
+    # - address: 1
+    #   modbus_address: 217
   flow_control_pin: ${flow_control_pin}
-  update_interval: 5s
+  update_interval: 30s
+  dcdc_update_interval: 60s
+  response_timeout: 700ms
+  discovery_min_address: 214
+  discovery_max_address: 221
 
 sensor:
   - platform: smartli_bms
-    smartli_bms_id: smartli_bms_1
+    smartli_bms_id: smartli_hub
+    address: 1
     current:
       name: "SmartLi Current"
     full_capacity:
@@ -70,6 +83,54 @@ sensor:
       name: "SmartLi Total Charged Ah"
     total_discharged_ah:
       name: "SmartLi Total Discharged Ah"
+    dcdc_bus_voltage:
+      name: "SmartLi DCDC Bus Voltage"
+    dcdc_bus_current:
+      name: "SmartLi DCDC Bus Current"
+    dcdc_battery_port_voltage:
+      name: "SmartLi DCDC Battery Port Voltage"
+    dcdc_battery_current:
+      name: "SmartLi DCDC Battery Current"
+    dcdc_bus_negative_voltage:
+      name: "SmartLi DCDC Bus Negative Voltage"
+    dcdc_battery_negative_voltage:
+      name: "SmartLi DCDC Battery Negative Voltage"
+    dcdc_discharge_bus_voltage_set:
+      name: "SmartLi DCDC Discharge Bus Voltage Set"
+    dcdc_discharge_bus_current_set:
+      name: "SmartLi DCDC Discharge Bus Current Set"
+    dcdc_discharge_bus_power_set:
+      name: "SmartLi DCDC Discharge Bus Power Set"
+    dcdc_charging_battery_voltage_set:
+      name: "SmartLi DCDC Charging Battery Voltage Set"
+    dcdc_charge_current_set:
+      name: "SmartLi DCDC Charge Current Set"
+    dcdc_charging_battery_power_set:
+      name: "SmartLi DCDC Charging Battery Power Set"
+    dcdc_bus_voltage_dynamic:
+      name: "SmartLi DCDC Bus Voltage Dynamic"
+    dcdc_bus_voltage_ladder:
+      name: "SmartLi DCDC Bus Voltage Ladder"
+    dcdc_depth_dod:
+      name: "SmartLi DCDC Depth DOD"
+    dcdc_modbus_address:
+      name: "SmartLi 1 Modbus Address"
+    alarm_status_1:
+      name: "SmartLi 1 Alarm Status 1"
+    alarm_status_2:
+      name: "SmartLi 1 Alarm Status 2"
+    alarm_status_3:
+      name: "SmartLi 1 Alarm Status 3"
+    alarm_status_4:
+      name: "SmartLi 1 Alarm Status 4"
+    alarm_status_5:
+      name: "SmartLi 1 Alarm Status 5"
+    protection_status:
+      name: "SmartLi 1 Protection Status"
+    operating_status:
+      name: "SmartLi 1 Operating Status"
+    dcdc_vbus_set_max_autoself:
+      name: "SmartLi DCDC VBUS Set Max Autoself"
     cell_min_voltage:
       name: "SmartLi Cell Minimum Voltage"
     cell_max_voltage:
@@ -106,3 +167,109 @@ sensor:
       name: "SmartLi Cell 14 Voltage"
     cell_voltage_15:
       name: "SmartLi Cell 15 Voltage"
+
+  # Tambahkan sensor yang diperlukan untuk setiap pack. Semua menggunakan
+  # satu hub/UART dan dipoll secara bergiliran.
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 2
+    pack_voltage:
+      name: "SmartLi 2 Pack Voltage"
+    current:
+      name: "SmartLi 2 Current"
+    state_of_charge:
+      name: "SmartLi 2 State of Charge"
+    dcdc_modbus_address:
+      name: "SmartLi 2 Modbus Address"
+    alarm_status_1:
+      name: "SmartLi 2 Alarm Status 1"
+    alarm_status_2:
+      name: "SmartLi 2 Alarm Status 2"
+    alarm_status_3:
+      name: "SmartLi 2 Alarm Status 3"
+    alarm_status_4:
+      name: "SmartLi 2 Alarm Status 4"
+    alarm_status_5:
+      name: "SmartLi 2 Alarm Status 5"
+    protection_status:
+      name: "SmartLi 2 Protection Status"
+    operating_status:
+      name: "SmartLi 2 Operating Status"
+
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 3
+    pack_voltage:
+      name: "SmartLi 3 Pack Voltage"
+    current:
+      name: "SmartLi 3 Current"
+    state_of_charge:
+      name: "SmartLi 3 State of Charge"
+    dcdc_modbus_address:
+      name: "SmartLi 3 Modbus Address"
+    alarm_status_1:
+      name: "SmartLi 3 Alarm Status 1"
+    alarm_status_2:
+      name: "SmartLi 3 Alarm Status 2"
+    alarm_status_3:
+      name: "SmartLi 3 Alarm Status 3"
+    alarm_status_4:
+      name: "SmartLi 3 Alarm Status 4"
+    alarm_status_5:
+      name: "SmartLi 3 Alarm Status 5"
+    protection_status:
+      name: "SmartLi 3 Protection Status"
+    operating_status:
+      name: "SmartLi 3 Operating Status"
+
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 4
+    pack_voltage:
+      name: "SmartLi 4 Pack Voltage"
+    current:
+      name: "SmartLi 4 Current"
+    state_of_charge:
+      name: "SmartLi 4 State of Charge"
+    dcdc_modbus_address:
+      name: "SmartLi 4 Modbus Address"
+    alarm_status_1:
+      name: "SmartLi 4 Alarm Status 1"
+    alarm_status_2:
+      name: "SmartLi 4 Alarm Status 2"
+    alarm_status_3:
+      name: "SmartLi 4 Alarm Status 3"
+    alarm_status_4:
+      name: "SmartLi 4 Alarm Status 4"
+    alarm_status_5:
+      name: "SmartLi 4 Alarm Status 5"
+    protection_status:
+      name: "SmartLi 4 Protection Status"
+    operating_status:
+      name: "SmartLi 4 Operating Status"
+
+  - platform: smartli_bms
+    smartli_bms_id: smartli_hub
+    address: 5
+    pack_voltage:
+      name: "SmartLi 5 Pack Voltage"
+    current:
+      name: "SmartLi 5 Current"
+    state_of_charge:
+      name: "SmartLi 5 State of Charge"
+    dcdc_modbus_address:
+      name: "SmartLi 5 Modbus Address"
+    alarm_status_1:
+      name: "SmartLi 5 Alarm Status 1"
+    alarm_status_2:
+      name: "SmartLi 5 Alarm Status 2"
+    alarm_status_3:
+      name: "SmartLi 5 Alarm Status 3"
+    alarm_status_4:
+      name: "SmartLi 5 Alarm Status 4"
+    alarm_status_5:
+      name: "SmartLi 5 Alarm Status 5"
+    protection_status:
+      name: "SmartLi 5 Protection Status"
+    operating_status:
+      name: "SmartLi 5 Operating Status"

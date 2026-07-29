@@ -1,0 +1,1891 @@
+[11:16:10.377][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:10.389][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 654218ms after last send
+[11:16:10.389][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 654219ms after last send
+[11:16:10.396][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 654221ms after last send
+[11:16:10.396][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654222ms after last send
+[11:16:10.396][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 654225ms after last send
+[11:16:10.396][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654226ms after last send
+[11:16:10.413][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 654233ms after last send
+[11:16:10.413][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654235ms after last send
+[11:16:10.413][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 654241ms after last send
+[11:16:10.413][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654242ms after last send
+[11:16:10.454][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 654250ms after last send
+[11:16:10.454][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654251ms after last send
+[11:16:10.454][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 654258ms after last send
+[11:16:10.454][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 654283ms after last send
+[11:16:10.471][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 654291ms after last send
+[11:16:10.471][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654293ms after last send
+[11:16:10.471][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 654300ms after last send
+[11:16:10.471][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654301ms after last send
+[11:16:10.491][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 654308ms after last send
+[11:16:10.491][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654309ms after last send
+[11:16:10.491][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 654316ms after last send
+[11:16:10.491][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654317ms after last send
+[11:16:10.499][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDA\f\xDA\f\xDB\f\xDB\f\xDB\f\xDB\f\xDD\f\xDD\f\xDE\f\xDF\f\xDE\f\xDE\f\xE0\f\xDF\f\xE1\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:10.509][D][uart_debug:157]: <<< "\r"
+[11:16:10.521][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 654350ms after last send
+[11:16:10.523][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 654352ms after last send
+[11:16:10.528][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x138\x12\x01\x00\x00V\r"
+[11:16:10.541][V][modbus:133]: Received first byte 14 (0Xe) of 28 bytes 654370ms after last send
+[11:16:10.544][W][modbus:688]: Clearing buffer of 28 bytes - parse failed 654372ms after last send
+[11:16:10.892][D][uart_debug:157]: <<< "~\x01B\x00\xFC\r"
+[11:16:10.906][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 654732ms after last send
+[11:16:10.924][D][uart_debug:157]: <<< "~\x01B\x14  B48100B210TE7R00EJf\r"
+[11:16:10.953][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 654782ms after last send
+[11:16:11.089][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 654918ms after last send
+[11:16:11.347][D][uart_debug:157]: <<< "~\x01\xDC\x03\x06\x00\x00\xC2\r"
+[11:16:11.347][W][modbus:688]: Clearing buffer of 9 bytes - timeout after partial response 654950ms after last send
+[11:16:11.347][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 655022ms after last send
+[11:16:11.347][D][uart_debug:157]: <<< "~\x01\xDC\x98\x00\x06PDG481002409110430^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:11.432][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xCE\r"
+[11:16:11.432][W][modbus:688]: Clearing buffer of 158 bytes - timeout after partial response 655215ms after last send
+[11:16:11.567][VV][api.connection:361]: Sending keepalive PING
+[11:16:11.567][VV][api.service:013]: send_message ping_request: PingRequest {}
+[11:16:11.843][VV][api.service:020]: on_ping_response: {}
+[11:16:12.014][D][uart_debug:157]: <<< "~\x013\x00\xFE\r"
+[11:16:12.043][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 655854ms after last send
+[11:16:12.043][W][modbus:688]: Clearing buffer of 6 bytes - timeout after partial response 655872ms after last send
+[11:16:12.186][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 655899ms after last send
+[11:16:12.187][D][uart_debug:157]: <<< "~\x013\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:12.187][W][modbus:688]: Clearing buffer of 34 bytes - timeout after partial response 655956ms after last send
+[11:16:12.187][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:12.199][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 656024ms after last send
+[11:16:12.199][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 656026ms after last send
+[11:16:12.199][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 656028ms after last send
+[11:16:12.199][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656029ms after last send
+[11:16:12.218][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 656036ms after last send
+[11:16:12.218][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656038ms after last send
+[11:16:12.218][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 656045ms after last send
+[11:16:12.219][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656046ms after last send
+[11:16:12.232][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 656053ms after last send
+[11:16:12.233][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656055ms after last send
+[11:16:12.233][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 656061ms after last send
+[11:16:12.233][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656062ms after last send
+[11:16:12.274][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 656070ms after last send
+[11:16:12.275][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 656095ms after last send
+[11:16:12.275][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 656103ms after last send
+[11:16:12.275][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656104ms after last send
+[11:16:12.291][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 656111ms after last send
+[11:16:12.291][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656113ms after last send
+[11:16:12.291][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 656120ms after last send
+[11:16:12.291][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656121ms after last send
+[11:16:12.319][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 656128ms after last send
+[11:16:12.319][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656130ms after last send
+[11:16:12.320][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDA\f\xDA\f\xDB\f\xDB\f\xDC\f\xDB\f\xDC\f\xDC\f\xDD\f\xDD\f\xDE\f\xDF\f\xDF\f\xE0\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:12.320][D][uart_debug:157]: <<< "\r"
+[11:16:12.335][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 656161ms after last send
+[11:16:12.335][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 656163ms after last send
+[11:16:12.335][V][modbus:133]: Received first byte 14 (0Xe) of 24 bytes 656164ms after last send
+[11:16:12.335][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 656165ms after last send
+[11:16:12.346][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13E\x12\x01\x00\x00\x1A\r"
+[11:16:12.351][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 656180ms after last send
+[11:16:12.354][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 656182ms after last send
+[11:16:13.357][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 657184ms after last send
+[11:16:13.370][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 657186ms after last send
+[11:16:13.370][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 657192ms after last send
+[11:16:13.375][D][uart_debug:157]: <<< "~1001E5F4C0040105FCAD\r"
+[11:16:13.441][D][uart_debug:157]: <<< "~1001E500402A002020312032330000000000000000000000000000F598\r"
+[11:16:14.297][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 657299ms after last send
+[11:16:14.297][D][uart_debug:157]: <<< "~\x01B\x00\xFC\r"
+[11:16:14.297][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 658100ms after last send
+[11:16:14.297][D][uart_debug:157]: <<< "~\x01B\x14  B48100B210TE7R00EJf\r"
+[11:16:14.404][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 658150ms after last send
+[11:16:14.404][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:14.404][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 658231ms after last send
+[11:16:14.404][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 658233ms after last send
+[11:16:14.408][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 658237ms after last send
+[11:16:14.412][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658240ms after last send
+[11:16:14.416][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 658244ms after last send
+[11:16:14.418][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658247ms after last send
+[11:16:14.422][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 658251ms after last send
+[11:16:14.425][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658254ms after last send
+[11:16:14.429][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 658259ms after last send
+[11:16:14.431][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658261ms after last send
+[11:16:14.441][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 658267ms after last send
+[11:16:14.444][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658269ms after last send
+[11:16:14.450][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 658277ms after last send
+[11:16:14.474][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 658300ms after last send
+[11:16:14.480][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 658309ms after last send
+[11:16:14.482][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658311ms after last send
+[11:16:14.488][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 658317ms after last send
+[11:16:14.489][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658319ms after last send
+[11:16:14.496][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 658325ms after last send
+[11:16:14.503][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658328ms after last send
+[11:16:14.507][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 658335ms after last send
+[11:16:14.510][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658339ms after last send
+[11:16:14.516][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDA\f\xDA\f\xDB\f\xDC\f\xDC\f\xDC\f\xDD\f\xDC\f\xDE\f\xDD\f\xDF\f\xDF\f\xDF\f\xE1\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13L\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:14.528][D][uart_debug:157]: <<< "\r"
+[11:16:14.542][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 658369ms after last send
+[11:16:14.542][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 658371ms after last send
+[11:16:14.550][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13F\x12\x01\x00\x00\x14\r"
+[11:16:14.559][V][modbus:133]: Received first byte 14 (0Xe) of 28 bytes 658388ms after last send
+[11:16:14.562][W][modbus:688]: Clearing buffer of 28 bytes - parse failed 658390ms after last send
+[11:16:16.225][D][uart_debug:157]: <<< "~\x01E\x00\xFE\r"
+[11:16:16.249][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 660066ms after last send
+[11:16:16.249][D][uart_debug:157]: <<< "~\x01E\x06\x1A\a\x1D\v\x10\x14\x04\r"
+[11:16:16.269][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 660098ms after last send
+[11:16:16.462][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 660291ms after last send
+[11:16:16.467][D][uart_debug:157]: <<< "~\x01\xDC\x03\x06\x00\x00\xC2\r"
+[11:16:16.631][D][uart_debug:157]: <<< "~\x01\xDC\x98\x00\x06PDG481002409110430^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:16.665][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xCE\r"
+[11:16:16.677][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 660502ms after last send
+[11:16:16.704][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:16.716][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 660545ms after last send
+[11:16:16.719][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 660547ms after last send
+[11:16:16.722][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 660551ms after last send
+[11:16:16.725][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660554ms after last send
+[11:16:16.729][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 660558ms after last send
+[11:16:16.732][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660561ms after last send
+[11:16:16.736][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 660565ms after last send
+[11:16:16.739][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660568ms after last send
+[11:16:16.751][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 660572ms after last send
+[11:16:16.751][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660575ms after last send
+[11:16:16.751][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 660579ms after last send
+[11:16:16.754][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660581ms after last send
+[11:16:16.759][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 660588ms after last send
+[11:16:16.783][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 660612ms after last send
+[11:16:16.795][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 660621ms after last send
+[11:16:16.797][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660623ms after last send
+[11:16:16.801][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 660630ms after last send
+[11:16:16.804][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660633ms after last send
+[11:16:16.808][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 660637ms after last send
+[11:16:16.811][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660640ms after last send
+[11:16:16.816][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 660646ms after last send
+[11:16:16.819][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660648ms after last send
+[11:16:16.826][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDA\f\xDA\f\xDB\f\xDB\f\xDB\f\xDB\f\xDD\f\xDD\f\xDD\f\xDE\f\xDF\f\xDF\f\xDF\f\xDF\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:16.838][D][uart_debug:157]: <<< "\r"
+[11:16:16.851][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 660679ms after last send
+[11:16:16.856][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 660681ms after last send
+[11:16:16.856][V][modbus:133]: Received first byte 14 (0Xe) of 24 bytes 660683ms after last send
+[11:16:16.858][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 660686ms after last send
+[11:16:16.863][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13C\x12\x01\x00\x00&\r"
+[11:16:16.875][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 660704ms after last send
+[11:16:16.876][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 660706ms after last send
+[11:16:17.621][D][uart_debug:157]: <<< "~\x013\x00\xFE\r"
+[11:16:17.633][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 661462ms after last send
+[11:16:17.666][D][uart_debug:157]: <<< "~\x013\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:17.696][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 661525ms after last send
+[11:16:17.876][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:17.889][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 661716ms after last send
+[11:16:17.890][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 661718ms after last send
+[11:16:17.890][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 661719ms after last send
+[11:16:17.898][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661720ms after last send
+[11:16:17.898][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 661725ms after last send
+[11:16:17.898][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661727ms after last send
+[11:16:17.905][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 661734ms after last send
+[11:16:17.908][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661736ms after last send
+[11:16:17.913][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 661742ms after last send
+[11:16:17.916][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661745ms after last send
+[11:16:17.921][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 661751ms after last send
+[11:16:17.926][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661753ms after last send
+[11:16:17.930][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 661759ms after last send
+[11:16:17.954][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 661784ms after last send
+[11:16:17.963][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 661792ms after last send
+[11:16:17.969][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661795ms after last send
+[11:16:17.973][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 661801ms after last send
+[11:16:17.981][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661802ms after last send
+[11:16:17.981][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 661809ms after last send
+[11:16:17.984][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661812ms after last send
+[11:16:17.989][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 661817ms after last send
+[11:16:17.992][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661820ms after last send
+[11:16:17.998][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDB\f\xDA\f\xDA\f\xDB\f\xDC\f\xDC\f\xDC\f\xDE\f\xDE\f\xDD\f\xDE\f\xDF\f\xDF\f\xE0\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:18.010][D][uart_debug:157]: <<< "\r"
+[11:16:18.022][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 661851ms after last send
+[11:16:18.025][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 661853ms after last send
+[11:16:18.029][V][modbus:133]: Received first byte 14 (0Xe) of 24 bytes 661857ms after last send
+[11:16:18.032][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 661861ms after last send
+[11:16:18.037][V][sensor:077]: 'smartli-bms Uptime': Received new state 661.867004
+[11:16:18.040][V][sensor:125]: 'smartli-bms Uptime' >> 662 s
+[11:16:18.044][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13D\x12\x01\x00\x00\x1E\r"
+[11:16:18.057][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 661886ms after last send
+[11:16:18.060][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 661888ms after last send
+[11:16:18.064][V][sensor:077]: 'pzem Heap Free': Received new state 187292.000000
+[11:16:18.067][V][sensor:125]: 'pzem Heap Free' >> 187292 B
+[11:16:18.071][V][sensor:077]: 'pzem Loop Time': Received new state 36.000000
+[11:16:18.075][V][sensor:125]: 'pzem Loop Time' >> 36 ms
+[11:16:18.080][V][sensor:077]: 'pzem Heap Max Block': Received new state 110592.000000
+[11:16:18.083][V][sensor:125]: 'pzem Heap Max Block' >> 110592 B
+[11:16:18.153][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.153][VV][api.service:013]:   key: 1107883811
+[11:16:18.153][VV][api.service:013]:   state: 661.867
+[11:16:18.153][VV][api.service:013]:   missing_state: NO
+[11:16:18.153][VV][api.service:013]:  }
+[11:16:18.157][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.157][VV][api.service:013]:   key: 2472806035
+[11:16:18.157][VV][api.service:013]:   state: 187292
+[11:16:18.157][VV][api.service:013]:   missing_state: NO
+[11:16:18.157][VV][api.service:013]:  }
+[11:16:18.157][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.157][VV][api.service:013]:   key: 2743030662
+[11:16:18.157][VV][api.service:013]:   state: 36
+[11:16:18.157][VV][api.service:013]:   missing_state: NO
+[11:16:18.157][VV][api.service:013]:  }
+[11:16:18.157][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.157][VV][api.service:013]:   key: 2378285239
+[11:16:18.157][VV][api.service:013]:   state: 110592
+[11:16:18.157][VV][api.service:013]:   missing_state: NO
+[11:16:18.157][VV][api.service:013]:  }
+[11:16:18.165][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.165][VV][api.service:013]:   key: 1107883811
+[11:16:18.165][VV][api.service:013]:   state: 661.867
+[11:16:18.165][VV][api.service:013]:   missing_state: NO
+[11:16:18.165][VV][api.service:013]:  }
+[11:16:18.165][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.165][VV][api.service:013]:   key: 2472806035
+[11:16:18.165][VV][api.service:013]:   state: 187292
+[11:16:18.165][VV][api.service:013]:   missing_state: NO
+[11:16:18.165][VV][api.service:013]:  }
+[11:16:18.165][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.165][VV][api.service:013]:   key: 2743030662
+[11:16:18.165][VV][api.service:013]:   state: 36
+[11:16:18.165][VV][api.service:013]:   missing_state: NO
+[11:16:18.165][VV][api.service:013]:  }
+[11:16:18.165][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:18.165][VV][api.service:013]:   key: 2378285239
+[11:16:18.165][VV][api.service:013]:   state: 110592
+[11:16:18.165][VV][api.service:013]:   missing_state: NO
+[11:16:18.165][VV][api.service:013]:  }
+[11:16:19.372][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:19.385][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 663212ms after last send
+[11:16:19.385][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 663214ms after last send
+[11:16:19.385][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 663215ms after last send
+[11:16:19.398][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663216ms after last send
+[11:16:19.399][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 663220ms after last send
+[11:16:19.399][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663221ms after last send
+[11:16:19.399][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 663228ms after last send
+[11:16:19.415][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663230ms after last send
+[11:16:19.415][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 663237ms after last send
+[11:16:19.416][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663238ms after last send
+[11:16:19.416][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 663245ms after last send
+[11:16:19.441][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663246ms after last send
+[11:16:19.441][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 663253ms after last send
+[11:16:19.449][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 663278ms after last send
+[11:16:19.457][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 663287ms after last send
+[11:16:19.460][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663289ms after last send
+[11:16:19.467][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 663295ms after last send
+[11:16:19.473][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663297ms after last send
+[11:16:19.474][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 663303ms after last send
+[11:16:19.477][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663306ms after last send
+[11:16:19.482][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 663312ms after last send
+[11:16:19.496][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663314ms after last send
+[11:16:19.497][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDA\f\xDB\f\xDC\f\xDC\f\xDD\f\xDD\f\xDD\f\xDD\f\xDE\f\xDE\f\xDF\f\xDF\f\xE0\f\xE0\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13L\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:19.504][D][uart_debug:157]: <<< "\r"
+[11:16:19.520][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 663345ms after last send
+[11:16:19.523][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 663348ms after last send
+[11:16:19.523][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13E\x12\x01\x00\x00(\r"
+[11:16:19.535][V][modbus:133]: Received first byte 14 (0Xe) of 28 bytes 663364ms after last send
+[11:16:19.538][W][modbus:688]: Clearing buffer of 28 bytes - parse failed 663367ms after last send
+[11:16:20.881][D][uart_debug:157]: <<< "~\x04\x01\x00\xF8\r"
+[11:16:20.893][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 664722ms after last send
+[11:16:20.896][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 664724ms after last send
+[11:16:20.899][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 664728ms after last send
+[11:16:20.904][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 664731ms after last send
+[11:16:20.907][D][uart_debug:157]: <<< "~\x04\x01\x86\x01\x0F\f\xFD\r"
+[11:16:20.920][D][uart_debug:157]: <<< "\x00\f\xFE\r"
+[11:16:20.932][V][modbus:133]: Received first byte 13 (0Xd) of 8 bytes 664761ms after last send
+[11:16:20.935][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 664763ms after last send
+[11:16:20.939][V][modbus:133]: Received first byte 12 (0Xc) of 32 bytes 664767ms after last send
+[11:16:20.941][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 664770ms after last send
+[11:16:20.947][V][modbus:133]: Received first byte 5 (0X5) of 8 bytes 664774ms after last send
+[11:16:20.951][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 664778ms after last send
+[11:16:20.952][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 664780ms after last send
+[11:16:20.955][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 664784ms after last send
+[11:16:20.959][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 664788ms after last send
+[11:16:20.963][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 664791ms after last send
+[11:16:20.968][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 664797ms after last send
+[11:16:20.971][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 664799ms after last send
+[11:16:20.975][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 664805ms after last send
+[11:16:21.001][D][uart_debug:157]: <<< "\x00\f\xFE\f\xFF\f\xFE\f\xFF\f\xFE\f\xFE\f\xFF\f\xFF\f\xFF\f\xFE\f\xFE\x02\x01u0\x03\x01$\xE6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R U T S R\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00f\b\x01\x13~\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x002\x9F\f\x01\x00\x00\x1F\xEB\r"
+[11:16:21.032][D][uart_debug:157]: <<< "\x01\x00O\xCBl\x0E\x01\x00G\xCD\x18\x0F\x01\x00\t\xFD)\x10\x01\x00\x060\a\x11\x01\x13D\x12\x01\x00\x00\xFC\r"
+[11:16:21.063][W][modbus:688]: Clearing buffer of 60 bytes - timeout after partial response 664892ms after last send
+[11:16:21.532][V][sensor:077]: 'smartli-bms Wifi Signal': Received new state -53.000000
+[11:16:21.533][V][sensor:125]: 'smartli-bms Wifi Signal' >> -53 dBm
+[11:16:21.533][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 665363ms after last send
+[11:16:21.576][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 665365ms after last send
+[11:16:21.577][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 665370ms after last send
+[11:16:21.577][D][uart_debug:157]: <<< "~1004E5F4C0040105FCAA\r"
+[11:16:21.577][W][modbus:688]: Clearing buffer of 14 bytes - timeout after partial response 665406ms after last send
+[11:16:21.595][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 665416ms after last send
+[11:16:21.595][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 665417ms after last send
+[11:16:21.595][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 665424ms after last send
+[11:16:21.595][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 665425ms after last send
+[11:16:21.604][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 665433ms after last send
+[11:16:21.606][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 665435ms after last send
+[11:16:21.611][V][modbus:133]: Received first byte 50 (0X32) of 8 bytes 665441ms after last send
+[11:16:21.614][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 665443ms after last send
+[11:16:21.619][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 665449ms after last send
+[11:16:21.622][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 665452ms after last send
+[11:16:21.630][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:21.630][VV][api.service:013]:   key: 276971171
+[11:16:21.630][VV][api.service:013]:   state: -53
+[11:16:21.630][VV][api.service:013]:   missing_state: NO
+[11:16:21.630][VV][api.service:013]:  }
+[11:16:21.635][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:21.635][VV][api.service:013]:   key: 276971171
+[11:16:21.635][VV][api.service:013]:   state: -53
+[11:16:21.635][VV][api.service:013]:   missing_state: NO
+[11:16:21.635][VV][api.service:013]:  }
+[11:16:21.638][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 665464ms after last send
+[11:16:21.647][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 665470ms after last send
+[11:16:21.647][D][uart_debug:157]: <<< "~1004E500402A002020312032330000000000000000000000000000F595\r"
+[11:16:21.657][V][modbus:133]: Received first byte 48 (0X30) of 12 bytes 665486ms after last send
+[11:16:21.672][W][modbus:688]: Clearing buffer of 12 bytes - parse failed 665488ms after last send
+[11:16:21.971][D][uart_debug:157]: <<< "~\x04B\x00\xFC\r"
+[11:16:21.983][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 665812ms after last send
+[11:16:22.009][D][uart_debug:157]: <<< "~\x04B\x12B48100B210TEBL0103\xEC\r"
+[11:16:22.029][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 665858ms after last send
+[11:16:22.166][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 665993ms after last send
+[11:16:22.168][D][uart_debug:157]: <<< "~\x04\xDC\x03\x06\x00\x00\xC4\r"
+[11:16:22.330][D][uart_debug:157]: <<< "~\x04\xDC\x98\x00\x06PDG481002412090070^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:22.342][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xD4\r"
+[11:16:22.371][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 666200ms after last send
+[11:16:22.415][D][uart_debug:157]: <<< "~\x03\x01\x00\xFE\r"
+[11:16:22.429][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 666256ms after last send
+[11:16:22.432][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 666258ms after last send
+[11:16:22.432][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 666260ms after last send
+[11:16:22.436][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666262ms after last send
+[11:16:22.445][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 666268ms after last send
+[11:16:22.451][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666271ms after last send
+[11:16:22.452][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 666276ms after last send
+[11:16:22.452][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666277ms after last send
+[11:16:22.460][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 666284ms after last send
+[11:16:22.465][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666287ms after last send
+[11:16:22.466][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 666293ms after last send
+[11:16:22.466][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666296ms after last send
+[11:16:22.478][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 666301ms after last send
+[11:16:22.496][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 666317ms after last send
+[11:16:22.503][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 666326ms after last send
+[11:16:22.503][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666327ms after last send
+[11:16:22.506][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 666334ms after last send
+[11:16:22.510][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666338ms after last send
+[11:16:22.516][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 666342ms after last send
+[11:16:22.516][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666346ms after last send
+[11:16:22.523][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 666351ms after last send
+[11:16:22.526][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666353ms after last send
+[11:16:22.532][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 666359ms after last send
+[11:16:22.533][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666362ms after last send
+[11:16:22.539][D][uart_debug:157]: <<< "~\x03\x01\x86\x01\x0F\f\xDE\f\xDE\f\xDE\f\xDD\f\xDE\f\xDE\f\xDE\f\xDE\f\xDF\f\xDF\f\xDE\f\xDF\f\xE0\f\xDE\f\xDE\x02\x01u0\x03\x01\x12d\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00P R R Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x002\b\x01\x13N\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00%\xA2\f\x01\x00\x00\x180\r"
+[11:16:22.553][V][modbus:133]: Received first byte 24 (0X18) of 8 bytes 666381ms after last send
+[11:16:22.555][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 666383ms after last send
+[11:16:22.555][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 666385ms after last send
+[11:16:22.560][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 666387ms after last send
+[11:16:22.564][V][modbus:133]: Received first byte 174 (0Xae) of 8 bytes 666393ms after last send
+[11:16:22.569][D][uart_debug:157]: <<< "\x01\x006&X\x0E\x01\x003\x1F\xBC\x0F\x01\x00\ao\x05\x10\x01\x00\x04\xAE\x01\x11\x01\x13;\x12\x01\x00\x00\xF6\r"
+[11:16:22.599][W][modbus:688]: Clearing buffer of 12 bytes - timeout after partial response 666428ms after last send
+[11:16:23.024][D][uart_debug:157]: <<< "~\x033\x00\xFA\r"
+[11:16:23.040][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 666863ms after last send
+[11:16:23.052][W][modbus:688]: Clearing buffer of 6 bytes - timeout after partial response 666881ms after last send
+[11:16:23.092][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 666922ms after last send
+[11:16:23.121][D][uart_debug:157]: <<< "~\x033\x1CSD-BA430B-15S-V23-V22       \xC0\r"
+[11:16:23.151][W][modbus:688]: Clearing buffer of 34 bytes - timeout after partial response 666980ms after last send
+[11:16:23.191][D][uart_debug:157]: <<< "~\x03B\x00\xFC\r"
+[11:16:23.204][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 667033ms after last send
+[11:16:23.220][D][uart_debug:157]: <<< "~\x03B\x12B48100B210TEBC010B\x9A\r"
+[11:16:23.252][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 667078ms after last send
+[11:16:23.961][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 667790ms after last send
+[11:16:23.963][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 667792ms after last send
+[11:16:23.969][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 667798ms after last send
+[11:16:23.977][D][uart_debug:157]: <<< "~1003E5F4C0040105FCAB\r"
+[11:16:24.046][D][uart_debug:157]: <<< "~1003E500402A002020312032330000000000000000000000000000F596\r"
+[11:16:24.075][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 667905ms after last send
+[11:16:24.096][VV][api.connection:361]: Sending keepalive PING
+[11:16:24.099][VV][api.service:013]: send_message ping_request: PingRequest {}
+[11:16:24.103][VV][api.service:020]: on_ping_response: {}
+[11:16:24.392][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 668221ms after last send
+[11:16:24.479][D][uart_debug:157]: <<< "~\x03\xDC\x03\x06\x00\x00\xC2\r"
+[11:16:24.556][D][uart_debug:157]: <<< "~\x03\xDC\x98\x00\x06PDG481002503160315^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:24.581][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xDC\r"
+[11:16:24.599][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 668428ms after last send
+[11:16:24.643][D][uart_debug:157]: <<< "~\x02\x01\x00\xFC\r"
+[11:16:24.656][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 668485ms after last send
+[11:16:24.658][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 668487ms after last send
+[11:16:24.743][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 668569ms after last send
+[11:16:24.756][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668572ms after last send
+[11:16:24.756][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 668578ms after last send
+[11:16:24.756][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668579ms after last send
+[11:16:24.756][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 668586ms after last send
+[11:16:24.772][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668588ms after last send
+[11:16:24.772][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 668594ms after last send
+[11:16:24.773][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668595ms after last send
+[11:16:24.773][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 668603ms after last send
+[11:16:24.789][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668604ms after last send
+[11:16:24.789][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 668611ms after last send
+[11:16:24.806][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 668636ms after last send
+[11:16:24.817][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 668644ms after last send
+[11:16:24.820][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668647ms after last send
+[11:16:24.827][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 668653ms after last send
+[11:16:24.832][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668654ms after last send
+[11:16:24.833][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 668661ms after last send
+[11:16:24.844][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668665ms after last send
+[11:16:24.844][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 668669ms after last send
+[11:16:24.845][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668671ms after last send
+[11:16:24.850][D][uart_debug:157]: <<< "~\x02\x01\x86\x01\x0F\f\xDF\f\xDF\f\xDE\f\xDF\f\xDE\f\xDE\f\xDD\f\xDE\f\xDE\f\xDE\f\xDD\f\xDE\f\xDE\f\xDE\f\xDE\x02\x01u0\x03\x01\x16\xF6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R S R S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00W\b\x01\x13M\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00\"\xF9\f\x01\x00\x00\ez\r"
+[11:16:24.863][V][modbus:133]: Received first byte 27 (0X1b) of 8 bytes 668692ms after last send
+[11:16:24.866][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668695ms after last send
+[11:16:24.870][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 668696ms after last send
+[11:16:24.871][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 668700ms after last send
+[11:16:24.876][V][modbus:133]: Received first byte 84 (0X54) of 8 bytes 668706ms after last send
+[11:16:24.881][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 668708ms after last send
+[11:16:24.885][D][uart_debug:157]: <<< "\x01\x00>\xA1 \x0E\x01\x00O\x0F\xEC\x0F\x01\x00\x06\xE2\xAB\x10\x01\x00\x05TZ\x11\x01\x13>\x12\x01\x00\x00\\\r"
+[11:16:24.894][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 668724ms after last send
+[11:16:24.898][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 668726ms after last send
+[11:16:25.735][D][uart_debug:157]: <<< "~\x02E\x00\xFC\r"
+[11:16:25.757][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 669575ms after last send
+[11:16:25.757][D][uart_debug:157]: <<< "~\x02E\x06\x1A\a\x1D\v\x10\x1Fx\r"
+[11:16:25.814][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 669609ms after last send
+[11:16:25.925][D][uart_debug:157]: <<< "~\x023\x00\xFC\r"
+[11:16:25.967][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 669766ms after last send
+[11:16:25.967][D][uart_debug:157]: <<< "~\x023\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:26.020][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 669824ms after last send
+[11:16:26.085][D][uart_debug:157]: <<< "~\x02B\x00\xFC\r"
+[11:16:26.097][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 669926ms after last send
+[11:16:26.117][D][uart_debug:157]: <<< "~\x02B\x14  B48100B210TEC3019T\x0E\r"
+[11:16:26.147][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 669976ms after last send
+[11:16:26.216][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:26.228][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 670057ms after last send
+[11:16:26.229][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 670059ms after last send
+[11:16:26.234][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 670064ms after last send
+[11:16:26.237][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670066ms after last send
+[11:16:26.241][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 670070ms after last send
+[11:16:26.243][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670073ms after last send
+[11:16:26.248][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 670077ms after last send
+[11:16:26.252][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670079ms after last send
+[11:16:26.254][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 670083ms after last send
+[11:16:26.255][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670085ms after last send
+[11:16:26.259][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 670089ms after last send
+[11:16:26.264][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670092ms after last send
+[11:16:26.269][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 670098ms after last send
+[11:16:26.293][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 670122ms after last send
+[11:16:26.301][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 670131ms after last send
+[11:16:26.304][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670133ms after last send
+[11:16:26.310][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 670139ms after last send
+[11:16:26.312][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670142ms after last send
+[11:16:26.318][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 670148ms after last send
+[11:16:26.328][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670150ms after last send
+[11:16:26.328][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 670156ms after last send
+[11:16:26.328][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670158ms after last send
+[11:16:26.336][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xD9\f\xDA\f\xDB\f\xDB\f\xDB\f\xDC\f\xDC\f\xDD\f\xDD\f\xDD\f\xDF\f\xDE\f\xE0\f\xE0\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:26.348][D][uart_debug:157]: <<< "\r"
+[11:16:26.360][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 670190ms after last send
+[11:16:26.362][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 670192ms after last send
+[11:16:26.367][V][modbus:133]: Received first byte 14 (0Xe) of 24 bytes 670196ms after last send
+[11:16:26.370][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 670199ms after last send
+[11:16:26.375][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13>\x12\x01\x00\x00f\r"
+[11:16:26.387][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 670216ms after last send
+[11:16:26.390][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 670218ms after last send
+[11:16:27.537][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 671366ms after last send
+[11:16:27.548][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 671369ms after last send
+[11:16:27.548][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 671375ms after last send
+[11:16:27.562][D][uart_debug:157]: <<< "~1001E5F4C0040105FCAD\r"
+[11:16:27.621][D][uart_debug:157]: <<< "~1001E500402A002020312032330000000000000000000000000000F598\r"
+[11:16:27.651][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 671481ms after last send
+[11:16:27.967][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 671796ms after last send
+[11:16:28.172][D][uart_debug:157]: <<< "~\x01\xDC\x03\x06\x00\x00\xC2\r"
+[11:16:28.173][D][uart_debug:157]: <<< "~\x01\xDC\x98\x00\x06PDG481002409110430^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:28.173][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xCE\r"
+[11:16:28.173][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 672002ms after last send
+[11:16:28.213][D][uart_debug:157]: <<< "~\x01B\x00\xFC\r"
+[11:16:28.226][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 672055ms after last send
+[11:16:28.247][D][uart_debug:157]: <<< "~\x01B\x14  B48100B210TE7R00EJf\r"
+[11:16:28.276][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 672105ms after last send
+[11:16:28.343][D][uart_debug:157]: <<< "~\x05\x01\x00\xFE\r"
+[11:16:28.355][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 672185ms after last send
+[11:16:28.359][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 672188ms after last send
+[11:16:28.365][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 672195ms after last send
+[11:16:28.466][D][uart_debug:157]: <<< "~\x05\x01\x86\x01\x0F\f\xE5\f\xE6\f\xE5\f\xE6\f\xE5\f\xE5\f\xE5\f\xE5\f\xE3\f\xE6\f\xE6\f\xE7\f\xE6\f\xE5\f\xE7\x02\x01u0\x03\x01\x19\xCF\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00Q S Q Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x007\b\x01\x13Y\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x000)\f\x01\x00\x00\x1A\x11\r"
+[11:16:29.439][D][uart_debug:157]: <<< "\x01\x00Cb\x00\x0E\x01\x00?\x00\xFC\x0F\x01\x00\t~\xFA\x10\x01\x00\x05\f\x9E\x11\x01\x13A\x12\x01\x00\x00\xEE\r"
+[11:16:29.439][W][modbus:688]: Clearing buffer of 132 bytes - timeout after partial response 672357ms after last send
+[11:16:29.439][D][uart_debug:157]: <<< "~\x053\x00\xFE\r"
+[11:16:29.464][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 673280ms after last send
+[11:16:29.464][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 673285ms after last send
+[11:16:29.464][V][modbus:133]: Received first byte 65 (0X41) of 8 bytes 673293ms after last send
+[11:16:29.464][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673294ms after last send
+[11:16:29.480][V][modbus:133]: Received first byte 83 (0X53) of 8 bytes 673301ms after last send
+[11:16:29.480][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673303ms after last send
+[11:16:29.480][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 673310ms after last send
+[11:16:29.480][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673311ms after last send
+[11:16:29.516][D][uart_debug:157]: <<< "~\x053\x1CSD-BA430B-15S-V20-V21       \xC0\r"
+[11:16:29.516][V][modbus:133]: Received first byte 192 (0Xc0) of 2 bytes 673325ms after last send
+[11:16:29.516][W][modbus:688]: Clearing buffer of 2 bytes - timeout after partial response 673342ms after last send
+[11:16:29.605][D][uart_debug:157]: <<< "~\x04\x01\x00\xF8\r"
+[11:16:29.631][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 673445ms after last send
+[11:16:29.631][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 673447ms after last send
+[11:16:29.632][D][uart_debug:157]: <<< "~\x04\x01\x86\x01\x0F\r"
+[11:16:29.632][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 673460ms after last send
+[11:16:29.645][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673461ms after last send
+[11:16:29.645][D][uart_debug:157]: <<< "\x00\r"
+[11:16:29.645][V][modbus:133]: Received first byte 13 (0Xd) of 8 bytes 673475ms after last send
+[11:16:29.645][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673475ms after last send
+[11:16:29.652][V][modbus:133]: Received first byte 12 (0Xc) of 16 bytes 673477ms after last send
+[11:16:29.652][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 673479ms after last send
+[11:16:29.652][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 673481ms after last send
+[11:16:29.652][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673482ms after last send
+[11:16:29.710][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 673489ms after last send
+[11:16:29.710][W][modbus:688]: Clearing buffer of 48 bytes - parse failed 673531ms after last send
+[11:16:29.710][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 673539ms after last send
+[11:16:29.710][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673540ms after last send
+[11:16:29.740][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 673548ms after last send
+[11:16:29.740][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 673549ms after last send
+[11:16:29.740][D][uart_debug:157]: <<< "\x00\f\xFF\f\xFF\f\xFE\f\xFE\f\xFE\f\xFE\f\xFF\f\xFD\f\xFF\f\xFF\f\xFE\f\xFF\f\xFF\x02\x01u0\x03\x01$\xE6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R U T S R\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00f\b\x01\x13~\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x002\x9F\f\x01\x00\x00\x1F\xEB\r"
+[11:16:29.740][V][modbus:133]: Received first byte 31 (0X1f) of 8 bytes 673568ms after last send
+[11:16:29.967][D][uart_debug:157]: <<< "\x01\x00O\xCBl\x0E\x01\x00G\xCD\x18\x0F\x01\x00\t\xFD)\x10\x01\x00\x060\a\x11\x01\x13B\x12\x01\x00\x00\xFA\r"
+[11:16:29.967][W][modbus:688]: Clearing buffer of 36 bytes - timeout after partial response 673616ms after last send
+[11:16:30.651][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 674479ms after last send
+[11:16:30.653][D][uart_debug:157]: <<< "~\x04\xDC\x03\x06\x00\x00\xC4\r"
+[11:16:30.815][D][uart_debug:157]: <<< "~\x04\xDC\x98\x00\x06PDG481002412090070^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:30.828][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xD4\r"
+[11:16:30.856][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 674686ms after last send
+[11:16:30.890][D][uart_debug:157]: <<< "~\x04B\x00\xFC\r"
+[11:16:30.904][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 674732ms after last send
+[11:16:30.920][D][uart_debug:157]: <<< "~\x04B\x12B48100B210TEBL0103\xEC\r"
+[11:16:30.950][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 674779ms after last send
+[11:16:31.025][D][uart_debug:157]: <<< "~\x04E\x00\xF8\r"
+[11:16:31.217][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 674866ms after last send
+[11:16:31.217][D][uart_debug:157]: <<< "~\x04E\x06\x1A\a\x1D\v\x10#H\r"
+[11:16:31.217][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 674900ms after last send
+[11:16:31.217][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 675047ms after last send
+[11:16:31.301][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675049ms after last send
+[11:16:31.301][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 675055ms after last send
+[11:16:31.301][D][uart_debug:157]: <<< "~1004E5F4C0040105FCAA\r"
+[11:16:31.301][D][uart_debug:157]: <<< "~1004E500402A002020312032330000000000000000000000000000F595\r"
+[11:16:31.663][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 675161ms after last send
+[11:16:31.664][D][uart_debug:157]: <<< "~\x03\x01\x00\xFE\r"
+[11:16:31.664][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 675491ms after last send
+[11:16:31.664][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 675492ms after last send
+[11:16:31.669][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 675494ms after last send
+[11:16:31.669][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675497ms after last send
+[11:16:31.669][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 675499ms after last send
+[11:16:31.669][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675500ms after last send
+[11:16:31.677][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 675507ms after last send
+[11:16:31.680][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675510ms after last send
+[11:16:31.689][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 675516ms after last send
+[11:16:31.690][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675518ms after last send
+[11:16:31.695][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 675524ms after last send
+[11:16:31.704][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675527ms after last send
+[11:16:31.704][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 675532ms after last send
+[11:16:31.721][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 675549ms after last send
+[11:16:31.728][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 675557ms after last send
+[11:16:31.730][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675560ms after last send
+[11:16:31.736][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 675566ms after last send
+[11:16:31.738][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675568ms after last send
+[11:16:31.746][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 675574ms after last send
+[11:16:31.749][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675576ms after last send
+[11:16:31.753][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 675583ms after last send
+[11:16:31.755][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675585ms after last send
+[11:16:31.765][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 675591ms after last send
+[11:16:31.768][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675593ms after last send
+[11:16:31.773][D][uart_debug:157]: <<< "~\x03\x01\x86\x01\x0F\f\xDE\f\xDF\f\xDE\f\xDD\f\xDE\f\xDD\f\xDE\f\xDF\f\xDF\f\xDF\f\xDD\f\xDD\f\xDE\f\xDF\f\xDE\x02\x01u0\x03\x01\x12d\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00P R R Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x002\b\x01\x13N\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00%\xA2\f\x01\x00\x00\x180\r"
+[11:16:31.783][V][modbus:133]: Received first byte 24 (0X18) of 8 bytes 675613ms after last send
+[11:16:31.787][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 675616ms after last send
+[11:16:31.791][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 675620ms after last send
+[11:16:31.796][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 675623ms after last send
+[11:16:31.797][V][modbus:133]: Received first byte 174 (0Xae) of 8 bytes 675625ms after last send
+[11:16:31.808][D][uart_debug:157]: <<< "\x01\x006&X\x0E\x01\x003\x1F\xBC\x0F\x01\x00\ao\x05\x10\x01\x00\x04\xAE\x01\x11\x01\x13:\x12\x01\x00\x00\xF6\r"
+[11:16:31.833][W][modbus:688]: Clearing buffer of 12 bytes - timeout after partial response 675662ms after last send
+[11:16:32.727][D][uart_debug:157]: <<< "~\x033\x00\xFA\r"
+[11:16:32.739][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 676569ms after last send
+[11:16:32.833][D][uart_debug:157]: <<< "~\x033\x1CSD-BA430B-15S-V23-V22       \xC0\r"
+[11:16:32.833][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 676627ms after last send
+[11:16:32.890][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 676720ms after last send
+[11:16:32.894][D][uart_debug:157]: <<< "~\x03\xDC\x03\x06\x00\x00\xC2\r"
+[11:16:33.138][D][uart_debug:157]: <<< "~\x03\xDC\x98\x00\x06PDG481002503160315^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:33.139][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xDC\r"
+[11:16:33.139][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 676926ms after last send
+[11:16:33.139][D][uart_debug:157]: <<< "~\x03B\x00\xFC\r"
+[11:16:33.242][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 676980ms after last send
+[11:16:33.242][D][uart_debug:157]: <<< "~\x03B\x12B48100B210TEBC010B\x9A\r"
+[11:16:33.242][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 677025ms after last send
+[11:16:33.272][D][uart_debug:157]: <<< "~\x02\x01\x00\xFC\r"
+[11:16:33.286][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 677114ms after last send
+[11:16:33.291][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 677116ms after last send
+[11:16:33.293][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 677119ms after last send
+[11:16:33.293][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677123ms after last send
+[11:16:33.299][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 677126ms after last send
+[11:16:33.302][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677129ms after last send
+[11:16:33.302][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 677131ms after last send
+[11:16:33.307][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677134ms after last send
+[11:16:33.310][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 677137ms after last send
+[11:16:33.310][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677139ms after last send
+[11:16:33.316][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 677145ms after last send
+[11:16:33.317][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677148ms after last send
+[11:16:33.324][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 677154ms after last send
+[11:16:33.349][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 677179ms after last send
+[11:16:33.357][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 677187ms after last send
+[11:16:33.359][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677189ms after last send
+[11:16:33.365][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 677195ms after last send
+[11:16:33.369][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677198ms after last send
+[11:16:33.374][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 677204ms after last send
+[11:16:33.376][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677207ms after last send
+[11:16:33.385][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 677212ms after last send
+[11:16:33.387][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677214ms after last send
+[11:16:33.392][D][uart_debug:157]: <<< "~\x02\x01\x86\x01\x0F\f\xDF\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDD\f\xDD\f\xDD\f\xDE\f\xDD\x02\x01u0\x03\x01\x16\xF6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R S R S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00W\b\x01\x13M\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00\"\xF9\f\x01\x00\x00\ez\r"
+[11:16:33.404][V][modbus:133]: Received first byte 27 (0X1b) of 8 bytes 677234ms after last send
+[11:16:33.407][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677236ms after last send
+[11:16:33.415][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 677240ms after last send
+[11:16:33.416][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 677242ms after last send
+[11:16:33.416][V][modbus:133]: Received first byte 84 (0X54) of 8 bytes 677246ms after last send
+[11:16:33.422][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 677248ms after last send
+[11:16:33.427][D][uart_debug:157]: <<< "\x01\x00>\xA1 \x0E\x01\x00O\x0F\xEC\x0F\x01\x00\x06\xE2\xAB\x10\x01\x00\x05TZ\x11\x01\x13<\x12\x01\x00\x00T\r"
+[11:16:33.436][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 677265ms after last send
+[11:16:33.437][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 677268ms after last send
+[11:16:34.326][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 678154ms after last send
+[11:16:34.341][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 678157ms after last send
+[11:16:34.341][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 678162ms after last send
+[11:16:34.341][D][uart_debug:157]: <<< "~1002E5F4C0040105FCAC\r"
+[11:16:34.584][D][uart_debug:157]: <<< "~1002E500402A00202031205F3132335E0000000000000000000000F55E\r"
+[11:16:34.584][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 678272ms after last send
+[11:16:34.762][D][uart_debug:157]: <<< "~\x023\x00\xFC\r"
+[11:16:34.782][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 678603ms after last send
+[11:16:34.929][D][uart_debug:157]: <<< "~\x023\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:34.929][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 678660ms after last send
+[11:16:34.929][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 678755ms after last send
+[11:16:34.929][D][uart_debug:157]: <<< "~\x02\xDC\x03\x06\x00\x00\xC0\r"
+[11:16:35.095][D][uart_debug:157]: <<< "~\x02\xDC\x98\x00\x06PDG481002501220331^^^^^^^^^^^^  1 _123^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:35.168][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xC8\r"
+[11:16:35.168][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 678963ms after last send
+[11:16:35.168][D][uart_debug:157]: <<< "~\x02B\x00\xFC\r"
+[11:16:35.292][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 679009ms after last send
+[11:16:35.292][D][uart_debug:157]: <<< "~\x02B\x14  B48100B210TEC3019T\x0E\r"
+[11:16:35.292][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 679058ms after last send
+[11:16:35.292][D][uart_debug:157]: <<< "~\x02E\x00\xFC\r"
+[11:16:35.489][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 679134ms after last send
+[11:16:35.489][D][uart_debug:157]: <<< "~\x02E\x06\x1A\a\x1D\v\x10(@\r"
+[11:16:35.489][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 679168ms after last send
+[11:16:35.489][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:35.499][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 679329ms after last send
+[11:16:35.502][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 679332ms after last send
+[11:16:35.506][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 679335ms after last send
+[11:16:35.508][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679338ms after last send
+[11:16:35.513][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 679342ms after last send
+[11:16:35.516][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679345ms after last send
+[11:16:35.525][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 679347ms after last send
+[11:16:35.526][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679351ms after last send
+[11:16:35.533][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 679354ms after last send
+[11:16:35.533][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679356ms after last send
+[11:16:35.533][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 679362ms after last send
+[11:16:35.533][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679364ms after last send
+[11:16:35.540][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 679370ms after last send
+[11:16:35.565][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 679395ms after last send
+[11:16:35.573][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 679403ms after last send
+[11:16:35.575][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679406ms after last send
+[11:16:35.582][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 679412ms after last send
+[11:16:35.592][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679414ms after last send
+[11:16:35.592][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 679420ms after last send
+[11:16:35.592][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679421ms after last send
+[11:16:35.599][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 679428ms after last send
+[11:16:35.602][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679431ms after last send
+[11:16:35.616][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDA\f\xDA\f\xDB\f\xDC\f\xDB\f\xDB\f\xDC\f\xDD\f\xDD\f\xDE\f\xDE\f\xDF\f\xDF\f\xE0\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:35.622][D][uart_debug:157]: <<< "\r"
+[11:16:35.634][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 679464ms after last send
+[11:16:35.637][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 679466ms after last send
+[11:16:35.641][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x138\x12\x01\x00\x00P\r"
+[11:16:35.653][V][modbus:133]: Received first byte 14 (0Xe) of 28 bytes 679483ms after last send
+[11:16:35.656][W][modbus:688]: Clearing buffer of 28 bytes - parse failed 679485ms after last send
+[11:16:36.823][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 680650ms after last send
+[11:16:36.826][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 680653ms after last send
+[11:16:36.832][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 680659ms after last send
+[11:16:36.837][D][uart_debug:157]: <<< "~1001E5F4C0040105FCAD\r"
+[11:16:36.907][D][uart_debug:157]: <<< "~1001E500402A002020312032330000000000000000000000000000F598\r"
+[11:16:37.234][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 680766ms after last send
+[11:16:37.264][D][uart_debug:157]: <<< "~\x013\x00\xFE\r"
+[11:16:37.276][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 681106ms after last send
+[11:16:37.311][D][uart_debug:157]: <<< "~\x013\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:37.336][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 681164ms after last send
+[11:16:37.430][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 681258ms after last send
+[11:16:37.653][D][uart_debug:157]: <<< "~\x01\xDC\x03\x06\x00\x00\xC2\r"
+[11:16:37.653][D][uart_debug:157]: <<< "~\x01\xDC\x98\x00\x06PDG481002409110430^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:37.653][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xCE\r"
+[11:16:37.653][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 681463ms after last send
+[11:16:37.737][D][uart_debug:157]: <<< "~\x01B\x00\xFC\r"
+[11:16:37.737][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 681512ms after last send
+[11:16:37.737][D][uart_debug:157]: <<< "~\x01B\x14  B48100B210TE7R00EJf\r"
+[11:16:37.737][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 681562ms after last send
+[11:16:37.841][D][uart_debug:157]: <<< "~\x05\x01\x00\xFE\r"
+[11:16:37.841][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 681655ms after last send
+[11:16:37.841][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 681657ms after last send
+[11:16:37.841][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 681662ms after last send
+[11:16:37.934][D][uart_debug:157]: <<< "~\x05\x01\x86\x01\x0F\f\xE5\f\xE6\f\xE5\f\xE7\f\xE5\f\xE5\f\xE5\f\xE6\f\xE3\f\xE6\f\xE7\f\xE8\f\xE6\f\xE7\f\xE7\x02\x01u0\x03\x01\x19\xCF\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00Q S Q Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x007\b\x01\x13Y\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x000)\f\x01\x00\x00\x1A\x11\r"
+[11:16:38.368][D][uart_debug:157]: <<< "\x01\x00Cb\x00\x0E\x01\x00?\x00\xFC\x0F\x01\x00\t~\xFA\x10\x01\x00\x05\f\x9E\x11\x01\x13D\x12\x01\x00\x00\xFC\r"
+[11:16:38.368][W][modbus:688]: Clearing buffer of 132 bytes - timeout after partial response 681824ms after last send
+[11:16:38.838][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 682666ms after last send
+[11:16:38.873][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 682668ms after last send
+[11:16:38.873][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 682674ms after last send
+[11:16:38.873][D][uart_debug:157]: <<< "~1005E5F4C0040105FCA9\r"
+[11:16:38.921][D][uart_debug:157]: <<< "~1005E500402A002020312000000000000000000000000000000000F59F\r"
+[11:16:38.952][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 682782ms after last send
+[11:16:39.262][D][uart_debug:157]: <<< "~\x053\x00\xFE\r"
+[11:16:39.288][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 683101ms after last send
+[11:16:39.288][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 683103ms after last send
+[11:16:39.290][V][modbus:133]: Received first byte 65 (0X41) of 8 bytes 683110ms after last send
+[11:16:39.290][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683112ms after last send
+[11:16:39.290][V][modbus:133]: Received first byte 83 (0X53) of 8 bytes 683119ms after last send
+[11:16:39.290][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683120ms after last send
+[11:16:39.296][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 683126ms after last send
+[11:16:39.302][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683129ms after last send
+[11:16:39.307][D][uart_debug:157]: <<< "~\x053\x1CSD-BA430B-15S-V20-V21       \xC0\r"
+[11:16:39.315][V][modbus:133]: Received first byte 192 (0Xc0) of 2 bytes 683145ms after last send
+[11:16:39.334][W][modbus:688]: Clearing buffer of 2 bytes - timeout after partial response 683164ms after last send
+[11:16:39.431][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 683261ms after last send
+[11:16:39.435][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683263ms after last send
+[11:16:39.438][D][uart_debug:157]: <<< "~\x05\xDC\x03\x06\x00\x00\xCA\r"
+[11:16:39.450][V][modbus:133]: Received first byte 13 (0Xd) of 1 bytes 683280ms after last send
+[11:16:39.454][W][modbus:688]: Clearing buffer of 9 bytes - parse failed 683283ms after last send
+[11:16:39.459][V][modbus:133]: Received first byte 108 (0X6c) of 8 bytes 683290ms after last send
+[11:16:39.603][D][uart_debug:157]: <<< "~\x05\xDC\x98\x00\x06Pilih 15S apa 16S^^^^^^^^^^^^^  1 \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:39.684][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\x8C\r"
+[11:16:39.684][W][modbus:688]: Clearing buffer of 150 bytes - timeout after partial response 683479ms after last send
+[11:16:39.684][D][uart_debug:157]: <<< "~\x05B\x00\xFC\r"
+[11:16:39.684][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 683514ms after last send
+[11:16:39.691][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 683517ms after last send
+[11:16:39.695][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 683524ms after last send
+[11:16:39.699][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683528ms after last send
+[11:16:39.703][D][uart_debug:157]: <<< "~\x05B\x12B48100B210TE1600WC\xC2\r"
+[11:16:39.716][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 683546ms after last send
+[11:16:39.719][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683548ms after last send
+[11:16:39.820][D][uart_debug:157]: <<< "~\x04\x01\x00\xF8\r"
+[11:16:39.822][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 683652ms after last send
+[11:16:39.913][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 683654ms after last send
+[11:16:39.913][D][uart_debug:157]: <<< "~\x04\x01\x86\x01\x0F\r"
+[11:16:39.913][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 683743ms after last send
+[11:16:39.913][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683743ms after last send
+[11:16:39.918][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 683745ms after last send
+[11:16:39.918][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683747ms after last send
+[11:16:39.918][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 683748ms after last send
+[11:16:39.918][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683749ms after last send
+[11:16:39.937][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 683756ms after last send
+[11:16:39.937][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683757ms after last send
+[11:16:39.937][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 683764ms after last send
+[11:16:39.937][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683765ms after last send
+[11:16:39.994][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 683773ms after last send
+[11:16:39.994][W][modbus:688]: Clearing buffer of 48 bytes - parse failed 683814ms after last send
+[11:16:39.995][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 683823ms after last send
+[11:16:39.995][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683823ms after last send
+[11:16:40.004][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 683831ms after last send
+[11:16:40.007][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 683836ms after last send
+[11:16:40.012][D][uart_debug:157]: <<< "\x00\f\xFE\f\xFF\f\xFE\f\xFF\f\xFE\f\xFE\f\xFE\f\xFE\f\xFE\f\xFE\f\xFE\f\xFD\f\xFF\f\xFD\x02\x01u0\x03\x01$\xE5\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R U T S R\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00f\b\x01\x13}\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x002\x9F\f\x01\x00\x00\x1F\xEB\r"
+[11:16:40.030][V][modbus:133]: Received first byte 31 (0X1f) of 8 bytes 683854ms after last send
+[11:16:40.041][D][uart_debug:157]: <<< "\x01\x00O\xCBl\x0E\x01\x00G\xCD\x18\x0F\x01\x00\t\xFD)\x10\x01\x00\x060\a\x11\x01\x13A\x12\x01\x00\x00\x18\r"
+[11:16:40.073][W][modbus:688]: Clearing buffer of 36 bytes - timeout after partial response 683900ms after last send
+[11:16:41.135][D][uart_debug:157]: <<< "~\x04E\x00\xF8\r"
+[11:16:41.146][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 684976ms after last send
+[11:16:41.157][D][uart_debug:157]: <<< "~\x04E\x06\x1A\a\x1D\v\x10-\\\r"
+[11:16:41.184][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 685014ms after last send
+[11:16:41.330][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 685159ms after last send
+[11:16:41.331][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 685162ms after last send
+[11:16:41.339][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 685167ms after last send
+[11:16:41.345][D][uart_debug:157]: <<< "~1004E5F4C0040105FCAA\r"
+[11:16:41.413][D][uart_debug:157]: <<< "~1004E500402A002020312032330000000000000000000000000000F595\r"
+[11:16:41.443][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 685272ms after last send
+[11:16:41.753][D][uart_debug:157]: <<< "~\x043\x00\xFC\r"
+[11:16:41.765][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 685595ms after last send
+[11:16:41.795][D][uart_debug:157]: <<< "~\x043\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:41.825][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 685655ms after last send
+[11:16:41.926][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 685755ms after last send
+[11:16:41.956][D][uart_debug:157]: <<< "~\x04\xDC\x03\x06\x00\x00\xC4\r"
+[11:16:42.091][D][uart_debug:157]: <<< "~\x04\xDC\x98\x00\x06PDG481002412090070^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:42.109][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xD4\r"
+[11:16:42.135][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 685965ms after last send
+[11:16:42.163][D][uart_debug:157]: <<< "~\x04B\x00\xFC\r"
+[11:16:42.172][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 686002ms after last send
+[11:16:42.191][D][uart_debug:157]: <<< "~\x04B\x12B48100B210TEBL0103\xEC\r"
+[11:16:42.220][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 686050ms after last send
+[11:16:42.288][D][uart_debug:157]: <<< "~\x03\x01\x00\xFE\r"
+[11:16:42.298][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 686128ms after last send
+[11:16:42.300][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 686130ms after last send
+[11:16:42.305][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 686135ms after last send
+[11:16:42.308][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686137ms after last send
+[11:16:42.313][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 686141ms after last send
+[11:16:42.314][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686144ms after last send
+[11:16:42.319][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 686149ms after last send
+[11:16:42.322][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686151ms after last send
+[11:16:42.331][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 686157ms after last send
+[11:16:42.331][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686158ms after last send
+[11:16:42.336][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 686166ms after last send
+[11:16:42.339][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686168ms after last send
+[11:16:42.344][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 686174ms after last send
+[11:16:42.360][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 686190ms after last send
+[11:16:42.368][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 686198ms after last send
+[11:16:42.372][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686200ms after last send
+[11:16:42.376][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 686206ms after last send
+[11:16:42.378][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686209ms after last send
+[11:16:42.388][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 686215ms after last send
+[11:16:42.391][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686217ms after last send
+[11:16:42.395][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 686224ms after last send
+[11:16:42.396][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686227ms after last send
+[11:16:42.401][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 686232ms after last send
+[11:16:42.417][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686234ms after last send
+[11:16:42.419][D][uart_debug:157]: <<< "~\x03\x01\x86\x01\x0F\f\xDE\f\xDE\f\xDE\f\xDD\f\xDE\f\xDE\f\xDF\f\xDE\f\xE0\f\xE0\f\xDD\f\xDE\f\xE0\f\xDF\f\xDF\x02\x01u0\x03\x01\x12d\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00P R R Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x002\b\x01\x13O\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00%\xA2\f\x01\x00\x00\x180\r"
+[11:16:42.428][V][modbus:133]: Received first byte 24 (0X18) of 8 bytes 686253ms after last send
+[11:16:42.437][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 686256ms after last send
+[11:16:42.438][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 686258ms after last send
+[11:16:42.438][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 686259ms after last send
+[11:16:42.438][V][modbus:133]: Received first byte 174 (0Xae) of 8 bytes 686265ms after last send
+[11:16:42.443][D][uart_debug:157]: <<< "\x01\x006&X\x0E\x01\x003\x1F\xBC\x0F\x01\x00\ao\x05\x10\x01\x00\x04\xAE\x01\x11\x01\x13G\x12\x01\x00\x00\x98\r"
+[11:16:42.472][W][modbus:688]: Clearing buffer of 12 bytes - timeout after partial response 686302ms after last send
+[11:16:43.612][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 687441ms after last send
+[11:16:43.613][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 687444ms after last send
+[11:16:43.621][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 687450ms after last send
+[11:16:43.628][D][uart_debug:157]: <<< "~1003E5F4C0040105FCAB\r"
+[11:16:43.695][D][uart_debug:157]: <<< "~1003E500402A002020312032330000000000000000000000000000F596\r"
+[11:16:43.727][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 687556ms after last send
+[11:16:44.050][D][uart_debug:157]: <<< "~\x033\x00\xFA\r"
+[11:16:44.118][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 687891ms after last send
+[11:16:44.118][D][uart_debug:157]: <<< "~\x033\x1CSD-BA430B-15S-V23-V22       \xC0\r"
+[11:16:44.118][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 687947ms after last send
+[11:16:44.223][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 688053ms after last send
+[11:16:44.229][D][uart_debug:157]: <<< "~\x03\xDC\x03\x06\x00\x00\xC2\r"
+[11:16:44.397][D][uart_debug:157]: <<< "~\x03\xDC\x98\x00\x06PDG481002503160315^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:44.402][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xDC\r"
+[11:16:44.431][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 688261ms after last send
+[11:16:44.471][D][uart_debug:157]: <<< "~\x03B\x00\xFC\r"
+[11:16:44.475][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 688306ms after last send
+[11:16:44.491][D][uart_debug:157]: <<< "~\x03B\x12B48100B210TEBC010B\x9A\r"
+[11:16:44.522][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 688351ms after last send
+[11:16:44.603][D][uart_debug:157]: <<< "~\x02\x01\x00\xFC\r"
+[11:16:44.607][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 688435ms after last send
+[11:16:44.607][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 688437ms after last send
+[11:16:44.617][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 688440ms after last send
+[11:16:44.618][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688441ms after last send
+[11:16:44.618][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 688448ms after last send
+[11:16:44.618][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688449ms after last send
+[11:16:44.631][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 688456ms after last send
+[11:16:44.631][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688457ms after last send
+[11:16:44.635][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 688465ms after last send
+[11:16:44.637][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688468ms after last send
+[11:16:44.649][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 688473ms after last send
+[11:16:44.652][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688475ms after last send
+[11:16:44.652][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 688481ms after last send
+[11:16:44.676][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 688506ms after last send
+[11:16:44.684][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 688514ms after last send
+[11:16:44.687][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688517ms after last send
+[11:16:44.692][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 688523ms after last send
+[11:16:44.694][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688525ms after last send
+[11:16:44.701][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 688531ms after last send
+[11:16:44.708][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688534ms after last send
+[11:16:44.711][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 688541ms after last send
+[11:16:44.714][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688544ms after last send
+[11:16:44.719][D][uart_debug:157]: <<< "~\x02\x01\x86\x01\x0F\f\xDE\f\xDE\f\xDE\f\xDE\f\xDF\f\xDE\f\xDE\f\xDF\f\xDD\f\xDE\f\xDE\f\xDE\f\xDD\f\xDE\f\xDE\x02\x01u0\x03\x01\x16\xF6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R S R S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00W\b\x01\x13M\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00\"\xF9\f\x01\x00\x00\ez\r"
+[11:16:44.736][V][modbus:133]: Received first byte 27 (0X1b) of 8 bytes 688562ms after last send
+[11:16:44.736][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688565ms after last send
+[11:16:44.736][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 688566ms after last send
+[11:16:44.739][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 688568ms after last send
+[11:16:44.748][V][modbus:133]: Received first byte 84 (0X54) of 8 bytes 688573ms after last send
+[11:16:44.749][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 688576ms after last send
+[11:16:44.750][D][uart_debug:157]: <<< "\x01\x00>\xA1 \x0E\x01\x00O\x0F\xEC\x0F\x01\x00\x06\xE2\xAB\x10\x01\x00\x05TZ\x11\x01\x13=\x12\x01\x00\x00P\r"
+[11:16:44.762][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 688592ms after last send
+[11:16:44.770][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 688594ms after last send
+[11:16:46.026][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 689855ms after last send
+[11:16:46.027][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 689857ms after last send
+[11:16:46.070][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 689863ms after last send
+[11:16:46.071][D][uart_debug:157]: <<< "~1002E5F4C0040105FCAC\r"
+[11:16:46.110][D][uart_debug:157]: <<< "~1002E500402A00202031205F3132335E0000000000000000000000F55E\r"
+[11:16:46.141][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 689971ms after last send
+[11:16:47.579][D][uart_debug:157]: <<< "~\x02E\x00\xFC\r"
+[11:16:47.607][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 691422ms after last send
+[11:16:47.607][D][uart_debug:157]: <<< "~\x02E\x06\x1A\a\x1D\v\x105H\r"
+[11:16:47.631][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 691461ms after last send
+[11:16:47.767][D][uart_debug:157]: <<< "~\x023\x00\xFC\r"
+[11:16:47.817][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 691608ms after last send
+[11:16:47.817][D][uart_debug:157]: <<< "~\x023\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:47.836][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 691666ms after last send
+[11:16:47.943][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 691770ms after last send
+[11:16:48.041][D][uart_debug:157]: <<< "~\x02\xDC\x03\x06\x00\x00\xC0\r"
+[11:16:48.041][V][sensor:077]: 'smartli-bms Uptime': Received new state 691.867004
+[11:16:48.041][V][sensor:125]: 'smartli-bms Uptime' >> 692 s
+[11:16:48.110][D][uart_debug:157]: <<< "~\x02\xDC\x98\x00\x06PDG481002501220331^^^^^^^^^^^^  1 _123^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:48.123][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xC8\r"
+[11:16:48.139][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:48.139][VV][api.service:013]:   key: 1107883811
+[11:16:48.139][VV][api.service:013]:   state: 691.867
+[11:16:48.139][VV][api.service:013]:   missing_state: NO
+[11:16:48.139][VV][api.service:013]:  }
+[11:16:48.144][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:48.144][VV][api.service:013]:   key: 1107883811
+[11:16:48.144][VV][api.service:013]:   state: 691.867
+[11:16:48.144][VV][api.service:013]:   missing_state: NO
+[11:16:48.144][VV][api.service:013]:  }
+[11:16:48.163][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 691994ms after last send
+[11:16:48.178][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:16:48.192][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 692020ms after last send
+[11:16:48.197][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 692023ms after last send
+[11:16:48.197][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 692027ms after last send
+[11:16:48.201][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692030ms after last send
+[11:16:48.206][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 692034ms after last send
+[11:16:48.210][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692037ms after last send
+[11:16:48.210][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 692039ms after last send
+[11:16:48.213][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692042ms after last send
+[11:16:48.219][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 692047ms after last send
+[11:16:48.224][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692050ms after last send
+[11:16:48.227][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 692056ms after last send
+[11:16:48.227][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692058ms after last send
+[11:16:48.233][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 692063ms after last send
+[11:16:48.259][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 692088ms after last send
+[11:16:48.266][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 692096ms after last send
+[11:16:48.269][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692099ms after last send
+[11:16:48.274][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 692105ms after last send
+[11:16:48.277][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692107ms after last send
+[11:16:48.283][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 692113ms after last send
+[11:16:48.289][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692115ms after last send
+[11:16:48.294][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 692121ms after last send
+[11:16:48.300][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692126ms after last send
+[11:16:48.303][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDA\f\xDA\f\xD9\f\xDB\f\xDC\f\xDC\f\xDC\f\xDC\f\xDD\f\xDE\f\xDE\f\xDE\f\xDF\f\xE0\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:16:48.315][D][uart_debug:157]: <<< "\r"
+[11:16:48.335][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 692158ms after last send
+[11:16:48.339][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 692161ms after last send
+[11:16:48.339][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x136\x12\x01\x00\x00^\r"
+[11:16:48.343][V][modbus:133]: Received first byte 14 (0Xe) of 28 bytes 692174ms after last send
+[11:16:48.348][W][modbus:688]: Clearing buffer of 28 bytes - parse failed 692176ms after last send
+[11:16:50.024][D][uart_debug:157]: <<< "~\x01B\x00\xFC\r"
+[11:16:50.074][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 693866ms after last send
+[11:16:50.074][D][uart_debug:157]: <<< "~\x01B\x14  B48100B210TE7R00EJf\r"
+[11:16:50.086][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 693916ms after last send
+[11:16:50.151][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 693981ms after last send
+[11:16:50.154][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 693983ms after last send
+[11:16:50.158][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 693989ms after last send
+[11:16:50.167][D][uart_debug:157]: <<< "~1001E5F4C0040105FCAD\r"
+[11:16:50.238][D][uart_debug:157]: <<< "~1001E500402A002020312032330000000000000000000000000000F598\r"
+[11:16:50.279][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 694097ms after last send
+[11:16:50.592][D][uart_debug:157]: <<< "~\x013\x00\xFE\r"
+[11:16:50.600][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 694430ms after last send
+[11:16:50.632][D][uart_debug:157]: <<< "~\x013\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:50.662][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 694492ms after last send
+[11:16:50.756][D][uart_debug:157]: <<< "~\x01E\x00\xFE\r"
+[11:16:50.770][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 694600ms after last send
+[11:16:50.795][D][uart_debug:157]: <<< "~\x01E\x06\x1A\a\x1D\v\x106H\r"
+[11:16:50.808][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 694636ms after last send
+[11:16:50.959][D][uart_debug:157]: <<< "~\x05\x01\x00\xFE\r"
+[11:16:50.971][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 694801ms after last send
+[11:16:51.002][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 694804ms after last send
+[11:16:51.002][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 694811ms after last send
+[11:16:51.083][D][uart_debug:157]: <<< "~\x05\x01\x86\x01\x0F\f\xE5\f\xE6\f\xE5\f\xE6\f\xE5\f\xE5\f\xE5\f\xE6\f\xE4\f\xE5\f\xE6\f\xE6\f\xE5\f\xE6\f\xE6\x02\x01u0\x03\x01\x19\xCF\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00Q S Q Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x007\b\x01\x13X\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x000)\f\x01\x00\x00\x1A\x11\r"
+[11:16:51.112][D][uart_debug:157]: <<< "\x01\x00Cb\x00\x0E\x01\x00?\x00\xFC\x0F\x01\x00\t~\xFA\x10\x01\x00\x05\f\x9E\x11\x01\x13D\x12\x01\x00\x00\xEC\r"
+[11:16:51.149][W][modbus:688]: Clearing buffer of 132 bytes - timeout after partial response 694974ms after last send
+[11:16:51.528][V][sensor:077]: 'smartli-bms Wifi Signal': Received new state -52.000000
+[11:16:51.630][V][sensor:125]: 'smartli-bms Wifi Signal' >> -52 dBm
+[11:16:51.630][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:51.630][VV][api.service:013]:   key: 276971171
+[11:16:51.630][VV][api.service:013]:   state: -52
+[11:16:51.630][VV][api.service:013]:   missing_state: NO
+[11:16:51.630][VV][api.service:013]:  }
+[11:16:51.792][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:16:51.792][VV][api.service:013]:   key: 276971171
+[11:16:51.792][VV][api.service:013]:   state: -52
+[11:16:51.792][VV][api.service:013]:   missing_state: NO
+[11:16:51.792][VV][api.service:013]:  }
+[11:16:52.786][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 696614ms after last send
+[11:16:52.789][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 696617ms after last send
+[11:16:52.789][D][uart_debug:157]: <<< "~\x05\xDC\x03\x06\x00\x00\xCA\r"
+[11:16:52.851][V][modbus:133]: Received first byte 13 (0Xd) of 1 bytes 696632ms after last send
+[11:16:52.851][W][modbus:688]: Clearing buffer of 9 bytes - parse failed 696635ms after last send
+[11:16:52.851][V][modbus:133]: Received first byte 108 (0X6c) of 8 bytes 696637ms after last send
+[11:16:52.948][D][uart_debug:157]: <<< "~\x05\xDC\x98\x00\x06Pilih 15S apa 16S^^^^^^^^^^^^^  1 \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:52.967][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\x8C\r"
+[11:16:52.995][W][modbus:688]: Clearing buffer of 150 bytes - timeout after partial response 696826ms after last send
+[11:16:53.019][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 696849ms after last send
+[11:16:53.020][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 696851ms after last send
+[11:16:53.027][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 696857ms after last send
+[11:16:53.035][D][uart_debug:157]: <<< "~1005E5F4C0040105FCA9\r"
+[11:16:53.112][D][uart_debug:157]: <<< "~1005E500402A002020312000000000000000000000000000000000F59F\r"
+[11:16:53.135][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 696965ms after last send
+[11:16:53.445][D][uart_debug:157]: <<< "~\x05B\x00\xFC\r"
+[11:16:53.464][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 697287ms after last send
+[11:16:53.464][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 697288ms after last send
+[11:16:53.464][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 697295ms after last send
+[11:16:53.467][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 697297ms after last send
+[11:16:53.477][D][uart_debug:157]: <<< "~\x05B\x12B48100B210TE1600WC\xC2\r"
+[11:16:53.485][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 697316ms after last send
+[11:16:53.487][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 697318ms after last send
+[11:16:53.571][D][uart_debug:157]: <<< "~\x04\x01\x00\xF8\r"
+[11:16:53.584][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 697412ms after last send
+[11:16:53.584][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 697414ms after last send
+[11:16:53.584][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 697415ms after last send
+[11:16:53.617][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 697416ms after last send
+[11:16:53.617][D][uart_debug:157]: <<< "~\x04\x01\x86\x01\x0F\f\xFF\f\xFF\f\xFE\r"
+[11:16:53.617][D][uart_debug:157]: <<< "\x00\r"
+[11:16:53.617][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 697442ms after last send
+[11:16:53.637][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 697444ms after last send
+[11:16:53.637][D][uart_debug:157]: <<< "\x00\f\xFE\f\xFF\f\xFF\r"
+[11:16:53.637][D][uart_debug:157]: <<< "\x00\f\xFE\r"
+[11:16:53.637][D][uart_debug:157]: <<< "\x00\r"
+[11:16:53.663][V][modbus:133]: Received first byte 12 (0Xc) of 24 bytes 697480ms after last send
+[11:16:53.663][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 697482ms after last send
+[11:16:53.663][V][modbus:133]: Received first byte 3 (0X3) of 32 bytes 697483ms after last send
+[11:16:53.663][W][modbus:688]: Clearing buffer of 48 bytes - parse failed 697494ms after last send
+[11:16:53.680][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 697502ms after last send
+[11:16:53.680][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 697504ms after last send
+[11:16:53.681][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 697511ms after last send
+[11:16:53.681][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 697513ms after last send
+[11:16:53.689][D][uart_debug:157]: <<< "\x00\f\xFE\f\xFF\f\xFE\x02\x01u0\x03\x01$\xE5\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R U T S R\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00f\b\x01\x13~\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x002\x9F\f\x01\x00\x00\x1F\xEB\r"
+[11:16:53.702][V][modbus:133]: Received first byte 31 (0X1f) of 8 bytes 697532ms after last send
+[11:16:53.722][D][uart_debug:157]: <<< "\x01\x00O\xCBl\x0E\x01\x00G\xCD\x18\x0F\x01\x00\t\xFD)\x10\x01\x00\x060\a\x11\x01\x13F\x12\x01\x00\x00\xF6\r"
+[11:16:53.750][W][modbus:688]: Clearing buffer of 36 bytes - timeout after partial response 697580ms after last send
+[11:16:55.442][D][uart_debug:157]: <<< "~\x043\x00\xFC\r"
+[11:16:55.519][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 699284ms after last send
+[11:16:55.519][D][uart_debug:157]: <<< "~\x043\x1CSD-BA430-15S-V23-V22        D\r"
+[11:16:55.519][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 699345ms after last send
+[11:16:55.614][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 699442ms after last send
+[11:16:55.629][D][uart_debug:157]: <<< "~\x04\xDC\x03\x06\x00\x00\xC4\r"
+[11:16:55.777][D][uart_debug:157]: <<< "~\x04\xDC\x98\x00\x06PDG481002412090070^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:16:55.789][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xD4\r"
+[11:16:55.832][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 699649ms after last send
+[11:16:56.502][D][uart_debug:157]: <<< "~\x03\x01\x00\xFE\r"
+[11:16:56.514][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 700345ms after last send
+[11:16:56.514][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 700346ms after last send
+[11:16:56.522][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 700348ms after last send
+[11:16:56.522][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700349ms after last send
+[11:16:56.522][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 700353ms after last send
+[11:16:56.522][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700354ms after last send
+[11:16:56.539][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 700361ms after last send
+[11:16:56.539][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700363ms after last send
+[11:16:56.539][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 700370ms after last send
+[11:16:56.539][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700371ms after last send
+[11:16:56.552][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 700378ms after last send
+[11:16:56.553][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700379ms after last send
+[11:16:56.560][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 700386ms after last send
+[11:16:56.572][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 700403ms after last send
+[11:16:56.583][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 700411ms after last send
+[11:16:56.590][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700414ms after last send
+[11:16:56.593][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 700420ms after last send
+[11:16:56.593][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700424ms after last send
+[11:16:56.598][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 700429ms after last send
+[11:16:56.601][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700431ms after last send
+[11:16:56.606][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 700436ms after last send
+[11:16:56.609][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700439ms after last send
+[11:16:56.614][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 700445ms after last send
+[11:16:56.618][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700447ms after last send
+[11:16:56.624][D][uart_debug:157]: <<< "~\x03\x01\x86\x01\x0F\f\xDD\f\xDE\f\xDE\f\xDE\f\xDC\f\xDE\f\xDF\f\xDF\f\xDF\f\xDF\f\xDE\f\xDE\f\xE0\f\xE0\f\xDF\x02\x01u0\x03\x01\x12d\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00P S R Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x002\b\x01\x13O\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00%\xA2\f\x01\x00\x00\x180\r"
+[11:16:56.639][V][modbus:133]: Received first byte 24 (0X18) of 8 bytes 700467ms after last send
+[11:16:56.641][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 700470ms after last send
+[11:16:56.641][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 700471ms after last send
+[11:16:56.645][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 700473ms after last send
+[11:16:56.648][V][modbus:133]: Received first byte 174 (0Xae) of 8 bytes 700478ms after last send
+[11:16:56.654][D][uart_debug:157]: <<< "\x01\x006&X\x0E\x01\x003\x1F\xBC\x0F\x01\x00\ao\x05\x10\x01\x00\x04\xAE\x01\x11\x01\x13A\x12\x01\x00\x00\xBE\r"
+[11:16:56.686][W][modbus:688]: Clearing buffer of 12 bytes - timeout after partial response 700514ms after last send
+[11:16:57.968][D][uart_debug:157]: <<< "~\x03B\x00\xFC\r"
+[11:16:57.980][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 701811ms after last send
+[11:16:57.993][D][uart_debug:157]: <<< "~\x03B\x12B48100B210TEBC010B\x9A\r"
+[11:16:58.030][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 701853ms after last send
+[11:16:58.100][D][uart_debug:157]: <<< "~\x03E\x00\xFE\r"
+[11:16:58.111][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 701942ms after last send
+[11:16:58.296][D][uart_debug:157]: <<< "~\x03E\x06\x1A\a\x1D\v\x11\x02\x0E\r"
+[11:16:58.296][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 701977ms after last send
+[11:16:58.296][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 702124ms after last send
+[11:16:58.296][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 702125ms after last send
+[11:16:58.413][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 702132ms after last send
+[11:16:58.413][D][uart_debug:157]: <<< "~1003E5F4C0040105FCAB\r"
+[11:16:58.413][D][uart_debug:157]: <<< "~1003E500402A002020312032330000000000000000000000000000F596\r"
+[11:16:58.413][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 702237ms after last send
+[11:17:00.184][D][uart_debug:157]: <<< "~\x033\x00\xFA\r"
+[11:17:00.257][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 704028ms after last send
+[11:17:00.257][D][uart_debug:157]: <<< "~\x033\x1CSD-BA430B-15S-V23-V22       \xC0\r"
+[11:17:00.257][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 704087ms after last send
+[11:17:00.397][D][uart_debug:157]: <<< "~\x02\x01\x00\xFC\r"
+[11:17:00.397][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 704195ms after last send
+[11:17:00.397][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 704196ms after last send
+[11:17:00.397][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 704228ms after last send
+[11:17:00.413][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704230ms after last send
+[11:17:00.413][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 704236ms after last send
+[11:17:00.413][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704237ms after last send
+[11:17:00.413][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 704244ms after last send
+[11:17:00.429][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704246ms after last send
+[11:17:00.429][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 704253ms after last send
+[11:17:00.430][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704254ms after last send
+[11:17:00.430][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 704261ms after last send
+[11:17:00.459][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704262ms after last send
+[11:17:00.459][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 704269ms after last send
+[11:17:00.464][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 704295ms after last send
+[11:17:00.474][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 704303ms after last send
+[11:17:00.478][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704305ms after last send
+[11:17:00.481][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 704311ms after last send
+[11:17:00.486][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704315ms after last send
+[11:17:00.490][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 704320ms after last send
+[11:17:00.493][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704323ms after last send
+[11:17:00.498][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 704328ms after last send
+[11:17:00.501][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704331ms after last send
+[11:17:00.507][D][uart_debug:157]: <<< "~\x02\x01\x86\x01\x0F\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDD\f\xDE\f\xDD\f\xDD\f\xDD\f\xDD\f\xDD\x02\x01u0\x03\x01\x16\xF6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R S R S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00W\b\x01\x13L\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00\"\xF9\f\x01\x00\x00\ez\r"
+[11:17:00.523][V][modbus:133]: Received first byte 27 (0X1b) of 8 bytes 704350ms after last send
+[11:17:00.528][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704353ms after last send
+[11:17:00.528][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 704355ms after last send
+[11:17:00.528][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 704356ms after last send
+[11:17:00.531][V][modbus:133]: Received first byte 84 (0X54) of 8 bytes 704361ms after last send
+[11:17:00.534][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 704364ms after last send
+[11:17:00.539][D][uart_debug:157]: <<< "\x01\x00>\xA1 \x0E\x01\x00O\x0F\xEC\x0F\x01\x00\x06\xE2\xAB\x10\x01\x00\x05TZ\x11\x01\x13?\x12\x01\x00\x00T\r"
+[11:17:00.551][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 704382ms after last send
+[11:17:00.554][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 704384ms after last send
+[11:17:02.350][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 706180ms after last send
+[11:17:02.520][D][uart_debug:157]: <<< "~\x02\xDC\x03\x06\x00\x00\xC0\r"
+[11:17:02.520][D][uart_debug:157]: <<< "~\x02\xDC\x98\x00\x06PDG481002501220331^^^^^^^^^^^^  1 _123^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:02.611][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xC8\r"
+[11:17:02.611][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 706392ms after last send
+[11:17:02.611][D][uart_debug:157]: <<< "~\x02E\x00\xFC\r"
+[11:17:02.611][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 706441ms after last send
+[11:17:02.637][D][uart_debug:157]: <<< "~\x02E\x06\x1A\a\x1D\v\x11\b\x00\r"
+[11:17:02.652][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 706482ms after last send
+[11:17:02.786][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 706617ms after last send
+[11:17:02.790][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 706619ms after last send
+[11:17:02.899][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 706625ms after last send
+[11:17:02.899][D][uart_debug:157]: <<< "~1002E5F4C0040105FCAC\r"
+[11:17:02.899][D][uart_debug:157]: <<< "~1002E500402A00202031205F3132335E0000000000000000000000F55E\r"
+[11:17:02.899][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 706729ms after last send
+[11:17:03.217][D][uart_debug:157]: <<< "~\x02B\x00\xFC\r"
+[11:17:03.235][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 707057ms after last send
+[11:17:03.245][D][uart_debug:157]: <<< "~\x02B\x14  B48100B210TEC3019T\x0E\r"
+[11:17:03.274][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 707105ms after last send
+[11:17:03.366][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:17:03.366][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 707191ms after last send
+[11:17:03.366][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 707193ms after last send
+[11:17:03.366][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 707195ms after last send
+[11:17:03.376][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707197ms after last send
+[11:17:03.376][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 707200ms after last send
+[11:17:03.376][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707201ms after last send
+[11:17:03.376][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 707208ms after last send
+[11:17:03.393][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707209ms after last send
+[11:17:03.393][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 707216ms after last send
+[11:17:03.393][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707217ms after last send
+[11:17:03.393][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 707225ms after last send
+[11:17:03.435][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707226ms after last send
+[11:17:03.435][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 707233ms after last send
+[11:17:03.435][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 707258ms after last send
+[11:17:03.435][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 707266ms after last send
+[11:17:03.452][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707268ms after last send
+[11:17:03.452][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 707275ms after last send
+[11:17:03.452][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707276ms after last send
+[11:17:03.452][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 707283ms after last send
+[11:17:03.470][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707285ms after last send
+[11:17:03.470][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 707291ms after last send
+[11:17:03.470][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707292ms after last send
+[11:17:03.470][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xDB\f\xDB\f\xDB\f\xDB\f\xDC\f\xDB\f\xDD\f\xDE\f\xDE\f\xDD\f\xDE\f\xDF\f\xDF\f\xE0\f\xE1\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13L\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:17:03.503][D][uart_debug:157]: <<< "\r"
+[11:17:03.503][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 707325ms after last send
+[11:17:03.503][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 707326ms after last send
+[11:17:03.503][V][modbus:133]: Received first byte 14 (0Xe) of 24 bytes 707327ms after last send
+[11:17:03.512][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 707329ms after last send
+[11:17:03.512][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13B\x12\x01\x00\x00\x1E\r"
+[11:17:03.512][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 707344ms after last send
+[11:17:03.512][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 707344ms after last send
+[11:17:05.426][D][uart_debug:157]: <<< "~\x013\x00\xFE\r"
+[11:17:05.492][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 709267ms after last send
+[11:17:05.492][D][uart_debug:157]: <<< "~\x013\x1CSD-BA430-15S-V23-V22        D\r"
+[11:17:05.492][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 709322ms after last send
+[11:17:05.787][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 709428ms after last send
+[11:17:05.787][D][uart_debug:157]: <<< "~\x01\xDC\x03\x06\x00\x00\xC2\r"
+[11:17:05.787][D][uart_debug:157]: <<< "~\x01\xDC\x98\x00\x06PDG481002409110430^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:05.787][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xCE\r"
+[11:17:05.867][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 709636ms after last send
+[11:17:05.867][D][uart_debug:157]: <<< "~\x01B\x00\xFC\r"
+[11:17:05.867][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 709675ms after last send
+[11:17:05.867][D][uart_debug:157]: <<< "~\x01B\x14  B48100B210TE7R00EJf\r"
+[11:17:05.908][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 709724ms after last send
+[11:17:05.964][D][uart_debug:157]: <<< "~\x01E\x00\xFE\r"
+[11:17:05.980][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 709807ms after last send
+[11:17:05.980][D][uart_debug:157]: <<< "~\x01E\x06\x1A\a\x1D\v\x11\t\x02\r"
+[11:17:06.170][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 709840ms after last send
+[11:17:06.170][D][uart_debug:157]: <<< "~\x05\x01\x00\xFE\r"
+[11:17:06.170][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 709998ms after last send
+[11:17:06.170][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 710000ms after last send
+[11:17:06.219][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 710008ms after last send
+[11:17:06.279][D][uart_debug:157]: <<< "~\x05\x01\x86\x01\x0F\f\xE5\f\xE5\f\xE5\f\xE6\f\xE5\f\xE6\f\xE5\f\xE6\f\xE4\f\xE6\f\xE6\f\xE7\f\xE6\f\xE6\f\xE7\x02\x01u0\x03\x01\x19\xCF\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00Q S Q Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x007\b\x01\x13Y\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x000)\f\x01\x00\x00\x1A\x11\r"
+[11:17:06.340][D][uart_debug:157]: <<< "\x01\x00Cb\x00\x0E\x01\x00?\x00\xFC\x0F\x01\x00\t~\xFA\x10\x01\x00\x05\f\x9E\x11\x01\x13E\x12\x01\x00\x00\xF6\r"
+[11:17:06.340][W][modbus:688]: Clearing buffer of 132 bytes - timeout after partial response 710170ms after last send
+[11:17:08.377][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 712187ms after last send
+[11:17:08.377][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 712191ms after last send
+[11:17:08.377][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 712196ms after last send
+[11:17:08.377][D][uart_debug:157]: <<< "~1005E5F4C0040105FCA9\r"
+[11:17:08.476][D][uart_debug:157]: <<< "~1005E500402A002020312000000000000000000000000000000000F59F\r"
+[11:17:08.476][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 712302ms after last send
+[11:17:08.785][D][uart_debug:157]: <<< "~\x053\x00\xFE\r"
+[11:17:08.797][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 712628ms after last send
+[11:17:08.805][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 712634ms after last send
+[11:17:08.811][V][modbus:133]: Received first byte 65 (0X41) of 8 bytes 712642ms after last send
+[11:17:08.814][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 712644ms after last send
+[11:17:08.819][V][modbus:133]: Received first byte 83 (0X53) of 8 bytes 712650ms after last send
+[11:17:08.822][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 712652ms after last send
+[11:17:08.827][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 712659ms after last send
+[11:17:08.831][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 712661ms after last send
+[11:17:08.834][D][uart_debug:157]: <<< "~\x053\x1CSD-BA430B-15S-V20-V21       \xC0\r"
+[11:17:08.847][V][modbus:133]: Received first byte 192 (0Xc0) of 2 bytes 712678ms after last send
+[11:17:08.867][W][modbus:688]: Clearing buffer of 2 bytes - timeout after partial response 712697ms after last send
+[11:17:08.953][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 712780ms after last send
+[11:17:08.953][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 712782ms after last send
+[11:17:08.970][D][uart_debug:157]: <<< "~\x05\xDC\x03\x06\x00\x00\xCA\r"
+[11:17:08.970][V][modbus:133]: Received first byte 13 (0Xd) of 1 bytes 712797ms after last send
+[11:17:08.970][W][modbus:688]: Clearing buffer of 9 bytes - parse failed 712799ms after last send
+[11:17:08.970][V][modbus:133]: Received first byte 108 (0X6c) of 8 bytes 712801ms after last send
+[11:17:09.113][D][uart_debug:157]: <<< "~\x05\xDC\x98\x00\x06Pilih 15S apa 16S^^^^^^^^^^^^^  1 \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:09.127][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\x8C\r"
+[11:17:09.159][W][modbus:688]: Clearing buffer of 150 bytes - timeout after partial response 712991ms after last send
+[11:17:09.208][D][uart_debug:157]: <<< "~\x05B\x00\xFC\r"
+[11:17:09.218][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 713049ms after last send
+[11:17:09.222][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 713052ms after last send
+[11:17:09.229][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 713056ms after last send
+[11:17:09.229][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713060ms after last send
+[11:17:09.235][D][uart_debug:157]: <<< "~\x05B\x12B48100B210TE1600WC\xC2\r"
+[11:17:09.248][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 713078ms after last send
+[11:17:09.252][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713080ms after last send
+[11:17:09.341][D][uart_debug:157]: <<< "~\x04\x01\x00\xF8\r"
+[11:17:09.355][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 713183ms after last send
+[11:17:09.355][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 713185ms after last send
+[11:17:09.355][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 713186ms after last send
+[11:17:09.355][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713187ms after last send
+[11:17:09.379][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 713190ms after last send
+[11:17:09.379][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713192ms after last send
+[11:17:09.379][D][uart_debug:157]: <<< "~\x04\x01\x86\x01\x0F\f\xFF\f\xFF\f\xFF\f\xFF\f\xFE\f\xFF\r"
+[11:17:09.380][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 713211ms after last send
+[11:17:09.388][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713212ms after last send
+[11:17:09.388][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 713214ms after last send
+[11:17:09.388][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713215ms after last send
+[11:17:09.388][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 713216ms after last send
+[11:17:09.403][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713218ms after last send
+[11:17:09.403][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 713223ms after last send
+[11:17:09.434][W][modbus:688]: Clearing buffer of 48 bytes - parse failed 713265ms after last send
+[11:17:09.442][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 713273ms after last send
+[11:17:09.445][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713276ms after last send
+[11:17:09.450][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 713282ms after last send
+[11:17:09.455][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 713284ms after last send
+[11:17:09.460][D][uart_debug:157]: <<< "\x00\f\xFE\f\xFE\f\xFE\f\xFF\f\xFF\f\xFF\f\xFE\f\xFF\x02\x01u0\x03\x01$\xE4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R U T S R\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00f\b\x01\x13~\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x002\x9F\f\x01\x00\x00\x1F\xEB\r"
+[11:17:09.473][V][modbus:133]: Received first byte 31 (0X1f) of 8 bytes 713304ms after last send
+[11:17:09.491][D][uart_debug:157]: <<< "\x01\x00O\xCBl\x0E\x01\x00G\xCD\x18\x0F\x01\x00\t\xFD)\x10\x01\x00\x060\a\x11\x01\x13B\x12\x01\x00\x00\x06\r"
+[11:17:09.521][W][modbus:688]: Clearing buffer of 36 bytes - timeout after partial response 713352ms after last send
+[11:17:11.554][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 715385ms after last send
+[11:17:11.559][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 715387ms after last send
+[11:17:11.565][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 715393ms after last send
+[11:17:11.570][D][uart_debug:157]: <<< "~1004E5F4C0040105FCAA\r"
+[11:17:11.643][D][uart_debug:157]: <<< "~1004E500402A002020312032330000000000000000000000000000F595\r"
+[11:17:11.671][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 715502ms after last send
+[11:17:11.849][VV][api.connection:361]: Sending keepalive PING
+[11:17:11.851][VV][api.service:013]: send_message ping_request: PingRequest {}
+[11:17:11.872][VV][api.service:020]: on_ping_response: {}
+[11:17:11.986][D][uart_debug:157]: <<< "~\x043\x00\xFC\r"
+[11:17:12.030][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 715829ms after last send
+[11:17:12.030][D][uart_debug:157]: <<< "~\x043\x1CSD-BA430-15S-V23-V22        D\r"
+[11:17:12.074][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 715890ms after last send
+[11:17:12.157][D][uart_debug:157]: <<< "~\x04E\x00\xF8\r"
+[11:17:12.175][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 716000ms after last send
+[11:17:12.175][D][uart_debug:157]: <<< "~\x04E\x06\x1A\a\x1D\v\x11\x10\x04\r"
+[11:17:12.206][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 716037ms after last send
+[11:17:12.362][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 716189ms after last send
+[11:17:12.382][D][uart_debug:157]: <<< "~\x04\xDC\x03\x06\x00\x00\xC4\r"
+[11:17:12.530][D][uart_debug:157]: <<< "~\x04\xDC\x98\x00\x06PDG481002412090070^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:12.620][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xD4\r"
+[11:17:12.620][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 716402ms after last send
+[11:17:12.620][D][uart_debug:157]: <<< "~\x04B\x00\xFC\r"
+[11:17:12.620][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 716450ms after last send
+[11:17:12.691][D][uart_debug:157]: <<< "~\x04B\x12B48100B210TEBL0103\xEC\r"
+[11:17:12.691][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 716501ms after last send
+[11:17:12.741][D][uart_debug:157]: <<< "~\x03\x01\x00\xFE\r"
+[11:17:12.753][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 716584ms after last send
+[11:17:12.755][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 716587ms after last send
+[11:17:12.807][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 716638ms after last send
+[11:17:12.810][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716640ms after last send
+[11:17:12.815][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 716646ms after last send
+[11:17:12.818][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716649ms after last send
+[11:17:12.823][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 716655ms after last send
+[11:17:12.826][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716657ms after last send
+[11:17:12.832][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 716663ms after last send
+[11:17:12.837][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716665ms after last send
+[11:17:12.841][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 716671ms after last send
+[11:17:12.844][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716675ms after last send
+[11:17:12.852][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 716680ms after last send
+[11:17:12.865][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 716696ms after last send
+[11:17:12.874][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 716705ms after last send
+[11:17:12.877][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716707ms after last send
+[11:17:12.885][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 716713ms after last send
+[11:17:12.888][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716715ms after last send
+[11:17:12.896][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 716722ms after last send
+[11:17:12.906][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716725ms after last send
+[11:17:12.906][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 716730ms after last send
+[11:17:12.914][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716734ms after last send
+[11:17:12.914][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 716738ms after last send
+[11:17:12.914][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716739ms after last send
+[11:17:12.917][D][uart_debug:157]: <<< "~\x03\x01\x86\x01\x0F\f\xDE\f\xDF\f\xDD\f\xDE\f\xDD\f\xDE\f\xDE\f\xDF\f\xDE\f\xE0\f\xDE\f\xDE\f\xDF\f\xDE\f\xDE\x02\x01u0\x03\x01\x12d\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00P S R Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x002\b\x01\x13N\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00%\xA2\f\x01\x00\x00\x180\r"
+[11:17:12.937][V][modbus:133]: Received first byte 24 (0X18) of 8 bytes 716761ms after last send
+[11:17:12.937][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 716764ms after last send
+[11:17:12.937][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 716765ms after last send
+[11:17:12.937][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 716766ms after last send
+[11:17:12.946][V][modbus:133]: Received first byte 174 (0Xae) of 8 bytes 716771ms after last send
+[11:17:12.949][D][uart_debug:157]: <<< "\x01\x006&X\x0E\x01\x003\x1F\xBC\x0F\x01\x00\ao\x05\x10\x01\x00\x04\xAE\x01\x11\x01\x13<\x12\x01\x00\x00\xF2\r"
+[11:17:12.976][W][modbus:688]: Clearing buffer of 12 bytes - timeout after partial response 716807ms after last send
+[11:17:15.090][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 718919ms after last send
+[11:17:15.177][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 718922ms after last send
+[11:17:15.177][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 718928ms after last send
+[11:17:15.177][D][uart_debug:157]: <<< "~1003E5F4C0040105FCAB\r"
+[11:17:15.177][D][uart_debug:157]: <<< "~1003E500402A002020312032330000000000000000000000000000F596\r"
+[11:17:15.338][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 719036ms after last send
+[11:17:15.519][D][uart_debug:157]: <<< "~\x033\x00\xFA\r"
+[11:17:15.558][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 719362ms after last send
+[11:17:15.558][D][uart_debug:157]: <<< "~\x033\x1CSD-BA430B-15S-V23-V22       \xC0\r"
+[11:17:15.587][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 719418ms after last send
+[11:17:15.685][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 719515ms after last send
+[11:17:15.841][D][uart_debug:157]: <<< "~\x03\xDC\x03\x06\x00\x00\xC2\r"
+[11:17:15.848][D][uart_debug:157]: <<< "~\x03\xDC\x98\x00\x06PDG481002503160315^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:15.861][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xDC\r"
+[11:17:15.891][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 719722ms after last send
+[11:17:15.921][D][uart_debug:157]: <<< "~\x03B\x00\xFC\r"
+[11:17:15.933][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 719765ms after last send
+[11:17:15.948][D][uart_debug:157]: <<< "~\x03B\x12B48100B210TEBC010B\x9A\r"
+[11:17:15.978][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 719809ms after last send
+[11:17:16.046][D][uart_debug:157]: <<< "~\x02\x01\x00\xFC\r"
+[11:17:16.061][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 719890ms after last send
+[11:17:16.085][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 719892ms after last send
+[11:17:16.085][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 719903ms after last send
+[11:17:16.085][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719904ms after last send
+[11:17:16.085][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 719911ms after last send
+[11:17:16.087][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719913ms after last send
+[11:17:16.091][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 719919ms after last send
+[11:17:16.094][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719923ms after last send
+[11:17:16.098][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 719928ms after last send
+[11:17:16.100][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719931ms after last send
+[11:17:16.105][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 719937ms after last send
+[11:17:16.111][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719939ms after last send
+[11:17:16.123][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 719946ms after last send
+[11:17:16.138][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 719969ms after last send
+[11:17:16.147][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 719978ms after last send
+[11:17:16.150][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719980ms after last send
+[11:17:16.154][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 719986ms after last send
+[11:17:16.161][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719988ms after last send
+[11:17:16.164][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 719994ms after last send
+[11:17:16.167][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 719996ms after last send
+[11:17:16.172][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 720003ms after last send
+[11:17:16.174][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 720006ms after last send
+[11:17:16.181][D][uart_debug:157]: <<< "~\x02\x01\x86\x01\x0F\f\xDF\f\xDF\f\xDE\f\xDF\f\xDE\f\xDF\f\xDE\f\xDE\f\xDE\f\xDD\f\xDE\f\xDE\f\xDD\f\xDD\f\xDD\x02\x01u0\x03\x01\x16\xF6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R S R S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00W\b\x01\x13M\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00\"\xF9\f\x01\x00\x00\ez\r"
+[11:17:16.193][V][modbus:133]: Received first byte 27 (0X1b) of 8 bytes 720024ms after last send
+[11:17:16.200][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 720026ms after last send
+[11:17:16.203][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 720030ms after last send
+[11:17:16.203][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 720032ms after last send
+[11:17:16.207][V][modbus:133]: Received first byte 84 (0X54) of 8 bytes 720037ms after last send
+[11:17:16.208][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 720040ms after last send
+[11:17:16.213][D][uart_debug:157]: <<< "\x01\x00>\xA1 \x0E\x01\x00O\x0F\xEC\x0F\x01\x00\x06\xE2\xAB\x10\x01\x00\x05TZ\x11\x01\x13;\x12\x01\x00\x00T\r"
+[11:17:16.225][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 720057ms after last send
+[11:17:16.228][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 720059ms after last send
+[11:17:17.108][D][uart_debug:157]: <<< "~\x02E\x00\xFC\r"
+[11:17:17.120][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 720951ms after last send
+[11:17:17.124][D][uart_debug:157]: <<< "~\x02E\x06\x1A\a\x1D\v\x11\x16\b\r"
+[11:17:17.154][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 720985ms after last send
+[11:17:18.034][V][sensor:077]: 'smartli-bms Uptime': Received new state 721.867004
+[11:17:18.037][V][sensor:125]: 'smartli-bms Uptime' >> 722 s
+[11:17:18.059][V][sensor:077]: 'pzem Heap Free': Received new state 190424.000000
+[11:17:18.062][V][sensor:125]: 'pzem Heap Free' >> 190424 B
+[11:17:18.066][V][sensor:077]: 'pzem Loop Time': Received new state 43.000000
+[11:17:18.069][V][sensor:125]: 'pzem Loop Time' >> 43 ms
+[11:17:18.073][V][sensor:077]: 'pzem Heap Max Block': Received new state 110592.000000
+[11:17:18.076][V][sensor:125]: 'pzem Heap Max Block' >> 110592 B
+[11:17:18.147][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.147][VV][api.service:013]:   key: 1107883811
+[11:17:18.147][VV][api.service:013]:   state: 721.867
+[11:17:18.147][VV][api.service:013]:   missing_state: NO
+[11:17:18.147][VV][api.service:013]:  }
+[11:17:18.157][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.157][VV][api.service:013]:   key: 2472806035
+[11:17:18.157][VV][api.service:013]:   state: 190424
+[11:17:18.157][VV][api.service:013]:   missing_state: NO
+[11:17:18.157][VV][api.service:013]:  }
+[11:17:18.157][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.157][VV][api.service:013]:   key: 2743030662
+[11:17:18.157][VV][api.service:013]:   state: 43
+[11:17:18.157][VV][api.service:013]:   missing_state: NO
+[11:17:18.157][VV][api.service:013]:  }
+[11:17:18.158][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.158][VV][api.service:013]:   key: 2378285239
+[11:17:18.158][VV][api.service:013]:   state: 110592
+[11:17:18.158][VV][api.service:013]:   missing_state: NO
+[11:17:18.158][VV][api.service:013]:  }
+[11:17:18.160][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.160][VV][api.service:013]:   key: 1107883811
+[11:17:18.160][VV][api.service:013]:   state: 721.867
+[11:17:18.160][VV][api.service:013]:   missing_state: NO
+[11:17:18.160][VV][api.service:013]:  }
+[11:17:18.160][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.160][VV][api.service:013]:   key: 2472806035
+[11:17:18.160][VV][api.service:013]:   state: 190424
+[11:17:18.160][VV][api.service:013]:   missing_state: NO
+[11:17:18.160][VV][api.service:013]:  }
+[11:17:18.160][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.160][VV][api.service:013]:   key: 2743030662
+[11:17:18.160][VV][api.service:013]:   state: 43
+[11:17:18.160][VV][api.service:013]:   missing_state: NO
+[11:17:18.160][VV][api.service:013]:  }
+[11:17:18.160][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:18.160][VV][api.service:013]:   key: 2378285239
+[11:17:18.160][VV][api.service:013]:   state: 110592
+[11:17:18.160][VV][api.service:013]:   missing_state: NO
+[11:17:18.160][VV][api.service:013]:  }
+[11:17:18.758][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 722588ms after last send
+[11:17:18.772][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 722591ms after last send
+[11:17:18.772][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 722596ms after last send
+[11:17:18.772][D][uart_debug:157]: <<< "~1002E5F4C0040105FCAC\r"
+[11:17:18.964][D][uart_debug:157]: <<< "~1002E500402A00202031205F3132335E0000000000000000000000F55E\r"
+[11:17:18.965][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 722707ms after last send
+[11:17:19.185][D][uart_debug:157]: <<< "~\x023\x00\xFC\r"
+[11:17:19.196][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 723028ms after last send
+[11:17:19.270][D][uart_debug:157]: <<< "~\x023\x1CSD-BA430-15S-V23-V22        D\r"
+[11:17:19.270][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 723085ms after last send
+[11:17:19.348][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 723179ms after last send
+[11:17:19.351][D][uart_debug:157]: <<< "~\x02\xDC\x03\x06\x00\x00\xC0\r"
+[11:17:19.513][D][uart_debug:157]: <<< "~\x02\xDC\x98\x00\x06PDG481002501220331^^^^^^^^^^^^  1 _123^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:19.590][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xC8\r"
+[11:17:19.590][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 723387ms after last send
+[11:17:19.590][D][uart_debug:157]: <<< "~\x02B\x00\xFC\r"
+[11:17:19.717][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 723433ms after last send
+[11:17:19.717][D][uart_debug:157]: <<< "~\x02B\x14  B48100B210TEC3019T\x0E\r"
+[11:17:19.717][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 723482ms after last send
+[11:17:19.717][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:17:19.729][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 723559ms after last send
+[11:17:19.733][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 723563ms after last send
+[11:17:19.736][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 723565ms after last send
+[11:17:19.741][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723568ms after last send
+[11:17:19.745][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 723573ms after last send
+[11:17:19.745][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723576ms after last send
+[11:17:19.748][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 723577ms after last send
+[11:17:19.748][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723580ms after last send
+[11:17:19.752][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 723584ms after last send
+[11:17:19.762][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723587ms after last send
+[11:17:19.762][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 723592ms after last send
+[11:17:19.762][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723594ms after last send
+[11:17:19.769][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 723600ms after last send
+[11:17:19.794][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 723625ms after last send
+[11:17:19.802][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 723634ms after last send
+[11:17:19.803][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723636ms after last send
+[11:17:19.811][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 723642ms after last send
+[11:17:19.815][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723644ms after last send
+[11:17:19.819][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 723650ms after last send
+[11:17:19.821][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723653ms after last send
+[11:17:19.831][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 723659ms after last send
+[11:17:19.832][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723660ms after last send
+[11:17:19.837][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xD9\f\xDA\f\xDB\f\xDA\f\xDB\f\xDC\f\xDD\f\xDE\f\xDE\f\xDE\f\xDF\f\xDF\f\xDF\f\xE1\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:17:19.852][D][uart_debug:157]: <<< "\r"
+[11:17:19.862][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 723693ms after last send
+[11:17:19.866][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 723696ms after last send
+[11:17:19.866][V][modbus:133]: Received first byte 14 (0Xe) of 24 bytes 723697ms after last send
+[11:17:19.866][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 723698ms after last send
+[11:17:19.871][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13F\x12\x01\x00\x00\x1E\r"
+[11:17:19.883][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 723715ms after last send
+[11:17:19.887][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 723717ms after last send
+[11:17:21.527][V][sensor:077]: 'smartli-bms Wifi Signal': Received new state -53.000000
+[11:17:21.637][V][sensor:125]: 'smartli-bms Wifi Signal' >> -53 dBm
+[11:17:21.637][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:21.637][VV][api.service:013]:   key: 276971171
+[11:17:21.637][VV][api.service:013]:   state: -53
+[11:17:21.637][VV][api.service:013]:   missing_state: NO
+[11:17:21.637][VV][api.service:013]:  }
+[11:17:21.799][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:21.799][VV][api.service:013]:   key: 276971171
+[11:17:21.799][VV][api.service:013]:   state: -53
+[11:17:21.799][VV][api.service:013]:   missing_state: NO
+[11:17:21.799][VV][api.service:013]:  }
+[11:17:22.111][D][uart_debug:157]: <<< "~\x01E\x00\xFE\r"
+[11:17:22.130][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 725955ms after last send
+[11:17:22.131][D][uart_debug:157]: <<< "~\x01E\x06\x1A\a\x1D\v\x11\x19\x02\r"
+[11:17:22.160][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 725991ms after last send
+[11:17:22.300][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 726132ms after last send
+[11:17:22.308][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 726134ms after last send
+[11:17:22.308][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 726140ms after last send
+[11:17:22.603][D][uart_debug:157]: <<< "~1001E5F4C0040105FCAD\r"
+[11:17:22.603][D][uart_debug:157]: <<< "~1001E500402A002020312032330000000000000000000000000000F598\r"
+[11:17:22.603][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 726251ms after last send
+[11:17:22.725][D][uart_debug:157]: <<< "~\x013\x00\xFE\r"
+[11:17:22.895][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 726569ms after last send
+[11:17:22.895][D][uart_debug:157]: <<< "~\x013\x1CSD-BA430-15S-V23-V22        D\r"
+[11:17:22.895][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 726626ms after last send
+[11:17:22.895][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 726723ms after last send
+[11:17:23.009][D][uart_debug:157]: <<< "~\x01\xDC\x03\x06\x00\x00\xC2\r"
+[11:17:23.057][D][uart_debug:157]: <<< "~\x01\xDC\x98\x00\x06PDG481002409110430^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:23.071][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xCE\r"
+[11:17:23.113][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 726932ms after last send
+[11:17:23.132][D][uart_debug:157]: <<< "~\x01B\x00\xFC\r"
+[11:17:23.143][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 726975ms after last send
+[11:17:23.163][D][uart_debug:157]: <<< "~\x01B\x14  B48100B210TE7R00EJf\r"
+[11:17:23.193][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 727024ms after last send
+[11:17:23.274][D][uart_debug:157]: <<< "~\x05\x01\x00\xFE\r"
+[11:17:23.290][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 727117ms after last send
+[11:17:23.290][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 727119ms after last send
+[11:17:23.290][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 727122ms after last send
+[11:17:24.111][D][uart_debug:157]: <<< "~\x05\x01\x86\x01\x0F\f\xE5\f\xE6\f\xE5\f\xE6\f\xE6\f\xE6\f\xE5\f\xE5\f\xE4\f\xE5\f\xE6\f\xE7\f\xE5\f\xE6\f\xE7\x02\x01u0\x03\x01\x19\xCF\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00Q S Q Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x007\b\x01\x13Y\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x000)\f\x01\x00\x00\x1A\x11\r"
+[11:17:24.111][D][uart_debug:157]: <<< "\x01\x00Cb\x00\x0E\x01\x00?\x00\xFC\x0F\x01\x00\t~\xFA\x10\x01\x00\x05\f\x9E\x11\x01\x13@\x12\x01\x00\x00\xEA\r"
+[11:17:24.111][W][modbus:688]: Clearing buffer of 132 bytes - timeout after partial response 727284ms after last send
+[11:17:24.112][VV][api.connection:361]: Sending keepalive PING
+[11:17:24.312][VV][api.service:013]: send_message ping_request: PingRequest {}
+[11:17:24.312][VV][api.service:020]: on_ping_response: {}
+[11:17:25.768][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 729597ms after last send
+[11:17:25.769][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 729600ms after last send
+[11:17:25.883][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 729605ms after last send
+[11:17:25.883][D][uart_debug:157]: <<< "~1005E5F4C0040105FCA9\r"
+[11:17:25.883][D][uart_debug:157]: <<< "~1005E500402A002020312000000000000000000000000000000000F59F\r"
+[11:17:25.883][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 729715ms after last send
+[11:17:26.222][D][uart_debug:157]: <<< "~\x053\x00\xFE\r"
+[11:17:26.222][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 730044ms after last send
+[11:17:26.222][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 730046ms after last send
+[11:17:26.222][V][modbus:133]: Received first byte 65 (0X41) of 8 bytes 730054ms after last send
+[11:17:26.238][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730055ms after last send
+[11:17:26.238][V][modbus:133]: Received first byte 83 (0X53) of 8 bytes 730062ms after last send
+[11:17:26.238][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730063ms after last send
+[11:17:26.238][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 730070ms after last send
+[11:17:26.259][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730072ms after last send
+[11:17:26.259][D][uart_debug:157]: <<< "~\x053\x1CSD-BA430B-15S-V20-V21       \xC0\r"
+[11:17:26.259][V][modbus:133]: Received first byte 192 (0Xc0) of 2 bytes 730086ms after last send
+[11:17:26.271][W][modbus:688]: Clearing buffer of 2 bytes - timeout after partial response 730103ms after last send
+[11:17:26.367][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 730197ms after last send
+[11:17:26.386][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730199ms after last send
+[11:17:26.386][D][uart_debug:157]: <<< "~\x05\xDC\x03\x06\x00\x00\xCA\r"
+[11:17:26.386][V][modbus:133]: Received first byte 13 (0Xd) of 1 bytes 730213ms after last send
+[11:17:26.550][W][modbus:688]: Clearing buffer of 9 bytes - parse failed 730216ms after last send
+[11:17:26.550][V][modbus:133]: Received first byte 108 (0X6c) of 8 bytes 730224ms after last send
+[11:17:26.550][D][uart_debug:157]: <<< "~\x05\xDC\x98\x00\x06Pilih 15S apa 16S^^^^^^^^^^^^^  1 \x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:26.550][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\x8C\r"
+[11:17:26.580][W][modbus:688]: Clearing buffer of 150 bytes - timeout after partial response 730412ms after last send
+[11:17:26.603][D][uart_debug:157]: <<< "~\x05B\x00\xFC\r"
+[11:17:26.615][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 730447ms after last send
+[11:17:26.618][W][modbus:688]: Clearing buffer of 14 bytes - parse failed 730450ms after last send
+[11:17:26.625][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 730457ms after last send
+[11:17:26.628][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730459ms after last send
+[11:17:26.634][D][uart_debug:157]: <<< "~\x05B\x12B48100B210TE1600WC\xC2\r"
+[11:17:26.646][V][modbus:133]: Received first byte 49 (0X31) of 8 bytes 730478ms after last send
+[11:17:26.652][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730480ms after last send
+[11:17:26.736][D][uart_debug:157]: <<< "~\x04\x01\x00\xF8\r"
+[11:17:26.748][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 730579ms after last send
+[11:17:26.748][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 730581ms after last send
+[11:17:26.764][D][uart_debug:157]: <<< "~\x04\x01\x86\x01\x0F\r"
+[11:17:26.764][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 730595ms after last send
+[11:17:26.764][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730595ms after last send
+[11:17:26.764][D][uart_debug:157]: <<< "\x00\r"
+[11:17:26.791][D][uart_debug:157]: <<< "\x00\f\xFF\f\xFF\f\xFE\r"
+[11:17:26.792][V][modbus:133]: Received first byte 13 (0Xd) of 16 bytes 730620ms after last send
+[11:17:26.792][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 730621ms after last send
+[11:17:26.792][V][modbus:133]: Received first byte 12 (0Xc) of 24 bytes 730622ms after last send
+[11:17:26.805][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 730624ms after last send
+[11:17:26.805][V][modbus:133]: Received first byte 5 (0X5) of 8 bytes 730629ms after last send
+[11:17:26.805][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730630ms after last send
+[11:17:26.805][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 730637ms after last send
+[11:17:26.821][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730639ms after last send
+[11:17:26.822][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 730645ms after last send
+[11:17:26.822][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730647ms after last send
+[11:17:26.822][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 730654ms after last send
+[11:17:26.887][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 730655ms after last send
+[11:17:26.888][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 730662ms after last send
+[11:17:26.888][D][uart_debug:157]: <<< "\x00\f\xFF\f\xFF\f\xFE\f\xFE\f\xFF\f\xFE\f\xFF\f\xFD\f\xFF\x02\x01u0\x03\x01$\xE3\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R U T S R\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00f\b\x01\x13~\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x002\x9F\f\x01\x00\x00\x1F\xEB\r"
+[11:17:26.888][D][uart_debug:157]: <<< "\x01\x00O\xCBl\x0E\x01\x00G\xCD\x18\x0F\x01\x00\t\xFD)\x10\x01\x00\x060\a\x11\x01\x13B\x12\x01\x00\x00\x00\r"
+[11:17:27.005][W][modbus:688]: Clearing buffer of 60 bytes - timeout after partial response 730748ms after last send
+[11:17:29.287][D][uart_debug:157]: <<< "~\x04E\x00\xF8\r"
+[11:17:29.305][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 733131ms after last send
+[11:17:29.305][D][uart_debug:157]: <<< "~\x04E\x06\x1A\a\x1D\v\x11!J\r"
+[11:17:29.344][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 733166ms after last send
+[11:17:29.474][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 733306ms after last send
+[11:17:29.482][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733308ms after last send
+[11:17:29.482][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 733314ms after last send
+[11:17:29.548][D][uart_debug:157]: <<< "~1004E5F4C0040105FCAA\r"
+[11:17:29.548][W][modbus:688]: Clearing buffer of 14 bytes - timeout after partial response 733351ms after last send
+[11:17:29.548][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 733377ms after last send
+[11:17:29.548][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733378ms after last send
+[11:17:29.563][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 733385ms after last send
+[11:17:29.563][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733387ms after last send
+[11:17:29.563][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 733394ms after last send
+[11:17:29.563][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733396ms after last send
+[11:17:29.578][V][modbus:133]: Received first byte 50 (0X32) of 8 bytes 733402ms after last send
+[11:17:29.578][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733404ms after last send
+[11:17:29.578][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 733410ms after last send
+[11:17:29.578][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733411ms after last send
+[11:17:29.599][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 733419ms after last send
+[11:17:29.599][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733420ms after last send
+[11:17:29.599][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 733427ms after last send
+[11:17:29.599][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 733428ms after last send
+[11:17:29.652][D][uart_debug:157]: <<< "~1004E500402A002020312032330000000000000000000000000000F595\r"
+[11:17:29.652][V][modbus:133]: Received first byte 53 (0X35) of 4 bytes 733445ms after last send
+[11:17:29.652][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 733446ms after last send
+[11:17:29.908][D][uart_debug:157]: <<< "~\x043\x00\xFC\r"
+[11:17:29.961][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 733752ms after last send
+[11:17:29.961][D][uart_debug:157]: <<< "~\x043\x1CSD-BA430-15S-V23-V22        D\r"
+[11:17:29.989][W][modbus:688]: Clearing buffer of 40 bytes - timeout after partial response 733812ms after last send
+[11:17:30.073][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 733903ms after last send
+[11:17:30.277][D][uart_debug:157]: <<< "~\x04\xDC\x03\x06\x00\x00\xC4\r"
+[11:17:30.277][D][uart_debug:157]: <<< "~\x04\xDC\x98\x00\x06PDG481002412090070^^^^^^^^^^^^  1 23\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:30.277][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xD4\r"
+[11:17:30.277][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 734107ms after last send
+[11:17:30.327][D][uart_debug:157]: <<< "~\x03\x01\x00\xFE\r"
+[11:17:30.327][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 734157ms after last send
+[11:17:30.328][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 734158ms after last send
+[11:17:30.328][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 734159ms after last send
+[11:17:30.343][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734161ms after last send
+[11:17:30.343][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 734168ms after last send
+[11:17:30.344][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734169ms after last send
+[11:17:30.344][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 734176ms after last send
+[11:17:30.360][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734178ms after last send
+[11:17:30.360][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 734184ms after last send
+[11:17:30.360][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734185ms after last send
+[11:17:30.360][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 734193ms after last send
+[11:17:30.388][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734194ms after last send
+[11:17:30.388][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 734201ms after last send
+[11:17:30.388][W][modbus:688]: Clearing buffer of 24 bytes - parse failed 734218ms after last send
+[11:17:30.394][V][modbus:133]: Received first byte 32 (0X20) of 8 bytes 734226ms after last send
+[11:17:30.397][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734228ms after last send
+[11:17:30.403][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 734234ms after last send
+[11:17:30.405][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734237ms after last send
+[11:17:30.411][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 734243ms after last send
+[11:17:30.414][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734245ms after last send
+[11:17:30.419][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 734251ms after last send
+[11:17:30.422][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734253ms after last send
+[11:17:30.428][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 734259ms after last send
+[11:17:30.433][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734262ms after last send
+[11:17:30.438][D][uart_debug:157]: <<< "~\x03\x01\x86\x01\x0F\f\xDE\f\xDE\f\xDE\f\xDD\f\xDE\f\xDD\f\xDE\f\xDE\f\xE0\f\xDF\f\xDE\f\xDD\f\xDF\f\xDF\f\xE1\x02\x01u0\x03\x01\x12d\x04\x01:\x98\x05\b\x00P\x00P\x00P\x00P S R Q Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x002\b\x01\x13N\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00%\xA2\f\x01\x00\x00\x180\r"
+[11:17:30.450][V][modbus:133]: Received first byte 24 (0X18) of 8 bytes 734282ms after last send
+[11:17:30.452][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 734284ms after last send
+[11:17:30.456][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 734289ms after last send
+[11:17:30.459][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 734291ms after last send
+[11:17:30.463][V][modbus:133]: Received first byte 174 (0Xae) of 8 bytes 734295ms after last send
+[11:17:30.468][D][uart_debug:157]: <<< "\x01\x006&X\x0E\x01\x003\x1F\xBC\x0F\x01\x00\ao\x05\x10\x01\x00\x04\xAE\x01\x11\x01\x13F\x12\x01\x00\x00\xB8\r"
+[11:17:30.499][W][modbus:688]: Clearing buffer of 12 bytes - timeout after partial response 734330ms after last send
+[11:17:32.939][D][uart_debug:157]: <<< "~\x03B\x00\xFC\r"
+[11:17:32.966][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 736782ms after last send
+[11:17:32.966][D][uart_debug:157]: <<< "~\x03B\x12B48100B210TEBC010B\x9A\r"
+[11:17:33.045][W][modbus:688]: Clearing buffer of 30 bytes - timeout after partial response 736827ms after last send
+[11:17:33.074][D][uart_debug:157]: <<< "~\x03E\x00\xFE\r"
+[11:17:33.090][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 736918ms after last send
+[11:17:33.095][D][uart_debug:157]: <<< "~\x03E\x06\x1A\a\x1D\v\x11%J\r"
+[11:17:33.121][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 736953ms after last send
+[11:17:33.261][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 737093ms after last send
+[11:17:33.266][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737095ms after last send
+[11:17:33.270][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 737101ms after last send
+[11:17:33.277][D][uart_debug:157]: <<< "~1003E5F4C0040105FCAB\r"
+[11:17:33.347][D][uart_debug:157]: <<< "~1003E500402A002020312032330000000000000000000000000000F596\r"
+[11:17:33.377][W][modbus:688]: Clearing buffer of 74 bytes - timeout after partial response 737209ms after last send
+[11:17:33.686][D][uart_debug:157]: <<< "~\x033\x00\xFA\r"
+[11:17:33.699][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 737530ms after last send
+[11:17:33.719][W][modbus:688]: Clearing buffer of 6 bytes - timeout after partial response 737549ms after last send
+[11:17:33.758][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 737589ms after last send
+[11:17:33.787][D][uart_debug:157]: <<< "~\x033\x1CSD-BA430B-15S-V23-V22       \xC0\r"
+[11:17:33.816][W][modbus:688]: Clearing buffer of 34 bytes - timeout after partial response 737648ms after last send
+[11:17:33.857][D][uart_debug:157]: <<< "~\x02\x01\x00\xFC\r"
+[11:17:33.869][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 737701ms after last send
+[11:17:33.870][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 737703ms after last send
+[11:17:33.877][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 737707ms after last send
+[11:17:33.880][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737710ms after last send
+[11:17:33.880][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 737712ms after last send
+[11:17:33.882][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737713ms after last send
+[11:17:33.887][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 737718ms after last send
+[11:17:33.889][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737721ms after last send
+[11:17:33.894][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 737725ms after last send
+[11:17:33.897][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737728ms after last send
+[11:17:33.903][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 737734ms after last send
+[11:17:33.906][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737736ms after last send
+[11:17:33.910][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 737741ms after last send
+[11:17:33.934][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 737766ms after last send
+[11:17:33.943][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 737775ms after last send
+[11:17:33.946][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737777ms after last send
+[11:17:33.951][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 737783ms after last send
+[11:17:33.953][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737785ms after last send
+[11:17:33.960][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 737791ms after last send
+[11:17:33.967][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737794ms after last send
+[11:17:33.969][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 737800ms after last send
+[11:17:33.969][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737802ms after last send
+[11:17:33.977][D][uart_debug:157]: <<< "~\x02\x01\x86\x01\x0F\f\xDF\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDE\f\xDD\f\xDD\f\xDD\f\xDD\f\xDC\x02\x01u0\x03\x01\x16\xF6\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00R S R S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00W\b\x01\x13M\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00\"\xF9\f\x01\x00\x00\ez\r"
+[11:17:33.990][V][modbus:133]: Received first byte 27 (0X1b) of 8 bytes 737821ms after last send
+[11:17:33.997][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737823ms after last send
+[11:17:33.997][V][modbus:133]: Received first byte 14 (0Xe) of 16 bytes 737825ms after last send
+[11:17:34.002][W][modbus:688]: Clearing buffer of 16 bytes - parse failed 737829ms after last send
+[11:17:34.002][V][modbus:133]: Received first byte 84 (0X54) of 8 bytes 737833ms after last send
+[11:17:34.002][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 737834ms after last send
+[11:17:34.007][D][uart_debug:157]: <<< "\x01\x00>\xA1 \x0E\x01\x00O\x0F\xEC\x0F\x01\x00\x06\xE2\xAB\x10\x01\x00\x05TZ\x11\x01\x138\x12\x01\x00\x00\xAC\r"
+[11:17:34.020][V][modbus:133]: Received first byte 0 (0X0) of 4 bytes 737852ms after last send
+[11:17:34.023][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 737854ms after last send
+[11:17:36.639][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 740470ms after last send
+[11:17:36.642][D][uart_debug:157]: <<< "~\x02\xDC\x03\x06\x00\x00\xC0\r"
+[11:17:36.806][D][uart_debug:157]: <<< "~\x02\xDC\x98\x00\x06PDG481002501220331^^^^^^^^^^^^  1 _123^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00NANDU^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00TPD_abcdefg^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0020201031_ABCD^\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+[11:17:36.849][D][uart_debug:157]: <<< "\x00\x00\x00\x00\x00\x00\xC8\r"
+[11:17:36.849][W][modbus:688]: Clearing buffer of 167 bytes - timeout after partial response 740679ms after last send
+[11:17:36.874][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 740706ms after last send
+[11:17:36.880][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740708ms after last send
+[11:17:36.883][V][modbus:133]: Received first byte 52 (0X34) of 8 bytes 740714ms after last send
+[11:17:36.890][D][uart_debug:157]: <<< "~1002E5F4C0040105FCAC\r"
+[11:17:36.920][W][modbus:688]: Clearing buffer of 14 bytes - timeout after partial response 740752ms after last send
+[11:17:36.955][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 740787ms after last send
+[11:17:36.958][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740789ms after last send
+[11:17:36.963][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 740795ms after last send
+[11:17:36.965][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740798ms after last send
+[11:17:36.971][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 740804ms after last send
+[11:17:36.974][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740806ms after last send
+[11:17:36.979][V][modbus:133]: Received first byte 70 (0X46) of 8 bytes 740812ms after last send
+[11:17:36.981][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740814ms after last send
+[11:17:36.988][V][modbus:133]: Received first byte 69 (0X45) of 8 bytes 740820ms after last send
+[11:17:36.991][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740823ms after last send
+[11:17:36.996][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 740829ms after last send
+[11:17:36.998][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740831ms after last send
+[11:17:37.009][V][modbus:133]: Received first byte 48 (0X30) of 8 bytes 740837ms after last send
+[11:17:37.011][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 740839ms after last send
+[11:17:37.011][D][uart_debug:157]: <<< "~1002E500402A00202031205F3132335E0000000000000000000000F55E\r"
+[11:17:37.022][V][modbus:133]: Received first byte 53 (0X35) of 4 bytes 740854ms after last send
+[11:17:37.024][W][modbus:688]: Clearing buffer of 4 bytes - parse failed 740856ms after last send
+[11:17:37.306][D][uart_debug:157]: <<< "~\x02B\x00\xFC\r"
+[11:17:37.339][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 741149ms after last send
+[11:17:37.339][D][uart_debug:157]: <<< "~\x02B\x14  B48100B210TEC3019T\x0E\r"
+[11:17:37.367][W][modbus:688]: Clearing buffer of 32 bytes - timeout after partial response 741198ms after last send
+[11:17:37.445][D][uart_debug:157]: <<< "~\x02E\x00\xFC\r"
+[11:17:37.458][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 741283ms after last send
+[11:17:37.458][D][uart_debug:157]: <<< "~\x02E\x06\x1A\a\x1D\v\x11+^\r"
+[11:17:37.485][W][modbus:688]: Clearing buffer of 18 bytes - timeout after partial response 741317ms after last send
+[11:17:37.651][D][uart_debug:157]: <<< "~\x01\x01\x00\xFE\r"
+[11:17:37.656][V][modbus:133]: Received first byte 126 (0X7e) of 6 bytes 741488ms after last send
+[11:17:37.656][W][modbus:688]: Clearing buffer of 6 bytes - parse failed 741490ms after last send
+[11:17:37.711][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 741543ms after last send
+[11:17:37.714][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741545ms after last send
+[11:17:37.719][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 741551ms after last send
+[11:17:37.721][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741553ms after last send
+[11:17:37.727][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 741559ms after last send
+[11:17:37.730][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741562ms after last send
+[11:17:37.735][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 741568ms after last send
+[11:17:37.739][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741570ms after last send
+[11:17:37.744][V][modbus:133]: Received first byte 12 (0Xc) of 8 bytes 741576ms after last send
+[11:17:37.748][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741579ms after last send
+[11:17:37.754][V][modbus:133]: Received first byte 3 (0X3) of 8 bytes 741585ms after last send
+[11:17:37.777][W][modbus:688]: Clearing buffer of 32 bytes - parse failed 741609ms after last send
+[11:17:37.788][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 741618ms after last send
+[11:17:37.790][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741620ms after last send
+[11:17:37.795][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 741627ms after last send
+[11:17:37.796][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741629ms after last send
+[11:17:37.802][V][modbus:133]: Received first byte 39 (0X27) of 8 bytes 741635ms after last send
+[11:17:37.805][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741637ms after last send
+[11:17:37.811][V][modbus:133]: Received first byte 0 (0X0) of 8 bytes 741643ms after last send
+[11:17:37.815][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741645ms after last send
+[11:17:37.821][D][uart_debug:157]: <<< "~\x01\x01\x86\x01\x0F\f\xD9\f\xDA\f\xDA\f\xDB\f\xDC\f\xDC\f\xDD\f\xDE\f\xDD\f\xDE\f\xDF\f\xDE\f\xE0\f\xE0\f\xE0\x02\x01u0\x03\x01\x15\xF4\x04\x01\'\x10\x05\b\x00Q\x00Q\x00Q\x00Q U S S Q\x06\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\a\x01\x00S\b\x01\x13K\t\x01\'\x10\n\x01\x00\x00\v\x01\x00\x00,W\f\x01\x00\x00\x1A\r"
+[11:17:37.832][D][uart_debug:157]: <<< "\r"
+[11:17:37.845][V][modbus:133]: Received first byte 26 (0X1a) of 8 bytes 741677ms after last send
+[11:17:37.847][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 741679ms after last send
+[11:17:37.854][D][uart_debug:157]: <<< "\x01\x00PB|\x0E\x01\x00I\xD3\xC4\x0F\x01\x00\b\xBE\x10\x01\x00\x05\x10z\x11\x01\x13D\x12\x01\x00\x00\"\r"
+[11:17:37.864][V][modbus:133]: Received first byte 14 (0Xe) of 28 bytes 741696ms after last send
+[11:17:37.867][W][modbus:688]: Clearing buffer of 28 bytes - parse failed 741698ms after last send
+[11:17:44.556][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 748388ms after last send
+[11:17:44.559][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 748390ms after last send
+[11:17:44.564][V][modbus:133]: Received first byte 50 (0X32) of 8 bytes 748396ms after last send
+[11:17:44.570][D][uart_debug:157]: <<< "~2201E592E00201FD1E\r"
+[11:17:44.733][D][uart_debug:157]: <<< "~2201E500A0CA00133D0000134700000024005B138801F401F4148205DC27100410FE8F0413FC07040C0088040CFF090434040A0436FB7303ED03C903CF000603CB010F03F0035B03F6FFF"
+[11:17:44.807][D][uart_debug:157]: <<< "E03FCFF1C0208000004000000138812C01D4C00D6145000020000000000000000D303\r"
+[11:17:44.842][W][modbus:688]: Clearing buffer of 232 bytes - timeout after partial response 748675ms after last send
+[11:17:48.033][V][sensor:077]: 'smartli-bms Uptime': Received new state 751.867004
+[11:17:48.038][V][sensor:125]: 'smartli-bms Uptime' >> 752 s
+[11:17:48.146][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:48.146][VV][api.service:013]:   key: 1107883811
+[11:17:48.146][VV][api.service:013]:   state: 751.867
+[11:17:48.146][VV][api.service:013]:   missing_state: NO
+[11:17:48.146][VV][api.service:013]:  }
+[11:17:48.413][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:48.413][VV][api.service:013]:   key: 1107883811
+[11:17:48.413][VV][api.service:013]:   state: 751.867
+[11:17:48.413][VV][api.service:013]:   missing_state: NO
+[11:17:48.413][VV][api.service:013]:  }
+[11:17:51.526][V][sensor:077]: 'smartli-bms Wifi Signal': Received new state -54.000000
+[11:17:51.535][V][sensor:125]: 'smartli-bms Wifi Signal' >> -54 dBm
+[11:17:51.640][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:51.640][VV][api.service:013]:   key: 276971171
+[11:17:51.640][VV][api.service:013]:   state: -54
+[11:17:51.640][VV][api.service:013]:   missing_state: NO
+[11:17:51.640][VV][api.service:013]:  }
+[11:17:51.643][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:17:51.643][VV][api.service:013]:   key: 276971171
+[11:17:51.643][VV][api.service:013]:   state: -54
+[11:17:51.643][VV][api.service:013]:   missing_state: NO
+[11:17:51.643][VV][api.service:013]:  }
+[11:17:52.921][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 756753ms after last send
+[11:17:52.929][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 756755ms after last send
+[11:17:52.929][V][modbus:133]: Received first byte 50 (0X32) of 8 bytes 756761ms after last send
+[11:17:53.207][D][uart_debug:157]: <<< "~2202E592E00201FD1D\r"
+[11:17:53.207][D][uart_debug:157]: <<< "~2202E500A0CA00133E000013470000000F005C138801F401F4148205DC13880414FCBE0416FBBD040701390407FE84043C0388043EFC3503EA048103C4000803BF01F803ED03A103F5000"
+[11:17:53.207][D][uart_debug:157]: <<< "203F6FFFA0208000004000000138812C01D4C00D6145000020000000000000000D314\r"
+[11:17:53.207][W][modbus:688]: Clearing buffer of 232 bytes - timeout after partial response 757035ms after last send
+[11:17:58.344][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 762149ms after last send
+[11:17:58.349][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 762151ms after last send
+[11:17:58.350][V][modbus:133]: Received first byte 50 (0X32) of 8 bytes 762157ms after last send
+[11:17:58.350][D][uart_debug:157]: <<< "~2203E592E00201FD1C\r"
+[11:17:58.496][D][uart_debug:157]: <<< "~2203E500A0CA0013460000135100000009005C138803E803E8148207D027100414FCB2040FFD6803FDFE9C03F901C2042E031F042FFCE103EB043103D8000803D2016E03EE0357040A000"
+[11:17:58.568][D][uart_debug:157]: <<< "7040E011B0208000004000000138812C01D4C00D6145000020000000000000000D358\r"
+[11:17:58.603][W][modbus:688]: Clearing buffer of 232 bytes - timeout after partial response 762437ms after last send
+[11:18:04.018][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 767850ms after last send
+[11:18:04.194][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 767853ms after last send
+[11:18:04.195][V][modbus:133]: Received first byte 50 (0X32) of 8 bytes 767859ms after last send
+[11:18:04.195][D][uart_debug:157]: <<< "~2204E592E00201FD1B\r"
+[11:18:04.196][D][uart_debug:157]: <<< "~2204E500A0CA00133C000013760000001B0059138801F401F4148205DC2710040AFE9D0406FD9F03FF001F0400FFCF0435FE5D043701B303ED03C903CF000603CFFEB103F6036803F6FFF"
+[11:18:04.288][D][uart_debug:157]: <<< "E03FCFF1C0208000004000000138812C01D4C00D6145000020000000000000000D268\r"
+[11:18:04.306][W][modbus:688]: Clearing buffer of 232 bytes - timeout after partial response 768137ms after last send
+[11:18:08.805][V][modbus:133]: Received first byte 126 (0X7e) of 8 bytes 772638ms after last send
+[11:18:08.806][W][modbus:688]: Clearing buffer of 8 bytes - parse failed 772640ms after last send
+[11:18:08.819][V][modbus:133]: Received first byte 50 (0X32) of 8 bytes 772646ms after last send
+[11:18:08.821][D][uart_debug:157]: <<< "~2205E592E00201FD1A\r"
+[11:18:08.981][D][uart_debug:157]: <<< "~2205E500A0CA001339000013510000000A005B138803E803E8148207D027100415FB89040EFD4303F704CE03F9FAE5042904710428FB9403EF043103D5000B03DB022E03EF03AA0408FFF"
+[11:18:09.054][D][uart_debug:157]: <<< "7040AFE3C0208000004000000138812C01D4C00D6145000000000000000000000D2F8\r"
+[11:18:09.089][W][modbus:688]: Clearing buffer of 232 bytes - timeout after partial response 772923ms after last send
+[11:18:11.876][VV][api.connection:361]: Sending keepalive PING
+[11:18:11.877][VV][api.service:013]: send_message ping_request: PingRequest {}
+[11:18:11.906][VV][api.service:020]: on_ping_response: {}
+[11:18:18.032][V][sensor:077]: 'smartli-bms Uptime': Received new state 781.867004
+[11:18:18.057][V][sensor:125]: 'smartli-bms Uptime' >> 782 s
+[11:18:18.057][V][sensor:077]: 'pzem Heap Free': Received new state 187292.000000
+[11:18:18.065][V][sensor:125]: 'pzem Heap Free' >> 187292 B
+[11:18:18.066][V][sensor:077]: 'pzem Loop Time': Received new state 36.000000
+[11:18:18.066][V][sensor:125]: 'pzem Loop Time' >> 36 ms
+[11:18:18.066][V][sensor:077]: 'pzem Heap Max Block': Received new state 110592.000000
+[11:18:18.140][V][sensor:125]: 'pzem Heap Max Block' >> 110592 B
+[11:18:18.140][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.140][VV][api.service:013]:   key: 1107883811
+[11:18:18.140][VV][api.service:013]:   state: 781.867
+[11:18:18.140][VV][api.service:013]:   missing_state: NO
+[11:18:18.140][VV][api.service:013]:  }
+[11:18:18.140][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.140][VV][api.service:013]:   key: 2472806035
+[11:18:18.140][VV][api.service:013]:   state: 187292
+[11:18:18.140][VV][api.service:013]:   missing_state: NO
+[11:18:18.140][VV][api.service:013]:  }
+[11:18:18.140][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.140][VV][api.service:013]:   key: 2743030662
+[11:18:18.140][VV][api.service:013]:   state: 36
+[11:18:18.140][VV][api.service:013]:   missing_state: NO
+[11:18:18.140][VV][api.service:013]:  }
+[11:18:18.143][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.143][VV][api.service:013]:   key: 2378285239
+[11:18:18.143][VV][api.service:013]:   state: 110592
+[11:18:18.143][VV][api.service:013]:   missing_state: NO
+[11:18:18.143][VV][api.service:013]:  }
+[11:18:18.150][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.150][VV][api.service:013]:   key: 1107883811
+[11:18:18.150][VV][api.service:013]:   state: 781.867
+[11:18:18.150][VV][api.service:013]:   missing_state: NO
+[11:18:18.150][VV][api.service:013]:  }
+[11:18:18.150][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.150][VV][api.service:013]:   key: 2472806035
+[11:18:18.150][VV][api.service:013]:   state: 187292
+[11:18:18.150][VV][api.service:013]:   missing_state: NO
+[11:18:18.150][VV][api.service:013]:  }
+[11:18:18.151][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.151][VV][api.service:013]:   key: 2743030662
+[11:18:18.151][VV][api.service:013]:   state: 36
+[11:18:18.151][VV][api.service:013]:   missing_state: NO
+[11:18:18.151][VV][api.service:013]:  }
+[11:18:18.151][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:18.151][VV][api.service:013]:   key: 2378285239
+[11:18:18.151][VV][api.service:013]:   state: 110592
+[11:18:18.151][VV][api.service:013]:   missing_state: NO
+[11:18:18.151][VV][api.service:013]:  }
+[11:18:21.523][V][sensor:077]: 'smartli-bms Wifi Signal': Received new state -54.000000
+[11:18:21.564][V][sensor:125]: 'smartli-bms Wifi Signal' >> -54 dBm
+[11:18:21.631][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:21.631][VV][api.service:013]:   key: 276971171
+[11:18:21.631][VV][api.service:013]:   state: -54
+[11:18:21.631][VV][api.service:013]:   missing_state: NO
+[11:18:21.631][VV][api.service:013]:  }
+[11:18:23.118][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:23.118][VV][api.service:013]:   key: 276971171
+[11:18:23.118][VV][api.service:013]:   state: -54
+[11:18:23.118][VV][api.service:013]:   missing_state: NO
+[11:18:23.118][VV][api.service:013]:  }
+[11:18:24.315][VV][api.connection:361]: Sending keepalive PING
+[11:18:24.653][VV][api.service:013]: send_message ping_request: PingRequest {}
+[11:18:24.656][VV][api.service:020]: on_ping_response: {}
+[11:18:48.031][V][sensor:077]: 'smartli-bms Uptime': Received new state 811.867004
+[11:18:48.134][V][sensor:125]: 'smartli-bms Uptime' >> 812 s
+[11:18:48.134][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:48.134][VV][api.service:013]:   key: 1107883811
+[11:18:48.134][VV][api.service:013]:   state: 811.867
+[11:18:48.134][VV][api.service:013]:   missing_state: NO
+[11:18:48.134][VV][api.service:013]:  }
+[11:18:48.207][VV][api.service:013]: send_message sensor_state_response: SensorStateResponse {
+[11:18:48.207][VV][api.service:013]:   key: 1107883811
+[11:18:48.207][VV][api.service:013]:   state: 811.867
+[11:18:48.207][VV][api.service:013]:   missing_state: NO
+[11:18:48.207][VV][api.service:013]:  }
+[11:18:51.525][V][sensor:077]: 'smartli-bms Wifi Signal': Received new state -51.000000
+[11:18:51.528][V][sensor:125]: 'smartli-bms Wifi Signal' >> -51 dBm

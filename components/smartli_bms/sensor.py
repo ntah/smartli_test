@@ -2,12 +2,11 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor
 
-from . import SmartliBms
+from . import SmartliBmsPackConfig
 
 DEPENDENCIES = ["smartli_bms"]
 
 CONF_SMARTLI_BMS_ID = "smartli_bms_id"
-CONF_ADDRESS = "address"
 CONF_CURRENT = "current"
 CONF_PACK_VOLTAGE = "pack_voltage"
 CONF_BUS_VOLTAGE = "bus_voltage"
@@ -24,8 +23,8 @@ CONF_CELL_MAX_VOLTAGE = "cell_max_voltage"
 CONF_CELL_DELTA_VOLTAGE = "cell_delta_voltage"
 CONF_CELL_AVERAGE_VOLTAGE = "cell_average_voltage"
 CONF_POWER = "power"
-CONF_MAX_TEMPERATURE = "max_temperature"
-CONF_MOS_TEMPERATURE = "mos_temperature"
+CONF_BATTERY_MAX_TEMPERATURE = "battery_max_temperature"
+CONF_MOS_MAX_TEMPERATURE = "mos_max_temperature"
 CONF_CYCLE_COUNT = "cycle_count"
 CONF_DCDC_BUS_CURRENT = "dcdc_bus_current"
 CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET = "dcdc_discharge_bus_voltage_set"
@@ -78,10 +77,8 @@ def percent_sensor_schema():
         state_class="measurement",
     )
 
-CONFIG_SCHEMA = cv.Schema(
+SENSOR_ENTITY_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(CONF_SMARTLI_BMS_ID): cv.use_id(SmartliBms),
-        cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
         cv.Optional(CONF_CURRENT): current_sensor_schema(),
         cv.Optional(CONF_PACK_VOLTAGE): voltage_sensor_schema(2),
         cv.Optional(CONF_BUS_VOLTAGE): voltage_sensor_schema(2),
@@ -136,11 +133,11 @@ CONFIG_SCHEMA = cv.Schema(
             unit_of_measurement="W", accuracy_decimals=2,
             device_class="power", state_class="measurement",
         ),
-        cv.Optional(CONF_MAX_TEMPERATURE): sensor.sensor_schema(
+        cv.Optional(CONF_BATTERY_MAX_TEMPERATURE): sensor.sensor_schema(
             unit_of_measurement="°C", accuracy_decimals=0,
             device_class="temperature", state_class="measurement",
         ),
-        cv.Optional(CONF_MOS_TEMPERATURE): sensor.sensor_schema(
+        cv.Optional(CONF_MOS_MAX_TEMPERATURE): sensor.sensor_schema(
             unit_of_measurement="°C", accuracy_decimals=0,
             device_class="temperature", state_class="measurement",
         ),
@@ -181,10 +178,16 @@ CONFIG_SCHEMA = cv.Schema(
     }
 )
 
+CONFIG_SCHEMA = cv.Schema(
+    {
+        cv.GenerateID(CONF_SMARTLI_BMS_ID): cv.use_id(SmartliBmsPackConfig),
+    }
+).extend(SENSOR_ENTITY_SCHEMA)
 
-async def to_code(config):
-    parent = await cg.get_variable(config[CONF_SMARTLI_BMS_ID])
-    address = config[CONF_ADDRESS]
+
+async def register_sensors(config, pack):
+    parent = pack.get_parent()
+    address = pack.get_address()
 
     setters = {
         CONF_CURRENT: "set_current_sensor",
@@ -203,8 +206,8 @@ async def to_code(config):
         CONF_CELL_DELTA_VOLTAGE: "set_cell_delta_voltage_sensor",
         CONF_CELL_AVERAGE_VOLTAGE: "set_cell_average_voltage_sensor",
         CONF_POWER: "set_power_sensor",
-        CONF_MAX_TEMPERATURE: "set_max_temperature_sensor",
-        CONF_MOS_TEMPERATURE: "set_mos_temperature_sensor",
+        CONF_BATTERY_MAX_TEMPERATURE: "set_max_temperature_sensor",
+        CONF_MOS_MAX_TEMPERATURE: "set_mos_temperature_sensor",
         CONF_CYCLE_COUNT: "set_cycle_count_sensor",
         CONF_DCDC_BUS_CURRENT: "set_dcdc_bus_current_sensor",
         CONF_DCDC_DISCHARGE_BUS_VOLTAGE_SET: "set_dcdc_discharge_bus_voltage_set_sensor",
@@ -237,3 +240,8 @@ async def to_code(config):
         if sensor_config := config.get(key):
             sens = await sensor.new_sensor(sensor_config)
             cg.add(parent.set_temperature_sensor(address, index, sens))
+
+
+async def to_code(config):
+    pack = await cg.get_variable(config[CONF_SMARTLI_BMS_ID])
+    await register_sensors(config, pack)

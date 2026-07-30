@@ -1,97 +1,139 @@
-# SmartLi BMS Parser
+# ESPHome SmartLi BMS
 
-Workspace terpisah untuk pengembangan parser dan monitoring Shoto SmartLi BMS.
+An ESPHome external component for monitoring and controlling multiple SmartLi
+BMS battery packs over one RS485 bus.
 
-## Rencana awal
+## Quick start
 
-- Identifikasi model dan versi SmartLi.
-- Tentukan jalur komunikasi: Modbus TCP, Modbus RTU, HTTPS, atau SNMP.
-- Kumpulkan contoh respons/data mentah perangkat.
-- Susun register map dan konversi nilai.
-- Buat parser, pengujian, dan penyimpanan data.
+1. Connect the ESP32 to an RS485 transceiver.
+2. Copy `smartli-example.yaml` to your ESPHome configuration directory.
+3. Set the UART and flow-control pins in `substitutions`.
+4. Add one entry under `packs` for every connected battery.
+5. Add your Wi-Fi, API, and OTA credentials, then compile and install.
 
-## Informasi perangkat yang dibutuhkan
+```yaml
+substitutions:
+  name: smartli-bms
+  external_components_source: github://ntah/esphome-smartli-bms@main
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  flow_control_pin: GPIO4
 
-- Model SmartLi.
-- Versi firmware.
-- IP dan port komunikasi jika menggunakan jaringan.
-- Modbus Unit/Slave ID.
-- Contoh dump register atau respons mentah.
+external_components:
+  - source: ${external_components_source}
+    refresh: 0s
 
-## External component ESPHome
+uart:
+  id: smartli_uart
+  baud_rate: 9600
+  tx_pin: ${tx_pin}
+  rx_pin: ${rx_pin}
+  rx_buffer_size: 512
 
-Struktur komponen:
+smartli_bms:
+  id: smartli_hub
+  uart_id: smartli_uart
+  flow_control_pin: ${flow_control_pin}
+  update_interval: never
+  continuous_polling: true
+  dcdc_update_interval: 60s
+  response_timeout: 2s
+  pack_delay: 2s
+  request_delay: 1s
 
-```text
-components/
-└── smartli_bms/
-    ├── __init__.py
-    ├── sensor.py
-    ├── smartli_bms.cpp
-    └── smartli_bms.h
+  packs:
+    - id: battery_bank1
+      address: 1
+      sensors:
+        pack_voltage:
+          name: "Bank 1 Pack Voltage"
+        current:
+          name: "Bank 1 Current"
+        state_of_charge:
+          name: "Bank 1 State of Charge"
+      text_sensors:
+        status:
+          name: "Bank 1 Status"
+        modbus_address:
+          name: "Bank 1 Modbus Address"
+
+    - id: battery_bank2
+      address: 2
+      sensors:
+        pack_voltage:
+          name: "Bank 2 Pack Voltage"
+        current:
+          name: "Bank 2 Current"
+        state_of_charge:
+          name: "Bank 2 State of Charge"
 ```
 
-Gunakan `smartli-external-example.yaml` sebagai konfigurasi awal. Komponen
-bersifat read-only dan membaca dua kelompok data pada UART/RS485 yang sama:
+Use the complete [`smartli-example.yaml`](smartli-example.yaml) when you need
+all available sensors, selects, barcode fields, and DCDC information.
 
-- Telemetri baterai biner command `0x01`, mengikuti `update_interval`.
-- Data DCDC ASCII `CID1 E5 / CID2 92`, mengikuti
-  `dcdc_update_interval` (default 60 detik).
+## Pack addresses
 
-Permintaan pada setiap pack dimasukkan ke satu antrean agar respons tidak
-bertumpuk. Contoh YAML sudah memuat sensor DCDC yang berhasil dipetakan dari
-log aplikasi Windows.
+`address` is the SmartLi communication address used for telemetry. Add only the
+packs that are physically connected. The polling order follows the order of the
+entries under `packs`.
 
-`pack_delay` mengatur jeda setelah satu pack selesai sebelum telemetri pack
-berikutnya dimulai. Nilai default dan contoh konfigurasi adalah 2 detik.
-`request_delay` mengatur jeda antar-permintaan Telemetry, DCDC, barcode
-SmartLi, dan barcode Modbus dalam pack yang sama. Nilai defaultnya 1 detik.
+The Modbus slave address is different. When `modbus_address` is not set
+manually, the component reads both SmartLi barcodes and matches them against
+the Modbus barcode registers to discover the correct slave address.
 
-Satu instance `smartli_bms` menangani seluruh pack pada satu UART. Pack
-didaftarkan melalui `packs:` dan dipoll bergiliran agar respons tidak
-bertabrakan.
+## Polling settings
 
-`modbus_address` bersifat opsional. Jika tidak diisi, saat boot component
-membaca PCB dan pack barcode semua pack melalui protokol SmartLi, lalu
-memindai kandidat slave Modbus sebanyak jumlah pack ditambah tiga. Kandidat
-mengikuti rentang resmi 214-221 lalu 224-231. Setiap kandidat dibaca pada
-register PCB barcode `0x104D` dan system/pack barcode `0x1065`. Alamat hanya
-dipasangkan jika kedua barcode yang sudah dibersihkan dari padding sama.
-`modbus_address` manual tetap dapat dipakai sebagai fallback. Nilai default
-214 di payload DCDC tidak dipakai untuk menentukan alamat. Alarm Status 1-5
-berasal langsung dari field `0x06` telemetri.
+- `update_interval`: starts scheduled polling cycles. Use `never` together with
+  `continuous_polling: true`.
+- `continuous_polling`: starts another complete cycle after all packs finish.
+  It also starts the first cycle automatically, so no `on_boot` script or
+  manual `start_polling()` call is required.
+- `dcdc_update_interval`: controls how often DCDC settings and operating data
+  are refreshed.
+- `response_timeout`: maximum time to wait for a battery response.
+- `pack_delay`: delay between two battery packs.
+- `request_delay`: delay between different requests to the same pack.
+- `flow_control_pin`: controls RS485 transmit/receive direction. It may be
+  omitted only when the transceiver controls direction automatically.
 
-PCB barcode dan pack barcode tetap dibaca dari protokol SmartLi dan
-ditampilkan sebagai text sensor. Dua text sensor pembanding juga membaca
-barcode memakai `modbus_address` manual: `modbus_pcb_barcode` dari register
-`0x104D` sebanyak 10 register dan `modbus_pack_barcode` dari register
-`0x1065` sebanyak 10 register. Component tidak melakukan pemindaian alamat
-Modbus otomatis.
+## Global BMS mode
 
-Alarm telemetri diterjemahkan menjadi satu text sensor `status` per pack.
-Jika tidak ada bit masalah aktif nilainya `Normal`. Jika lebih dari satu
-masalah aktif, keterangannya digabung dengan koma.
+SmartLi packs connected in parallel must use the same operating mode. Add the
+mode select only once under the `selects` section of any pack:
 
-Text sensor `modbus_address` menampilkan slave address hasil auto-discovery
-untuk setiap pack. Jika alamat dikonfigurasi manual, nilai manual tersebut
-yang ditampilkan.
+```yaml
+selects:
+  # Global control: writes register 0x1016 to every configured pack.
+  # Constant writes 0x0101; Battery writes 0x0303.
+  mode:
+    name: "Mode BMS"
+```
 
-Platform `select` menyediakan penulisan konfigurasi Modbus yang sama dengan
-YAML lama: VBUS discharge (`0x1010`), IBUS (`0x1011`), PBUS (`0x1012`),
-average charge (`0x1013`), VBUS DOD (`0x1014`), DOD (`0x1015`), mode semua
-pack (`0x1016`), charging loop (`0x107D`), dan discharge loop (`0x107E`).
-Write baru dijalankan setelah alamat Modbus pack ditemukan dan dimasukkan ke
-antrean agar tidak bertabrakan dengan polling atau discovery.
+The component sends the selected value to every configured pack whose Modbus
+address is available. With two configured packs it sends two writes; with five
+configured packs it sends five writes.
 
-Field yang sudah dipublikasikan:
+## Available data
 
-- Arus.
-- Tegangan pack dan bus.
-- SOC dan SOH.
-- Full capacity dan remaining capacity.
-- Total charge dan discharge Ah.
-- Tegangan Cell 1–15.
-- Tegangan cell minimum, maksimum, dan delta.
+The full example includes:
 
-Arti field selain yang sudah terverifikasi dari log belum dipublikasikan untuk
-menghindari pemberian label atau satuan yang salah.
+- Pack, bus, and individual cell voltages
+- Current, power, SOC, SOH, and capacity
+- Minimum, maximum, average, and delta cell voltage
+- Battery, MOS, environment, and balancing temperatures
+- Charge/discharge totals and cycle count
+- DCDC settings and operating state
+- Alarm status, PCB barcode, pack barcode, and discovered Modbus address
+- Per-pack DCDC controls and one global BMS mode control
+
+## Troubleshooting
+
+Temporarily set:
+
+```yaml
+logger:
+  level: DEBUG
+  baud_rate: 0
+```
+
+Keep `baud_rate: 0` so ESPHome logging does not interfere with the RS485 UART.

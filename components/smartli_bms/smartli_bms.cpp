@@ -200,6 +200,17 @@ void SmartliBms::setup() {
     this->flow_control_pin_->digital_write(false);
   }
   this->frame_.reserve(MAX_FRAME_SIZE);
+
+  // PollingComponent does not call update() when update_interval is "never".
+  // Start the first cycle here so continuous polling can run without an
+  // external on_boot automation. Subsequent cycles are scheduled by
+  // finish_polling_cycle_().
+  if (this->continuous_polling_) {
+    this->set_timeout("initial_polling_cycle", 1000, [this]() {
+      ESP_LOGD(TAG, "Starting initial continuous multi-pack polling cycle");
+      this->start_polling();
+    });
+  }
 }
 
 void SmartliBms::dump_config() {

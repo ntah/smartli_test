@@ -86,6 +86,8 @@ the Modbus barcode registers to discover the correct slave address.
 - `update_interval`: starts scheduled polling cycles. Use `never` together with
   `continuous_polling: true`.
 - `continuous_polling`: starts another complete cycle after all packs finish.
+  It also starts the first cycle automatically, so no `on_boot` script or
+  manual `start_polling()` call is required.
 - `dcdc_update_interval`: controls how often DCDC settings and operating data
   are refreshed.
 - `response_timeout`: maximum time to wait for a battery response.

@@ -22,7 +22,8 @@ class SmartliBms;
 class SmartliBmsPackConfig {
  public:
   void set_parent(SmartliBms *parent) { parent_ = parent; }
-  SmartliBms *get_parent() const { return parent_; }
+  SmartliBms &get_parent() const { return *parent_; }
+  SmartliBms *get_parent_ptr() const { return parent_; }
   void set_address(uint8_t address) { address_ = address; }
   uint8_t get_address() const { return address_; }
 

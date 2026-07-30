@@ -44,7 +44,7 @@ async def register_selects(config, pack):
     for key, (select_type, options) in SELECTS.items():
         if select_config := config.get(key):
             var = await select.new_select(select_config, options=options)
-            cg.add(var.set_parent(parent))
+            cg.add(var.set_parent(pack.get_parent_ptr()))
             cg.add(var.set_address(address))
             cg.add(var.set_type(select_type))
             cg.add(parent.set_config_select(address, select_type, var))

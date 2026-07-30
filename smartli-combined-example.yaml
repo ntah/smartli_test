@@ -1,0 +1,117 @@
+uart:
+  id: smartli_uart
+  baud_rate: 9600
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  rx_buffer_size: 512
+
+smartli_bms:
+  id: smartli_hub
+  uart_id: smartli_uart
+  flow_control_pin: GPIO4
+  update_interval: 30s
+  dcdc_update_interval: 60s
+  response_timeout: 700ms
+  pack_delay: 2s
+  request_delay: 1s
+
+  packs:
+    - id: battery_bank1
+      address: 4
+
+      sensors:
+        pack_voltage:
+          name: "SmartLi Bank 1 Pack Voltage"
+        bus_voltage:
+          name: "SmartLi Bank 1 Bus Voltage"
+        current:
+          name: "SmartLi Bank 1 Current"
+        power:
+          name: "SmartLi Bank 1 Power"
+        state_of_charge:
+          name: "SmartLi Bank 1 State of Charge"
+        state_of_health:
+          name: "SmartLi Bank 1 State of Health"
+        full_capacity:
+          name: "SmartLi Bank 1 Full Capacity"
+        remaining_capacity:
+          name: "SmartLi Bank 1 Remaining Capacity"
+        cycle_count:
+          name: "SmartLi Bank 1 Charging Cycles"
+        cell_min_voltage:
+          name: "SmartLi Bank 1 Minimum Cell Voltage"
+        cell_max_voltage:
+          name: "SmartLi Bank 1 Maximum Cell Voltage"
+        cell_delta_voltage:
+          name: "SmartLi Bank 1 Cell Delta Voltage"
+        battery_max_temperature:
+          name: "SmartLi Bank 1 Maximum Battery Temperature"
+        mos_max_temperature:
+          name: "SmartLi Bank 1 Maximum MOS Temperature"
+
+      selects:
+        vbus_discharge_set:
+          name: "SmartLi Bank 1 VBUS Discharge Set"
+        ibus_percent:
+          name: "SmartLi Bank 1 IBUS"
+        pbus_percent:
+          name: "SmartLi Bank 1 PBUS Discharge"
+        avg_charge_percent:
+          name: "SmartLi Bank 1 Average Charge"
+        vbus_dod:
+          name: "SmartLi Bank 1 VBUS DOD"
+        dod_percent:
+          name: "SmartLi Bank 1 DOD"
+        charging_loop:
+          name: "SmartLi Bank 1 Charging Loop"
+        discharge_loop:
+          name: "SmartLi Bank 1 Discharge Loop"
+        mode:
+          name: "SmartLi BMS Mode"
+
+      text_sensors:
+        pcb_barcode:
+          name: "SmartLi Bank 1 PCB Barcode"
+        pack_barcode:
+          name: "SmartLi Bank 1 Pack Barcode"
+        modbus_address:
+          name: "SmartLi Bank 1 Modbus Address"
+        status:
+          name: "SmartLi Bank 1 Status"
+        mode:
+          name: "SmartLi Bank 1 Mode"
+        operating_state:
+          name: "SmartLi Bank 1 Operating State"
+        last_update:
+          name: "SmartLi Bank 1 Last Update"
+
+    - id: battery_bank2
+      address: 2
+
+      sensors:
+        pack_voltage:
+          name: "SmartLi Bank 2 Pack Voltage"
+        current:
+          name: "SmartLi Bank 2 Current"
+        state_of_charge:
+          name: "SmartLi Bank 2 State of Charge"
+        cell_min_voltage:
+          name: "SmartLi Bank 2 Minimum Cell Voltage"
+        cell_max_voltage:
+          name: "SmartLi Bank 2 Maximum Cell Voltage"
+
+      selects:
+        charging_loop:
+          name: "SmartLi Bank 2 Charging Loop"
+        discharge_loop:
+          name: "SmartLi Bank 2 Discharge Loop"
+
+      text_sensors:
+        pcb_barcode:
+          name: "SmartLi Bank 2 PCB Barcode"
+        pack_barcode:
+          name: "SmartLi Bank 2 Pack Barcode"
+        status:
+          name: "SmartLi Bank 2 Status"
+        operating_state:
+          name: "SmartLi Bank 2 Operating State"

@@ -6,6 +6,7 @@ from esphome.const import CONF_ID
 
 CODEOWNERS = ["@local"]
 DEPENDENCIES = ["uart"]
+AUTO_LOAD = ["sensor", "select", "text_sensor"]
 MULTI_CONF = False
 
 CONF_PACKS = "packs"
@@ -17,16 +18,28 @@ CONF_RESPONSE_TIMEOUT = "response_timeout"
 CONF_PACK_DELAY = "pack_delay"
 CONF_REQUEST_DELAY = "request_delay"
 CONF_CONTINUOUS_POLLING = "continuous_polling"
+CONF_SENSORS = "sensors"
+CONF_SELECTS = "selects"
+CONF_TEXT_SENSORS = "text_sensors"
 
 smartli_bms_ns = cg.esphome_ns.namespace("smartli_bms")
 SmartliBms = smartli_bms_ns.class_(
     "SmartliBms", cg.PollingComponent, uart.UARTDevice
 )
+SmartliBmsPackConfig = smartli_bms_ns.class_("SmartliBmsPackConfig")
+
+from .sensor import SENSOR_ENTITY_SCHEMA, register_sensors
+from .select import SELECT_ENTITY_SCHEMA, register_selects
+from .text_sensor import TEXT_SENSOR_ENTITY_SCHEMA, register_text_sensors
 
 PACK_SCHEMA = cv.Schema(
     {
+        cv.GenerateID(): cv.declare_id(SmartliBmsPackConfig),
         cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
         cv.Optional(CONF_MODBUS_ADDRESS, default=0): cv.int_range(min=0, max=247),
+        cv.Optional(CONF_SENSORS): SENSOR_ENTITY_SCHEMA,
+        cv.Optional(CONF_SELECTS): SELECT_ENTITY_SCHEMA,
+        cv.Optional(CONF_TEXT_SENSORS): TEXT_SENSOR_ENTITY_SCHEMA,
     }
 )
 
@@ -91,7 +104,16 @@ async def to_code(config):
     cg.add(var.set_request_delay(config[CONF_REQUEST_DELAY].total_milliseconds))
     cg.add(var.set_continuous_polling(config[CONF_CONTINUOUS_POLLING]))
     for pack in config[CONF_PACKS]:
+        pack_var = cg.new_Pvariable(pack[CONF_ID])
+        cg.add(pack_var.set_parent(var))
+        cg.add(pack_var.set_address(pack[CONF_ADDRESS]))
         cg.add(var.add_pack(pack[CONF_ADDRESS], pack[CONF_MODBUS_ADDRESS]))
+        if sensor_config := pack.get(CONF_SENSORS):
+            await register_sensors(sensor_config, pack_var)
+        if select_config := pack.get(CONF_SELECTS):
+            await register_selects(select_config, pack_var)
+        if text_sensor_config := pack.get(CONF_TEXT_SENSORS):
+            await register_text_sensors(text_sensor_config, pack_var)
 
     if flow_control_config := config.get(CONF_FLOW_CONTROL_PIN):
         pin = await cg.gpio_pin_expression(flow_control_config)

@@ -51,6 +51,35 @@ Satu instance `smartli_bms` menangani seluruh pack pada satu UART. Pack
 didaftarkan melalui `packs:` dan dipoll bergiliran agar respons tidak
 bertabrakan.
 
+Setiap pack memiliki `id` dan `address`. Seluruh entity milik pack dapat
+digabung langsung melalui blok `sensors`, `selects`, dan `text_sensors`,
+sehingga ID dan alamat komunikasi hanya ditulis sekali:
+
+```yaml
+smartli_bms:
+  id: smartli_hub
+  uart_id: smartli_uart
+  packs:
+    - id: battery_bank1
+      address: 4
+      sensors:
+        pack_voltage:
+          name: "Bank 1 Pack Voltage"
+        current:
+          name: "Bank 1 Current"
+      selects:
+        charging_loop:
+          name: "Bank 1 Charging Loop"
+      text_sensors:
+        pcb_barcode:
+          name: "Bank 1 PCB Barcode"
+        operating_state:
+          name: "Bank 1 Operating State"
+
+    - id: battery_bank2
+      address: 2
+```
+
 `modbus_address` bersifat opsional. Jika tidak diisi, saat boot component
 membaca PCB dan pack barcode semua pack melalui protokol SmartLi, lalu
 memindai kandidat slave Modbus sebanyak jumlah pack ditambah tiga. Kandidat

@@ -19,6 +19,18 @@ namespace smartli_bms {
 
 class SmartliBms;
 
+class SmartliBmsPackConfig {
+ public:
+  void set_parent(SmartliBms *parent) { parent_ = parent; }
+  SmartliBms *get_parent() const { return parent_; }
+  void set_address(uint8_t address) { address_ = address; }
+  uint8_t get_address() const { return address_; }
+
+ protected:
+  SmartliBms *parent_{nullptr};
+  uint8_t address_{0};
+};
+
 enum SmartliSelectType : uint8_t {
   VBUS_DISCHARGE,
   VBUS_DOD,

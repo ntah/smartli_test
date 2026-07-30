@@ -2,12 +2,11 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import text_sensor
 
-from . import SmartliBms
+from . import SmartliBmsPackConfig
 
 DEPENDENCIES = ["smartli_bms"]
 
 CONF_SMARTLI_BMS_ID = "smartli_bms_id"
-CONF_ADDRESS = "address"
 CONF_PCB_BARCODE = "pcb_barcode"
 CONF_PACK_BARCODE = "pack_barcode"
 CONF_MODBUS_PCB_BARCODE = "modbus_pcb_barcode"
@@ -18,10 +17,8 @@ CONF_MODE = "mode"
 CONF_OPERATING_STATE = "operating_state"
 CONF_LAST_UPDATE = "last_update"
 
-CONFIG_SCHEMA = cv.Schema(
+TEXT_SENSOR_ENTITY_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(CONF_SMARTLI_BMS_ID): cv.use_id(SmartliBms),
-        cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
         cv.Optional(CONF_PCB_BARCODE): text_sensor.text_sensor_schema(
             entity_category="diagnostic",
         ),
@@ -49,10 +46,16 @@ CONFIG_SCHEMA = cv.Schema(
     }
 )
 
+CONFIG_SCHEMA = cv.Schema(
+    {
+        cv.GenerateID(CONF_SMARTLI_BMS_ID): cv.use_id(SmartliBmsPackConfig),
+    }
+).extend(TEXT_SENSOR_ENTITY_SCHEMA)
 
-async def to_code(config):
-    parent = await cg.get_variable(config[CONF_SMARTLI_BMS_ID])
-    address = config[CONF_ADDRESS]
+
+async def register_text_sensors(config, pack):
+    parent = pack.get_parent()
+    address = pack.get_address()
 
     if sensor_config := config.get(CONF_PCB_BARCODE):
         sens = await text_sensor.new_text_sensor(sensor_config)
@@ -89,3 +92,8 @@ async def to_code(config):
     if sensor_config := config.get(CONF_LAST_UPDATE):
         sens = await text_sensor.new_text_sensor(sensor_config)
         cg.add(parent.set_last_update_text_sensor(address, sens))
+
+
+async def to_code(config):
+    pack = await cg.get_variable(config[CONF_SMARTLI_BMS_ID])
+    await register_text_sensors(config, pack)

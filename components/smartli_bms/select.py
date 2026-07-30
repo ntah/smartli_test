@@ -3,12 +3,11 @@ import esphome.config_validation as cv
 from esphome.components import select
 from esphome.const import ENTITY_CATEGORY_CONFIG
 
-from . import SmartliBms, smartli_bms_ns
+from . import SmartliBmsPackConfig, smartli_bms_ns
 
 DEPENDENCIES = ["smartli_bms"]
 
 CONF_SMARTLI_BMS_ID = "smartli_bms_id"
-CONF_ADDRESS = "address"
 
 SmartliBmsSelect = smartli_bms_ns.class_("SmartliBmsSelect", select.Select)
 SmartliSelectType = smartli_bms_ns.enum("SmartliSelectType")
@@ -25,9 +24,7 @@ SELECTS = {
     "mode": (SmartliSelectType.MODE_ALL, ["Constant", "Battery"]),
 }
 
-CONFIG_SCHEMA = cv.Schema({
-    cv.GenerateID(CONF_SMARTLI_BMS_ID): cv.use_id(SmartliBms),
-    cv.Required(CONF_ADDRESS): cv.int_range(min=1, max=247),
+SELECT_ENTITY_SCHEMA = cv.Schema({
     **{
         cv.Optional(key): select.select_schema(
             SmartliBmsSelect, entity_category=ENTITY_CATEGORY_CONFIG
@@ -36,10 +33,14 @@ CONFIG_SCHEMA = cv.Schema({
     },
 })
 
+CONFIG_SCHEMA = cv.Schema({
+    cv.GenerateID(CONF_SMARTLI_BMS_ID): cv.use_id(SmartliBmsPackConfig),
+}).extend(SELECT_ENTITY_SCHEMA)
 
-async def to_code(config):
-    parent = await cg.get_variable(config[CONF_SMARTLI_BMS_ID])
-    address = config[CONF_ADDRESS]
+
+async def register_selects(config, pack):
+    parent = pack.get_parent()
+    address = pack.get_address()
     for key, (select_type, options) in SELECTS.items():
         if select_config := config.get(key):
             var = await select.new_select(select_config, options=options)
@@ -47,3 +48,8 @@ async def to_code(config):
             cg.add(var.set_address(address))
             cg.add(var.set_type(select_type))
             cg.add(parent.set_config_select(address, select_type, var))
+
+
+async def to_code(config):
+    pack = await cg.get_variable(config[CONF_SMARTLI_BMS_ID])
+    await register_selects(config, pack)

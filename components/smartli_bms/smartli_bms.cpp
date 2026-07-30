@@ -1124,10 +1124,10 @@ void SmartliBms::parse_dcdc_(SmartliPack &pack, const uint8_t *p, size_t n) {
     case 1: operating_text = "Precharge"; break;
     case 2: operating_text = "Charging"; break;
     case 3: operating_text = "Discharging"; break;
-    case 4: operating_text = "BUCK Charging"; break;
-    case 5: operating_text = "BOOST Charging"; break;
-    case 6: operating_text = "BUCK Discharging"; break;
-    case 7: operating_text = "BOOST Discharging"; break;
+    case 4: operating_text = "Buck Charge"; break;
+    case 5: operating_text = "Boost Charge"; break;
+    case 6: operating_text = "Buck Discharge"; break;
+    case 7: operating_text = "Boost Discharge"; break;
     case 8: operating_text = "Standby"; break;
     case 9: operating_text = "Alarm"; break;
     case 10: operating_text = "Protection shutdown"; break;

@@ -22,6 +22,11 @@ wifi:
   ssid: !secret wifi_ssid         # Wi-Fi network name stored in secrets.yaml
   password: !secret wifi_password # Wi-Fi password stored in secrets.yaml
 
+time:
+  - platform: sntp
+    id: esptime
+    timezone: Asia/Jakarta         # Used by last_update to publish HH:MM:SS
+
 logger:
   level: NONE                     # Change to DEBUG while troubleshooting
   baud_rate: 0                    # Keep the hardware UART free from serial logger output
@@ -139,6 +144,8 @@ smartli_bms:
           name: "bank 1 Mode"
         operating_state:
           name: "bank 1 Operating State"
+        last_update:
+          name: "bank 1 Last Update"
 
     - id: battery_bank2
       address: 2                  # Add or remove pack blocks to match the actual bank
@@ -222,6 +229,8 @@ smartli_bms:
           name: "bank 2 Mode"
         operating_state:
           name: "bank 2 Operating State"
+        last_update:
+          name: "bank 2 Last Update"
 
 sensor:
   - platform: uptime

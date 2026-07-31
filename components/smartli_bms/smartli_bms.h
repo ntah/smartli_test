@@ -83,7 +83,6 @@ struct SmartliPack {
   text_sensor::TextSensor *mode_sensor{nullptr};
   text_sensor::TextSensor *operating_state_sensor{nullptr};
   text_sensor::TextSensor *last_update_sensor{nullptr};
-  uint32_t telemetry_sequence{0};
   std::array<uint16_t, 5> alarm_values{};
   uint32_t last_dcdc_at{0};
 

@@ -2,8 +2,9 @@
 
 #include <algorithm>
 #include <cctype>
-#include <cstdlib>
 #include <cstdio>
+#include <cstdlib>
+#include <ctime>
 
 #include "esphome/core/hal.h"
 #include "esphome/core/log.h"
@@ -1268,9 +1269,18 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
     }
   }
   if (pack.last_update_sensor != nullptr) {
-    pack.telemetry_sequence++;
-    pack.last_update_sensor->publish_state(
-        "Update " + std::to_string(pack.telemetry_sequence));
+    const std::time_t now = std::time(nullptr);
+    if (now >= 1609459200) {
+      std::tm local_time{};
+      localtime_r(&now, &local_time);
+      char time_text[9];
+      if (std::strftime(time_text, sizeof(time_text), "%H:%M:%S",
+                        &local_time) != 0) {
+        pack.last_update_sensor->publish_state(time_text);
+      }
+    } else {
+      pack.last_update_sensor->publish_state("Unknown");
+    }
   }
 }
 

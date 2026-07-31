@@ -124,7 +124,20 @@ The full example includes:
 - Charge/discharge totals and cycle count
 - DCDC settings and operating state
 - Alarm status, PCB barcode, pack barcode, and discovered Modbus address
+- Last successful telemetry update in local `HH:MM:SS` format
 - Per-pack DCDC controls and one global BMS mode control
+
+The `last_update` text sensor uses the ESPHome system clock. Configure a time
+source and timezone, for example:
+
+```yaml
+time:
+  - platform: sntp
+    id: esptime
+    timezone: Asia/Jakarta
+```
+
+Until the clock is synchronized, `last_update` reports `Unknown`.
 
 ## Troubleshooting
 

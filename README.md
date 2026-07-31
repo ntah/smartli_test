@@ -1,4 +1,4 @@
-# ESPHome SmartLi BMS
+# ESPHome Shoto SmartLi BMS SDA10-48100/SDA10-48150
 
 An ESPHome external component for monitoring and controlling multiple SmartLi
 BMS battery packs over one RS485 bus.

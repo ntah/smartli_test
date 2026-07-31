@@ -13,10 +13,21 @@ SmartliBmsSelect = smartli_bms_ns.class_("SmartliBmsSelect", select.Select)
 SmartliSelectType = smartli_bms_ns.enum("SmartliSelectType")
 
 SELECTS = {
-    "vbus_discharge_set": (SmartliSelectType.VBUS_DISCHARGE, ["49.0V", "49.5V", "50.0V", "50.5V", "51.0V"]),
+    "vbus_discharge_set": (
+        SmartliSelectType.VBUS_DISCHARGE,
+        [f"{value / 10:.1f}V" for value in range(490, 511)],
+    ),
     "vbus_dod": (SmartliSelectType.VBUS_DOD, [f"{v / 10:.1f}V" for v in range(480, 501)]),
-    "ibus_percent": (SmartliSelectType.IBUS_PERCENT, [f"{v}%" for v in range(0, 101, 5)]),
-    "pbus_percent": (SmartliSelectType.PBUS_PERCENT, ["0%", "3%"] + [f"{v}%" for v in range(5, 101, 5)]),
+    "ibus_percent": (
+        SmartliSelectType.IBUS_PERCENT,
+        [f"{value}%" for value in range(0, 21)]
+        + [f"{value}%" for value in range(30, 101, 10)],
+    ),
+    "pbus_percent": (
+        SmartliSelectType.PBUS_PERCENT,
+        [f"{value}%" for value in range(0, 21)]
+        + [f"{value}%" for value in range(30, 101, 10)],
+    ),
     "avg_charge_percent": (SmartliSelectType.AVG_CHARGE_PERCENT, [f"{v}%" for v in range(0, 101, 5)]),
     "dod_percent": (SmartliSelectType.DOD_PERCENT, [f"{v}%" for v in range(0, 101, 5)]),
     "charging_loop": (SmartliSelectType.CHARGING_LOOP, ["Enable", "Disable"]),

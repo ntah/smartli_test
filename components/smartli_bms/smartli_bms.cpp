@@ -341,6 +341,32 @@ void SmartliBms::begin_pending_write_() {
 }
 
 void SmartliBms::begin_pack_() {
+  if (this->boot_identity_phase_) {
+    if (this->pack_index_ >= this->packs_.size()) {
+      bool barcodes_ready = true;
+      bool address_missing = false;
+      for (const auto &pack : this->packs_) {
+        barcodes_ready &= !pack.pcb_barcode.empty() && !pack.pack_barcode.empty();
+        address_missing |= pack.modbus_address == 0;
+      }
+      if (barcodes_ready && address_missing) {
+        this->begin_modbus_discovery_();
+        return;
+      }
+      this->boot_identity_phase_ = false;
+      if (!address_missing)
+        this->discovery_completed_ = true;
+      this->pack_index_ = 0;
+      this->begin_pack_();
+      return;
+    }
+
+    auto &pack = this->packs_[this->pack_index_];
+    this->phase_ = Phase::PCB_BARCODE;
+    this->send_binary_request_(pack.address, 0x42);
+    return;
+  }
+
   if (this->pack_index_ >= this->packs_.size()) {
     if (!this->discovery_completed_) {
       bool barcodes_ready = true;
@@ -433,6 +459,26 @@ void SmartliBms::advance_(bool response_received) {
   if (!response_received) {
     ESP_LOGW(TAG, "Timeout in phase %u for pack %u",
              static_cast<uint8_t>(completed), pack.address);
+  }
+
+  if (this->boot_identity_phase_) {
+    if (completed == Phase::PCB_BARCODE) {
+      this->schedule_phase_(Phase::PACK_BARCODE,
+                            [this, address = pack.address]() {
+                              this->send_pack_barcode_request_(address);
+                            });
+      return;
+    }
+    if (completed == Phase::PACK_BARCODE) {
+      this->pack_index_++;
+      this->phase_ = Phase::IDLE;
+      this->waiting_for_request_ = true;
+      this->set_timeout("next_identity_pack", this->pack_delay_, [this]() {
+        this->waiting_for_request_ = false;
+        this->begin_pack_();
+      });
+      return;
+    }
   }
 
   if (completed == Phase::TELEMETRY) {
@@ -555,26 +601,64 @@ void SmartliBms::advance_(bool response_received) {
 }
 
 uint8_t SmartliBms::discovery_candidate_address_(size_t index) const {
-  // Valid ranges documented by SmartLi are 214-221 and 224-231.
-  return index < 8 ? static_cast<uint8_t>(214 + index)
-                   : static_cast<uint8_t>(224 + index - 8);
+  return static_cast<uint8_t>(214 + index);
 }
 
 void SmartliBms::begin_modbus_discovery_() {
+  this->discovery_pack_index_ = 0;
   this->discovery_candidate_index_ = 0;
   this->discovery_candidate_count_ =
-      std::min<size_t>(this->packs_.size() + 3, 16);
+      std::min<size_t>(this->packs_.size() + 16, 247 - 214 + 1);
   this->discovery_match_count_ = 0;
   for (const auto &pack : this->packs_)
     if (pack.modbus_address != 0)
       this->discovery_match_count_++;
   this->discovery_pcb_barcode_.clear();
   this->discovery_pack_barcode_.clear();
-  const uint8_t candidate = this->discovery_candidate_address_(0);
-  ESP_LOGI(TAG, "Starting Modbus discovery: %u candidates for %u packs",
+  ESP_LOGI(TAG, "Starting per-pack Modbus discovery: %u candidates for %u packs",
            this->discovery_candidate_count_, this->packs_.size());
-  this->phase_ = Phase::DISCOVERY_MODBUS_PCB;
-  this->send_modbus_read_(candidate, 0x104D, 10);
+  this->advance_discovery_pack_();
+}
+
+void SmartliBms::advance_discovery_pack_() {
+  while (this->discovery_pack_index_ < this->packs_.size() &&
+         this->packs_[this->discovery_pack_index_].modbus_address != 0) {
+    this->discovery_pack_index_++;
+  }
+  if (this->discovery_pack_index_ >= this->packs_.size()) {
+    this->discovery_completed_ = true;
+    this->boot_identity_phase_ = false;
+    this->phase_ = Phase::IDLE;
+    ESP_LOGI(TAG, "Modbus discovery completed: %u/%u packs matched",
+             this->discovery_match_count_, this->packs_.size());
+    this->finish_polling_cycle_();
+    return;
+  }
+  this->discovery_candidate_index_ = 0;
+  this->begin_discovery_candidate_();
+}
+
+void SmartliBms::begin_discovery_candidate_() {
+  while (this->discovery_candidate_index_ < this->discovery_candidate_count_) {
+    const uint8_t candidate =
+        this->discovery_candidate_address_(this->discovery_candidate_index_);
+    bool already_used = false;
+    for (const auto &pack : this->packs_)
+      already_used |= pack.modbus_address == candidate;
+    if (!already_used) {
+      this->discovery_pcb_barcode_.clear();
+      this->discovery_pack_barcode_.clear();
+      this->phase_ = Phase::DISCOVERY_MODBUS_PCB;
+      this->send_modbus_read_(candidate, 0x104D, 10);
+      return;
+    }
+    this->discovery_candidate_index_++;
+  }
+
+  ESP_LOGW(TAG, "No Modbus address matched pack %u",
+           this->packs_[this->discovery_pack_index_].address);
+  this->discovery_pack_index_++;
+  this->advance_discovery_pack_();
 }
 
 void SmartliBms::advance_modbus_discovery_(bool response_received) {
@@ -604,53 +688,50 @@ void SmartliBms::finish_modbus_discovery_candidate_() {
       this->discovery_candidate_address_(this->discovery_candidate_index_);
   if (!this->discovery_pcb_barcode_.empty() &&
       !this->discovery_pack_barcode_.empty()) {
-    for (auto &pack : this->packs_) {
-      if (pack.modbus_address == 0 &&
-          pack.pcb_barcode == this->discovery_pcb_barcode_ &&
-          pack.pack_barcode == this->discovery_pack_barcode_) {
-        pack.modbus_address = candidate;
-        this->discovery_match_count_++;
-        if (pack.modbus_address_sensor != nullptr)
-          pack.modbus_address_sensor->publish_state(std::to_string(candidate));
-        if (pack.modbus_pcb_barcode_sensor != nullptr)
-          pack.modbus_pcb_barcode_sensor->publish_state(
-              this->discovery_pcb_barcode_);
-        if (pack.modbus_pack_barcode_sensor != nullptr)
-          pack.modbus_pack_barcode_sensor->publish_state(
-              this->discovery_pack_barcode_);
-        pack.modbus_pcb_barcode = this->discovery_pcb_barcode_;
-        pack.modbus_pack_barcode = this->discovery_pack_barcode_;
-        ESP_LOGI(TAG, "Pack %u matched Modbus %u using both barcodes",
-                 pack.address, candidate);
-        break;
-      }
+    auto &pack = this->packs_[this->discovery_pack_index_];
+    if (pack.modbus_address == 0 &&
+        pack.pcb_barcode == this->discovery_pcb_barcode_ &&
+        pack.pack_barcode == this->discovery_pack_barcode_) {
+      pack.modbus_address = candidate;
+      this->discovery_match_count_++;
+      if (pack.modbus_address_sensor != nullptr)
+        pack.modbus_address_sensor->publish_state(std::to_string(candidate));
+      if (pack.modbus_pcb_barcode_sensor != nullptr)
+        pack.modbus_pcb_barcode_sensor->publish_state(
+            this->discovery_pcb_barcode_);
+      if (pack.modbus_pack_barcode_sensor != nullptr)
+        pack.modbus_pack_barcode_sensor->publish_state(
+            this->discovery_pack_barcode_);
+      pack.modbus_pcb_barcode = this->discovery_pcb_barcode_;
+      pack.modbus_pack_barcode = this->discovery_pack_barcode_;
+      ESP_LOGI(TAG, "Pack %u matched Modbus %u using both barcodes",
+               pack.address, candidate);
+      this->discovery_pack_index_++;
+      this->phase_ = Phase::IDLE;
+      this->waiting_for_request_ = true;
+      this->set_timeout("next_discovery_pack", this->request_delay_, [this]() {
+        this->waiting_for_request_ = false;
+        this->advance_discovery_pack_();
+      });
+      return;
     }
   }
 
   this->discovery_pcb_barcode_.clear();
   this->discovery_pack_barcode_.clear();
-  if (this->discovery_match_count_ >= this->packs_.size()) {
-    this->discovery_completed_ = true;
-    this->phase_ = Phase::IDLE;
-    ESP_LOGI(TAG, "Modbus discovery completed: all %u packs matched",
-             this->packs_.size());
-    this->finish_polling_cycle_();
-    return;
-  }
   this->discovery_candidate_index_++;
   if (this->discovery_candidate_index_ >= this->discovery_candidate_count_) {
-    this->discovery_completed_ = true;
-    this->phase_ = Phase::IDLE;
-    ESP_LOGI(TAG, "Modbus discovery completed: %u/%u packs matched",
-             this->discovery_match_count_, this->packs_.size());
-    this->finish_polling_cycle_();
+    ESP_LOGW(TAG, "No Modbus address matched pack %u",
+             this->packs_[this->discovery_pack_index_].address);
+    this->discovery_pack_index_++;
+    this->advance_discovery_pack_();
     return;
   }
-
-  const uint8_t next =
-      this->discovery_candidate_address_(this->discovery_candidate_index_);
-  this->schedule_phase_(Phase::DISCOVERY_MODBUS_PCB, [this, next]() {
-    this->send_modbus_read_(next, 0x104D, 10);
+  this->waiting_for_request_ = true;
+  this->phase_ = Phase::IDLE;
+  this->set_timeout("next_discovery_candidate", this->request_delay_, [this]() {
+    this->waiting_for_request_ = false;
+    this->begin_discovery_candidate_();
   });
 }
 

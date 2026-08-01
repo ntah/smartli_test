@@ -223,6 +223,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   void begin_pack_();
   void finish_polling_cycle_();
   void begin_modbus_discovery_();
+  void begin_discovery_candidate_();
+  void advance_discovery_pack_();
   void begin_pending_write_();
   void schedule_phase_(Phase next, std::function<void()> action);
   void advance_modbus_discovery_(bool response_received);
@@ -266,6 +268,8 @@ class SmartliBms : public PollingComponent, public uart::UARTDevice {
   bool ascii_frame_{false};
   bool modbus_echo_{false};
   bool discovery_completed_{false};
+  bool boot_identity_phase_{true};
+  size_t discovery_pack_index_{0};
   size_t discovery_candidate_index_{0};
   size_t discovery_candidate_count_{0};
   size_t discovery_match_count_{0};

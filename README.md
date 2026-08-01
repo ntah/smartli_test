@@ -81,6 +81,13 @@ The Modbus slave address is different. When `modbus_address` is not set
 manually, the component reads both SmartLi barcodes and matches them against
 the Modbus barcode registers to discover the correct slave address.
 
+At boot, the component reads the PCB and pack barcode of every configured
+SmartLi pack before starting telemetry. Modbus discovery then runs one pack at
+a time, testing `pack count + 16` consecutive candidate addresses beginning at
+214. An address already matched to another pack is skipped, while unmatched
+earlier candidates remain available for the next pack. Normal telemetry starts
+after discovery finishes.
+
 ## Polling settings
 
 - `update_interval`: starts scheduled polling cycles. Use `never` together with

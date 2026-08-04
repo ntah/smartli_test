@@ -1258,8 +1258,23 @@ void SmartliBms::parse_telemetry_(SmartliPack &pack, const uint8_t *p,
       return;
     if (id == 0x01) {
       cell_count = std::min<size_t>(count, cells.size());
+      bool valid_cells = cell_count > 0;
       for (size_t i = 0; i < cell_count; i++) {
         cells[i] = this->read_u16_(&p[offset + i * 2]);
+        // Reject a damaged UART frame before publishing any cell value. A
+        // SmartLi LFP cell cannot legitimately be tens of volts; retaining
+        // the previous valid state is safer than publishing corrupted data.
+        if (cells[i] < 2000U || cells[i] > 4500U) {
+          ESP_LOGW(TAG,
+                   "Pack %u rejected telemetry: cell %u has invalid voltage %.3f V",
+                   pack.address, static_cast<unsigned>(i + 1),
+                   cells[i] / 1000.0f);
+          valid_cells = false;
+        }
+      }
+      if (!valid_cells)
+        return;
+      for (size_t i = 0; i < cell_count; i++) {
         if (pack.cell_voltages[i] != nullptr)
           pack.cell_voltages[i]->publish_state(cells[i] / 1000.0f);
       }
